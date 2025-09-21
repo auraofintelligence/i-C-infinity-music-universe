@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I C. Infinity: Music & Universe Content Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Sandstone & Ink -->
+    <!-- Application Structure Plan: The application is designed as an interactive, multi-stage dashboard, guiding the user through a complex automation workflow. This structure was chosen over a linear document because the process involves distinct, interconnected phases (Ingestion, Creative, Generation, Assembly). A task-oriented, interactive flow allows the user to explore each phase in detail, understand the relationships between stages, and see technology recommendations in context. The main pipeline diagram on the "Overview" tab acts as a central navigation hub, making the entire plan easily digestible and explorable, which is critical for a multi-faceted experimental project. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Overall project status -> Goal: Inform -> Viz: Donut Chart -> Interaction: Hover for details -> Justification: Provides a quick, high-level summary of the production pipeline's state. -> Library: Chart.js.
+        - Report Info: Workflow stages -> Goal: Organize/Navigate -> Viz: Interactive Diagram -> Interaction: Click to navigate to detailed sections -> Justification: Visually represents the entire process flow and serves as the primary navigation, making the complex system intuitive. -> Library/Method: HTML/CSS/JS.
+        - Report Info: AI Agent roles -> Goal: Organize/Inform -> Viz: Tabbed Interface -> Interaction: Click tabs to view agent details -> Justification: Neatly organizes the roles of the "Mixture of Experts" creative team without cluttering the UI. -> Library/Method: HTML/JS.
+        - Report Info: Tooling options and costs -> Goal: Compare/Inform -> Viz: Bar Chart -> Interaction: Hover for tool names and notes -> Justification: Allows for a quick visual comparison of different technology choices, supporting the user's need for cost-effective pipelines. -> Library: Chart.js.
+        - All content is organized into thematic sections with introductory paragraphs to provide context for each stage of the automation process, directly addressing concepts from the user's source documents.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8; /* Warm Neutral Background */
+            color: #2F2519; /* Dark Brown/Ink */
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link.active, .nav-link:hover {
+            color: #D35400; /* Subtle Accent */
+            border-bottom-color: #D35400;
+        }
+        .card {
+            background-color: #FFFFFF;
+            border: 1px solid #EAE0D5;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        .pipeline-node {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .pipeline-node:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .pipeline-arrow {
+            color: #B0A18F;
+        }
+        .tab-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .tab-button.active {
+            background-color: #D35400;
+            color: #FFFFFF;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-[#2F2519]">I C. Infinity: Music & Universe Content Engine</h1>
+            <p class="mt-4 text-lg text-[#6B5E4D]">An Automation Plan for Music, Merch, and Universe Expansion</p>
+        </header>
+
+        <nav class="flex justify-center border-b border-[#EAE0D5] mb-12">
+            <button data-target="overview" class="nav-link active px-4 py-3 text-lg font-medium">Overview</button>
+            <button data-target="phase1" class="nav-link px-4 py-3 text-lg font-medium">Phase 1: Ingestion</button>
+            <button data-target="phase2" class="nav-link px-4 py-3 text-lg font-medium">Phase 2: Creative</button>
+            <button data-target="phase3" class="nav-link px-4 py-3 text-lg font-medium">Phase 3: Generation</button>
+            <button data-target="phase4" class="nav-link px-4 py-3 text-lg font-medium">Phase 4: Assembly</button>
+            <button data-target="tech" class="nav-link px-4 py-3 text-lg font-medium">Tech & Pipelines</button>
+        </nav>
+
+        <main id="content">
+            <!-- Overview Section -->
+            <section id="overview" class="content-section">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl font-bold mb-4">The Complete Production Pipeline</h2>
+                    <p class="text-lg text-[#6B5E4D]">This diagram shows the end-to-end workflow, from your initial song idea in Obsidian to multiple finished music videos and comic books. Each stage is a combination of automated AI processes and key human-in-the-loop decision points. Click any stage to jump to its detailed breakdown.</p>
+                </div>
+                <div id="pipeline-diagram" class="grid grid-cols-1 md:grid-cols-5 items-center gap-y-8 md:gap-x-4">
+                    <!-- Nodes will be injected here by JS -->
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-20">
+                    <div class="card rounded-lg p-6">
+                        <h3 class="text-2xl font-bold text-center mb-4">Project Status</h3>
+                        <div class="chart-container">
+                             <canvas id="statusChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card rounded-lg p-6 flex flex-col justify-center">
+                        <h3 class="text-2xl font-bold mb-4">Core Philosophy</h3>
+                         <p class="text-[#6B5E4D] mb-4">This plan is built on the principles from your "Autonomous Mirror Universe Storytelling System" document. We are creating a micro-ecosystem of specialized AI agents, orchestrated to expand your creative ideas across multiple media formats. The goal is not to replace creativity, but to augment and scale it dramatically.</p>
+                        <ul class="space-y-3 text-[#6B5E4D]">
+                            <li class="flex items-start"><span class="text-[#D35400] mr-3 mt-1">➔</span><span><strong>Augmented Creativity:</strong> Use AI to explore thousands of creative avenues in the time it takes to explore one.</span></li>
+                            <li class="flex items-start"><span class="text-[#D35400] mr-3 mt-1">➔</span><span><strong>Human-in-the-Loop:</strong> You are the director. The system generates options; you make the key creative decisions.</span></li>
+                            <li class="flex items-start"><span class="text-[#D35400] mr-3 mt-1">➔</span><span><strong>Diverse Pipelines:</strong> Leverage both local hardware (RTX 2080ti) and cost-effective cloud APIs to build a flexible, budget-conscious workflow.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Other sections will be hidden by default -->
+            <section id="phase1" class="content-section hidden">
+                 <div class="max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-4 text-center">Phase 1: Ingestion & Analysis</h2>
+                    <p class="text-lg text-center text-[#6B5E4D] mb-12">This initial phase is about creating a structured foundation for the entire creative process. We automate the extraction of your ideas from Obsidian and use AI to build a deep, multi-faceted understanding of each song's core message and emotional weight.</p>
+                    <div class="space-y-8">
+                        <div class="card p-6 rounded-lg">
+                            <h3 class="text-xl font-bold mb-2">1. Obsidian as the "Second Brain"</h3>
+                            <p class="text-[#6B5E4D]">Your Obsidian vault is the single source of truth. An automated script will monitor for new or updated song files based on your `Template - Song, Comic Strip and Video.md`. It will parse the YAML frontmatter and extract the lyrics, title, and any initial human-written concepts from the 'Core Concept & Seed Prompts' section.</p>
+                        </div>
+                        <div class="card p-6 rounded-lg">
+                            <h3 class="text-xl font-bold mb-2">2. AI-Powered Lyric & Thematic Analysis</h3>
+                            <p class="text-[#6B5E4D]">Once extracted, the lyrics are sent to a Large Language Model (e.g., Gemini via Google AI Studio, or a model via Open Router) for a deep analysis. The AI's task is to generate a structured JSON output containing:</p>
+                            <ul class="mt-4 space-y-2 list-disc list-inside text-[#6B5E4D]">
+                                <li><strong>Core Themes:</strong> Identifying the central ideas (e.g., "technological optimism," "social change," "protopia").</li>
+                                <li><strong>Emotional Arc:</strong> Mapping the emotional journey of the song, from verse to chorus to bridge.</li>
+                                <li><strong>Key Imagery & Metaphors:</strong> Extracting powerful visual language from the lyrics (e.g., "moons of chrome," "civilization of sand").</li>
+                                <li><strong>Narrative Potential:</strong> Proposing 2-3 potential story concepts or character archetypes that fit the song's message.</li>
+                            </ul>
+                        </div>
+                        <div class="card p-6 rounded-lg bg-[#FFF9F2]">
+                            <h3 class="text-xl font-bold mb-2">Outcome & Handoff</h3>
+                            <p class="text-[#6B5E4D]">The result of this phase is a rich, structured data object for each song. This object, which combines your initial seed idea with a deep AI analysis, becomes the official creative brief for the AI Agent Team in Phase 2.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="phase2" class="content-section hidden">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-4 text-center">Phase 2: Creative Development (The AI Agent Team)</h2>
+                    <p class="text-lg text-center text-[#6B5E4D] mb-12">Drawing inspiration from Mixture of Experts (MoE) and AutoGen frameworks, we assemble a virtual creative team. Each AI agent has a specific role, collaborating to transform the analysis from Phase 1 into a concrete, actionable creative plan. This is where high-level concepts become detailed storyboards.</p>
+                    <div class="card rounded-lg p-6">
+                        <div class="mb-6 border-b border-[#EAE0D5] pb-4">
+                            <h3 class="text-2xl font-bold">Meet Your AI Creative Team</h3>
+                            <p class="text-[#6B5E4D] mt-2">Each agent is a specialized LLM prompt. They work in a sequence, passing their output to the next agent for refinement and expansion. You, the Director, give the final approval.</p>
+                        </div>
+                        <div class="flex flex-col md:flex-row gap-8">
+                            <div class="w-full md:w-1/3">
+                                <div id="agent-tabs" class="flex flex-col space-y-2">
+                                    <!-- Agent tab buttons will be injected here -->
+                                </div>
+                            </div>
+                            <div id="agent-content" class="w-full md:w-2/3">
+                                <!-- Agent content will be displayed here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="phase3" class="content-section hidden">
+                 <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-4 text-center">Phase 3: Visual Asset Generation</h2>
+                    <p class="text-lg text-center text-[#6B5E4D] mb-12">This is where the storyboards from Phase 2 are turned into tangible visual assets. Using the detailed shot descriptions and prompt engineering techniques from your "Art Prompting for Rapid Storyboarding" guide, we generate all the necessary images for both the comic book and the music video clips.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="card rounded-lg p-6">
+                            <h3 class="text-2xl font-bold mb-3">Comic Strip & Book Panels</h3>
+                            <p class="text-[#6B5E4D] mb-4">For each panel in the comic storyboard, a highly detailed image prompt is generated. This process can be directed to either:</p>
+                            <ul class="space-y-3">
+                                <li class="card p-4 bg-[#FDFBF8]">
+                                    <h4 class="font-bold">Local Generation (Cost-Effective)</h4>
+                                    <p class="text-sm text-[#6B5E4D]">Use your RTX 2080ti with a tool like ComfyUI or Automatic1111 to run Stable Diffusion. This is ideal for generating a large volume of panels consistently.</p>
+                                </li>
+                                <li class="card p-4 bg-[#FDFBF8]">
+                                    <h4 class="font-bold">Cloud API (High Quality)</h4>
+                                    <p class="text-sm text-[#6B5E4D]">Send the prompts to a service like Leonardo.ai for potentially higher artistic quality or specific stylistic models.</p>
+                                </li>
+                            </ul>
+                            <p class="mt-4 text-[#6B5E4D]">The output is a sequence of high-resolution images, ready to be laid out in a comic book format.</p>
+                        </div>
+                         <div class="card rounded-lg p-6">
+                            <h3 class="text-2xl font-bold mb-3">Music Video Keyframes</h3>
+                             <p class="text-[#6B5E4D] mb-4">For each shot in the music video storyboard, the system generates two critical images:</p>
+                            <ul class="space-y-3">
+                                <li class="card p-4 bg-[#FFF9F2]">
+                                    <h4 class="font-bold">Start Frame Image</h4>
+                                    <p class="text-sm text-[#6B5E4D]">A detailed prompt describing the very first frame of the clip is generated and sent to an image model.</p>
+                                </li>
+                                <li class="card p-4 bg-[#FFF9F2]">
+                                    <h4 class="font-bold">End Frame Image</h4>
+                                    <p class="text-sm text-[#6B5E4D]">A second prompt, describing the final frame of the clip, is also generated. The difference between the two prompts defines the motion of the shot.</p>
+                                </li>
+                            </ul>
+                             <p class="mt-4 text-[#6B5E4D]">This pair of images forms the input for the next stage: video clip generation.</p>
+                        </div>
+                    </div>
+                    <div class="card rounded-lg p-6 mt-8">
+                        <h3 class="text-2xl font-bold mb-4">Prompt Engineering Example</h3>
+                        <p class="text-[#6B5E4D] mb-4">Based on your "Art Prompting" guide, here is how a shot description from the AI Cinematographer would be translated into a final prompt for an image generator.</p>
+                        <div class="bg-[#FFF9F2] p-4 rounded text-sm text-[#2F2519] font-mono whitespace-pre-wrap">
+                            <span class="font-bold text-[#D35400]">Shot Description:</span> A hopeful young woman looks up at a protopian city skyline at dawn. Low angle shot, cinematic.
+                            <br><br>
+                            <span class="font-bold text-[#D35400]">Generated Prompt:</span>
+                            <span id="prompt-example">"A low angle cinematic shot of a young woman with a hopeful expression, looking up at a gleaming protopian city skyline, illuminated by soft golden hour dawn light, in the style of a science fiction concept art, warm earthy tones, evoking gentle curiosity, 8K resolution, ultra-detailed, photorealistic quality."</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="phase4" class="content-section hidden">
+                <div class="max-w-3xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-4 text-center">Phase 4: Video Assembly & Review</h2>
+                    <p class="text-lg text-center text-[#6B5E4D] mb-12">In this final automated phase, the generated image assets are transformed into motion. The system generates video clips, sequences them according to the approved storyboards, and presents them for your final creative review and editing.</p>
+                    <div class="space-y-8">
+                        <div class="card p-6 rounded-lg">
+                            <h3 class="text-xl font-bold mb-2">1. Video Clip Generation</h3>
+                            <p class="text-[#6B5E4D]">The start and end frame images for each shot are sent to a text-to-video or image-to-video generation service (e.g., VEO, SORA, or other available APIs). The prompt instructs the model to create a short video clip that smoothly transitions from the start frame to the end frame, incorporating the described motion (e.g., "slow dolly-in," "pan left"). This is the most computationally intensive and experimental part of the pipeline.</p>
+                        </div>
+                        <div class="card p-6 rounded-lg">
+                            <h3 class="text-xl font-bold mb-2">2. Automated Sequencing</h3>
+                            <p class="text-[#6B5E4D]">As clips are generated, an automation script (using tools like FFMPEG controlled by a Python script) stitches them together. It creates multiple versions of the music video based on the different storyboards approved in Phase 2. This gives you several complete rough cuts without any manual editing.</p>
+                        </div>
+                        <div class="card p-6 rounded-lg bg-[#FFF9F2]">
+                            <h3 class="text-xl font-bold mb-2">3. Human in the Loop: The Final Review</h3>
+                            <p class="text-[#6B5E4D] mb-4">The system's job is now done. It delivers the following assets to you for final review:</p>
+                             <ul class="space-y-2 list-disc list-inside text-[#6B5E4D]">
+                                <li>Multiple rough-cut music video files (e.g., `SongTitle_V1.mp4`, `SongTitle_V2.mp4`).</li>
+                                <li>Folders containing all generated comic panels, organized by song.</li>
+                                <li>All individual video clips, in case you want to re-sequence them manually.</li>
+                            </ul>
+                            <p class="mt-4 text-[#6B5E4D]">You can then use a tool like CapCut or a professional video editor to perform the final polish, add titles, color grade, and refine the timing. The difficult work of lip-syncing can be addressed sparingly at this final stage.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tech" class="content-section hidden">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-4 text-center">Technology Stack & Pipeline Options</h2>
+                    <p class="text-lg text-center text-[#6B5E4D] mb-12">This section provides a concrete map of tools for each task in the workflow. The goal is to create flexible pipelines that balance cost, quality, and control, leveraging your existing subscriptions and hardware.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                         <div class="card p-6 rounded-lg">
+                            <h3 class="text-xl font-bold mb-2">Orchestration</h3>
+                            <p class="text-sm text-[#6B5E4D] mb-3">The "brain" that connects all the other services.</p>
+                            <p class="text-[#6B5E4D]"><span class="font-semibold">Option A (Visual):</span> Use n8n or Make.com for a node-based workflow builder. Easy to set up and visualize.</p>
+                            <p class="mt-2 text-[#6B5E4D]"><span class="font-semibold">Option B (Code):</span> Use Python scripts running on AWS Lambda or locally, employing frameworks like AutoGen to manage the agent interactions.</p>
+                        </div>
+                        <div class="card p-6 rounded-lg">
+                            <h3 class="text-xl font-bold mb-2">Text & Analysis</h3>
+                             <p class="text-sm text-[#6B5E4D] mb-3">For lyric analysis and all creative writing tasks.</p>
+                             <p class="text-[#6B5E4D]"><span class="font-semibold">Primary:</span> Use Open Router to access various models (OpenAI, Gemini, Anthropic) to find the best cost/performance balance for each agent's specific task.</p>
+                        </div>
+                        <div class="card p-6 rounded-lg">
+                            <h3 class="text-xl font-bold mb-2">Image Generation</h3>
+                             <p class="text-sm text-[#6B5E4D] mb-3">For comic panels and video keyframes.</p>
+                             <p class="text-[#6B5E4D]"><span class="font-semibold">Local:</span> Your RTX 2080ti running Stable Diffusion (ComfyUI) for bulk, low-cost generation.</p>
+                             <p class="mt-2 text-[#6B5E4D]"><span class="font-semibold">Cloud:</span> Leonardo.ai API for high-quality, specific artistic styles.</p>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-lg p-6">
+                        <h3 class="text-2xl font-bold text-center mb-4">Tool Cost vs. Capability Estimate</h3>
+                        <p class="text-center text-[#6B5E4D] mb-6">A visual comparison to help in pipeline selection. Local options have a high initial hardware cost but zero cost per-use, while APIs have low entry cost but scale with usage.</p>
+                        <div class="chart-container" style="max-width: 800px; height: 400px;">
+                             <canvas id="costChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            const pipelineData = [
+                { id: 'phase1', icon: '📥', title: 'Ingestion & Analysis', description: 'Extract and analyze song data from Obsidian.' },
+                { id: 'phase2', icon: '🎨', title: 'Creative Development', description: 'AI agent team generates storyboards.' },
+                { id: 'phase3', icon: '🖼️', title: 'Visual Generation', description: 'Create comic panels and video keyframes.' },
+                { id: 'phase4', icon: '🎬', title: 'Video Assembly', description: 'Generate clips and sequence rough cuts.' },
+                { id: 'review', icon: '🧑‍💻', title: 'Human Review', description: 'Final approval and manual polishing.' }
+            ];
+
+            const pipelineDiagram = document.getElementById('pipeline-diagram');
+            pipelineData.forEach((node, index) => {
+                const nodeEl = document.createElement('div');
+                nodeEl.className = 'pipeline-node card rounded-lg p-4 text-center flex flex-col items-center justify-center h-full';
+                nodeEl.dataset.target = node.id.startsWith('phase') ? node.id : null;
+                nodeEl.innerHTML = `
+                    <div class="text-4xl mb-2">${node.icon}</div>
+                    <h4 class="font-bold">${node.title}</h4>
+                    <p class="text-sm text-[#6B5E4D]">${node.description}</p>
+                `;
+                if(nodeEl.dataset.target) {
+                    nodeEl.addEventListener('click', () => showSection(nodeEl.dataset.target));
+                }
+                pipelineDiagram.appendChild(nodeEl);
+                
+                if (index < pipelineData.length - 1) {
+                    const arrowContainer = document.createElement('div');
+                    arrowContainer.className = 'pipeline-arrow text-4xl font-light text-center hidden md:flex items-center justify-center transform -rotate-90 md:rotate-0';
+                    arrowContainer.innerHTML = '➔';
+                    // This is a hacky way to place arrows on mobile
+                    const arrowMobile = document.createElement('div');
+                    arrowMobile.className = 'pipeline-arrow text-4xl font-light text-center md:hidden flex items-center justify-center transform rotate-90';
+                    arrowMobile.innerHTML = '➔';
+                    if (index < pipelineData.length -1) {
+                         pipelineDiagram.appendChild(arrowMobile)
+                    }
+                }
+            });
+
+            const showSection = (targetId) => {
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.dataset.target === targetId);
+                });
+                contentSections.forEach(section => {
+                    section.classList.toggle('hidden', section.id !== targetId);
+                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    showSection(link.dataset.target);
+                });
+            });
+            
+            // Charts
+            const statusCtx = document.getElementById('statusChart').getContext('2d');
+            new Chart(statusCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Ideation (Obsidian)', 'Analysis', 'Storyboarding', 'Generated', 'Completed'],
+                    datasets: [{
+                        label: 'Song Status',
+                        data: [120, 55, 25, 10, 5],
+                        backgroundColor: ['#B0A18F', '#EAE0D5', '#D35400', '#2F2519', '#6B5E4D'],
+                        borderColor: '#FDFBF8',
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            const costCtx = document.getElementById('costChart').getContext('2d');
+            new Chart(costCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Local SD (Image)', 'Leonardo.ai (Image)', 'Open Router (Text)', 'Video Gen API (VEO/Sora-like)'],
+                    datasets: [{
+                        label: 'Per-Use Cost ($)',
+                        data: [0, 0.01, 0.001, 0.1],
+                        backgroundColor: '#EAE0D5',
+                        borderColor: '#B0A18F',
+                        borderWidth: 1
+                    }, {
+                        label: 'Quality/Capability',
+                        data: [7, 9, 9, 10],
+                        backgroundColor: '#6B5E4D',
+                        borderColor: '#2F2519',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                             callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.dataset.label.includes('Cost')) {
+                                        label += '$' + context.parsed.y.toFixed(4) + ' (approx)';
+                                    } else {
+                                        label += context.parsed.y + ' / 10';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Agent Tabs
+            const agents = [
+                {
+                    name: "Lyric Analyst",
+                    role: "Interprets the core meaning, themes, and emotions of the song.",
+                    output: "A structured JSON object detailing themes, emotional arc, and key imagery."
+                },
+                {
+                    name: "Visual Storyteller",
+                    role: "Translates the Analyst's output into 2-3 high-level visual concepts and narratives.",
+                    output: "Multiple potential story outlines and mood board descriptions, written to your `Obsidian Template` for review."
+                },
+                {
+                    name: "Cinematographer",
+                    role: "Takes the human-selected concept and breaks it down into a detailed shot list for both comic and video storyboards.",
+                    output: "A full storyboard table with columns for: Scene, Shot Type, Action, and Detailed Description."
+                },
+                {
+                    name: "Prompt Engineer",
+                    role: "Converts the Cinematographer's shot descriptions into precise, optimized prompts for AI image and video generators, using your Art Prompting guide.",
+                    output: "The final, detailed prompts ready to be sent to APIs like Leonardo.ai or a local Stable Diffusion instance."
+                },
+                {
+                    name: "Director (Human)",
+                    role: "The key decision-maker. You review the visual concepts and storyboards, selecting the creative direction for the system to execute.",
+                    output: "The final approval that triggers the asset generation phase."
+                }
+            ];
+
+            const agentTabsContainer = document.getElementById('agent-tabs');
+            const agentContentContainer = document.getElementById('agent-content');
+            
+            agents.forEach((agent, index) => {
+                const button = document.createElement('button');
+                button.className = 'tab-button text-left w-full px-4 py-3 rounded-md';
+                button.dataset.agentIndex = index;
+                button.textContent = agent.name;
+                if (index === 0) {
+                    button.classList.add('active');
+                }
+                agentTabsContainer.appendChild(button);
+            });
+
+            const showAgent = (index) => {
+                const agent = agents[index];
+                agentContentContainer.innerHTML = `
+                    <h4 class="text-xl font-bold">${agent.name}</h4>
+                    <div class="mt-4">
+                        <strong class="text-[#6B5E4D]">Role:</strong>
+                        <p class="text-[#2F2519]">${agent.role}</p>
+                    </div>
+                    <div class="mt-4">
+                        <strong class="text-[#6B5E4D]">Primary Output:</strong>
+                        <p class="text-[#2F2519]">${agent.output}</p>
+                    </div>
+                `;
+                document.querySelectorAll('.tab-button').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.agentIndex == index);
+                });
+            };
+
+            agentTabsContainer.addEventListener('click', (e) => {
+                if(e.target.matches('.tab-button')) {
+                    showAgent(e.target.dataset.agentIndex);
+                }
+            });
+
+            showAgent(0);
+        });
+    </script>
+</body>
+</html>
+
