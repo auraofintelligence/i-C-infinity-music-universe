@@ -605,7 +605,8 @@ a:hover {
   font-weight: 800;
 }
 
-.search-box input {
+.search-box input,
+.search-box select {
   width: 100%;
   min-height: 48px;
   border: 1px solid var(--line);
@@ -614,6 +615,16 @@ a:hover {
   background: #fff;
   color: var(--ink);
   font: inherit;
+}
+
+.search-box select {
+  cursor: pointer;
+}
+
+.filter-count {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
 .song-title {

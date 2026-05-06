@@ -720,6 +720,11 @@ def songs_index(songs: list[Song]) -> str:
         <div class="search-box">
           <label for="song-search">Find a song, album, or theme</label>
           <input id="song-search" data-song-search type="search" placeholder="Try Aura, Straddie, protopia, memory, Gaia">
+          <label for="song-keyword">Choose a keyword</label>
+          <select id="song-keyword" data-song-keyword>
+            <option value="">All keywords</option>
+          </select>
+          <p class="filter-count" data-filter-count></p>
         </div>
         <div class="song-grid">
           {''.join(song_card(song) for song in songs)}
