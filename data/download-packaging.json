@@ -1,0 +1,57 @@
+{
+  "status": "draft packaging workbench",
+  "reference_checkout": "https://auraofintelligence.github.io/strange-but-true/downloads.html",
+  "principle": "Direct value exchange: the buyer gets organised files, Luke gets cash to keep building.",
+  "open_decisions": [
+    "Confirm bundle names and prices before publishing buyer-facing copy.",
+    "Choose audio formats per tier: MP3 for easy listening, FLAC or WAV for higher-quality ownership.",
+    "Decide which videos are bundled as files and which remain links.",
+    "Create one clean folder per bundle with no local machine paths.",
+    "Write a simple delivery note for buyers while checkout automation is still early."
+  ],
+  "bundles": [
+    {
+      "name": "One Album Pack",
+      "working_price": "$20",
+      "candidate_contents": [
+        "album audio",
+        "cover art",
+        "track list",
+        "lyrics PDF where available",
+        "short meaning notes"
+      ]
+    },
+    {
+      "name": "Two Album Pack",
+      "working_price": "$35",
+      "candidate_contents": [
+        "two album folders",
+        "bundle readme",
+        "selected videos where available"
+      ]
+    },
+    {
+      "name": "Three Released Albums Pack",
+      "working_price": "$45",
+      "candidate_contents": [
+        "Songs of Straddie",
+        "Chronicles of the Forgotten",
+        "Starseed Code: From Aura to Infinity",
+        "shared catalogue readme"
+      ]
+    },
+    {
+      "name": "Full Music Archive Pack",
+      "working_price": "$50",
+      "candidate_contents": [
+        "three released albums",
+        "most of A Protopian Gambit",
+        "B-sides",
+        "bonus videos",
+        "drafts",
+        "AI podcast selections",
+        "selected works in progress"
+      ]
+    }
+  ]
+}
