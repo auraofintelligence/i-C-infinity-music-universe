@@ -503,7 +503,8 @@ def nav(prefix: str) -> str:
         <strong>i C. infinity</strong>
         <span>songs as systems</span>
       </a>
-      <nav class="site-nav" aria-label="Primary navigation">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
         <a href="{prefix}albums.html">Albums</a>
         <a href="{prefix}songs.html">Songs</a>
         <a href="{prefix}downloads.html">Packaging Lab</a>

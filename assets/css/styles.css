@@ -83,6 +83,28 @@ a:hover {
   font-weight: 700;
 }
 
+.nav-toggle {
+  display: none;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 13px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.nav-toggle:hover,
+.nav-toggle:focus-visible {
+  border-color: rgba(8, 116, 108, 0.5);
+  color: var(--teal);
+  outline: none;
+}
+
 .site-nav a {
   text-decoration: none;
   color: var(--ink);
@@ -140,7 +162,8 @@ a:hover {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center top;
 }
 
 .hero-grid {
@@ -154,7 +177,9 @@ a:hover {
 .hero-grid img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+  background: #111;
 }
 
 .hero-grid img:nth-child(2) {
@@ -296,7 +321,8 @@ a:hover {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center top;
 }
 
 .image-panel::after {
@@ -416,7 +442,8 @@ a:hover {
 .album-art img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
 }
 
 .album-body,
@@ -514,7 +541,9 @@ a:hover {
 .hero-cover img {
   width: 100%;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+  background: #111;
 }
 
 .layout-two {
@@ -667,19 +696,42 @@ a:hover {
 }
 
 @media (max-width: 900px) {
-  .site-header,
+  .site-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
+  }
+
   .footer-inner,
   .section-head {
     align-items: flex-start;
     flex-direction: column;
   }
 
+  .nav-toggle {
+    display: inline-flex;
+  }
+
   .site-nav {
+    grid-column: 1 / -1;
     width: 100%;
-    flex-wrap: wrap;
-    gap: 12px 18px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
     overflow-x: visible;
-    padding-bottom: 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+  }
+
+  .site-header.nav-open .site-nav {
+    display: flex;
+  }
+
+  .site-nav a {
+    display: block;
+    padding: 11px 0;
   }
 
   .hero-grid {
