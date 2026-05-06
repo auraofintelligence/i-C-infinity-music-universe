@@ -676,6 +676,82 @@ a:hover {
   cursor: pointer;
 }
 
+.order-form {
+  display: grid;
+  gap: 12px;
+}
+
+.order-form label,
+.payment-options legend {
+  font-weight: 800;
+}
+
+.order-form input,
+.order-form select,
+.order-form textarea {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+}
+
+.order-form textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.payment-options {
+  display: grid;
+  gap: 8px;
+  margin: 4px 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.payment-options label {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: 700;
+}
+
+.payment-options input {
+  width: auto;
+  min-height: 0;
+}
+
+.order-summary,
+.order-status {
+  margin: 0;
+  color: var(--muted);
+}
+
+.order-summary {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #f8faf6;
+}
+
+.screen-reader-trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
 .filter-count {
   margin: 2px 0 0;
   color: var(--muted);
@@ -848,6 +924,7 @@ a:hover {
   .source-grid,
   .engine-map,
   .page-hero .wrap,
+  .form-grid,
   .layout-two {
     grid-template-columns: 1fr;
   }

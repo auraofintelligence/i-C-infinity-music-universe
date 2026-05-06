@@ -94,6 +94,39 @@ SPOTIFY_ARTIST = "https://open.spotify.com/artist/3HK8H81lXFXOEJaSys7xfQ"
 MAIN_SITE = "https://iseeinfinity.com/"
 STRANGE_DOWNLOADS = "https://auraofintelligence.github.io/strange-but-true/downloads.html"
 STREAMING_LINKS = REPO / "data" / "streaming-links.json"
+ORDER_PAGE = "https://auraofintelligence.github.io/i-C-infinity-music-universe/order.html"
+
+
+PACKAGE_OPTIONS = [
+    {
+        "id": "one-album",
+        "name": "One Album Pack",
+        "price": 20,
+        "description": "Choose one complete album package.",
+        "album_hint": "Tell me which album you want.",
+    },
+    {
+        "id": "two-album",
+        "name": "Two Album Pack",
+        "price": 35,
+        "description": "Choose two connected album worlds.",
+        "album_hint": "Tell me the two albums you want.",
+    },
+    {
+        "id": "three-album",
+        "name": "Three Album Pack",
+        "price": 45,
+        "description": "The three released albums as one clean pack.",
+        "album_hint": "Usually Songs of Straddie, Chronicles, and Starseed Code.",
+    },
+    {
+        "id": "full-archive",
+        "name": "Full Music Archive Pack",
+        "price": 50,
+        "description": "Released albums plus the wider archive layer.",
+        "album_hint": "Include full archive unless you want a custom variation.",
+    },
+]
 
 
 ALBUM_SPECS = [
@@ -472,6 +505,11 @@ def spotify_embed_html(song: Song) -> str:
     """
 
 
+def order_href(package_id: str, absolute: bool = False) -> str:
+    base = ORDER_PAGE if absolute else "order.html"
+    return f"{base}?package={quote(package_id)}"
+
+
 def build_catalogue() -> tuple[list[Album], list[Song]]:
     protopian = parse_protopian_lyrics()
     albums: list[Album] = []
@@ -582,6 +620,7 @@ def nav(prefix: str) -> str:
         <a href="{prefix}albums.html">Albums</a>
         <a href="{prefix}songs.html">Songs</a>
         <a href="{prefix}downloads.html">Packaging Lab</a>
+        <a href="{prefix}order.html">Order</a>
         <a href="{prefix}infinity-engine.html">Infinity Engine</a>
         <a href="{prefix}about.html">About</a>
         <a href="{prefix}sources.html">Sources</a>
@@ -621,6 +660,8 @@ def layout(title: str, description: str, body: str, prefix: str = "", page_class
     </div>
   </footer>
   <script src="{prefix}assets/js/site.js"></script>
+  <script src="{prefix}assets/js/order-config.js"></script>
+  <script src="{prefix}assets/js/order.js"></script>
 </body>
 </html>
 """
@@ -843,10 +884,10 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
         for title, text in bundle_cards
     )
     package_compare = [
-        ("One Album Pack", "$20", "Choose only the album you most want.", "https://auraofintelligence.github.io/i-C-infinity-one-album-pack/"),
-        ("Two Album Pack", "$35", "Pick a pair of connected album worlds.", "https://auraofintelligence.github.io/i-C-infinity-two-album-pack/"),
-        ("Three Album Pack", "$45", "Keep the released-album set clean.", "https://auraofintelligence.github.io/i-C-infinity-three-album-pack/"),
-        ("Full Archive Pack", "$50", "Stay with the whole catalogue and bonus archive layer.", "#choose-package"),
+        ("One Album Pack", "$20", "Choose only the album you most want.", order_href("one-album")),
+        ("Two Album Pack", "$35", "Pick a pair of connected album worlds.", order_href("two-album")),
+        ("Three Album Pack", "$45", "Keep the released-album set clean.", order_href("three-album")),
+        ("Full Archive Pack", "$50", "Stay with the whole catalogue and bonus archive layer.", order_href("full-archive")),
     ]
     package_compare_html = "".join(
         f"""
@@ -881,7 +922,7 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
           <p><strong>Full Music Archive Pack $50</strong></p>
           <p>The bigger catalogue option: released albums, most of A Protopian Gambit, B-sides, bonus videos, drafts, selected podcasts, and works in progress.</p>
           <div class="action-row">
-            <a class="button" href="https://auraofintelligence.github.io/strange-but-true/contact.html#contact-form-title">Start this $50 order</a>
+            <a class="button" href="{order_href("full-archive")}">Start this $50 order</a>
             <a class="button secondary" href="https://auraofintelligence.github.io/strange-but-true/downloads.html#music-album-bundles">Compare all packs</a>
           </div>
         </div>
@@ -940,6 +981,100 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
     </section>
     """
     return layout("Paid Download Packaging Lab - i C. infinity", "Draft packaging workspace for I C. Infinity paid music downloads.", body)
+
+
+def order_page() -> str:
+    package_options = "\n".join(
+        f'<option value="{esc(package["id"])}">{esc(package["name"])} - ${package["price"]} AUD</option>'
+        for package in PACKAGE_OPTIONS
+    )
+    package_cards = "".join(
+        f"""
+        <article class="feature-card">
+          <h3>{esc(package["name"])}</h3>
+          <p><strong>${package["price"]} AUD</strong></p>
+          <p>{esc(package["description"])}</p>
+          <p><a class="button secondary" href="{order_href(package["id"])}">Choose this pack</a></p>
+        </article>
+        """
+        for package in PACKAGE_OPTIONS
+    )
+    body = f"""
+    <section class="page-hero">
+      <div class="wrap">
+        <div>
+          <h1>Order Music Downloads</h1>
+          <p>Choose a music bundle, leave the delivery details, then pay by Stripe Checkout, PayPal, or PayID / bank transfer once the Apps Script endpoint is connected.</p>
+          <div class="action-row">
+            <a class="button" href="#order-form-title">Start order</a>
+            <a class="button secondary" href="downloads.html#upgrade-options">Compare packs</a>
+          </div>
+        </div>
+        <div class="hero-cover"><img src="assets/img/cover-building-protopia.jpg" alt="I C. Infinity package artwork"></div>
+      </div>
+    </section>
+    <section class="section" id="order-form-title">
+      <div class="wrap layout-two order-layout">
+        <form class="panel order-form" data-order-form method="post">
+          <input type="hidden" name="sourcePage" data-source-page>
+          <input class="screen-reader-trap" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <h2>Start Order</h2>
+          <p class="order-status" data-order-status>Choose a pack and payment method. Card payments use Stripe Checkout, not a card form on this site.</p>
+          <label for="packageId">Music package</label>
+          <select id="packageId" name="packageId" data-package-select required>
+            {package_options}
+          </select>
+          <div class="order-summary" data-order-summary aria-live="polite"></div>
+          <label for="albumChoices">Album choice or bundle note</label>
+          <textarea id="albumChoices" name="albumChoices" rows="3" data-album-choices placeholder="Example: Songs of Straddie, or Straddie + Starseed"></textarea>
+          <div class="form-grid">
+            <div>
+              <label for="buyerName">Name</label>
+              <input id="buyerName" name="buyerName" autocomplete="name" required>
+            </div>
+            <div>
+              <label for="buyerEmail">Email for delivery</label>
+              <input id="buyerEmail" name="buyerEmail" type="email" autocomplete="email" required>
+            </div>
+          </div>
+          <fieldset class="payment-options">
+            <legend>Payment method</legend>
+            <label><input type="radio" name="paymentMethod" value="stripe" checked> Stripe card / wallet</label>
+            <label><input type="radio" name="paymentMethod" value="paypal"> PayPal</label>
+            <label><input type="radio" name="paymentMethod" value="payid"> PayID / bank transfer</label>
+          </fieldset>
+          <label for="deliveryNotes">Notes</label>
+          <textarea id="deliveryNotes" name="deliveryNotes" rows="3" placeholder="Anything useful for delivery or package choice"></textarea>
+          <button class="button" type="submit" data-order-submit>Continue to payment</button>
+          <p class="microcopy">Orders are logged to a private Google Sheet. Payment secrets live in Google Apps Script properties, not in this public repo.</p>
+        </form>
+        <aside class="panel">
+          <h2>How The Payment Flow Works</h2>
+          <p><strong>1. Sheet record</strong><br>The Apps Script writes the order to Google Sheets first, so there is a trace even if payment is manual.</p>
+          <p><strong>2. Stripe Checkout</strong><br>For card or wallet payments, Apps Script creates the Stripe Checkout Session and redirects the buyer there.</p>
+          <p><strong>3. Manual options</strong><br>PayPal and PayID / bank transfer can be recorded in the same sheet and confirmed manually before delivery.</p>
+          <p><strong>4. Delivery</strong><br>Downloads can be delivered after payment confirmation by email, Drive link, or a later automated file link.</p>
+        </aside>
+      </div>
+    </section>
+    <section class="section tight">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Package Options</h2>
+          <p>You can still change your mind before payment. This keeps the buying path flexible while you work out the final bundle packaging.</p>
+        </div>
+        <div class="feature-grid">{package_cards}</div>
+      </div>
+    </section>
+    <section class="section tight">
+      <div class="wrap">
+        <div class="notice">
+          Setup note: this page needs the deployed Google Apps Script web app URL added to <strong>assets/js/order-config.js</strong> before live orders can be accepted.
+        </div>
+      </div>
+    </section>
+    """
+    return layout("Order Music Downloads - i C. infinity", "Order page for I C. Infinity music download bundles.", body)
 
 
 def album_page(album: Album) -> str:
@@ -1271,6 +1406,7 @@ def main() -> None:
     write(REPO / "albums.html", albums_index(albums))
     write(REPO / "songs.html", songs_index(songs))
     write(REPO / "downloads.html", downloads_page(albums, songs))
+    write(REPO / "order.html", order_page())
     write(REPO / "infinity-engine.html", engine_page())
     write(REPO / "about.html", about_page())
     write(REPO / "sources.html", sources_page())
