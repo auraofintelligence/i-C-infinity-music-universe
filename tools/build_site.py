@@ -64,6 +64,7 @@ class Song:
     spotify_url: str = ""
     youtube_video_id: str = ""
     youtube_title: str = ""
+    youtube_videos: list[dict[str, str]] = field(default_factory=list)
     lyrics: str = ""
     lyric_status: str = "Lyrics to import"
     status: str = "Draft brief"
@@ -100,6 +101,31 @@ ORDER_PAGE = "https://auraofintelligence.github.io/i-C-infinity-music-universe/o
 STARSEED_ALBUM_SLUG = "starseed-code-from-aura-to-infinity"
 STARSEED_YOUTUBE_PLAYLIST_ID = "PLsN0U9hPJHBZyRTYmAwLCuVSpY9q_-tCd"
 STARSEED_YOUTUBE_PLAYLIST_URL = f"https://www.youtube.com/playlist?list={STARSEED_YOUTUBE_PLAYLIST_ID}"
+PROTOPIAN_BUNDLE_VIDEO = {
+    "id": "zgvb6PPlaRY",
+    "title": "A Protopian Gambit unreleased video sequence",
+    "orientation": "landscape",
+    "thumbnail": "maxresdefault",
+    "url": "https://youtu.be/zgvb6PPlaRY?si=OC7gybUgeOu0ix5K",
+}
+SHIFTING_SANDS_VIDEOS = [
+    {
+        "id": "uKygQx_8dos",
+        "title": "Shifting Sands of Timeless Redlands widescreen video",
+        "label": "Widescreen Video",
+        "orientation": "landscape",
+        "thumbnail": "sddefault",
+        "url": "https://youtu.be/uKygQx_8dos?si=EJ0uT78HYJ22zy7a",
+    },
+    {
+        "id": "OZRZy6LYQkg",
+        "title": "Shifting Sands of Timeless Redlands portrait video",
+        "label": "Portrait Video",
+        "orientation": "vertical",
+        "thumbnail": "maxresdefault",
+        "url": "https://youtu.be/OZRZy6LYQkg?si=a9qnTQiwTJCVSqNM",
+    },
+]
 
 
 STARSEED_VERTICAL_VIDEOS = {
@@ -380,6 +406,31 @@ PLACEHOLDER_ALBUMS = [
         "summary": "A holding page for the next cycle of songs after A Protopian Gambit.",
         "deeper_system": "This is the forward-looking lab. It can capture new songs as soon as they appear, before the album title or narrative order is locked.",
         "visual_world": "Sketches, test renders, field recordings, lyric fragments, seed prompts, and prototype clips.",
+        "tracks": [
+            {
+                "title": "Shifting Sands of Timeless Redlands",
+                "year": "2026",
+                "status": "Expo song",
+                "lyric_status": "Video supplied, lyrics to import",
+                "themes": ["expo song", "redlands", "time", "landscape", "memory"],
+                "meaning": "An expo song for the wider site: Redlands imagery, shifting time, place-memory, and the choice to hold local landscape inside the larger Infinity catalogue without forcing it into a heavy album throughline.",
+                "seeds": [
+                    {
+                        "title": "Dual-format exhibition",
+                        "body": "Use the widescreen video as the public display version and the portrait video as the mobile companion. Treat them as two views of the same place-memory.",
+                    },
+                    {
+                        "title": "Redlands field poem",
+                        "body": "Build a lyric-card sequence from sand, roads, water edges, sky colour, and old-time feeling. Keep it grounded and local before adding cosmic language.",
+                    },
+                    {
+                        "title": "Expo kiosk loop",
+                        "body": "Cut a short looping version for an exhibition screen, then use the full versions as deeper links for visitors who want the song world.",
+                    },
+                ],
+                "youtube_videos": SHIFTING_SANDS_VIDEOS,
+            }
+        ],
     },
     {
         "title": "Local B-Sides and Fun Songs",
@@ -560,16 +611,40 @@ def spotify_search_url(song: Song) -> str:
     return "https://open.spotify.com/search/" + quote(f"I C. Infinity {song.title}")
 
 
-def youtube_video_url(video_id: str) -> str:
-    return f"https://www.youtube.com/watch?v={quote(video_id)}&list={STARSEED_YOUTUBE_PLAYLIST_ID}"
+def youtube_video_url(video_id: str, playlist_id: str = "") -> str:
+    url = f"https://www.youtube.com/watch?v={quote(video_id)}"
+    if playlist_id:
+        url += f"&list={quote(playlist_id)}"
+    return url
 
 
-def youtube_video_embed_src(video_id: str) -> str:
-    return f"https://www.youtube.com/embed/{quote(video_id)}?list={STARSEED_YOUTUBE_PLAYLIST_ID}&rel=0"
+def youtube_video_embed_src(video_id: str, playlist_id: str = "") -> str:
+    params = f"?list={quote(playlist_id)}&rel=0" if playlist_id else "?rel=0"
+    return f"https://www.youtube.com/embed/{quote(video_id)}{params}"
 
 
-def youtube_thumbnail_url(video_id: str) -> str:
-    return f"https://img.youtube.com/vi/{quote(video_id)}/maxresdefault.jpg"
+def youtube_thumbnail_url(video_id: str, quality: str = "maxresdefault") -> str:
+    return f"https://img.youtube.com/vi/{quote(video_id)}/{quote(quality)}.jpg"
+
+
+def primary_youtube_video(song: Song) -> dict[str, str] | None:
+    videos = song.youtube_videos
+    if videos:
+        return videos[0]
+    if song.youtube_video_id:
+        return {
+            "id": song.youtube_video_id,
+            "title": song.youtube_title or f"{song.title} video",
+            "label": "YouTube Video",
+            "orientation": "vertical",
+            "playlist_id": STARSEED_YOUTUBE_PLAYLIST_ID,
+            "thumbnail": "maxresdefault",
+        }
+    return None
+
+
+def youtube_video_link(video: dict[str, str]) -> str:
+    return video.get("url") or youtube_video_url(video["id"], video.get("playlist_id", ""))
 
 
 def listen_targets(song: Song) -> list[tuple[str, str, str]]:
@@ -584,8 +659,10 @@ def listen_targets(song: Song) -> list[tuple[str, str, str]]:
     elif song.release_url:
         targets.append(("Apple album", song.release_url.split("#", 1)[0], "apple"))
 
-    if song.youtube_video_id:
-        targets.append(("YouTube video", youtube_video_url(song.youtube_video_id), "youtube"))
+    youtube_video = primary_youtube_video(song)
+    if youtube_video:
+        label = "YouTube videos" if len(song.youtube_videos) > 1 else "YouTube video"
+        targets.append((label, youtube_video_link(youtube_video), "youtube"))
     return targets
 
 
@@ -614,27 +691,36 @@ def spotify_embed_html(song: Song) -> str:
 
 
 def youtube_song_embed_html(song: Song) -> str:
-    if not song.youtube_video_id:
+    videos = song.youtube_videos or ([primary_youtube_video(song)] if primary_youtube_video(song) else [])
+    if not videos:
         return ""
-    src = youtube_video_embed_src(song.youtube_video_id)
-    url = youtube_video_url(song.youtube_video_id)
-    title = song.youtube_title or f"{song.title} vertical video"
-    return f"""
-    <section class="song-video-panel" id="vertical-video">
-      <div class="vertical-video-frame">
+    cards = []
+    for index, video in enumerate(videos):
+        video_id = video["id"]
+        src = youtube_video_embed_src(video_id, video.get("playlist_id", ""))
+        url = youtube_video_link(video)
+        title = video.get("title") or f"{song.title} YouTube video"
+        label = video.get("label") or ("Portrait Video" if video.get("orientation") == "vertical" else "Widescreen Video")
+        orientation_class = "wide-video-frame" if video.get("orientation") == "landscape" else ""
+        panel_id = ' id="vertical-video"' if index == 0 else ""
+        cards.append(
+            f"""
+    <section class="song-video-panel {esc(orientation_class)}"{panel_id}>
+      <div class="vertical-video-frame {esc(orientation_class)}">
         <iframe title="{esc(title)}" src="{esc(src)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
       </div>
       <div class="vertical-video-copy">
-        <p class="eyebrow">Vertical Video</p>
+        <p class="eyebrow">{esc(label)}</p>
         <h2>{esc(song.title)}</h2>
-        <p>Mobile-first YouTube video for this Starseed Code song. This becomes the published visual reference before any later Infinity Engine remix or paid-download packaging.</p>
+        <p>{esc(video.get("note") or "Public YouTube video for this catalogue song. Use it as the visual reference before any later Infinity Engine remix or paid-download packaging.")}</p>
         <div class="listen-links compact">
           <a class="listen-chip youtube" href="{esc(url)}" target="_blank" rel="noopener">Open on YouTube</a>
-          <a class="listen-chip" href="{esc(STARSEED_YOUTUBE_PLAYLIST_URL)}" target="_blank" rel="noopener">Full playlist</a>
         </div>
       </div>
     </section>
     """
+        )
+    return "".join(cards)
 
 
 def order_href(package_id: str, absolute: bool = False) -> str:
@@ -694,6 +780,17 @@ def build_catalogue() -> tuple[list[Album], list[Song]]:
                 video = STARSEED_VERTICAL_VIDEOS[track.title]
                 track.youtube_video_id = video["id"]
                 track.youtube_title = video["title"]
+                track.youtube_videos = [
+                    {
+                        "id": video["id"],
+                        "title": video["title"],
+                        "label": "Vertical Video",
+                        "orientation": "vertical",
+                        "playlist_id": STARSEED_YOUTUBE_PLAYLIST_ID,
+                        "thumbnail": "maxresdefault",
+                        "note": "Mobile-first YouTube video for this Starseed Code song. This becomes the published visual reference before any later Infinity Engine remix or paid-download packaging.",
+                    }
+                ]
             songs.append(track)
         albums.append(album)
 
@@ -727,18 +824,40 @@ def build_catalogue() -> tuple[list[Album], list[Song]]:
     albums.append(singles_album)
 
     for spec in PLACEHOLDER_ALBUMS:
-        albums.append(
-            Album(
-                title=spec["title"],
-                slug=spec["slug"],
-                year=spec["year"],
-                status=spec["status"],
-                artwork=spec["artwork"],
-                summary=spec["summary"],
-                deeper_system=spec["deeper_system"],
-                visual_world=spec["visual_world"],
-            )
+        album = Album(
+            title=spec["title"],
+            slug=spec["slug"],
+            year=spec["year"],
+            status=spec["status"],
+            artwork=spec["artwork"],
+            summary=spec["summary"],
+            deeper_system=spec["deeper_system"],
+            visual_world=spec["visual_world"],
         )
+        for track_number, track_spec in enumerate(spec.get("tracks", []), start=1):
+            title = track_spec["title"]
+            track = Song(
+                title=title,
+                album_slug=album.slug,
+                album_title=album.title,
+                track_number=track_number,
+                year=track_spec.get("year", album.year),
+                lyric_status=track_spec.get("lyric_status", "Lyrics to import"),
+                status=track_spec.get("status", album.status),
+            )
+            special = SPECIAL_BRIEFS.get(slugify(title))
+            track.themes = track_spec.get("themes") or (special["themes"] if special else infer_themes(track.title, album.slug))
+            track.meaning = track_spec.get("meaning") or (special["meaning"] if special else infer_meaning(track.title, album))
+            track.video_seeds = track_spec.get("seeds") or (special["seeds"] if special else generic_seeds(track, album))
+            track.youtube_videos = track_spec.get("youtube_videos", [])
+            primary_video = primary_youtube_video(track)
+            if primary_video:
+                track.youtube_video_id = primary_video["id"]
+                track.youtube_title = primary_video.get("title", "")
+            track.slug = f"{album.slug}-{track.track_number:02d}-{slugify(track.title)}"
+            album.tracks.append(track)
+            songs.append(track)
+        albums.append(album)
 
     apply_streaming_links(albums)
     return albums, songs
@@ -824,6 +943,8 @@ def album_card(album: Album, prefix: str = "") -> str:
 def song_status(song: Song) -> str:
     if song.ready():
         return '<span class="status-pill ready">Lyrics ready</span>'
+    if primary_youtube_video(song):
+        return '<span class="status-pill video">Video live</span>'
     return '<span class="status-pill todo">Lyrics to import</span>'
 
 
@@ -846,12 +967,12 @@ def song_card(song: Song, prefix: str = "") -> str:
       </a>
       {listen}
     </article>
-    """
+    """.rstrip()
 
 
 def track_row(song: Song, prefix: str = "") -> str:
     href = f"{prefix}songs/{song.slug}/"
-    lyric_note = "Full lyrics imported" if song.ready() else "Lyric slot ready"
+    lyric_note = "Full lyrics imported" if song.ready() else ("Video supplied" if primary_youtube_video(song) else "Lyric slot ready")
     return f"""
     <div class="track-row">
       <a href="{href}">
@@ -865,6 +986,32 @@ def track_row(song: Song, prefix: str = "") -> str:
 
 def home_page(albums: list[Album], songs: list[Song]) -> str:
     ready_count = sum(1 for song in songs if song.ready())
+    shifting_song = next((song for song in songs if slugify(song.title) == "shifting-sands-of-timeless-redlands"), None)
+    expo_section = ""
+    if shifting_song:
+        portrait_video = next((video for video in shifting_song.youtube_videos if video.get("orientation") == "vertical"), primary_youtube_video(shifting_song))
+        expo_section = f"""
+    <section class="section video-section">
+      <div class="wrap video-feature">
+        <div class="vertical-video-frame">
+          <a class="vertical-video-poster" href="songs/{esc(shifting_song.slug)}/">
+            <img src="{esc(youtube_thumbnail_url(portrait_video['id'], portrait_video.get('thumbnail', 'maxresdefault')))}" alt="{esc(portrait_video.get('title', shifting_song.title))} thumbnail">
+            <span class="play-mark" aria-hidden="true"></span>
+            <span class="sr-only">Open {esc(shifting_song.title)}</span>
+          </a>
+        </div>
+        <div class="video-feature-copy">
+          <p class="eyebrow">Expo Song</p>
+          <h2>{esc(shifting_song.title)}</h2>
+          <p>A public exhibition-style song with both widescreen and portrait video versions. It sits in the Next Signals tray as a place-memory doorway for the wider catalogue.</p>
+          <div class="action-row">
+            <a class="button" href="songs/{esc(shifting_song.slug)}/">Open song page</a>
+            <a class="button secondary" href="albums/next-signals/">Next Signals</a>
+          </div>
+        </div>
+      </div>
+    </section>
+        """.strip()
     body = f"""
     <section class="hero home-intro">
       <img class="home-hero-image" src="assets/img/hero-luke-universal-creator.jpg" alt="Luke Universal Creator image">
@@ -899,6 +1046,7 @@ def home_page(albums: list[Album], songs: list[Song]) -> str:
         </div>
       </article>
     </section>
+    {expo_section}
     <section class="section">
       <div class="wrap">
         <div class="section-head">
@@ -1039,6 +1187,16 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
         """
         for title, price, text, href in package_compare
     )
+    protopian_video_url = PROTOPIAN_BUNDLE_VIDEO.get("url") or youtube_video_url(PROTOPIAN_BUNDLE_VIDEO["id"])
+    protopian_video_html = f"""
+          <div class="bundle-video-card">
+            <a class="vertical-video-poster" href="{esc(protopian_video_url)}" target="_blank" rel="noopener">
+              <img src="{esc(youtube_thumbnail_url(PROTOPIAN_BUNDLE_VIDEO['id'], PROTOPIAN_BUNDLE_VIDEO.get('thumbnail', 'maxresdefault')))}" alt="{esc(PROTOPIAN_BUNDLE_VIDEO['title'])} thumbnail">
+              <span class="play-mark" aria-hidden="true"></span>
+              <span class="sr-only">Open {esc(PROTOPIAN_BUNDLE_VIDEO['title'])}</span>
+            </a>
+          </div>
+    """.rstrip()
     body = f"""
     <section class="page-hero">
       <div class="wrap">
@@ -1060,10 +1218,12 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
           <h2>Choose The Full Archive Pack</h2>
           <p><strong>Full Music Archive Pack $50</strong></p>
           <p>The bigger catalogue option: released albums, most of A Protopian Gambit, B-sides, bonus videos, drafts, selected podcasts, and works in progress.</p>
+          <p><strong>Bundle-only video note:</strong><br>A Protopian Gambit gets treated here as full-archive bonus material, not as a public album-page video.</p>
           <div class="action-row">
             <a class="button" href="{order_href("full-archive")}">Start this $50 order</a>
             <a class="button secondary" href="https://auraofintelligence.github.io/strange-but-true/downloads.html#music-album-bundles">Compare all packs</a>
           </div>
+{protopian_video_html}
         </div>
         <div class="panel">
           <h2>Changed Your Mind?</h2>
@@ -1219,10 +1379,10 @@ def order_page() -> str:
 def starseed_video_section(album: Album, prefix: str) -> str:
     if album.slug != STARSEED_ALBUM_SLUG:
         return ""
-    video_tracks = [song for song in album.tracks if song.youtube_video_id]
+    video_tracks = [song for song in album.tracks if primary_youtube_video(song)]
     if not video_tracks:
         return ""
-    featured_video = video_tracks[0]
+    featured_video = primary_youtube_video(video_tracks[0])
     video_index = "".join(
         f"""
         <a class="video-chip" href="{prefix}songs/{esc(song.slug)}/#vertical-video">
@@ -1238,7 +1398,7 @@ def starseed_video_section(album: Album, prefix: str) -> str:
       <div class="wrap video-feature">
         <div class="vertical-video-frame playlist-frame">
           <a class="vertical-video-poster" href="{esc(STARSEED_YOUTUBE_PLAYLIST_URL)}" target="_blank" rel="noopener">
-            <img src="{esc(youtube_thumbnail_url(featured_video.youtube_video_id))}" alt="{esc(featured_video.title)} vertical video thumbnail">
+            <img src="{esc(youtube_thumbnail_url(featured_video['id'], featured_video.get('thumbnail', 'maxresdefault')))}" alt="{esc(featured_video.get('title', 'Starseed Code vertical video'))} thumbnail">
             <span class="play-mark" aria-hidden="true"></span>
             <span class="sr-only">Open Starseed Code YouTube playlist</span>
           </a>
@@ -1430,6 +1590,8 @@ def sources_page() -> str:
         ("Apple Music artist page", APPLE_ARTIST, "Public release list and album track lists used for the first catalogue scaffold."),
         ("Spotify artist page", SPOTIFY_ARTIST, "Public streaming destination."),
         ("Starseed Code YouTube playlist", STARSEED_YOUTUBE_PLAYLIST_URL, "Vertical mobile-video playlist supplied for the Starseed Code visual layer."),
+        ("Shifting Sands widescreen video", SHIFTING_SANDS_VIDEOS[0]["url"], "Public widescreen expo-song video."),
+        ("Shifting Sands portrait video", SHIFTING_SANDS_VIDEOS[1]["url"], "Public portrait expo-song video for mobile viewing."),
         ("Amazon Music artist page", "https://music.amazon.com.br/artists/B0DP1BJD2S/i-c-infinity", "Secondary public release reference seen during discovery."),
     ]
     source_cards = "".join(f'<article class="source-card"><h3>{esc(name)}</h3><p>{esc(note)}</p><p><a href="{esc(url)}">{esc(url)}</a></p></article>' for name, url, note in public_sources)
@@ -1475,6 +1637,8 @@ def export_data(albums: list[Album], songs: list[Song]) -> None:
             "apple_music": APPLE_ARTIST,
             "spotify": SPOTIFY_ARTIST,
             "starseed_youtube_playlist": STARSEED_YOUTUBE_PLAYLIST_URL,
+            "shifting_sands_widescreen": SHIFTING_SANDS_VIDEOS[0]["url"],
+            "shifting_sands_portrait": SHIFTING_SANDS_VIDEOS[1]["url"],
             "paid_downloads": STRANGE_DOWNLOADS,
         },
         "albums": [
@@ -1511,7 +1675,8 @@ def export_data(albums: list[Album], songs: list[Song]) -> None:
                 "spotify_url": song.spotify_url,
                 "youtube_video_id": song.youtube_video_id,
                 "youtube_title": song.youtube_title,
-                "youtube_url": youtube_video_url(song.youtube_video_id) if song.youtube_video_id else "",
+                "youtube_videos": song.youtube_videos,
+                "youtube_url": youtube_video_link(primary_youtube_video(song)) if primary_youtube_video(song) else "",
                 "has_lyrics": song.ready(),
                 "lyrics": song.lyrics,
             }

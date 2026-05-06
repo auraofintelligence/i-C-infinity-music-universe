@@ -518,6 +518,11 @@ a:hover {
   color: var(--coral);
 }
 
+.status-pill.video {
+  border-color: rgba(193, 33, 33, 0.24);
+  color: #9b1c1c;
+}
+
 .listen-links {
   display: flex;
   flex-wrap: wrap;
@@ -850,6 +855,11 @@ a:hover {
   background: #111;
 }
 
+.vertical-video-frame.wide-video-frame {
+  width: min(100%, 560px);
+  aspect-ratio: 16 / 9;
+}
+
 .vertical-video-poster {
   position: relative;
   display: block;
@@ -971,6 +981,10 @@ a:hover {
   background: #fff;
 }
 
+.song-video-panel.wide-video-frame {
+  grid-template-columns: minmax(280px, 1fr) minmax(0, 0.72fr);
+}
+
 .song-video-panel .vertical-video-frame {
   width: min(100%, 260px);
   padding: 8px;
@@ -978,8 +992,24 @@ a:hover {
   box-shadow: 0 18px 46px rgba(21, 21, 21, 0.15);
 }
 
+.song-video-panel .vertical-video-frame.wide-video-frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
 .song-video-panel .vertical-video-frame iframe {
   border-radius: 13px;
+}
+
+.bundle-video-card {
+  width: min(100%, 520px);
+  aspect-ratio: 16 / 9;
+  margin-top: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(21, 21, 21, 0.14);
+  border-radius: var(--radius);
+  background: #111;
+  box-shadow: 0 18px 48px rgba(21, 21, 21, 0.14);
 }
 
 .engine-map {
@@ -1105,6 +1135,7 @@ a:hover {
   .video-feature,
   .video-index,
   .song-video-panel,
+  .song-video-panel.wide-video-frame,
   .page-hero .wrap,
   .form-grid,
   .layout-two {
