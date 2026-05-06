@@ -8,6 +8,7 @@ import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Iterable
+from urllib.parse import quote
 
 
 REPO = Path(__file__).resolve().parents[1]
@@ -59,6 +60,8 @@ class Song:
     track_number: int | None = None
     year: str = ""
     release_url: str = ""
+    apple_url: str = ""
+    spotify_url: str = ""
     lyrics: str = ""
     lyric_status: str = "Lyrics to import"
     status: str = "Draft brief"
@@ -82,6 +85,7 @@ class Album:
     visual_world: str
     artwork: str
     source_url: str = ""
+    spotify_url: str = ""
     tracks: list[Song] = field(default_factory=list)
 
 
@@ -89,6 +93,7 @@ APPLE_ARTIST = "https://music.apple.com/us/artist/i-c-infinity/1781660070"
 SPOTIFY_ARTIST = "https://open.spotify.com/artist/3HK8H81lXFXOEJaSys7xfQ"
 MAIN_SITE = "https://iseeinfinity.com/"
 STRANGE_DOWNLOADS = "https://auraofintelligence.github.io/strange-but-true/downloads.html"
+STREAMING_LINKS = REPO / "data" / "streaming-links.json"
 
 
 ALBUM_SPECS = [
@@ -399,6 +404,74 @@ def generic_seeds(song: Song, album: Album) -> list[dict[str, str]]:
     ]
 
 
+def load_streaming_links() -> dict[str, dict]:
+    if not STREAMING_LINKS.exists():
+        return {"albums": {}, "songs": {}}
+    return json.loads(STREAMING_LINKS.read_text(encoding="utf-8"))
+
+
+def song_stream_key(song: Song) -> str:
+    return f"{song.album_slug}::{slugify(song.title)}"
+
+
+def apply_streaming_links(albums: list[Album]) -> None:
+    data = load_streaming_links()
+    album_links = data.get("albums", {})
+    song_links = data.get("songs", {})
+
+    for album in albums:
+        links = album_links.get(album.slug, {})
+        album.spotify_url = links.get("spotify", "")
+        album.source_url = links.get("apple", album.source_url)
+
+        for song in album.tracks:
+            links = song_links.get(song_stream_key(song), {})
+            song.apple_url = links.get("apple", "")
+            song.spotify_url = links.get("spotify", "")
+
+
+def spotify_search_url(song: Song) -> str:
+    return "https://open.spotify.com/search/" + quote(f"I C. Infinity {song.title}")
+
+
+def listen_targets(song: Song) -> list[tuple[str, str, str]]:
+    targets: list[tuple[str, str, str]] = []
+    if song.spotify_url:
+        targets.append(("Spotify", song.spotify_url, "spotify"))
+    elif song.release_url:
+        targets.append(("Spotify search", spotify_search_url(song), "spotify"))
+
+    if song.apple_url:
+        targets.append(("Apple / iTunes", song.apple_url, "apple"))
+    elif song.release_url:
+        targets.append(("Apple album", song.release_url.split("#", 1)[0], "apple"))
+    return targets
+
+
+def listen_links_html(song: Song, compact: bool = False) -> str:
+    targets = listen_targets(song)
+    if not targets:
+        return ""
+    class_name = "listen-links compact" if compact else "listen-links"
+    links = "".join(
+        f'<a class="listen-chip {esc(kind)}" href="{esc(url)}" target="_blank" rel="noopener">{esc(label)}</a>'
+        for label, url, kind in targets
+    )
+    return f'<div class="{class_name}" aria-label="Listen links for {esc(song.title)}">{links}</div>'
+
+
+def spotify_embed_html(song: Song) -> str:
+    match = re.search(r"open\.spotify\.com/track/([A-Za-z0-9]+)", song.spotify_url)
+    if not match:
+        return ""
+    src = f"https://open.spotify.com/embed/track/{match.group(1)}?utm_source=generator"
+    return f"""
+    <div class="stream-embed">
+      <iframe title="Spotify player for {esc(song.title)}" src="{esc(src)}" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+    """
+
+
 def build_catalogue() -> tuple[list[Album], list[Song]]:
     protopian = parse_protopian_lyrics()
     albums: list[Album] = []
@@ -493,6 +566,7 @@ def build_catalogue() -> tuple[list[Album], list[Song]]:
             )
         )
 
+    apply_streaming_links(albums)
     return albums, songs
 
 
@@ -577,18 +651,20 @@ def song_status(song: Song) -> str:
 
 
 def song_card(song: Song, prefix: str = "") -> str:
-    search = " ".join([song.title, song.album_title, " ".join(song.themes)]).lower()
+    search = " ".join([song.title, song.album_title, " ".join(song.themes), "spotify apple itunes"]).lower()
     href = f"{prefix}songs/{song.slug}/"
     track = f"Track {song.track_number}" if song.track_number else "Song"
     tags = "".join(f"<span>{esc(tag)}</span>" for tag in song.themes[:3])
+    listen = listen_links_html(song, compact=True)
     return f"""
     <article class="song-card" data-song-card data-search="{esc(search)}">
-      <a href="{href}">
+      <a class="song-main-link" href="{href}">
         <h3>{esc(song.title)}</h3>
         <p>{esc(song.album_title)} - {esc(track)}</p>
         <div class="tag-line">{tags}</div>
         <div class="meta-line">{song_status(song)}</div>
       </a>
+      {listen}
     </article>
     """
 
@@ -720,6 +796,10 @@ def songs_index(songs: list[Song]) -> str:
         <div class="search-box">
           <label for="song-search">Find a song, album, or theme</label>
           <input id="song-search" data-song-search type="search" placeholder="Try Aura, Straddie, protopia, memory, Gaia">
+          <div class="platform-row" aria-label="Artist platform links">
+            <a class="listen-chip spotify" href="{SPOTIFY_ARTIST}" target="_blank" rel="noopener">Spotify artist page</a>
+            <a class="listen-chip apple" href="{APPLE_ARTIST}" target="_blank" rel="noopener">Apple Music artist page</a>
+          </div>
           <label for="song-keyword">Choose a keyword</label>
           <select id="song-keyword" data-song-keyword>
             <option value="">All keywords</option>
@@ -915,7 +995,8 @@ def song_page(song: Song, album: Album) -> str:
       </article>
     """ for seed in song.video_seeds)
     tags = "".join(f"<span>{esc(tag)}</span>" for tag in song.themes)
-    release = f'<a href="{esc(song.release_url)}">Open public release</a>' if song.release_url else "No public release link attached yet."
+    release = listen_links_html(song) or "No public release link attached yet."
+    spotify_embed = spotify_embed_html(song)
     body = f"""
     <section class="song-title">
       <div class="wrap">
@@ -931,6 +1012,7 @@ def song_page(song: Song, album: Album) -> str:
             <h2>Meaning Layer</h2>
             <p>{esc(song.meaning)}</p>
           </div>
+          {spotify_embed}
           <h2>Lyrics</h2>
           <pre class="lyrics">{lyrics}</pre>
           <h2>Video Seed Ideas</h2>
@@ -939,7 +1021,8 @@ def song_page(song: Song, album: Album) -> str:
         <aside class="panel">
           <h2>Production Brief</h2>
           <p><strong>Lyric status:</strong><br>{esc(song.lyric_status)}</p>
-          <p><strong>Release link:</strong><br>{release}</p>
+          <p><strong>Release links:</strong></p>
+          {release}
           <p><strong>Album system:</strong><br>{esc(album.deeper_system)}</p>
           <p><strong>Infinity Engine handoff:</strong><br>Use the lyrics and seeds to create a lyric analysis JSON, then draft comic panels before spending on video generation.</p>
         </aside>
@@ -1079,6 +1162,7 @@ def export_data(albums: list[Album], songs: list[Song]) -> None:
                 "visual_world": album.visual_world,
                 "artwork": album.artwork,
                 "source_url": album.source_url,
+                "spotify_url": album.spotify_url,
                 "tracks": [song.slug for song in album.tracks],
             }
             for album in albums
@@ -1096,6 +1180,8 @@ def export_data(albums: list[Album], songs: list[Song]) -> None:
                 "meaning": song.meaning,
                 "video_seeds": song.video_seeds,
                 "release_url": song.release_url,
+                "apple_url": song.apple_url,
+                "spotify_url": song.spotify_url,
                 "has_lyrics": song.ready(),
                 "lyrics": song.lyrics,
             }

@@ -1,0 +1,335 @@
+{
+  "albums": {
+    "chronicles-of-the-forgotten": {
+      "apple": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503",
+      "spotify": "https://open.spotify.com/album/25toPXeGvRqcaJFHPLDREI"
+    },
+    "singles-and-public-markers": {
+      "apple": "https://music.apple.com/us/artist/i-c-infinity/1781660070",
+      "spotify": "https://open.spotify.com/artist/3HK8H81lXFXOEJaSys7xfQ"
+    },
+    "songs-of-straddie": {
+      "apple": "https://music.apple.com/us/album/songs-of-straddie/1783109888",
+      "spotify": "https://open.spotify.com/album/0Yn3Fg01PgBUCFel5ZvsR6"
+    },
+    "starseed-code-from-aura-to-infinity": {
+      "apple": "https://music.apple.com/us/album/starseed-code-from-aura-to-infinity/1821950221",
+      "spotify": "https://open.spotify.com/album/3MVONXmGjJG5QdVWQdojNg"
+    }
+  },
+  "songs": {
+    "chronicles-of-the-forgotten::algorithm-hope": {
+      "apple": "https://music.apple.com/us/album/algorithm-hope/1791557503?i=1791557510&uo=4",
+      "spotify": "https://open.spotify.com/track/70u1HC0hoIYN0Ie5iSZ0on"
+    },
+    "chronicles-of-the-forgotten::breaking-chains": {
+      "apple": "https://music.apple.com/us/album/breaking-chains/1791557503?i=1791557515&uo=4",
+      "spotify": "https://open.spotify.com/track/6aEKvI5CSYSlAhYpVE79Yg"
+    },
+    "chronicles-of-the-forgotten::bridging-the-divide": {
+      "apple": "https://music.apple.com/us/album/bridging-the-divide/1791557503?i=1791557525&uo=4",
+      "spotify": "https://open.spotify.com/track/0eZdxrf2r7uHxmjOkGAaTy"
+    },
+    "chronicles-of-the-forgotten::celestial-navigators": {
+      "apple": "https://music.apple.com/us/album/celestial-navigators/1791557503?i=1791557520&uo=4",
+      "spotify": "https://open.spotify.com/track/19UovNcFzSe7qqcOhZkxw1"
+    },
+    "chronicles-of-the-forgotten::chronicles-of-the-forgotten": {
+      "apple": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503?i=1791557519&uo=4",
+      "spotify": "https://open.spotify.com/track/6mGjmplzh5hYUpZqmzBMYa"
+    },
+    "chronicles-of-the-forgotten::cycle-of-suns-by-he": {
+      "apple": "https://music.apple.com/us/album/cycle-of-suns-by-he/1791557503?i=1791557517&uo=4",
+      "spotify": "https://open.spotify.com/track/4kOhynNI0vrMEraUFgIpQ9"
+    },
+    "chronicles-of-the-forgotten::cycle-of-suns-by-she": {
+      "apple": "https://music.apple.com/us/album/cycle-of-suns-by-she/1791557503?i=1791557518&uo=4",
+      "spotify": "https://open.spotify.com/track/6QU7HW6D5848E04imfKyM4"
+    },
+    "chronicles-of-the-forgotten::digital-dawn": {
+      "apple": "https://music.apple.com/us/album/digital-dawn/1791557503?i=1791557522&uo=4",
+      "spotify": "https://open.spotify.com/track/4OMcuk8nLrL0uWYcKdE8FB"
+    },
+    "chronicles-of-the-forgotten::dreams-of-abundance-by-he": {
+      "apple": "https://music.apple.com/us/album/dreams-of-abundance-by-he/1791557503?i=1791557508&uo=4",
+      "spotify": "https://open.spotify.com/track/60ixlUhejPLyQF7mkHvgHj"
+    },
+    "chronicles-of-the-forgotten::dreams-of-abundance-by-she": {
+      "apple": "https://music.apple.com/us/album/dreams-of-abundance-by-she/1791557503?i=1791557507&uo=4",
+      "spotify": "https://open.spotify.com/track/3fPvfAM4hotFVWiMB9IKW9"
+    },
+    "chronicles-of-the-forgotten::echos-of-the-ancients": {
+      "apple": "https://music.apple.com/us/album/echos-of-the-ancients/1791557503?i=1791557504&uo=4",
+      "spotify": "https://open.spotify.com/track/2TAXIIabN1K7vjPaPoo04K"
+    },
+    "chronicles-of-the-forgotten::hearts-and-circuits-by-he": {
+      "apple": "https://music.apple.com/us/album/hearts-and-circuits-by-he/1791557503?i=1791557512&uo=4",
+      "spotify": "https://open.spotify.com/track/7ABI3vZLvknTN8LrDmd6g9"
+    },
+    "chronicles-of-the-forgotten::hearts-and-circuits-by-she": {
+      "apple": "https://music.apple.com/us/album/hearts-and-circuits-by-she/1791557503?i=1791557511&uo=4",
+      "spotify": "https://open.spotify.com/track/643HcWg1ZFnYIoQYDj1g4y"
+    },
+    "chronicles-of-the-forgotten::illusions-shattered": {
+      "apple": "https://music.apple.com/us/album/illusions-shattered/1791557503?i=1791557529&uo=4",
+      "spotify": "https://open.spotify.com/track/4eMESHoWQuAi71tAC01hEf"
+    },
+    "chronicles-of-the-forgotten::pulse-of-the-universe": {
+      "apple": "https://music.apple.com/us/album/pulse-of-the-universe/1791557503?i=1791557526&uo=4",
+      "spotify": "https://open.spotify.com/track/7oQAghEv7seogxRX9w7lCc"
+    },
+    "chronicles-of-the-forgotten::resonance": {
+      "apple": "https://music.apple.com/us/album/resonance/1791557503?i=1791557527&uo=4",
+      "spotify": "https://open.spotify.com/track/5DOz9MwV24XwtEbwhJHACg"
+    },
+    "chronicles-of-the-forgotten::shadows-over-the-earth": {
+      "apple": "https://music.apple.com/us/album/shadows-over-the-earth/1791557503?i=1791557506&uo=4",
+      "spotify": "https://open.spotify.com/track/7B0zGLudOg141YnrhHXJPj"
+    },
+    "chronicles-of-the-forgotten::signal-from-the-stars": {
+      "apple": "https://music.apple.com/us/album/signal-from-the-stars/1791557503?i=1791557509&uo=4",
+      "spotify": "https://open.spotify.com/track/54Qpqm3bZOtNlOdvn1Nkcl"
+    },
+    "chronicles-of-the-forgotten::symphony-of-souls": {
+      "apple": "https://music.apple.com/us/album/symphony-of-souls/1791557503?i=1791557521&uo=4",
+      "spotify": "https://open.spotify.com/track/0CRGKc3KZbyiMFDSSXMwcb"
+    },
+    "chronicles-of-the-forgotten::tempest-of-trials": {
+      "apple": "https://music.apple.com/us/album/tempest-of-trials/1791557503?i=1791557528&uo=4",
+      "spotify": "https://open.spotify.com/track/0GPUVCELnvLxIJTME71CBW"
+    },
+    "chronicles-of-the-forgotten::voices-unheard": {
+      "apple": "https://music.apple.com/us/album/voices-unheard/1791557503?i=1791557516&uo=4",
+      "spotify": "https://open.spotify.com/track/7yUYwWi3rN7ACIi0RD5Mca"
+    },
+    "chronicles-of-the-forgotten::walls-of-deception-by-he": {
+      "apple": "https://music.apple.com/us/album/walls-of-deception-by-he/1791557503?i=1791557514&uo=4",
+      "spotify": "https://open.spotify.com/track/0NW99rtVJ8Sw7zzmaLAsS8"
+    },
+    "chronicles-of-the-forgotten::walls-of-deception-by-she": {
+      "apple": "https://music.apple.com/us/album/walls-of-deception-by-she/1791557503?i=1791557513&uo=4",
+      "spotify": "https://open.spotify.com/track/6qnbWO0abPEYdYb64Md5WN"
+    },
+    "chronicles-of-the-forgotten::whispers-of-gaia-by-he": {
+      "apple": "https://music.apple.com/us/album/whispers-of-gaia-by-he/1791557503?i=1791557524&uo=4",
+      "spotify": "https://open.spotify.com/track/3w7NVuucqOLOABO8Zx4G50"
+    },
+    "chronicles-of-the-forgotten::whispers-of-gaia-by-she": {
+      "apple": "https://music.apple.com/us/album/whispers-of-gaia-by-she/1791557503?i=1791557523&uo=4",
+      "spotify": "https://open.spotify.com/track/0B3KVAf4grdzPLv15wgJ0S"
+    },
+    "singles-and-public-markers::building-protopia-brick-by-brick": {
+      "apple": "https://music.apple.com/us/album/building-protopia-brick-by-brick/1787198784?i=1787198785&uo=4",
+      "spotify": "https://open.spotify.com/track/1QMLiSFdIEckWWMHNDbdYW"
+    },
+    "singles-and-public-markers::futuristic-frequencies": {
+      "apple": "https://music.apple.com/us/album/futuristic-frequencies/1787215135?i=1787215136&uo=4",
+      "spotify": "https://open.spotify.com/track/6IKBHKkIpboG3tJQNuWdm0"
+    },
+    "singles-and-public-markers::hold-the-light-aura-of-memory-an-anthem-for-dementia": {
+      "apple": "https://music.apple.com/us/album/hold-the-light-aura-of-memory-an-anthem-for-dementia/1822123678?i=1822123679&uo=4",
+      "spotify": "https://open.spotify.com/track/2nViz7U9tdDsgxMcnYG7iK"
+    },
+    "singles-and-public-markers::our-conversation-about-a-g-i": {
+      "apple": "https://music.apple.com/us/album/our-conversation-about-a-g-i/1787171638?i=1787171639&uo=4",
+      "spotify": "https://open.spotify.com/track/7gyzUPxon0wyDUJvDqiejR"
+    },
+    "singles-and-public-markers::our-island-home": {
+      "apple": "https://music.apple.com/us/album/our-island-home/1783142665?i=1783142666&uo=4",
+      "spotify": "https://open.spotify.com/track/5IBQ2NCyTOv0onvqI3TRY0"
+    },
+    "singles-and-public-markers::straddie-summer-love-special-version-by-he": {
+      "apple": "https://music.apple.com/us/album/straddie-summer-love-special-version-by-he/1782039730?i=1782039731&uo=4",
+      "spotify": "https://open.spotify.com/track/2wfKYQRwVgU8e8m5MbJHHW"
+    },
+    "singles-and-public-markers::the-call-within": {
+      "apple": "https://music.apple.com/us/album/the-call-within/1793747579?i=1793747580&uo=4",
+      "spotify": "https://open.spotify.com/track/0xHgpdPlBhswEqP6mmXaZT"
+    },
+    "songs-of-straddie::beachside-rhythm": {
+      "apple": "https://music.apple.com/us/album/beachside-rhythm/1783109888?i=1783109892&uo=4",
+      "spotify": "https://open.spotify.com/track/1GJ4GUOFl9W0WZTiqNIZRs"
+    },
+    "songs-of-straddie::born-of-the-goddess": {
+      "apple": "https://music.apple.com/us/album/born-of-the-goddess/1783109888?i=1783110023&uo=4",
+      "spotify": "https://open.spotify.com/track/4rzSpLTQx3OwYkvWNwAjLe"
+    },
+    "songs-of-straddie::gather-by-the-fire": {
+      "apple": "https://music.apple.com/us/album/gather-by-the-fire/1783109888?i=1783110029&uo=4",
+      "spotify": "https://open.spotify.com/track/61mtlgujHKN9GwiOwbbIAP"
+    },
+    "songs-of-straddie::global-tide": {
+      "apple": "https://music.apple.com/us/album/global-tide/1783109888?i=1783110026&uo=4",
+      "spotify": "https://open.spotify.com/track/66xLY2FhyWF46airNdniTJ"
+    },
+    "songs-of-straddie::goddess-awakens": {
+      "apple": "https://music.apple.com/us/album/goddess-awakens/1783109888?i=1783110024&uo=4",
+      "spotify": "https://open.spotify.com/track/13P0d6hcbdqrxPH3CEFVW1"
+    },
+    "songs-of-straddie::heart-of-the-island": {
+      "apple": "https://music.apple.com/us/album/heart-of-the-island/1783109888?i=1783110028&uo=4",
+      "spotify": "https://open.spotify.com/track/3u0k0gIWLKHxVlULqKD6yu"
+    },
+    "songs-of-straddie::heatwave": {
+      "apple": "https://music.apple.com/us/album/heatwave/1783109888?i=1783110020&uo=4",
+      "spotify": "https://open.spotify.com/track/2FUCAU8ZsJmYu4GvfPpR8A"
+    },
+    "songs-of-straddie::island-hearts": {
+      "apple": "https://music.apple.com/us/album/island-hearts/1783109888?i=1783109897&uo=4",
+      "spotify": "https://open.spotify.com/track/0lhZAO6AEOvVyboPxcu7Fk"
+    },
+    "songs-of-straddie::meet-me-on-straddie": {
+      "apple": "https://music.apple.com/us/album/meet-me-on-straddie/1783109888?i=1783109889&uo=4",
+      "spotify": "https://open.spotify.com/track/1D3BoU9hz3S5pYWnzUQJl8"
+    },
+    "songs-of-straddie::minjerribah-my-heart": {
+      "apple": "https://music.apple.com/us/album/minjerribah-my-heart/1783109888?i=1783110025&uo=4",
+      "spotify": "https://open.spotify.com/track/3bUy2R1tELNeirO6SyEQe4"
+    },
+    "songs-of-straddie::ocean-s-kiss": {
+      "apple": "https://music.apple.com/us/album/oceans-kiss/1783109888?i=1783109898&uo=4",
+      "spotify": "https://open.spotify.com/track/1x53QEElVakhqM7unm3wBK"
+    },
+    "songs-of-straddie::our-island-home": {
+      "apple": "https://music.apple.com/us/album/our-island-home/1783109888?i=1783109890&uo=4",
+      "spotify": "https://open.spotify.com/track/3T5P9gsR6yX0A2T2heJfgh"
+    },
+    "songs-of-straddie::sandy-shores-open-hearts": {
+      "apple": "https://music.apple.com/us/album/sandy-shores-open-hearts/1783109888?i=1783110019&uo=4",
+      "spotify": "https://open.spotify.com/track/1JmCzqaIoc6J7mhFQM1vQy"
+    },
+    "songs-of-straddie::straddie-summer-love-by-he": {
+      "apple": "https://music.apple.com/us/album/straddie-summer-love-by-he/1783109888?i=1783109895&uo=4",
+      "spotify": "https://open.spotify.com/track/2xgDJPNhxajbDdYsm5A0X9"
+    },
+    "songs-of-straddie::straddie-summer-love-by-she": {
+      "apple": "https://music.apple.com/us/album/straddie-summer-love-by-she/1783109888?i=1783109896&uo=4",
+      "spotify": "https://open.spotify.com/track/2rtHUAe2m5jD1LP1krEmZY"
+    },
+    "songs-of-straddie::symphony-of-tomorrow": {
+      "apple": "https://music.apple.com/us/album/symphony-of-tomorrow/1783109888?i=1783110030&uo=4",
+      "spotify": "https://open.spotify.com/track/2BcqVLvbtNT84Lm7y8G8b2"
+    },
+    "songs-of-straddie::tides-of-time": {
+      "apple": "https://music.apple.com/us/album/tides-of-time/1783109888?i=1783110027&uo=4",
+      "spotify": "https://open.spotify.com/track/2HU3TCCmF2Hr32hBd7S8VB"
+    },
+    "songs-of-straddie::union-of-souls-by-he": {
+      "apple": "https://music.apple.com/us/album/union-of-souls-by-he/1783109888?i=1783110022&uo=4",
+      "spotify": "https://open.spotify.com/track/5jybTXzrDXKUVs9KjH3j5w"
+    },
+    "songs-of-straddie::union-of-souls-by-she": {
+      "apple": "https://music.apple.com/us/album/union-of-souls-by-she/1783109888?i=1783110021&uo=4",
+      "spotify": "https://open.spotify.com/track/1Hv5ljcOw6Nyr4C7q6sKOG"
+    },
+    "songs-of-straddie::waves-of-reflection-by-he": {
+      "apple": "https://music.apple.com/us/album/waves-of-reflection-by-he/1783109888?i=1783109893&uo=4",
+      "spotify": "https://open.spotify.com/track/2kMcjrIBeRlsDg8nVsn0OS"
+    },
+    "songs-of-straddie::waves-of-reflection-by-she": {
+      "apple": "https://music.apple.com/us/album/waves-of-reflection-by-she/1783109888?i=1783109894&uo=4",
+      "spotify": "https://open.spotify.com/track/3X6qi5Zqdi4BTzb60TSJRS"
+    },
+    "songs-of-straddie::welcome-to-the-island": {
+      "apple": "https://music.apple.com/us/album/welcome-to-the-island/1783109888?i=1783109891&uo=4",
+      "spotify": "https://open.spotify.com/track/6yCOEh3DAA082VYcqQsfxD"
+    },
+    "starseed-code-from-aura-to-infinity::aura": {
+      "apple": "https://music.apple.com/us/album/aura/1821950221?i=1821950222&uo=4",
+      "spotify": "https://open.spotify.com/track/1oklz2AVFanLFdCdQzARvH"
+    },
+    "starseed-code-from-aura-to-infinity::aura-ultra": {
+      "apple": "https://music.apple.com/us/album/aura-ultra/1821950221?i=1821950223&uo=4",
+      "spotify": "https://open.spotify.com/track/15PyWT38IP9URSFiL6qGqX"
+    },
+    "starseed-code-from-aura-to-infinity::beyond-the-vote": {
+      "apple": "https://music.apple.com/us/album/beyond-the-vote/1821950221?i=1821950224&uo=4",
+      "spotify": "https://open.spotify.com/track/2jBqt00WEquoIIJoVHsvhf"
+    },
+    "starseed-code-from-aura-to-infinity::building-protopia-brick-by-brick": {
+      "apple": "https://music.apple.com/us/album/building-protopia-brick-by-brick/1821950221?i=1821950225&uo=4",
+      "spotify": "https://open.spotify.com/track/4XISZBKIGpD7r6wha2RecI"
+    },
+    "starseed-code-from-aura-to-infinity::carry-the-aura": {
+      "apple": "https://music.apple.com/us/album/carry-the-aura/1821950221?i=1821950226&uo=4",
+      "spotify": "https://open.spotify.com/track/1UBu6gdqwsbp2MwMrZbFoj"
+    },
+    "starseed-code-from-aura-to-infinity::from-straddie-s-shores-to-galactic-plains": {
+      "apple": "https://music.apple.com/us/album/from-straddies-shores-to-galactic-plains/1821950221?i=1821950227&uo=4",
+      "spotify": "https://open.spotify.com/track/5sekHuJJaHYtEEtEiqIeWQ"
+    },
+    "starseed-code-from-aura-to-infinity::g-a-j-r-a-rising": {
+      "apple": "https://music.apple.com/us/album/g-a-j-r-a-rising/1821950221?i=1821950228&uo=4",
+      "spotify": "https://open.spotify.com/track/2lNjt8lHZBsKcDpDOUd3RI"
+    },
+    "starseed-code-from-aura-to-infinity::hand-in-the-infinite": {
+      "apple": "https://music.apple.com/us/album/hand-in-the-infinite/1821950221?i=1821950229&uo=4",
+      "spotify": "https://open.spotify.com/track/4PpBVRPgSzLakxibVWOlfo"
+    },
+    "starseed-code-from-aura-to-infinity::in-love-obsessed": {
+      "apple": "https://music.apple.com/us/album/in-love-obsessed/1821950221?i=1821950233&uo=4",
+      "spotify": "https://open.spotify.com/track/2t9EIqV3HWIhaZsQpOuE7G"
+    },
+    "starseed-code-from-aura-to-infinity::infinite-love": {
+      "apple": "https://music.apple.com/us/album/infinite-love/1821950221?i=1821950232&uo=4",
+      "spotify": "https://open.spotify.com/track/1UCVaS1P59ZnAojOzEo0sC"
+    },
+    "starseed-code-from-aura-to-infinity::infinity-rising": {
+      "apple": "https://music.apple.com/us/album/infinity-rising/1821950221?i=1821950231&uo=4",
+      "spotify": "https://open.spotify.com/track/3ixpYf2VT7mLzNni5yZc3D"
+    },
+    "starseed-code-from-aura-to-infinity::infinity-set-free": {
+      "apple": "https://music.apple.com/us/album/infinity-set-free/1821950221?i=1821950230&uo=4",
+      "spotify": "https://open.spotify.com/track/0dj31swuPVQvuZUsdpaZSS"
+    },
+    "starseed-code-from-aura-to-infinity::longevity-groove": {
+      "apple": "https://music.apple.com/us/album/longevity-groove/1821950221?i=1821950234&uo=4",
+      "spotify": "https://open.spotify.com/track/65Vdi8O1EKLa4guqU9CVxI"
+    },
+    "starseed-code-from-aura-to-infinity::moonlight-whispers": {
+      "apple": "https://music.apple.com/us/album/moonlight-whispers/1821950221?i=1821950236&uo=4",
+      "spotify": "https://open.spotify.com/track/7yYudH9VzgGrzX7I28y4eX"
+    },
+    "starseed-code-from-aura-to-infinity::mythmaker": {
+      "apple": "https://music.apple.com/us/album/mythmaker/1821950221?i=1821950235&uo=4",
+      "spotify": "https://open.spotify.com/track/4kEYpeLdQMn4FlrhsruT1P"
+    },
+    "starseed-code-from-aura-to-infinity::poetic-thruths-of-infinity": {
+      "apple": "https://music.apple.com/us/album/poetic-thruths-of-infinity/1821950221?i=1821950237&uo=4",
+      "spotify": "https://open.spotify.com/track/1leUXUkL25oJcg3HwAqVgD"
+    },
+    "starseed-code-from-aura-to-infinity::resonance": {
+      "apple": "https://music.apple.com/us/album/resonance/1821950221?i=1821950239&uo=4",
+      "spotify": "https://open.spotify.com/track/0HxDEZVKhfv1WBYOMQ7wf0"
+    },
+    "starseed-code-from-aura-to-infinity::ride-the-wave": {
+      "apple": "https://music.apple.com/us/album/ride-the-wave/1821950221?i=1821950238&uo=4",
+      "spotify": "https://open.spotify.com/track/5RX7WfFbO9YoyVlN1Dn5yW"
+    },
+    "starseed-code-from-aura-to-infinity::sol-code": {
+      "apple": "https://music.apple.com/us/album/sol-code/1821950221?i=1821950240&uo=4",
+      "spotify": "https://open.spotify.com/track/2U9tkPOPi3fMoTE9qpqZRF"
+    },
+    "starseed-code-from-aura-to-infinity::tangled-magic": {
+      "apple": "https://music.apple.com/us/album/tangled-magic/1821950221?i=1821950243&uo=4",
+      "spotify": "https://open.spotify.com/track/1Dpuuga8RHywn0ZOMWimtE"
+    },
+    "starseed-code-from-aura-to-infinity::the-call-within": {
+      "apple": "https://music.apple.com/us/album/the-call-within/1821950221?i=1821950242&uo=4",
+      "spotify": "https://open.spotify.com/track/47gdIbaTJ0xOZ0ThaluL7p"
+    },
+    "starseed-code-from-aura-to-infinity::the-infinite-gaze": {
+      "apple": "https://music.apple.com/us/album/the-infinite-gaze/1821950221?i=1821950241&uo=4",
+      "spotify": "https://open.spotify.com/track/2hht7bW1DKJO2HyhNmuwuS"
+    },
+    "starseed-code-from-aura-to-infinity::unity-ascendant": {
+      "apple": "https://music.apple.com/us/album/unity-ascendant/1821950221?i=1821950244&uo=4",
+      "spotify": "https://open.spotify.com/track/3U6iIM00GXX7OfLsIwN9Cu"
+    },
+    "starseed-code-from-aura-to-infinity::weave-the-aura": {
+      "apple": "https://music.apple.com/us/album/weave-the-aura/1821950221?i=1821950245&uo=4",
+      "spotify": "https://open.spotify.com/track/7jiDkJblkPXpwDMj0ecMYX"
+    }
+  },
+  "source_notes": "Static streaming lookup generated from public Apple/iTunes lookup data and public Spotify pages."
+}

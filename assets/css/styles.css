@@ -427,7 +427,7 @@ a:hover {
 }
 
 .album-card a,
-.song-card a {
+.song-main-link {
   display: grid;
   height: 100%;
   text-decoration: none;
@@ -452,6 +452,15 @@ a:hover {
 .seed-card,
 .engine-step {
   padding: 18px;
+}
+
+.song-card {
+  display: grid;
+  gap: 14px;
+}
+
+.song-main-link {
+  color: inherit;
 }
 
 .album-body h3,
@@ -507,6 +516,52 @@ a:hover {
 .status-pill.todo {
   border-color: rgba(201, 88, 49, 0.28);
   color: var(--coral);
+}
+
+.listen-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.listen-links.compact {
+  margin-top: 0;
+}
+
+.platform-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0 10px;
+}
+
+.listen-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 900;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.listen-chip.spotify {
+  border-color: rgba(24, 126, 70, 0.24);
+  background: #edf8f0;
+  color: #176a3a;
+}
+
+.listen-chip.apple {
+  border-color: rgba(201, 88, 49, 0.22);
+  background: #fff4ef;
+  color: #8e3f25;
 }
 
 .page-hero {
@@ -659,6 +714,17 @@ a:hover {
   font-family: "Fira Code", Consolas, ui-monospace, monospace;
   font-size: 0.94rem;
   line-height: 1.65;
+}
+
+.stream-embed {
+  margin: 18px 0 26px;
+}
+
+.stream-embed iframe {
+  display: block;
+  border: 0;
+  border-radius: var(--radius);
+  background: #111;
 }
 
 .engine-map {
