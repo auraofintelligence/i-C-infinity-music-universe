@@ -4,6 +4,8 @@
     "main_site": "https://iseeinfinity.com/",
     "apple_music": "https://music.apple.com/us/artist/i-c-infinity/1781660070",
     "spotify": "https://open.spotify.com/artist/3HK8H81lXFXOEJaSys7xfQ",
+    "songs_of_straddie_youtube_playlist": "https://www.youtube.com/playlist?list=PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
+    "chronicles_youtube_playlist": "https://www.youtube.com/playlist?list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
     "starseed_youtube_playlist": "https://www.youtube.com/playlist?list=PLsN0U9hPJHBZyRTYmAwLCuVSpY9q_-tCd",
     "shifting_sands_widescreen": "https://youtu.be/uKygQx_8dos?si=EJ0uT78HYJ22zy7a",
     "shifting_sands_portrait": "https://youtu.be/OZRZy6LYQkg?si=a9qnTQiwTJCVSqNM",
@@ -22,7 +24,7 @@
       "artwork": "assets/img/cover-straddie.jpg",
       "source_url": "https://music.apple.com/us/album/songs-of-straddie/1783109888",
       "spotify_url": "https://open.spotify.com/album/0Yn3Fg01PgBUCFel5ZvsR6",
-      "youtube_playlist_url": "",
+      "youtube_playlist_url": "https://www.youtube.com/playlist?list=PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
       "tracks": [
         "songs-of-straddie-01-songs-of-straddie",
         "songs-of-straddie-02-meet-me-on-straddie",
@@ -59,7 +61,7 @@
       "artwork": "assets/img/cover-chronicles.jpg",
       "source_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503",
       "spotify_url": "https://open.spotify.com/album/25toPXeGvRqcaJFHPLDREI",
-      "youtube_playlist_url": "",
+      "youtube_playlist_url": "https://www.youtube.com/playlist?list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "tracks": [
         "chronicles-of-the-forgotten-01-chronicles-of-the-forgotten",
         "chronicles-of-the-forgotten-02-echos-of-the-ancients",
@@ -331,10 +333,20 @@
       "release_url": "https://music.apple.com/us/album/songs-of-straddie/1783109888#track-3",
       "apple_url": "https://music.apple.com/us/album/our-island-home/1783109888?i=1783109890&uo=4",
       "spotify_url": "https://open.spotify.com/track/3T5P9gsR6yX0A2T2heJfgh",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "kiHNBKeT2zQ",
+      "youtube_title": "Our Island Home lyric video",
+      "youtube_videos": [
+        {
+          "id": "kiHNBKeT2zQ",
+          "title": "Our Island Home lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=kiHNBKeT2zQ&list=PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -407,10 +419,29 @@
       "release_url": "https://music.apple.com/us/album/songs-of-straddie/1783109888#track-5",
       "apple_url": "https://music.apple.com/us/album/beachside-rhythm/1783109888?i=1783109892&uo=4",
       "spotify_url": "https://open.spotify.com/track/1GJ4GUOFl9W0WZTiqNIZRs",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "Y7DiLtgc1Bw",
+      "youtube_title": "Beachside Rhythm (By He) lyric video",
+      "youtube_videos": [
+        {
+          "id": "Y7DiLtgc1Bw",
+          "title": "Beachside Rhythm (By He) lyric video",
+          "label": "Landscape Lyric Video (By He)",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        },
+        {
+          "id": "C2s5fGQ7txw",
+          "title": "Beachside Rhythm (By She) lyric video",
+          "label": "Landscape Lyric Video (By She)",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=Y7DiLtgc1Bw&list=PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -523,10 +554,20 @@
       "release_url": "https://music.apple.com/us/album/songs-of-straddie/1783109888#track-8",
       "apple_url": "https://music.apple.com/us/album/straddie-summer-love-by-he/1783109888?i=1783109895&uo=4",
       "spotify_url": "https://open.spotify.com/track/2xgDJPNhxajbDdYsm5A0X9",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "XeIDgiILzp8",
+      "youtube_title": "Straddie Summer Love (By He) lyric video",
+      "youtube_videos": [
+        {
+          "id": "XeIDgiILzp8",
+          "title": "Straddie Summer Love (By He) lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=XeIDgiILzp8&list=PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -563,10 +604,20 @@
       "release_url": "https://music.apple.com/us/album/songs-of-straddie/1783109888#track-9",
       "apple_url": "https://music.apple.com/us/album/straddie-summer-love-by-she/1783109888?i=1783109896&uo=4",
       "spotify_url": "https://open.spotify.com/track/2rtHUAe2m5jD1LP1krEmZY",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "D9hJ9kHxZZg",
+      "youtube_title": "Straddie Summer Love (By She) lyric video",
+      "youtube_videos": [
+        {
+          "id": "D9hJ9kHxZZg",
+          "title": "Straddie Summer Love (By She) lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=D9hJ9kHxZZg&list=PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -761,10 +812,20 @@
       "release_url": "https://music.apple.com/us/album/songs-of-straddie/1783109888#track-14",
       "apple_url": "https://music.apple.com/us/album/union-of-souls-by-she/1783109888?i=1783110021&uo=4",
       "spotify_url": "https://open.spotify.com/track/1Hv5ljcOw6Nyr4C7q6sKOG",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "N4YwZmurJMc",
+      "youtube_title": "Union of Souls (By She) lyric video",
+      "youtube_videos": [
+        {
+          "id": "N4YwZmurJMc",
+          "title": "Union of Souls (By She) lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=N4YwZmurJMc&list=PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -801,10 +862,20 @@
       "release_url": "https://music.apple.com/us/album/songs-of-straddie/1783109888#track-15",
       "apple_url": "https://music.apple.com/us/album/union-of-souls-by-he/1783109888?i=1783110022&uo=4",
       "spotify_url": "https://open.spotify.com/track/5jybTXzrDXKUVs9KjH3j5w",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "yfH4-_IAFfs",
+      "youtube_title": "Union of Souls (By He) lyric video",
+      "youtube_videos": [
+        {
+          "id": "yfH4-_IAFfs",
+          "title": "Union of Souls (By He) lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=yfH4-_IAFfs&list=PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -839,10 +910,20 @@
       "release_url": "https://music.apple.com/us/album/songs-of-straddie/1783109888#track-16",
       "apple_url": "https://music.apple.com/us/album/born-of-the-goddess/1783109888?i=1783110023&uo=4",
       "spotify_url": "https://open.spotify.com/track/4rzSpLTQx3OwYkvWNwAjLe",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "gWNBYGNEJZs",
+      "youtube_title": "Born of the Goddess lyric video",
+      "youtube_videos": [
+        {
+          "id": "gWNBYGNEJZs",
+          "title": "Born of the Goddess lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=gWNBYGNEJZs&list=PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1071,10 +1152,20 @@
       "release_url": "https://music.apple.com/us/album/songs-of-straddie/1783109888#track-22",
       "apple_url": "https://music.apple.com/us/album/gather-by-the-fire/1783109888?i=1783110029&uo=4",
       "spotify_url": "https://open.spotify.com/track/61mtlgujHKN9GwiOwbbIAP",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "sxJESmM6LB4",
+      "youtube_title": "Gather by the Fire lyric video",
+      "youtube_videos": [
+        {
+          "id": "sxJESmM6LB4",
+          "title": "Gather by the Fire lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=sxJESmM6LB4&list=PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1147,10 +1238,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-2",
       "apple_url": "https://music.apple.com/us/album/echos-of-the-ancients/1791557503?i=1791557504&uo=4",
       "spotify_url": "https://open.spotify.com/track/2TAXIIabN1K7vjPaPoo04K",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "ybZ3oWjlcg8",
+      "youtube_title": "Echos of the Ancients lyric video",
+      "youtube_videos": [
+        {
+          "id": "ybZ3oWjlcg8",
+          "title": "Echos of the Ancients lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=ybZ3oWjlcg8&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1185,10 +1286,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-3",
       "apple_url": "https://music.apple.com/us/album/shadows-over-the-earth/1791557503?i=1791557506&uo=4",
       "spotify_url": "https://open.spotify.com/track/7B0zGLudOg141YnrhHXJPj",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "adUke4EL0c8",
+      "youtube_title": "Shadows over the Earth lyric video",
+      "youtube_videos": [
+        {
+          "id": "adUke4EL0c8",
+          "title": "Shadows over the Earth lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=adUke4EL0c8&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1223,10 +1334,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-4",
       "apple_url": "https://music.apple.com/us/album/dreams-of-abundance-by-she/1791557503?i=1791557507&uo=4",
       "spotify_url": "https://open.spotify.com/track/3fPvfAM4hotFVWiMB9IKW9",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "_UMJnq-VuRE",
+      "youtube_title": "Dreams of Abundance (by she) lyric video",
+      "youtube_videos": [
+        {
+          "id": "_UMJnq-VuRE",
+          "title": "Dreams of Abundance (by she) lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=_UMJnq-VuRE&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1261,10 +1382,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-5",
       "apple_url": "https://music.apple.com/us/album/dreams-of-abundance-by-he/1791557503?i=1791557508&uo=4",
       "spotify_url": "https://open.spotify.com/track/60ixlUhejPLyQF7mkHvgHj",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "5wJP9cD-h2g",
+      "youtube_title": "Dreams of Abundance (by he) lyric video",
+      "youtube_videos": [
+        {
+          "id": "5wJP9cD-h2g",
+          "title": "Dreams of Abundance (by he) lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=5wJP9cD-h2g&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1298,10 +1429,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-6",
       "apple_url": "https://music.apple.com/us/album/signal-from-the-stars/1791557503?i=1791557509&uo=4",
       "spotify_url": "https://open.spotify.com/track/54Qpqm3bZOtNlOdvn1Nkcl",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "gmTN9nlduOQ",
+      "youtube_title": "Signal from the Stars lyric video",
+      "youtube_videos": [
+        {
+          "id": "gmTN9nlduOQ",
+          "title": "Signal from the Stars lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=gmTN9nlduOQ&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1336,10 +1477,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-7",
       "apple_url": "https://music.apple.com/us/album/algorithm-hope/1791557503?i=1791557510&uo=4",
       "spotify_url": "https://open.spotify.com/track/70u1HC0hoIYN0Ie5iSZ0on",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "iflDVjy8BeQ",
+      "youtube_title": "Algorithm Hope lyric video",
+      "youtube_videos": [
+        {
+          "id": "iflDVjy8BeQ",
+          "title": "Algorithm Hope lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=iflDVjy8BeQ&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1376,10 +1527,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-8",
       "apple_url": "https://music.apple.com/us/album/hearts-and-circuits-by-she/1791557503?i=1791557511&uo=4",
       "spotify_url": "https://open.spotify.com/track/643HcWg1ZFnYIoQYDj1g4y",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "mFsln7mlGtU",
+      "youtube_title": "Hearts and Circuits (by she) lyric video",
+      "youtube_videos": [
+        {
+          "id": "mFsln7mlGtU",
+          "title": "Hearts and Circuits (by she) lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=mFsln7mlGtU&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1416,10 +1577,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-9",
       "apple_url": "https://music.apple.com/us/album/hearts-and-circuits-by-he/1791557503?i=1791557512&uo=4",
       "spotify_url": "https://open.spotify.com/track/7ABI3vZLvknTN8LrDmd6g9",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "0CS-3oqkSnA",
+      "youtube_title": "Hearts and Circuits (by he) lyric video",
+      "youtube_videos": [
+        {
+          "id": "0CS-3oqkSnA",
+          "title": "Hearts and Circuits (by he) lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=0CS-3oqkSnA&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1454,10 +1625,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-10",
       "apple_url": "https://music.apple.com/us/album/walls-of-deception-by-she/1791557503?i=1791557513&uo=4",
       "spotify_url": "https://open.spotify.com/track/6qnbWO0abPEYdYb64Md5WN",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "xQH7HcbkRfQ",
+      "youtube_title": "Walls of Deception (by she) lyric video",
+      "youtube_videos": [
+        {
+          "id": "xQH7HcbkRfQ",
+          "title": "Walls of Deception (by she) lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=xQH7HcbkRfQ&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1492,10 +1673,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-11",
       "apple_url": "https://music.apple.com/us/album/walls-of-deception-by-he/1791557503?i=1791557514&uo=4",
       "spotify_url": "https://open.spotify.com/track/0NW99rtVJ8Sw7zzmaLAsS8",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "YV24_UC4mrM",
+      "youtube_title": "Walls of Deception (by he) lyric video",
+      "youtube_videos": [
+        {
+          "id": "YV24_UC4mrM",
+          "title": "Walls of Deception (by he) lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=YV24_UC4mrM&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1530,10 +1721,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-12",
       "apple_url": "https://music.apple.com/us/album/breaking-chains/1791557503?i=1791557515&uo=4",
       "spotify_url": "https://open.spotify.com/track/6aEKvI5CSYSlAhYpVE79Yg",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "mEZgZDfhCLU",
+      "youtube_title": "Breaking Chains lyric video",
+      "youtube_videos": [
+        {
+          "id": "mEZgZDfhCLU",
+          "title": "Breaking Chains lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=mEZgZDfhCLU&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1568,10 +1769,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-13",
       "apple_url": "https://music.apple.com/us/album/voices-unheard/1791557503?i=1791557516&uo=4",
       "spotify_url": "https://open.spotify.com/track/7yUYwWi3rN7ACIi0RD5Mca",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "kOeUNmUQ1S4",
+      "youtube_title": "Voices Unheard lyric video",
+      "youtube_videos": [
+        {
+          "id": "kOeUNmUQ1S4",
+          "title": "Voices Unheard lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=kOeUNmUQ1S4&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1606,10 +1817,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-14",
       "apple_url": "https://music.apple.com/us/album/cycle-of-suns-by-he/1791557503?i=1791557517&uo=4",
       "spotify_url": "https://open.spotify.com/track/4kOhynNI0vrMEraUFgIpQ9",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "rNrGvBYXqic",
+      "youtube_title": "Cycle of Suns (by he) lyric video",
+      "youtube_videos": [
+        {
+          "id": "rNrGvBYXqic",
+          "title": "Cycle of Suns (by he) lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=rNrGvBYXqic&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1644,10 +1865,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-15",
       "apple_url": "https://music.apple.com/us/album/cycle-of-suns-by-she/1791557503?i=1791557518&uo=4",
       "spotify_url": "https://open.spotify.com/track/6QU7HW6D5848E04imfKyM4",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "FB7E99ZdcBI",
+      "youtube_title": "Cycle of Suns (by she) lyric video",
+      "youtube_videos": [
+        {
+          "id": "FB7E99ZdcBI",
+          "title": "Cycle of Suns (by she) lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=FB7E99ZdcBI&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1682,10 +1913,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-16",
       "apple_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503?i=1791557519&uo=4",
       "spotify_url": "https://open.spotify.com/track/6mGjmplzh5hYUpZqmzBMYa",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "SGp_WfDuUP0",
+      "youtube_title": "Chronicles of the Forgotten lyric video",
+      "youtube_videos": [
+        {
+          "id": "SGp_WfDuUP0",
+          "title": "Chronicles of the Forgotten lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=SGp_WfDuUP0&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1719,10 +1960,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-17",
       "apple_url": "https://music.apple.com/us/album/celestial-navigators/1791557503?i=1791557520&uo=4",
       "spotify_url": "https://open.spotify.com/track/19UovNcFzSe7qqcOhZkxw1",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "aqNJGzAXszk",
+      "youtube_title": "Celestial Navigators lyric video",
+      "youtube_videos": [
+        {
+          "id": "aqNJGzAXszk",
+          "title": "Celestial Navigators lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=aqNJGzAXszk&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1756,10 +2007,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-18",
       "apple_url": "https://music.apple.com/us/album/symphony-of-souls/1791557503?i=1791557521&uo=4",
       "spotify_url": "https://open.spotify.com/track/0CRGKc3KZbyiMFDSSXMwcb",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "rQ8zHdhPqXU",
+      "youtube_title": "Symphony of Souls lyric video",
+      "youtube_videos": [
+        {
+          "id": "rQ8zHdhPqXU",
+          "title": "Symphony of Souls lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=rQ8zHdhPqXU&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1794,10 +2055,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-19",
       "apple_url": "https://music.apple.com/us/album/digital-dawn/1791557503?i=1791557522&uo=4",
       "spotify_url": "https://open.spotify.com/track/4OMcuk8nLrL0uWYcKdE8FB",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "EERpSPJhgWc",
+      "youtube_title": "Digital Dawn lyric video",
+      "youtube_videos": [
+        {
+          "id": "EERpSPJhgWc",
+          "title": "Digital Dawn lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=EERpSPJhgWc&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1832,10 +2103,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-20",
       "apple_url": "https://music.apple.com/us/album/whispers-of-gaia-by-she/1791557503?i=1791557523&uo=4",
       "spotify_url": "https://open.spotify.com/track/0B3KVAf4grdzPLv15wgJ0S",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "eGN7n0Z0IpA",
+      "youtube_title": "Whispers of Gaia (by she) lyric video",
+      "youtube_videos": [
+        {
+          "id": "eGN7n0Z0IpA",
+          "title": "Whispers of Gaia (by she) lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=eGN7n0Z0IpA&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1870,10 +2151,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-21",
       "apple_url": "https://music.apple.com/us/album/whispers-of-gaia-by-he/1791557503?i=1791557524&uo=4",
       "spotify_url": "https://open.spotify.com/track/3w7NVuucqOLOABO8Zx4G50",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "hwpPeiT2t4g",
+      "youtube_title": "Whispers of Gaia (by he) lyric video",
+      "youtube_videos": [
+        {
+          "id": "hwpPeiT2t4g",
+          "title": "Whispers of Gaia (by he) lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=hwpPeiT2t4g&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1908,10 +2199,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-22",
       "apple_url": "https://music.apple.com/us/album/bridging-the-divide/1791557503?i=1791557525&uo=4",
       "spotify_url": "https://open.spotify.com/track/0eZdxrf2r7uHxmjOkGAaTy",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "nRiCVntYJJE",
+      "youtube_title": "Bridging the Divide lyric video",
+      "youtube_videos": [
+        {
+          "id": "nRiCVntYJJE",
+          "title": "Bridging the Divide lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=nRiCVntYJJE&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1946,10 +2247,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-23",
       "apple_url": "https://music.apple.com/us/album/pulse-of-the-universe/1791557503?i=1791557526&uo=4",
       "spotify_url": "https://open.spotify.com/track/7oQAghEv7seogxRX9w7lCc",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "JdAjTRfwazM",
+      "youtube_title": "Pulse of the Universe lyric video",
+      "youtube_videos": [
+        {
+          "id": "JdAjTRfwazM",
+          "title": "Pulse of the Universe lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=JdAjTRfwazM&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -1984,10 +2295,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-24",
       "apple_url": "https://music.apple.com/us/album/resonance/1791557503?i=1791557527&uo=4",
       "spotify_url": "https://open.spotify.com/track/5DOz9MwV24XwtEbwhJHACg",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "FK9upHoQlU8",
+      "youtube_title": "Resonance lyric video",
+      "youtube_videos": [
+        {
+          "id": "FK9upHoQlU8",
+          "title": "Resonance lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=FK9upHoQlU8&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },
@@ -2022,10 +2343,20 @@
       "release_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503#track-25",
       "apple_url": "https://music.apple.com/us/album/tempest-of-trials/1791557503?i=1791557528&uo=4",
       "spotify_url": "https://open.spotify.com/track/0GPUVCELnvLxIJTME71CBW",
-      "youtube_video_id": "",
-      "youtube_title": "",
-      "youtube_videos": [],
-      "youtube_url": "",
+      "youtube_video_id": "_2eFQHEtTw8",
+      "youtube_title": "Tempest of Trials lyric video",
+      "youtube_videos": [
+        {
+          "id": "_2eFQHEtTw8",
+          "title": "Tempest of Trials lyric video",
+          "label": "Landscape Lyric Video",
+          "orientation": "landscape",
+          "playlist_id": "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
+          "thumbnail": "hqdefault",
+          "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=_2eFQHEtTw8&list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
       "has_lyrics": false,
       "lyrics": ""
     },

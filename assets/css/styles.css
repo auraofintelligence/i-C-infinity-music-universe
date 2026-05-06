@@ -835,6 +835,10 @@ a:hover {
   align-items: center;
 }
 
+.video-feature.landscape-feature {
+  grid-template-columns: minmax(300px, 0.58fr) minmax(0, 0.42fr);
+}
+
 .vertical-video-frame {
   width: min(100%, 380px);
   aspect-ratio: 9 / 16;
@@ -858,6 +862,10 @@ a:hover {
 .vertical-video-frame.wide-video-frame {
   width: min(100%, 560px);
   aspect-ratio: 16 / 9;
+}
+
+.landscape-feature .vertical-video-frame.wide-video-frame {
+  width: min(100%, 720px);
 }
 
 .vertical-video-poster {
@@ -1122,6 +1130,7 @@ a:hover {
   .source-grid,
   .engine-map,
   .video-feature,
+  .video-feature.landscape-feature,
   .video-index,
   .song-video-panel,
   .song-video-panel.wide-video-frame,

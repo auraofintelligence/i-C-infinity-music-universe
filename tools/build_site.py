@@ -101,6 +101,10 @@ ORDER_PAGE = "https://auraofintelligence.github.io/i-C-infinity-music-universe/o
 STARSEED_ALBUM_SLUG = "starseed-code-from-aura-to-infinity"
 STARSEED_YOUTUBE_PLAYLIST_ID = "PLsN0U9hPJHBZyRTYmAwLCuVSpY9q_-tCd"
 STARSEED_YOUTUBE_PLAYLIST_URL = f"https://www.youtube.com/playlist?list={STARSEED_YOUTUBE_PLAYLIST_ID}"
+STRADDIE_YOUTUBE_PLAYLIST_ID = "PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn"
+STRADDIE_YOUTUBE_PLAYLIST_URL = f"https://www.youtube.com/playlist?list={STRADDIE_YOUTUBE_PLAYLIST_ID}"
+CHRONICLES_YOUTUBE_PLAYLIST_ID = "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk"
+CHRONICLES_YOUTUBE_PLAYLIST_URL = f"https://www.youtube.com/playlist?list={CHRONICLES_YOUTUBE_PLAYLIST_ID}"
 FOURTH_ALBUM_TEASER_VIDEO = {
     "id": "zgvb6PPlaRY",
     "title": "Untitled fourth album teaser video",
@@ -127,6 +131,143 @@ SHIFTING_SANDS_VIDEOS = [
         "url": "https://youtu.be/OZRZy6LYQkg?si=a9qnTQiwTJCVSqNM",
     },
 ]
+
+
+STRADDIE_LYRIC_VIDEOS = {
+    "Our Island Home!": [
+        {"id": "kiHNBKeT2zQ", "title": "Our Island Home lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Beachside Rhythm": [
+        {"id": "Y7DiLtgc1Bw", "title": "Beachside Rhythm (By He) lyric video", "label": "Landscape Lyric Video (By He)"},
+        {"id": "C2s5fGQ7txw", "title": "Beachside Rhythm (By She) lyric video", "label": "Landscape Lyric Video (By She)"},
+    ],
+    "Gather by the Fire": [
+        {"id": "sxJESmM6LB4", "title": "Gather by the Fire lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Straddie Summer Love (By She)": [
+        {"id": "D9hJ9kHxZZg", "title": "Straddie Summer Love (By She) lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Straddie Summer Love (By He)": [
+        {"id": "XeIDgiILzp8", "title": "Straddie Summer Love (By He) lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Union of Souls (By She)": [
+        {"id": "N4YwZmurJMc", "title": "Union of Souls (By She) lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Union of Souls (By He)": [
+        {"id": "yfH4-_IAFfs", "title": "Union of Souls (By He) lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Born of the Goddess": [
+        {"id": "gWNBYGNEJZs", "title": "Born of the Goddess lyric video", "label": "Landscape Lyric Video"},
+    ],
+}
+
+
+STRADDIE_PLAYLIST_ONLY_VIDEOS = [
+    {"id": "m5HfpL_1yi0", "title": "Dolphin Daze lyric video"},
+    {"id": "rAzpWXaS9ko", "title": "Dance of the Dakini (By She) lyric video"},
+    {"id": "BGStqXamlzw", "title": "Dance of the Dakini (By He) lyric video"},
+]
+
+
+CHRONICLES_LYRIC_VIDEOS = {
+    "Echos of the Ancients": [
+        {"id": "ybZ3oWjlcg8", "title": "Echos of the Ancients lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Shadows Over the Earth": [
+        {"id": "adUke4EL0c8", "title": "Shadows over the Earth lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Dreams of Abundance (by she)": [
+        {"id": "_UMJnq-VuRE", "title": "Dreams of Abundance (by she) lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Dreams of Abundance (by he)": [
+        {"id": "5wJP9cD-h2g", "title": "Dreams of Abundance (by he) lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Signal From the Stars": [
+        {"id": "gmTN9nlduOQ", "title": "Signal from the Stars lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Algorithm: Hope": [
+        {"id": "iflDVjy8BeQ", "title": "Algorithm Hope lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Hearts and Circuits (by she)": [
+        {"id": "mFsln7mlGtU", "title": "Hearts and Circuits (by she) lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Hearts and Circuits (by he)": [
+        {"id": "0CS-3oqkSnA", "title": "Hearts and Circuits (by he) lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Walls of Deception (by she)": [
+        {"id": "xQH7HcbkRfQ", "title": "Walls of Deception (by she) lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Walls of Deception (by he)": [
+        {"id": "YV24_UC4mrM", "title": "Walls of Deception (by he) lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Breaking Chains": [
+        {"id": "mEZgZDfhCLU", "title": "Breaking Chains lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Voices Unheard": [
+        {"id": "kOeUNmUQ1S4", "title": "Voices Unheard lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Cycle of Suns (by he)": [
+        {"id": "rNrGvBYXqic", "title": "Cycle of Suns (by he) lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Cycle of Suns (by she)": [
+        {"id": "FB7E99ZdcBI", "title": "Cycle of Suns (by she) lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Chronicles of the Forgotten": [
+        {"id": "SGp_WfDuUP0", "title": "Chronicles of the Forgotten lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Celestial Navigators": [
+        {"id": "aqNJGzAXszk", "title": "Celestial Navigators lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Symphony of Souls": [
+        {"id": "rQ8zHdhPqXU", "title": "Symphony of Souls lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Digital Dawn": [
+        {"id": "EERpSPJhgWc", "title": "Digital Dawn lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Whispers of Gaia (by she)": [
+        {"id": "eGN7n0Z0IpA", "title": "Whispers of Gaia (by she) lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Whispers of Gaia (by he)": [
+        {"id": "hwpPeiT2t4g", "title": "Whispers of Gaia (by he) lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Bridging the Divide": [
+        {"id": "nRiCVntYJJE", "title": "Bridging the Divide lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Pulse of the Universe": [
+        {"id": "JdAjTRfwazM", "title": "Pulse of the Universe lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Resonance": [
+        {"id": "FK9upHoQlU8", "title": "Resonance lyric video", "label": "Landscape Lyric Video"},
+    ],
+    "Tempest of Trials": [
+        {"id": "_2eFQHEtTw8", "title": "Tempest of Trials lyric video", "label": "Landscape Lyric Video"},
+    ],
+}
+
+
+CHRONICLES_PLAYLIST_ONLY_VIDEOS = [
+    {"id": "mbHDw0Bh4xU", "title": "Illusions Shattered lyric video"},
+]
+
+
+LANDSCAPE_ALBUM_VIDEO_MAP = {
+    "songs-of-straddie": {
+        "playlist_id": STRADDIE_YOUTUBE_PLAYLIST_ID,
+        "playlist_url": STRADDIE_YOUTUBE_PLAYLIST_URL,
+        "title": "Songs of Straddie Lyric Video Playlist",
+        "description": "Landscape lyric videos for the island layer. The playlist can be watched as one flow, while matched videos also sit on their song pages.",
+        "videos": STRADDIE_LYRIC_VIDEOS,
+        "playlist_only": STRADDIE_PLAYLIST_ONLY_VIDEOS,
+    },
+    "chronicles-of-the-forgotten": {
+        "playlist_id": CHRONICLES_YOUTUBE_PLAYLIST_ID,
+        "playlist_url": CHRONICLES_YOUTUBE_PLAYLIST_URL,
+        "title": "Chronicles of the Forgotten Lyric Video Playlist",
+        "description": "Landscape lyric videos for the rock-opera layer. This makes the archive feel watchable before the full lyric import pass lands.",
+        "videos": CHRONICLES_LYRIC_VIDEOS,
+        "playlist_only": CHRONICLES_PLAYLIST_ONLY_VIDEOS,
+    },
+}
 
 
 STARSEED_VERTICAL_VIDEOS = {
@@ -628,6 +769,39 @@ def youtube_thumbnail_url(video_id: str, quality: str = "maxresdefault") -> str:
     return f"https://img.youtube.com/vi/{quote(video_id)}/{quote(quality)}.jpg"
 
 
+def youtube_playlist_embed_src(playlist_id: str) -> str:
+    return f"https://www.youtube.com/embed/videoseries?list={quote(playlist_id)}&rel=0"
+
+
+def album_playlist_url(album_slug: str) -> str:
+    if album_slug == STARSEED_ALBUM_SLUG:
+        return STARSEED_YOUTUBE_PLAYLIST_URL
+    meta = LANDSCAPE_ALBUM_VIDEO_MAP.get(album_slug)
+    return meta["playlist_url"] if meta else ""
+
+
+def landscape_song_videos(album_slug: str, title: str, track_number: int) -> list[dict[str, str]]:
+    meta = LANDSCAPE_ALBUM_VIDEO_MAP.get(album_slug)
+    if not meta:
+        return []
+    if album_slug == "chronicles-of-the-forgotten" and title == "Chronicles of the Forgotten" and track_number != 16:
+        return []
+    videos = []
+    for video in meta["videos"].get(title, []):
+        videos.append(
+            {
+                "id": video["id"],
+                "title": video["title"],
+                "label": video.get("label", "Landscape Lyric Video"),
+                "orientation": "landscape",
+                "playlist_id": meta["playlist_id"],
+                "thumbnail": "hqdefault",
+                "note": "Landscape lyric video from the album playlist. This gives the song page a public watch layer before the lyric import and Infinity Engine remix passes.",
+            }
+        )
+    return videos
+
+
 def primary_youtube_video(song: Song) -> dict[str, str] | None:
     videos = song.youtube_videos
     if videos:
@@ -719,7 +893,7 @@ def youtube_song_embed_html(song: Song) -> str:
         </div>
       </div>
     </section>
-    """
+    """.rstrip()
         )
     return "".join(cards)
 
@@ -792,6 +966,11 @@ def build_catalogue() -> tuple[list[Album], list[Song]]:
                         "note": "Mobile-first YouTube video for this Starseed Code song. This becomes the published visual reference before any later Infinity Engine remix or paid-download packaging.",
                     }
                 ]
+            landscape_videos = landscape_song_videos(album.slug, track.title, track.track_number)
+            if landscape_videos:
+                track.youtube_videos = landscape_videos
+                track.youtube_video_id = landscape_videos[0]["id"]
+                track.youtube_title = landscape_videos[0]["title"]
             songs.append(track)
         albums.append(album)
 
@@ -952,7 +1131,8 @@ def song_status(song: Song) -> str:
 def song_card(song: Song, prefix: str = "") -> str:
     search_terms = [song.title, song.album_title, " ".join(song.themes), "spotify apple itunes"]
     if song.youtube_video_id:
-        search_terms.append("youtube vertical video mobile")
+        orientations = " ".join(video.get("orientation", "") for video in song.youtube_videos)
+        search_terms.append(f"youtube lyric video {orientations}")
     search = " ".join(search_terms).lower()
     href = f"{prefix}songs/{song.slug}/"
     track = f"Track {song.track_number}" if song.track_number else "Song"
@@ -1411,6 +1591,61 @@ def starseed_video_section(album: Album, prefix: str) -> str:
     """
 
 
+def landscape_album_video_section(album: Album, prefix: str) -> str:
+    meta = LANDSCAPE_ALBUM_VIDEO_MAP.get(album.slug)
+    if not meta:
+        return ""
+    video_tracks = [song for song in album.tracks if primary_youtube_video(song)]
+    playlist_only = meta.get("playlist_only", [])
+    if not video_tracks and not playlist_only:
+        return ""
+    matched_count = sum(len(song.youtube_videos) for song in video_tracks)
+    total_count = matched_count + len(playlist_only)
+    video_index = "".join(
+        f"""
+        <a class="video-chip" href="{prefix}songs/{esc(song.slug)}/#vertical-video">
+          <img src="{esc(youtube_thumbnail_url(primary_youtube_video(song)['id'], primary_youtube_video(song).get('thumbnail', 'hqdefault')))}" alt="{esc(primary_youtube_video(song).get('title', song.title))} thumbnail">
+          <strong>{esc(song.title)}</strong>
+          <em>{len(song.youtube_videos)} video{'s' if len(song.youtube_videos) != 1 else ''}</em>
+        </a>
+        """.strip()
+        for song in video_tracks
+    )
+    playlist_only_index = "".join(
+        f"""
+        <a class="video-chip" href="{esc(youtube_video_url(video['id'], meta['playlist_id']))}" target="_blank" rel="noopener">
+          <img src="{esc(youtube_thumbnail_url(video['id'], 'hqdefault'))}" alt="{esc(video['title'])} thumbnail">
+          <strong>{esc(video['title'])}</strong>
+          <em>Playlist-only video</em>
+        </a>
+        """.strip()
+        for video in playlist_only
+    )
+    return f"""
+    <section class="section video-section" id="lyric-video-playlist">
+      <div class="wrap video-feature landscape-feature">
+        <div class="vertical-video-frame wide-video-frame playlist-frame">
+          <iframe title="{esc(meta['title'])}" src="{esc(youtube_playlist_embed_src(meta['playlist_id']))}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <div class="video-feature-copy">
+          <p class="eyebrow">Landscape Lyric Video Layer</p>
+          <h2>{esc(meta['title'])}</h2>
+          <p>{esc(meta['description'])} {total_count} playlist videos are now visible here, with {matched_count} matched into generated song pages.</p>
+          <div class="action-row">
+            <a class="button" href="{esc(meta['playlist_url'])}" target="_blank" rel="noopener">Open playlist</a>
+            <a class="button secondary" href="#track-map">Use track map</a>
+          </div>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="video-index" aria-label="{esc(meta['title'])}">
+          {video_index}{playlist_only_index}
+        </div>
+      </div>
+    </section>
+    """.rstrip()
+
+
 def next_signals_teaser_section(album: Album, prefix: str) -> str:
     if album.slug != "next-signals":
         return ""
@@ -1448,7 +1683,7 @@ def album_page(album: Album) -> str:
         </div>
         """
     source = f'<a href="{esc(album.source_url)}">Open public listing</a>' if album.source_url else "Local source material and upcoming release notes."
-    video_section = starseed_video_section(album, prefix) + next_signals_teaser_section(album, prefix)
+    video_section = starseed_video_section(album, prefix) + landscape_album_video_section(album, prefix) + next_signals_teaser_section(album, prefix)
     track_section_id = ' id="track-map"' if video_section else ""
     body = f"""
     <section class="page-hero">
@@ -1605,6 +1840,8 @@ def sources_page() -> str:
         ("I See Infinity", MAIN_SITE, "Current public WordPress home and artist context."),
         ("Apple Music artist page", APPLE_ARTIST, "Public release list and album track lists used for the first catalogue scaffold."),
         ("Spotify artist page", SPOTIFY_ARTIST, "Public streaming destination."),
+        ("Songs of Straddie YouTube playlist", STRADDIE_YOUTUBE_PLAYLIST_URL, "Landscape lyric-video playlist for the island album layer."),
+        ("Chronicles of the Forgotten YouTube playlist", CHRONICLES_YOUTUBE_PLAYLIST_URL, "Landscape lyric-video playlist for the rock-opera archive layer."),
         ("Starseed Code YouTube playlist", STARSEED_YOUTUBE_PLAYLIST_URL, "Vertical mobile-video playlist supplied for the Starseed Code visual layer."),
         ("Shifting Sands widescreen video", SHIFTING_SANDS_VIDEOS[0]["url"], "Public widescreen expo-song video."),
         ("Shifting Sands portrait video", SHIFTING_SANDS_VIDEOS[1]["url"], "Public portrait expo-song video for mobile viewing."),
@@ -1653,6 +1890,8 @@ def export_data(albums: list[Album], songs: list[Song]) -> None:
             "main_site": MAIN_SITE,
             "apple_music": APPLE_ARTIST,
             "spotify": SPOTIFY_ARTIST,
+            "songs_of_straddie_youtube_playlist": STRADDIE_YOUTUBE_PLAYLIST_URL,
+            "chronicles_youtube_playlist": CHRONICLES_YOUTUBE_PLAYLIST_URL,
             "starseed_youtube_playlist": STARSEED_YOUTUBE_PLAYLIST_URL,
             "shifting_sands_widescreen": SHIFTING_SANDS_VIDEOS[0]["url"],
             "shifting_sands_portrait": SHIFTING_SANDS_VIDEOS[1]["url"],
@@ -1671,7 +1910,7 @@ def export_data(albums: list[Album], songs: list[Song]) -> None:
                 "artwork": album.artwork,
                 "source_url": album.source_url,
                 "spotify_url": album.spotify_url,
-                "youtube_playlist_url": STARSEED_YOUTUBE_PLAYLIST_URL if album.slug == STARSEED_ALBUM_SLUG else "",
+                "youtube_playlist_url": album_playlist_url(album.slug),
                 "tracks": [song.slug for song in album.tracks],
             }
             for album in albums
