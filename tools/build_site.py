@@ -101,9 +101,10 @@ ORDER_PAGE = "https://auraofintelligence.github.io/i-C-infinity-music-universe/o
 STARSEED_ALBUM_SLUG = "starseed-code-from-aura-to-infinity"
 STARSEED_YOUTUBE_PLAYLIST_ID = "PLsN0U9hPJHBZyRTYmAwLCuVSpY9q_-tCd"
 STARSEED_YOUTUBE_PLAYLIST_URL = f"https://www.youtube.com/playlist?list={STARSEED_YOUTUBE_PLAYLIST_ID}"
-PROTOPIAN_BUNDLE_VIDEO = {
+FOURTH_ALBUM_TEASER_VIDEO = {
     "id": "zgvb6PPlaRY",
-    "title": "A Protopian Gambit unreleased video sequence",
+    "title": "Untitled fourth album teaser video",
+    "label": "Free Fourth-Album Teaser",
     "orientation": "landscape",
     "thumbnail": "maxresdefault",
     "url": "https://youtu.be/zgvb6PPlaRY?si=OC7gybUgeOu0ix5K",
@@ -1187,16 +1188,6 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
         """
         for title, price, text, href in package_compare
     )
-    protopian_video_url = PROTOPIAN_BUNDLE_VIDEO.get("url") or youtube_video_url(PROTOPIAN_BUNDLE_VIDEO["id"])
-    protopian_video_html = f"""
-          <div class="bundle-video-card">
-            <a class="vertical-video-poster" href="{esc(protopian_video_url)}" target="_blank" rel="noopener">
-              <img src="{esc(youtube_thumbnail_url(PROTOPIAN_BUNDLE_VIDEO['id'], PROTOPIAN_BUNDLE_VIDEO.get('thumbnail', 'maxresdefault')))}" alt="{esc(PROTOPIAN_BUNDLE_VIDEO['title'])} thumbnail">
-              <span class="play-mark" aria-hidden="true"></span>
-              <span class="sr-only">Open {esc(PROTOPIAN_BUNDLE_VIDEO['title'])}</span>
-            </a>
-          </div>
-    """.rstrip()
     body = f"""
     <section class="page-hero">
       <div class="wrap">
@@ -1217,13 +1208,11 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
         <div class="panel">
           <h2>Choose The Full Archive Pack</h2>
           <p><strong>Full Music Archive Pack $50</strong></p>
-          <p>The bigger catalogue option: released albums, most of A Protopian Gambit, B-sides, bonus videos, drafts, selected podcasts, and works in progress.</p>
-          <p><strong>Bundle-only video note:</strong><br>A Protopian Gambit gets treated here as full-archive bonus material, not as a public album-page video.</p>
+          <p>The bigger catalogue option: released albums, most of A Protopian Gambit, B-sides, drafts, selected podcasts, and works in progress.</p>
           <div class="action-row">
             <a class="button" href="{order_href("full-archive")}">Start this $50 order</a>
             <a class="button secondary" href="https://auraofintelligence.github.io/strange-but-true/downloads.html#music-album-bundles">Compare all packs</a>
           </div>
-{protopian_video_html}
         </div>
         <div class="panel">
           <h2>Changed Your Mind?</h2>
@@ -1422,6 +1411,33 @@ def starseed_video_section(album: Album, prefix: str) -> str:
     """
 
 
+def next_signals_teaser_section(album: Album, prefix: str) -> str:
+    if album.slug != "next-signals":
+        return ""
+    video = FOURTH_ALBUM_TEASER_VIDEO
+    video_url = video.get("url") or youtube_video_url(video["id"])
+    embed_src = youtube_video_embed_src(video["id"])
+    return f"""
+    <section class="section video-section" id="fourth-album-teaser">
+      <div class="wrap">
+        <article class="song-video-panel wide-video-frame">
+          <div class="vertical-video-frame wide-video-frame">
+            <iframe title="{esc(video['title'])}" src="{esc(embed_src)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <div class="vertical-video-copy">
+            <p class="eyebrow">{esc(video.get('label', 'Free Teaser'))}</p>
+            <h2>{esc(video['title'])}</h2>
+            <p>This sits here as a free enticement into the fourth-album world before the paid download packaging asks anything from the listener.</p>
+            <div class="listen-links compact">
+              <a class="listen-chip youtube" href="{esc(video_url)}" target="_blank" rel="noopener">Open on YouTube</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+    """.rstrip()
+
+
 def album_page(album: Album) -> str:
     prefix = "../../"
     tracks = "".join(track_row(song, prefix) for song in album.tracks)
@@ -1432,7 +1448,7 @@ def album_page(album: Album) -> str:
         </div>
         """
     source = f'<a href="{esc(album.source_url)}">Open public listing</a>' if album.source_url else "Local source material and upcoming release notes."
-    video_section = starseed_video_section(album, prefix)
+    video_section = starseed_video_section(album, prefix) + next_signals_teaser_section(album, prefix)
     track_section_id = ' id="track-map"' if video_section else ""
     body = f"""
     <section class="page-hero">
@@ -1592,6 +1608,7 @@ def sources_page() -> str:
         ("Starseed Code YouTube playlist", STARSEED_YOUTUBE_PLAYLIST_URL, "Vertical mobile-video playlist supplied for the Starseed Code visual layer."),
         ("Shifting Sands widescreen video", SHIFTING_SANDS_VIDEOS[0]["url"], "Public widescreen expo-song video."),
         ("Shifting Sands portrait video", SHIFTING_SANDS_VIDEOS[1]["url"], "Public portrait expo-song video for mobile viewing."),
+        ("Untitled fourth album teaser video", FOURTH_ALBUM_TEASER_VIDEO["url"], "Free teaser video on the Next Signals page."),
         ("Amazon Music artist page", "https://music.amazon.com.br/artists/B0DP1BJD2S/i-c-infinity", "Secondary public release reference seen during discovery."),
     ]
     source_cards = "".join(f'<article class="source-card"><h3>{esc(name)}</h3><p>{esc(note)}</p><p><a href="{esc(url)}">{esc(url)}</a></p></article>' for name, url, note in public_sources)
@@ -1639,6 +1656,7 @@ def export_data(albums: list[Album], songs: list[Song]) -> None:
             "starseed_youtube_playlist": STARSEED_YOUTUBE_PLAYLIST_URL,
             "shifting_sands_widescreen": SHIFTING_SANDS_VIDEOS[0]["url"],
             "shifting_sands_portrait": SHIFTING_SANDS_VIDEOS[1]["url"],
+            "fourth_album_teaser": FOURTH_ALBUM_TEASER_VIDEO["url"],
             "paid_downloads": STRANGE_DOWNLOADS,
         },
         "albums": [
