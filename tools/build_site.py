@@ -62,6 +62,8 @@ class Song:
     release_url: str = ""
     apple_url: str = ""
     spotify_url: str = ""
+    youtube_video_id: str = ""
+    youtube_title: str = ""
     lyrics: str = ""
     lyric_status: str = "Lyrics to import"
     status: str = "Draft brief"
@@ -95,6 +97,97 @@ MAIN_SITE = "https://iseeinfinity.com/"
 STRANGE_DOWNLOADS = "https://auraofintelligence.github.io/strange-but-true/downloads.html"
 STREAMING_LINKS = REPO / "data" / "streaming-links.json"
 ORDER_PAGE = "https://auraofintelligence.github.io/i-C-infinity-music-universe/order.html"
+STARSEED_ALBUM_SLUG = "starseed-code-from-aura-to-infinity"
+STARSEED_YOUTUBE_PLAYLIST_ID = "PLsN0U9hPJHBZyRTYmAwLCuVSpY9q_-tCd"
+STARSEED_YOUTUBE_PLAYLIST_URL = f"https://www.youtube.com/playlist?list={STARSEED_YOUTUBE_PLAYLIST_ID}"
+
+
+STARSEED_VERTICAL_VIDEOS = {
+    "Aura": {
+        "id": "F_Rr4fZzh2g",
+        "title": "Aura (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "Building Protopia Brick By Brick": {
+        "id": "kRhF340Y-dM",
+        "title": "Building Protopia Brick By Brick (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "Beyond The Vote": {
+        "id": "MBT4rDvN9z8",
+        "title": "Beyond the Vote (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "From Straddie's Shores to Galactic Plains": {
+        "id": "fYH7DkIFw8w",
+        "title": "From Straddy's Shores to Galactic Plains (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "G.A.J.R.A. Rising": {
+        "id": "-3q71WEnnEU",
+        "title": "GAJRA Rising (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "Hand In The Infinite": {
+        "id": "SV3ab19ZcRs",
+        "title": "Hand in the Infinite (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "In Love, Obsessed": {
+        "id": "8oSQlHk_OCE",
+        "title": "In Love Obsessed (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "Infinite Love": {
+        "id": "rZLjiclBFaQ",
+        "title": "Infinite Love (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "Infinity Rising": {
+        "id": "JfQ8ULMHpLk",
+        "title": "Infinity Rising (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "Longevity Groove": {
+        "id": "iUWs1uMrJ4g",
+        "title": "Longevity Groove (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "Moonlight Whispers": {
+        "id": "T2XxxnY_CeY",
+        "title": "Moonlight Whispers (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "Mythmaker": {
+        "id": "BpYwJPPp5yk",
+        "title": "Mythmaker (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "Poetic Thruths of Infinity": {
+        "id": "8mEJfmUzV4Y",
+        "title": "Poetic Truths of Infinity (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "Ride The Wave": {
+        "id": "N5a_k45nHPc",
+        "title": "Ride The Wave LiveAid2025 (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "Resonance": {
+        "id": "m7Pft_Mvhso",
+        "title": "Resonance (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "Sol Code": {
+        "id": "5PP3Kk0DENU",
+        "title": "Sol Code (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "Tangled Magic": {
+        "id": "hO99Q2YjeDI",
+        "title": "Tangled Magic (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "The Call Within": {
+        "id": "kjOfPkF51sU",
+        "title": "The Call Within (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "The Infinite Gaze": {
+        "id": "4cEdMCNnPvc",
+        "title": "The Infinite Gaze (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "Unity Ascendant": {
+        "id": "0xUaDvx7tOo",
+        "title": "Unity Ascendant (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+    "Weave The Aura": {
+        "id": "BBAPXsk8log",
+        "title": "Weave The Aura (Starseed Code: From Aura to Infinity) (I C. Infinity)",
+    },
+}
 
 
 PACKAGE_OPTIONS = [
@@ -467,6 +560,18 @@ def spotify_search_url(song: Song) -> str:
     return "https://open.spotify.com/search/" + quote(f"I C. Infinity {song.title}")
 
 
+def youtube_video_url(video_id: str) -> str:
+    return f"https://www.youtube.com/watch?v={quote(video_id)}&list={STARSEED_YOUTUBE_PLAYLIST_ID}"
+
+
+def youtube_video_embed_src(video_id: str) -> str:
+    return f"https://www.youtube.com/embed/{quote(video_id)}?list={STARSEED_YOUTUBE_PLAYLIST_ID}&rel=0"
+
+
+def youtube_thumbnail_url(video_id: str) -> str:
+    return f"https://img.youtube.com/vi/{quote(video_id)}/maxresdefault.jpg"
+
+
 def listen_targets(song: Song) -> list[tuple[str, str, str]]:
     targets: list[tuple[str, str, str]] = []
     if song.spotify_url:
@@ -478,6 +583,9 @@ def listen_targets(song: Song) -> list[tuple[str, str, str]]:
         targets.append(("Apple / iTunes", song.apple_url, "apple"))
     elif song.release_url:
         targets.append(("Apple album", song.release_url.split("#", 1)[0], "apple"))
+
+    if song.youtube_video_id:
+        targets.append(("YouTube video", youtube_video_url(song.youtube_video_id), "youtube"))
     return targets
 
 
@@ -502,6 +610,30 @@ def spotify_embed_html(song: Song) -> str:
     <div class="stream-embed">
       <iframe title="Spotify player for {esc(song.title)}" src="{esc(src)}" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
+    """
+
+
+def youtube_song_embed_html(song: Song) -> str:
+    if not song.youtube_video_id:
+        return ""
+    src = youtube_video_embed_src(song.youtube_video_id)
+    url = youtube_video_url(song.youtube_video_id)
+    title = song.youtube_title or f"{song.title} vertical video"
+    return f"""
+    <section class="song-video-panel" id="vertical-video">
+      <div class="vertical-video-frame">
+        <iframe title="{esc(title)}" src="{esc(src)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <div class="vertical-video-copy">
+        <p class="eyebrow">Vertical Video</p>
+        <h2>{esc(song.title)}</h2>
+        <p>Mobile-first YouTube video for this Starseed Code song. This becomes the published visual reference before any later Infinity Engine remix or paid-download packaging.</p>
+        <div class="listen-links compact">
+          <a class="listen-chip youtube" href="{esc(url)}" target="_blank" rel="noopener">Open on YouTube</a>
+          <a class="listen-chip" href="{esc(STARSEED_YOUTUBE_PLAYLIST_URL)}" target="_blank" rel="noopener">Full playlist</a>
+        </div>
+      </div>
+    </section>
     """
 
 
@@ -558,6 +690,10 @@ def build_catalogue() -> tuple[list[Album], list[Song]]:
             track.meaning = special["meaning"] if special else infer_meaning(track.title, album)
             track.video_seeds = special["seeds"] if special else generic_seeds(track, album)
             track.slug = f"{album.slug}-{track.track_number:02d}-{slugify(track.title)}"
+            if album.slug == STARSEED_ALBUM_SLUG and track.title in STARSEED_VERTICAL_VIDEOS:
+                video = STARSEED_VERTICAL_VIDEOS[track.title]
+                track.youtube_video_id = video["id"]
+                track.youtube_title = video["title"]
             songs.append(track)
         albums.append(album)
 
@@ -692,7 +828,10 @@ def song_status(song: Song) -> str:
 
 
 def song_card(song: Song, prefix: str = "") -> str:
-    search = " ".join([song.title, song.album_title, " ".join(song.themes), "spotify apple itunes"]).lower()
+    search_terms = [song.title, song.album_title, " ".join(song.themes), "spotify apple itunes"]
+    if song.youtube_video_id:
+        search_terms.append("youtube vertical video mobile")
+    search = " ".join(search_terms).lower()
     href = f"{prefix}songs/{song.slug}/"
     track = f"Track {song.track_number}" if song.track_number else "Song"
     tags = "".join(f"<span>{esc(tag)}</span>" for tag in song.themes[:3])
@@ -1077,6 +1216,52 @@ def order_page() -> str:
     return layout("Order Music Downloads - i C. infinity", "Order page for I C. Infinity music download bundles.", body)
 
 
+def starseed_video_section(album: Album, prefix: str) -> str:
+    if album.slug != STARSEED_ALBUM_SLUG:
+        return ""
+    video_tracks = [song for song in album.tracks if song.youtube_video_id]
+    if not video_tracks:
+        return ""
+    featured_video = video_tracks[0]
+    video_index = "".join(
+        f"""
+        <a class="video-chip" href="{prefix}songs/{esc(song.slug)}/#vertical-video">
+          <span>{song.track_number:02d}</span>
+          <strong>{esc(song.title)}</strong>
+          <em>Vertical video</em>
+        </a>
+        """
+        for song in video_tracks
+    )
+    return f"""
+    <section class="section video-section" id="vertical-video-playlist">
+      <div class="wrap video-feature">
+        <div class="vertical-video-frame playlist-frame">
+          <a class="vertical-video-poster" href="{esc(STARSEED_YOUTUBE_PLAYLIST_URL)}" target="_blank" rel="noopener">
+            <img src="{esc(youtube_thumbnail_url(featured_video.youtube_video_id))}" alt="{esc(featured_video.title)} vertical video thumbnail">
+            <span class="play-mark" aria-hidden="true"></span>
+            <span class="sr-only">Open Starseed Code YouTube playlist</span>
+          </a>
+        </div>
+        <div class="video-feature-copy">
+          <p class="eyebrow">Mobile Video Layer</p>
+          <h2>Starseed Code Vertical Playlist</h2>
+          <p>{len(video_tracks)} Starseed Code songs are matched to portrait-format YouTube videos. This turns the album page into a phone-first watch path, not just a static track list.</p>
+          <div class="action-row">
+            <a class="button" href="{esc(STARSEED_YOUTUBE_PLAYLIST_URL)}" target="_blank" rel="noopener">Open playlist</a>
+            <a class="button secondary" href="#track-map">Use track map</a>
+          </div>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="video-index" aria-label="Starseed Code vertical videos">
+          {video_index}
+        </div>
+      </div>
+    </section>
+    """
+
+
 def album_page(album: Album) -> str:
     prefix = "../../"
     tracks = "".join(track_row(song, prefix) for song in album.tracks)
@@ -1087,6 +1272,8 @@ def album_page(album: Album) -> str:
         </div>
         """
     source = f'<a href="{esc(album.source_url)}">Open public listing</a>' if album.source_url else "Local source material and upcoming release notes."
+    video_section = starseed_video_section(album, prefix)
+    track_section_id = ' id="track-map"' if video_section else ""
     body = f"""
     <section class="page-hero">
       <div class="wrap">
@@ -1097,8 +1284,8 @@ def album_page(album: Album) -> str:
         </div>
         <div class="hero-cover"><img src="{prefix}{esc(album.artwork)}" alt="{esc(album.title)} artwork"></div>
       </div>
-    </section>
-    <section class="section">
+    </section>{video_section}
+    <section class="section"{track_section_id}>
       <div class="wrap layout-two">
         <div>
           <h2>Track Map</h2>
@@ -1132,6 +1319,8 @@ def song_page(song: Song, album: Album) -> str:
     tags = "".join(f"<span>{esc(tag)}</span>" for tag in song.themes)
     release = listen_links_html(song) or "No public release link attached yet."
     spotify_embed = spotify_embed_html(song)
+    youtube_embed = youtube_song_embed_html(song)
+    media_embeds = spotify_embed + youtube_embed
     body = f"""
     <section class="song-title">
       <div class="wrap">
@@ -1147,7 +1336,7 @@ def song_page(song: Song, album: Album) -> str:
             <h2>Meaning Layer</h2>
             <p>{esc(song.meaning)}</p>
           </div>
-          {spotify_embed}
+          {media_embeds}
           <h2>Lyrics</h2>
           <pre class="lyrics">{lyrics}</pre>
           <h2>Video Seed Ideas</h2>
@@ -1240,6 +1429,7 @@ def sources_page() -> str:
         ("I See Infinity", MAIN_SITE, "Current public WordPress home and artist context."),
         ("Apple Music artist page", APPLE_ARTIST, "Public release list and album track lists used for the first catalogue scaffold."),
         ("Spotify artist page", SPOTIFY_ARTIST, "Public streaming destination."),
+        ("Starseed Code YouTube playlist", STARSEED_YOUTUBE_PLAYLIST_URL, "Vertical mobile-video playlist supplied for the Starseed Code visual layer."),
         ("Amazon Music artist page", "https://music.amazon.com.br/artists/B0DP1BJD2S/i-c-infinity", "Secondary public release reference seen during discovery."),
     ]
     source_cards = "".join(f'<article class="source-card"><h3>{esc(name)}</h3><p>{esc(note)}</p><p><a href="{esc(url)}">{esc(url)}</a></p></article>' for name, url, note in public_sources)
@@ -1284,6 +1474,7 @@ def export_data(albums: list[Album], songs: list[Song]) -> None:
             "main_site": MAIN_SITE,
             "apple_music": APPLE_ARTIST,
             "spotify": SPOTIFY_ARTIST,
+            "starseed_youtube_playlist": STARSEED_YOUTUBE_PLAYLIST_URL,
             "paid_downloads": STRANGE_DOWNLOADS,
         },
         "albums": [
@@ -1298,6 +1489,7 @@ def export_data(albums: list[Album], songs: list[Song]) -> None:
                 "artwork": album.artwork,
                 "source_url": album.source_url,
                 "spotify_url": album.spotify_url,
+                "youtube_playlist_url": STARSEED_YOUTUBE_PLAYLIST_URL if album.slug == STARSEED_ALBUM_SLUG else "",
                 "tracks": [song.slug for song in album.tracks],
             }
             for album in albums
@@ -1317,6 +1509,9 @@ def export_data(albums: list[Album], songs: list[Song]) -> None:
                 "release_url": song.release_url,
                 "apple_url": song.apple_url,
                 "spotify_url": song.spotify_url,
+                "youtube_video_id": song.youtube_video_id,
+                "youtube_title": song.youtube_title,
+                "youtube_url": youtube_video_url(song.youtube_video_id) if song.youtube_video_id else "",
                 "has_lyrics": song.ready(),
                 "lyrics": song.lyrics,
             }
