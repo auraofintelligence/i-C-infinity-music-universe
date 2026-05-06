@@ -757,6 +757,23 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
         f'<article class="feature-card"><h3>{esc(title)}</h3><p>{esc(text)}</p></article>'
         for title, text in bundle_cards
     )
+    package_compare = [
+        ("One Album Pack", "$20", "Choose only the album you most want.", "https://auraofintelligence.github.io/i-C-infinity-one-album-pack/"),
+        ("Two Album Pack", "$35", "Pick a pair of connected album worlds.", "https://auraofintelligence.github.io/i-C-infinity-two-album-pack/"),
+        ("Three Album Pack", "$45", "Keep the released-album set clean.", "https://auraofintelligence.github.io/i-C-infinity-three-album-pack/"),
+        ("Full Archive Pack", "$50", "Stay with the whole catalogue and bonus archive layer.", "#choose-package"),
+    ]
+    package_compare_html = "".join(
+        f"""
+        <article class="feature-card">
+          <h3>{esc(title)}</h3>
+          <p><strong>{esc(price)}</strong></p>
+          <p>{esc(text)}</p>
+          <p><a class="button secondary" href="{esc(href)}">Open option</a></p>
+        </article>
+        """
+        for title, price, text, href in package_compare
+    )
     body = f"""
     <section class="page-hero">
       <div class="wrap">
@@ -764,11 +781,33 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
           <h1>Paid Download Packaging Lab</h1>
           <p>A draft workspace for working out what the I C. Infinity paid downloads should contain before the checkout layer is final.</p>
           <div class="action-row">
-            <a class="button" href="albums.html">Review album worlds</a>
-            <a class="button secondary" href="{STRANGE_DOWNLOADS}">Open current shop reference</a>
+            <a class="button" href="#choose-package">Choose full archive pack</a>
+            <a class="button secondary" href="albums.html">Review album worlds</a>
+            <a class="button secondary" href="https://auraofintelligence.github.io/strange-but-true/downloads.html#music-album-bundles">Compare all packs</a>
           </div>
         </div>
         <div class="hero-cover"><img src="assets/img/cover-building-protopia.jpg" alt="Building Protopia artwork"></div>
+      </div>
+    </section>
+    <section class="section package-sale" id="choose-package">
+      <div class="wrap layout-two">
+        <div class="panel">
+          <h2>Choose The Full Archive Pack</h2>
+          <p><strong>Full Music Archive Pack $50</strong></p>
+          <p>The bigger catalogue option: released albums, most of A Protopian Gambit, B-sides, bonus videos, drafts, selected podcasts, and works in progress.</p>
+          <div class="action-row">
+            <a class="button" href="https://auraofintelligence.github.io/strange-but-true/contact.html#contact-form-title">Start this $50 order</a>
+            <a class="button secondary" href="https://auraofintelligence.github.io/strange-but-true/downloads.html#music-album-bundles">Compare all packs</a>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>Changed Your Mind?</h2>
+          <p>If the full archive feels too big, move down to a one, two, or three album pack before starting the order.</p>
+          <div class="action-row">
+            <a class="button secondary" href="https://auraofintelligence.github.io/i-C-infinity-one-album-pack/">One album</a>
+            <a class="button secondary" href="https://auraofintelligence.github.io/i-C-infinity-three-album-pack/">Three albums</a>
+          </div>
+        </div>
       </div>
     </section>
     <section class="section">
@@ -778,6 +817,15 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
           <p>These are not final buyer promises. They are the working decisions that need to be settled before the paid files are packaged.</p>
         </div>
         <div class="feature-grid">{bundle_html}</div>
+      </div>
+    </section>
+    <section class="section tight" id="upgrade-options">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Compare Before You Buy</h2>
+          <p>You can still change your mind. Pick a smaller pack if that is cleaner, or stay with the whole archive if the bigger creative cache is what you want.</p>
+        </div>
+        <div class="feature-grid">{package_compare_html}</div>
       </div>
     </section>
     <section class="section tight">
