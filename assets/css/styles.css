@@ -401,6 +401,12 @@ a:hover {
   gap: 18px;
 }
 
+[hidden],
+.song-card[hidden],
+.song-card.is-hidden {
+  display: none !important;
+}
+
 .album-card,
 .song-card,
 .feature-card,

@@ -74,11 +74,13 @@ document.addEventListener("DOMContentLoaded", () => {
       let visibleCount = 0;
 
       cards.forEach((card) => {
-        const haystack = card.getAttribute("data-search") || "";
+        const haystack = (card.getAttribute("data-search") || "").toLowerCase();
         const matchesQuery = !query || haystack.includes(query);
         const matchesKeyword = !keyword || (cardKeywords.get(card) || []).includes(keyword);
         const isVisible = matchesQuery && matchesKeyword;
         card.hidden = !isVisible;
+        card.classList.toggle("is-hidden", !isVisible);
+        card.setAttribute("aria-hidden", String(!isVisible));
         if (isVisible) visibleCount += 1;
       });
 
