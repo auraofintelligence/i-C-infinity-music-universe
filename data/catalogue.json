@@ -4,6 +4,7 @@
     "main_site": "https://iseeinfinity.com/",
     "apple_music": "https://music.apple.com/us/artist/i-c-infinity/1781660070",
     "spotify": "https://open.spotify.com/artist/3HK8H81lXFXOEJaSys7xfQ",
+    "early_stuff_youtube_playlist": "https://www.youtube.com/playlist?list=PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
     "songs_of_straddie_youtube_playlist": "https://www.youtube.com/playlist?list=PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn",
     "chronicles_youtube_playlist": "https://www.youtube.com/playlist?list=PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk",
     "starseed_youtube_playlist": "https://www.youtube.com/playlist?list=PLsN0U9hPJHBZyRTYmAwLCuVSpY9q_-tCd",
@@ -184,15 +185,26 @@
       "title": "Early Stuff",
       "slug": "early-stuff",
       "year": "Archive",
-      "status": "Track list to import",
-      "summary": "The early sketches, experiments, first frameworks, and raw attempts before the albums took a clearer shape.",
-      "deeper_system": "This page is the intake tray for the earliest material. It should eventually show what ideas survived, what mutated, and which concepts became part of the later Infinity system.",
-      "visual_world": "Desktop screenshots, old notebooks, early videos, first AI experiments, and archive-room energy.",
+      "status": "India 2023/24 video archive",
+      "summary": "The India 2023/24 sketches, experiments, first frameworks, and raw attempts before the albums took a clearer shape.",
+      "deeper_system": "This page is the intake tray for the earliest material. It shows what ideas survived, what mutated, and which concepts became part of the later Infinity system.",
+      "visual_world": "India travel energy, desktop screenshots, early AI-video language, first G.A.J.R.A. Earth signals, archive-room notebooks, and raw proof-of-concept clips.",
       "artwork": "assets/img/hero-luke-universal-creator.webp",
-      "source_url": "",
+      "source_url": "https://www.youtube.com/playlist?list=PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
       "spotify_url": "",
-      "youtube_playlist_url": "",
-      "tracks": []
+      "youtube_playlist_url": "https://www.youtube.com/playlist?list=PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+      "tracks": [
+        "early-stuff-01-i-c-infinity-countdown",
+        "early-stuff-02-futuristic-frequencies-the-g-a-j-r-a-earth-vibe",
+        "early-stuff-03-earth-s-revival-live-aid-2025",
+        "early-stuff-04-success-is-an-evolving-state-of-mind",
+        "early-stuff-05-technology-for-good",
+        "early-stuff-06-flow-state",
+        "early-stuff-07-bet-on-infinity",
+        "early-stuff-08-brisbane-meanjin-forevermore",
+        "early-stuff-09-a-song-by-chatgpt-3-my-view-of-my-conversation-with-luke-catalyst",
+        "early-stuff-10-moments-of-desire"
+      ]
     },
     {
       "title": "Next Signals",
@@ -4288,6 +4300,496 @@
       "youtube_title": "",
       "youtube_videos": [],
       "youtube_url": "",
+      "has_lyrics": false,
+      "lyrics": ""
+    },
+    {
+      "title": "I C. Infinity Countdown",
+      "slug": "early-stuff-01-i-c-infinity-countdown",
+      "album": "Early Stuff",
+      "album_slug": "early-stuff",
+      "track_number": 1,
+      "year": "2023/24",
+      "lyric_status": "YouTube video supplied, lyrics to import",
+      "themes": [
+        "India archive",
+        "origin signal",
+        "identity",
+        "countdown"
+      ],
+      "meaning": "A short origin signal for the i C. infinity identity: the name, the threshold, and the feeling of an artist-system beginning to count itself into public form.",
+      "video_seeds": [
+        {
+          "title": "Illustrative lyric video",
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around India archive, origin signal, identity, with the words treated as performance text, not decoration."
+        },
+        {
+          "title": "Amplifying micro-drama",
+          "body": "Create a tiny story where one character faces the main tension inside 'I C. Infinity Countdown' and makes one visible choice by the final chorus."
+        },
+        {
+          "title": "Comic-as-storyboard",
+          "body": "Generate 8 to 12 still panels first. Approve the panel rhythm, then use the strongest frames as start and end keyframes for video."
+        }
+      ],
+      "release_url": "",
+      "apple_url": "",
+      "spotify_url": "",
+      "youtube_video_id": "vIQbft9J9pY",
+      "youtube_title": "I C. Infinity Countdown",
+      "youtube_videos": [
+        {
+          "id": "vIQbft9J9pY",
+          "title": "I C. Infinity Countdown",
+          "label": "Early India Video",
+          "orientation": "landscape",
+          "playlist_id": "PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+          "thumbnail": "hqdefault",
+          "note": "Early India-period video. Use it as an origin marker before later catalogue pages refine the lyrics, meaning notes, and visual language."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=vIQbft9J9pY&list=PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+      "has_lyrics": false,
+      "lyrics": ""
+    },
+    {
+      "title": "Futuristic Frequencies: The G.A.J.R.A. Earth Vibe",
+      "slug": "early-stuff-02-futuristic-frequencies-the-g-a-j-r-a-earth-vibe",
+      "album": "Early Stuff",
+      "album_slug": "early-stuff",
+      "track_number": 2,
+      "year": "2023/24",
+      "lyric_status": "YouTube video supplied, lyrics to import",
+      "themes": [
+        "G.A.J.R.A. Earth",
+        "future music",
+        "AI",
+        "systems"
+      ],
+      "meaning": "An early pulse of the G.A.J.R.A. Earth idea: music as a way to test whether technology, ecological care, and collective vibe could share one rhythm.",
+      "video_seeds": [
+        {
+          "title": "Illustrative lyric video",
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around G.A.J.R.A. Earth, future music, AI, with the words treated as performance text, not decoration."
+        },
+        {
+          "title": "Amplifying micro-drama",
+          "body": "Create a tiny story where one character faces the main tension inside 'Futuristic Frequencies: The G.A.J.R.A. Earth Vibe' and makes one visible choice by the final chorus."
+        },
+        {
+          "title": "Comic-as-storyboard",
+          "body": "Generate 8 to 12 still panels first. Approve the panel rhythm, then use the strongest frames as start and end keyframes for video."
+        }
+      ],
+      "release_url": "",
+      "apple_url": "",
+      "spotify_url": "",
+      "youtube_video_id": "X-dr5MbfXaY",
+      "youtube_title": "Futuristic Frequencies The GAJRA Earth Vibe",
+      "youtube_videos": [
+        {
+          "id": "X-dr5MbfXaY",
+          "title": "Futuristic Frequencies The GAJRA Earth Vibe",
+          "label": "Early India Video",
+          "orientation": "landscape",
+          "playlist_id": "PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+          "thumbnail": "hqdefault",
+          "note": "Early G.A.J.R.A. Earth signal from the India period. This belongs near the roots of the later Aura, civic design, and systems music threads."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=X-dr5MbfXaY&list=PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+      "has_lyrics": false,
+      "lyrics": ""
+    },
+    {
+      "title": "Earth's Revival - Live Aid 2025",
+      "slug": "early-stuff-03-earth-s-revival-live-aid-2025",
+      "album": "Early Stuff",
+      "album_slug": "early-stuff",
+      "track_number": 3,
+      "year": "2023/24",
+      "lyric_status": "YouTube video supplied, lyrics to import",
+      "themes": [
+        "Earth",
+        "revival",
+        "benefit concert",
+        "repair"
+      ],
+      "meaning": "An early benefit-concert imagination: Earth in recovery, public music as shared repair, and the artist voice reaching for a bigger humanitarian frame.",
+      "video_seeds": [
+        {
+          "title": "Illustrative lyric video",
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around Earth, revival, benefit concert, with the words treated as performance text, not decoration."
+        },
+        {
+          "title": "Amplifying micro-drama",
+          "body": "Create a tiny story where one character faces the main tension inside 'Earth's Revival - Live Aid 2025' and makes one visible choice by the final chorus."
+        },
+        {
+          "title": "Comic-as-storyboard",
+          "body": "Generate 8 to 12 still panels first. Approve the panel rhythm, then use the strongest frames as start and end keyframes for video."
+        }
+      ],
+      "release_url": "",
+      "apple_url": "",
+      "spotify_url": "",
+      "youtube_video_id": "ZhLRcBcp554",
+      "youtube_title": "Earth's Revival - Live Aid 2025",
+      "youtube_videos": [
+        {
+          "id": "ZhLRcBcp554",
+          "title": "Earth's Revival - Live Aid 2025",
+          "label": "Early India Video",
+          "orientation": "landscape",
+          "playlist_id": "PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+          "thumbnail": "hqdefault",
+          "note": "Early public-good music video seed. Keep it as a bridge between global repair language and the later protopian abundance work."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=ZhLRcBcp554&list=PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+      "has_lyrics": false,
+      "lyrics": ""
+    },
+    {
+      "title": "Success is an Evolving State of Mind",
+      "slug": "early-stuff-04-success-is-an-evolving-state-of-mind",
+      "album": "Early Stuff",
+      "album_slug": "early-stuff",
+      "track_number": 4,
+      "year": "2023/24",
+      "lyric_status": "YouTube video supplied, lyrics to import",
+      "themes": [
+        "mindset",
+        "growth",
+        "reflection",
+        "practice"
+      ],
+      "meaning": "A self-development and philosophy song from the early layer: success treated less like a fixed trophy and more like an evolving inner operating system.",
+      "video_seeds": [
+        {
+          "title": "Illustrative lyric video",
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around mindset, growth, reflection, with the words treated as performance text, not decoration."
+        },
+        {
+          "title": "Amplifying micro-drama",
+          "body": "Create a tiny story where one character faces the main tension inside 'Success is an Evolving State of Mind' and makes one visible choice by the final chorus."
+        },
+        {
+          "title": "Comic-as-storyboard",
+          "body": "Generate 8 to 12 still panels first. Approve the panel rhythm, then use the strongest frames as start and end keyframes for video."
+        }
+      ],
+      "release_url": "",
+      "apple_url": "",
+      "spotify_url": "",
+      "youtube_video_id": "uMXwGO-pjNw",
+      "youtube_title": "Success is an Evolving State of Mind",
+      "youtube_videos": [
+        {
+          "id": "uMXwGO-pjNw",
+          "title": "Success is an Evolving State of Mind",
+          "label": "Early India Video",
+          "orientation": "landscape",
+          "playlist_id": "PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+          "thumbnail": "hqdefault",
+          "note": "Early mindset-song seed. This can later become a reflection page about practice, identity, and how the project learned to define success."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=uMXwGO-pjNw&list=PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+      "has_lyrics": false,
+      "lyrics": ""
+    },
+    {
+      "title": "Technology for Good",
+      "slug": "early-stuff-05-technology-for-good",
+      "album": "Early Stuff",
+      "album_slug": "early-stuff",
+      "track_number": 5,
+      "year": "2023/24",
+      "lyric_status": "YouTube video supplied, lyrics to import",
+      "themes": [
+        "technology",
+        "ethics",
+        "public good",
+        "AI"
+      ],
+      "meaning": "A direct early statement of the technology-for-good thread: tools should serve care, dignity, and planetary wellbeing instead of just acceleration.",
+      "video_seeds": [
+        {
+          "title": "Illustrative lyric video",
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around technology, ethics, public good, with the words treated as performance text, not decoration."
+        },
+        {
+          "title": "Amplifying micro-drama",
+          "body": "Create a tiny story where one character faces the main tension inside 'Technology for Good' and makes one visible choice by the final chorus."
+        },
+        {
+          "title": "Comic-as-storyboard",
+          "body": "Generate 8 to 12 still panels first. Approve the panel rhythm, then use the strongest frames as start and end keyframes for video."
+        }
+      ],
+      "release_url": "",
+      "apple_url": "",
+      "spotify_url": "",
+      "youtube_video_id": "h2H0qMLIKb0",
+      "youtube_title": "Technology for Good Video",
+      "youtube_videos": [
+        {
+          "id": "h2H0qMLIKb0",
+          "title": "Technology for Good Video",
+          "label": "Early India Video",
+          "orientation": "landscape",
+          "playlist_id": "PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+          "thumbnail": "hqdefault",
+          "note": "Early ethics-and-technology video. This points straight toward the later Infinity Engine and Aura responsibility layer."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=h2H0qMLIKb0&list=PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+      "has_lyrics": false,
+      "lyrics": ""
+    },
+    {
+      "title": "Flow State",
+      "slug": "early-stuff-06-flow-state",
+      "album": "Early Stuff",
+      "album_slug": "early-stuff",
+      "track_number": 6,
+      "year": "2023/24",
+      "lyric_status": "YouTube video supplied, lyrics to import",
+      "themes": [
+        "flow",
+        "creative state",
+        "embodiment",
+        "practice"
+      ],
+      "meaning": "A creative-state marker: the musician and system-builder learning to recognise flow as a real production condition, not just a mood.",
+      "video_seeds": [
+        {
+          "title": "Illustrative lyric video",
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around flow, creative state, embodiment, with the words treated as performance text, not decoration."
+        },
+        {
+          "title": "Amplifying micro-drama",
+          "body": "Create a tiny story where one character faces the main tension inside 'Flow State' and makes one visible choice by the final chorus."
+        },
+        {
+          "title": "Comic-as-storyboard",
+          "body": "Generate 8 to 12 still panels first. Approve the panel rhythm, then use the strongest frames as start and end keyframes for video."
+        }
+      ],
+      "release_url": "",
+      "apple_url": "",
+      "spotify_url": "",
+      "youtube_video_id": "vOe-jq1KZzc",
+      "youtube_title": "Flow State 4K",
+      "youtube_videos": [
+        {
+          "id": "vOe-jq1KZzc",
+          "title": "Flow State 4K",
+          "label": "Early India Video",
+          "orientation": "landscape",
+          "playlist_id": "PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+          "thumbnail": "hqdefault",
+          "note": "Early flow-state video. Use it as a visual reference for embodied creativity before the later catalogue becomes more structured."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=vOe-jq1KZzc&list=PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+      "has_lyrics": false,
+      "lyrics": ""
+    },
+    {
+      "title": "Bet on Infinity",
+      "slug": "early-stuff-07-bet-on-infinity",
+      "album": "Early Stuff",
+      "album_slug": "early-stuff",
+      "track_number": 7,
+      "year": "2023/24",
+      "lyric_status": "YouTube video supplied, lyrics to import",
+      "themes": [
+        "infinity",
+        "risk",
+        "belief",
+        "future self"
+      ],
+      "meaning": "A commitment song: betting on the Infinity idea before the world around it is fully built, and choosing the larger pattern over short-term certainty.",
+      "video_seeds": [
+        {
+          "title": "Illustrative lyric video",
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around infinity, risk, belief, with the words treated as performance text, not decoration."
+        },
+        {
+          "title": "Amplifying micro-drama",
+          "body": "Create a tiny story where one character faces the main tension inside 'Bet on Infinity' and makes one visible choice by the final chorus."
+        },
+        {
+          "title": "Comic-as-storyboard",
+          "body": "Generate 8 to 12 still panels first. Approve the panel rhythm, then use the strongest frames as start and end keyframes for video."
+        }
+      ],
+      "release_url": "",
+      "apple_url": "",
+      "spotify_url": "",
+      "youtube_video_id": "myJftaRMH-k",
+      "youtube_title": "Bet on Infinity",
+      "youtube_videos": [
+        {
+          "id": "myJftaRMH-k",
+          "title": "Bet on Infinity",
+          "label": "Early India Video",
+          "orientation": "landscape",
+          "playlist_id": "PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+          "thumbnail": "hqdefault",
+          "note": "Early Infinity thesis video. This is one of the archive tracks that most clearly points into the later artist-system identity."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=myJftaRMH-k&list=PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+      "has_lyrics": false,
+      "lyrics": ""
+    },
+    {
+      "title": "Brisbane Meanjin Forevermore",
+      "slug": "early-stuff-08-brisbane-meanjin-forevermore",
+      "album": "Early Stuff",
+      "album_slug": "early-stuff",
+      "track_number": 8,
+      "year": "2023/24",
+      "lyric_status": "YouTube video supplied, lyrics to import",
+      "themes": [
+        "Brisbane",
+        "Meanjin",
+        "place",
+        "home"
+      ],
+      "meaning": "A home-place song from the early archive: Brisbane/Meanjin held as memory, return point, and local counterweight to the global travel layer.",
+      "video_seeds": [
+        {
+          "title": "Illustrative lyric video",
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around Brisbane, Meanjin, place, with the words treated as performance text, not decoration."
+        },
+        {
+          "title": "Amplifying micro-drama",
+          "body": "Create a tiny story where one character faces the main tension inside 'Brisbane Meanjin Forevermore' and makes one visible choice by the final chorus."
+        },
+        {
+          "title": "Comic-as-storyboard",
+          "body": "Generate 8 to 12 still panels first. Approve the panel rhythm, then use the strongest frames as start and end keyframes for video."
+        }
+      ],
+      "release_url": "",
+      "apple_url": "",
+      "spotify_url": "",
+      "youtube_video_id": "HNfYQ4_BLR4",
+      "youtube_title": "Brisbane Meanjin Forevermore",
+      "youtube_videos": [
+        {
+          "id": "HNfYQ4_BLR4",
+          "title": "Brisbane Meanjin Forevermore",
+          "label": "Early India Video",
+          "orientation": "landscape",
+          "playlist_id": "PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+          "thumbnail": "hqdefault",
+          "note": "Early place-memory video. It gives the archive a local anchor before the later Straddie and Redlands pages deepen that place layer."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=HNfYQ4_BLR4&list=PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+      "has_lyrics": false,
+      "lyrics": ""
+    },
+    {
+      "title": "A Song by ChatGPT 3: My View of My Conversation with Luke Catalyst",
+      "slug": "early-stuff-09-a-song-by-chatgpt-3-my-view-of-my-conversation-with-luke-catalyst",
+      "album": "Early Stuff",
+      "album_slug": "early-stuff",
+      "track_number": 9,
+      "year": "2023/24",
+      "lyric_status": "YouTube video supplied, lyrics to import",
+      "themes": [
+        "ChatGPT",
+        "AI voice",
+        "conversation",
+        "co-creation"
+      ],
+      "meaning": "An early AI-co-creation artefact: the conversation itself becomes song material, and the machine voice is treated as a mirror for Luke's wider cognitive architecture work.",
+      "video_seeds": [
+        {
+          "title": "Illustrative lyric video",
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around ChatGPT, AI voice, conversation, with the words treated as performance text, not decoration."
+        },
+        {
+          "title": "Amplifying micro-drama",
+          "body": "Create a tiny story where one character faces the main tension inside 'A Song by ChatGPT 3: My View of My Conversation with Luke Catalyst' and makes one visible choice by the final chorus."
+        },
+        {
+          "title": "Comic-as-storyboard",
+          "body": "Generate 8 to 12 still panels first. Approve the panel rhythm, then use the strongest frames as start and end keyframes for video."
+        }
+      ],
+      "release_url": "",
+      "apple_url": "",
+      "spotify_url": "",
+      "youtube_video_id": "4-wLjec_uw8",
+      "youtube_title": "A Song by ChatGPT 3 - My View of My Conversation with Luke Catalyst",
+      "youtube_videos": [
+        {
+          "id": "4-wLjec_uw8",
+          "title": "A Song by ChatGPT 3 - My View of My Conversation with Luke Catalyst",
+          "label": "Early India Video",
+          "orientation": "landscape",
+          "playlist_id": "PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+          "thumbnail": "hqdefault",
+          "note": "Early AI-conversation song. This belongs at the roots of the later Aura, AI symbiote, and human-in-the-loop creative practice."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=4-wLjec_uw8&list=PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+      "has_lyrics": false,
+      "lyrics": ""
+    },
+    {
+      "title": "Moments of Desire",
+      "slug": "early-stuff-10-moments-of-desire",
+      "album": "Early Stuff",
+      "album_slug": "early-stuff",
+      "track_number": 10,
+      "year": "2023/24",
+      "lyric_status": "YouTube video supplied, lyrics to import",
+      "themes": [
+        "desire",
+        "Valentine",
+        "love",
+        "embodiment"
+      ],
+      "meaning": "A romantic early-release marker: desire, performance, and direct feeling before the later catalogue separates love songs into larger album systems.",
+      "video_seeds": [
+        {
+          "title": "Illustrative lyric video",
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around desire, Valentine, love, with the words treated as performance text, not decoration."
+        },
+        {
+          "title": "Amplifying micro-drama",
+          "body": "Create a tiny story where one character faces the main tension inside 'Moments of Desire' and makes one visible choice by the final chorus."
+        },
+        {
+          "title": "Comic-as-storyboard",
+          "body": "Generate 8 to 12 still panels first. Approve the panel rhythm, then use the strongest frames as start and end keyframes for video."
+        }
+      ],
+      "release_url": "",
+      "apple_url": "",
+      "spotify_url": "",
+      "youtube_video_id": "FMJZLJ9Z6J0",
+      "youtube_title": "Moments of Desire - Valentines Day Release - I C. Infinity",
+      "youtube_videos": [
+        {
+          "id": "FMJZLJ9Z6J0",
+          "title": "Moments of Desire - Valentines Day Release - I C. Infinity",
+          "label": "Early India Video",
+          "orientation": "landscape",
+          "playlist_id": "PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
+          "thumbnail": "hqdefault",
+          "note": "Early romantic-video marker. Keep it in the archive as a B-side-like emotional thread that may later inform package notes."
+        }
+      ],
+      "youtube_url": "https://www.youtube.com/watch?v=FMJZLJ9Z6J0&list=PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
       "has_lyrics": false,
       "lyrics": ""
     },

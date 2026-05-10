@@ -5,7 +5,7 @@ Static GitHub Pages site for the i C. infinity artist catalogue.
 ## What it contains
 
 - 8 album/archive pages
-- 93 generated song pages
+- 103 generated song pages
 - 13 songs with lyrics imported in this pass
 - Infinity Engine notes for turning songs into comics, lyric videos, and vertical micro-dramas
 - Draft paid-download packaging notes in `data/download-packaging.json`

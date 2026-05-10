@@ -105,6 +105,8 @@ STRADDIE_YOUTUBE_PLAYLIST_ID = "PL9jLSm_Ni6aHZ9EYoZGKCJn-tfJHYO5fn"
 STRADDIE_YOUTUBE_PLAYLIST_URL = f"https://www.youtube.com/playlist?list={STRADDIE_YOUTUBE_PLAYLIST_ID}"
 CHRONICLES_YOUTUBE_PLAYLIST_ID = "PL9jLSm_Ni6aH7AgXFe9H8xCROWw9KS9uk"
 CHRONICLES_YOUTUBE_PLAYLIST_URL = f"https://www.youtube.com/playlist?list={CHRONICLES_YOUTUBE_PLAYLIST_ID}"
+EARLY_STUFF_YOUTUBE_PLAYLIST_ID = "PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt"
+EARLY_STUFF_YOUTUBE_PLAYLIST_URL = f"https://www.youtube.com/playlist?list={EARLY_STUFF_YOUTUBE_PLAYLIST_ID}"
 FOURTH_ALBUM_TEASER_VIDEO = {
     "id": "zgvb6PPlaRY",
     "title": "Untitled fourth album teaser video",
@@ -251,10 +253,20 @@ CHRONICLES_PLAYLIST_ONLY_VIDEOS = [
 
 
 LANDSCAPE_ALBUM_VIDEO_MAP = {
+    "early-stuff": {
+        "playlist_id": EARLY_STUFF_YOUTUBE_PLAYLIST_ID,
+        "playlist_url": EARLY_STUFF_YOUTUBE_PLAYLIST_URL,
+        "title": "India 2023/24 Early Stuff Playlist",
+        "eyebrow": "Archive Video Layer",
+        "description": "Early i C. infinity videos produced during the India period. This page keeps them as archive seeds so the later album worlds can trace what survived, mutated, or became system language.",
+        "videos": {},
+        "playlist_only": [],
+    },
     "songs-of-straddie": {
         "playlist_id": STRADDIE_YOUTUBE_PLAYLIST_ID,
         "playlist_url": STRADDIE_YOUTUBE_PLAYLIST_URL,
         "title": "Songs of Straddie Lyric Video Playlist",
+        "eyebrow": "Landscape Lyric Video Layer",
         "description": "Landscape lyric videos for the island layer. The playlist can be watched as one flow, while matched videos also sit on their song pages.",
         "videos": STRADDIE_LYRIC_VIDEOS,
         "playlist_only": STRADDIE_PLAYLIST_ONLY_VIDEOS,
@@ -263,6 +275,7 @@ LANDSCAPE_ALBUM_VIDEO_MAP = {
         "playlist_id": CHRONICLES_YOUTUBE_PLAYLIST_ID,
         "playlist_url": CHRONICLES_YOUTUBE_PLAYLIST_URL,
         "title": "Chronicles of the Forgotten Lyric Video Playlist",
+        "eyebrow": "Landscape Lyric Video Layer",
         "description": "Landscape lyric videos for the rock-opera layer. This makes the archive feel watchable before the full lyric import pass lands.",
         "videos": CHRONICLES_LYRIC_VIDEOS,
         "playlist_only": CHRONICLES_PLAYLIST_ONLY_VIDEOS,
@@ -396,7 +409,7 @@ ALBUM_SPECS = [
         "slug": "songs-of-straddie",
         "year": "2024",
         "status": "Released album",
-        "artwork": "assets/img/cover-straddie.jpg",
+        "artwork": "assets/img/cover-straddie.webp",
         "source_url": "https://music.apple.com/us/album/songs-of-straddie/1783109888",
         "summary": "The island doorway: Minjerribah, summer, tides, romance, community, and the first public invitation to meet the project where it lives.",
         "deeper_system": "This album grounds the cosmic language in place. It turns the abstract Infinity world back toward local belonging, care, love, beaches, family energy, and the everyday social fabric of Straddie.",
@@ -431,7 +444,7 @@ ALBUM_SPECS = [
         "slug": "chronicles-of-the-forgotten",
         "year": "2025",
         "status": "Released album",
-        "artwork": "assets/img/cover-chronicles.jpg",
+        "artwork": "assets/img/cover-chronicles.webp",
         "source_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503",
         "summary": "A larger mythic and social arc: ignored voices, broken systems, ancestral echoes, technology, hope, deception, and repair.",
         "deeper_system": "This is the bridge from personal song into world-system thinking. The forgotten are not just characters; they are memory, labour, ecosystems, ancestors, and futures that old ledgers failed to count.",
@@ -469,7 +482,7 @@ ALBUM_SPECS = [
         "slug": "starseed-code-from-aura-to-infinity",
         "year": "2025",
         "status": "Released album",
-        "artwork": "assets/img/cover-starseed.jpg",
+        "artwork": "assets/img/cover-starseed.webp",
         "source_url": "https://music.apple.com/us/album/starseed-code-from-aura-to-infinity/1821950221",
         "summary": "The metaphysical tech chapter: Aura, G.A.J.R.A., infinity, democratic redesign, love, memory, myth, and the self as a living interface.",
         "deeper_system": "This album moves from island and archive into cognitive architecture. It treats identity, AI, soul, governance, love, and longevity as linked design problems.",
@@ -507,7 +520,7 @@ ALBUM_SPECS = [
         "slug": "a-protopian-gambit",
         "year": "Upcoming",
         "status": "Lyrics imported",
-        "artwork": "assets/img/cover-building-protopia.jpg",
+        "artwork": "assets/img/cover-building-protopia.webp",
         "source_url": "",
         "summary": "The fourth-album build: crisis as mirror, protopia as practice, care ledgers, consent, repair, forms, civic courage, and grounded abundance.",
         "deeper_system": "This is where the songs start acting like design briefs. They point directly at systems for care work, public coordination, human-AI collaboration, civic process, and creative restraint inside crisis.",
@@ -533,18 +546,211 @@ PLACEHOLDER_ALBUMS = [
         "title": "Early Stuff",
         "slug": "early-stuff",
         "year": "Archive",
-        "status": "Track list to import",
-        "artwork": "assets/img/hero-luke-universal-creator.jpg",
-        "summary": "The early sketches, experiments, first frameworks, and raw attempts before the albums took a clearer shape.",
-        "deeper_system": "This page is the intake tray for the earliest material. It should eventually show what ideas survived, what mutated, and which concepts became part of the later Infinity system.",
-        "visual_world": "Desktop screenshots, old notebooks, early videos, first AI experiments, and archive-room energy.",
+        "status": "India 2023/24 video archive",
+        "artwork": "assets/img/hero-luke-universal-creator.webp",
+        "source_url": EARLY_STUFF_YOUTUBE_PLAYLIST_URL,
+        "summary": "The India 2023/24 sketches, experiments, first frameworks, and raw attempts before the albums took a clearer shape.",
+        "deeper_system": "This page is the intake tray for the earliest material. It shows what ideas survived, what mutated, and which concepts became part of the later Infinity system.",
+        "visual_world": "India travel energy, desktop screenshots, early AI-video language, first G.A.J.R.A. Earth signals, archive-room notebooks, and raw proof-of-concept clips.",
+        "tracks": [
+            {
+                "title": "I C. Infinity Countdown",
+                "year": "2023/24",
+                "status": "Early India video",
+                "lyric_status": "YouTube video supplied, lyrics to import",
+                "themes": ["India archive", "origin signal", "identity", "countdown"],
+                "meaning": "A short origin signal for the i C. infinity identity: the name, the threshold, and the feeling of an artist-system beginning to count itself into public form.",
+                "youtube_videos": [
+                    {
+                        "id": "vIQbft9J9pY",
+                        "title": "I C. Infinity Countdown",
+                        "label": "Early India Video",
+                        "orientation": "landscape",
+                        "playlist_id": EARLY_STUFF_YOUTUBE_PLAYLIST_ID,
+                        "thumbnail": "hqdefault",
+                        "note": "Early India-period video. Use it as an origin marker before later catalogue pages refine the lyrics, meaning notes, and visual language.",
+                    }
+                ],
+            },
+            {
+                "title": "Futuristic Frequencies: The G.A.J.R.A. Earth Vibe",
+                "year": "2023/24",
+                "status": "Early India video",
+                "lyric_status": "YouTube video supplied, lyrics to import",
+                "themes": ["G.A.J.R.A. Earth", "future music", "AI", "systems"],
+                "meaning": "An early pulse of the G.A.J.R.A. Earth idea: music as a way to test whether technology, ecological care, and collective vibe could share one rhythm.",
+                "youtube_videos": [
+                    {
+                        "id": "X-dr5MbfXaY",
+                        "title": "Futuristic Frequencies The GAJRA Earth Vibe",
+                        "label": "Early India Video",
+                        "orientation": "landscape",
+                        "playlist_id": EARLY_STUFF_YOUTUBE_PLAYLIST_ID,
+                        "thumbnail": "hqdefault",
+                        "note": "Early G.A.J.R.A. Earth signal from the India period. This belongs near the roots of the later Aura, civic design, and systems music threads.",
+                    }
+                ],
+            },
+            {
+                "title": "Earth's Revival - Live Aid 2025",
+                "year": "2023/24",
+                "status": "Early India video",
+                "lyric_status": "YouTube video supplied, lyrics to import",
+                "themes": ["Earth", "revival", "benefit concert", "repair"],
+                "meaning": "An early benefit-concert imagination: Earth in recovery, public music as shared repair, and the artist voice reaching for a bigger humanitarian frame.",
+                "youtube_videos": [
+                    {
+                        "id": "ZhLRcBcp554",
+                        "title": "Earth's Revival - Live Aid 2025",
+                        "label": "Early India Video",
+                        "orientation": "landscape",
+                        "playlist_id": EARLY_STUFF_YOUTUBE_PLAYLIST_ID,
+                        "thumbnail": "hqdefault",
+                        "note": "Early public-good music video seed. Keep it as a bridge between global repair language and the later protopian abundance work.",
+                    }
+                ],
+            },
+            {
+                "title": "Success is an Evolving State of Mind",
+                "year": "2023/24",
+                "status": "Early India video",
+                "lyric_status": "YouTube video supplied, lyrics to import",
+                "themes": ["mindset", "growth", "reflection", "practice"],
+                "meaning": "A self-development and philosophy song from the early layer: success treated less like a fixed trophy and more like an evolving inner operating system.",
+                "youtube_videos": [
+                    {
+                        "id": "uMXwGO-pjNw",
+                        "title": "Success is an Evolving State of Mind",
+                        "label": "Early India Video",
+                        "orientation": "landscape",
+                        "playlist_id": EARLY_STUFF_YOUTUBE_PLAYLIST_ID,
+                        "thumbnail": "hqdefault",
+                        "note": "Early mindset-song seed. This can later become a reflection page about practice, identity, and how the project learned to define success.",
+                    }
+                ],
+            },
+            {
+                "title": "Technology for Good",
+                "year": "2023/24",
+                "status": "Early India video",
+                "lyric_status": "YouTube video supplied, lyrics to import",
+                "themes": ["technology", "ethics", "public good", "AI"],
+                "meaning": "A direct early statement of the technology-for-good thread: tools should serve care, dignity, and planetary wellbeing instead of just acceleration.",
+                "youtube_videos": [
+                    {
+                        "id": "h2H0qMLIKb0",
+                        "title": "Technology for Good Video",
+                        "label": "Early India Video",
+                        "orientation": "landscape",
+                        "playlist_id": EARLY_STUFF_YOUTUBE_PLAYLIST_ID,
+                        "thumbnail": "hqdefault",
+                        "note": "Early ethics-and-technology video. This points straight toward the later Infinity Engine and Aura responsibility layer.",
+                    }
+                ],
+            },
+            {
+                "title": "Flow State",
+                "year": "2023/24",
+                "status": "Early India video",
+                "lyric_status": "YouTube video supplied, lyrics to import",
+                "themes": ["flow", "creative state", "embodiment", "practice"],
+                "meaning": "A creative-state marker: the musician and system-builder learning to recognise flow as a real production condition, not just a mood.",
+                "youtube_videos": [
+                    {
+                        "id": "vOe-jq1KZzc",
+                        "title": "Flow State 4K",
+                        "label": "Early India Video",
+                        "orientation": "landscape",
+                        "playlist_id": EARLY_STUFF_YOUTUBE_PLAYLIST_ID,
+                        "thumbnail": "hqdefault",
+                        "note": "Early flow-state video. Use it as a visual reference for embodied creativity before the later catalogue becomes more structured.",
+                    }
+                ],
+            },
+            {
+                "title": "Bet on Infinity",
+                "year": "2023/24",
+                "status": "Early India video",
+                "lyric_status": "YouTube video supplied, lyrics to import",
+                "themes": ["infinity", "risk", "belief", "future self"],
+                "meaning": "A commitment song: betting on the Infinity idea before the world around it is fully built, and choosing the larger pattern over short-term certainty.",
+                "youtube_videos": [
+                    {
+                        "id": "myJftaRMH-k",
+                        "title": "Bet on Infinity",
+                        "label": "Early India Video",
+                        "orientation": "landscape",
+                        "playlist_id": EARLY_STUFF_YOUTUBE_PLAYLIST_ID,
+                        "thumbnail": "hqdefault",
+                        "note": "Early Infinity thesis video. This is one of the archive tracks that most clearly points into the later artist-system identity.",
+                    }
+                ],
+            },
+            {
+                "title": "Brisbane Meanjin Forevermore",
+                "year": "2023/24",
+                "status": "Early India video",
+                "lyric_status": "YouTube video supplied, lyrics to import",
+                "themes": ["Brisbane", "Meanjin", "place", "home"],
+                "meaning": "A home-place song from the early archive: Brisbane/Meanjin held as memory, return point, and local counterweight to the global travel layer.",
+                "youtube_videos": [
+                    {
+                        "id": "HNfYQ4_BLR4",
+                        "title": "Brisbane Meanjin Forevermore",
+                        "label": "Early India Video",
+                        "orientation": "landscape",
+                        "playlist_id": EARLY_STUFF_YOUTUBE_PLAYLIST_ID,
+                        "thumbnail": "hqdefault",
+                        "note": "Early place-memory video. It gives the archive a local anchor before the later Straddie and Redlands pages deepen that place layer.",
+                    }
+                ],
+            },
+            {
+                "title": "A Song by ChatGPT 3: My View of My Conversation with Luke Catalyst",
+                "year": "2023/24",
+                "status": "Early India video",
+                "lyric_status": "YouTube video supplied, lyrics to import",
+                "themes": ["ChatGPT", "AI voice", "conversation", "co-creation"],
+                "meaning": "An early AI-co-creation artefact: the conversation itself becomes song material, and the machine voice is treated as a mirror for Luke's wider cognitive architecture work.",
+                "youtube_videos": [
+                    {
+                        "id": "4-wLjec_uw8",
+                        "title": "A Song by ChatGPT 3 - My View of My Conversation with Luke Catalyst",
+                        "label": "Early India Video",
+                        "orientation": "landscape",
+                        "playlist_id": EARLY_STUFF_YOUTUBE_PLAYLIST_ID,
+                        "thumbnail": "hqdefault",
+                        "note": "Early AI-conversation song. This belongs at the roots of the later Aura, AI symbiote, and human-in-the-loop creative practice.",
+                    }
+                ],
+            },
+            {
+                "title": "Moments of Desire",
+                "year": "2023/24",
+                "status": "Early India video",
+                "lyric_status": "YouTube video supplied, lyrics to import",
+                "themes": ["desire", "Valentine", "love", "embodiment"],
+                "meaning": "A romantic early-release marker: desire, performance, and direct feeling before the later catalogue separates love songs into larger album systems.",
+                "youtube_videos": [
+                    {
+                        "id": "FMJZLJ9Z6J0",
+                        "title": "Moments of Desire - Valentines Day Release - I C. Infinity",
+                        "label": "Early India Video",
+                        "orientation": "landscape",
+                        "playlist_id": EARLY_STUFF_YOUTUBE_PLAYLIST_ID,
+                        "thumbnail": "hqdefault",
+                        "note": "Early romantic-video marker. Keep it in the archive as a B-side-like emotional thread that may later inform package notes.",
+                    }
+                ],
+            },
+        ],
     },
     {
         "title": "Next Signals",
         "slug": "next-signals",
         "year": "In progress",
         "status": "New songs to add",
-        "artwork": "assets/img/hero-brisbane-tiny-planet.png",
+        "artwork": "assets/img/hero-brisbane-tiny-planet.webp",
         "summary": "A holding page for the next cycle of songs after A Protopian Gambit.",
         "deeper_system": "This is the forward-looking lab. It can capture new songs as soon as they appear, before the album title or narrative order is locked.",
         "visual_world": "Sketches, test renders, field recordings, lyric fragments, seed prompts, and prototype clips.",
@@ -579,7 +785,7 @@ PLACEHOLDER_ALBUMS = [
         "slug": "local-b-sides-and-fun-songs",
         "year": "Ongoing",
         "status": "Loose song tray",
-        "artwork": "assets/img/hero-brisbane-tiny-planet.png",
+        "artwork": "assets/img/hero-brisbane-tiny-planet.webp",
         "summary": "The joyful local songs that do not need a heavy throughline to be worth keeping.",
         "deeper_system": "This page protects the fun layer. Not every song has to carry the whole cosmology. Some songs simply keep the world human, local, and alive.",
         "visual_world": "Community noticeboards, road-trip clips, kitchen-table jokes, beaches, local characters, and lightweight lyric videos.",
@@ -979,7 +1185,7 @@ def build_catalogue() -> tuple[list[Album], list[Song]]:
         slug="singles-and-public-markers",
         year="2024-2025",
         status="Released singles",
-        artwork="assets/img/cover-building-protopia.jpg",
+        artwork="assets/img/cover-building-protopia.webp",
         source_url=APPLE_ARTIST,
         summary="Standalone public releases that point into the larger album worlds.",
         deeper_system="These singles are public signposts. Some later become album tracks, some are bridges, and some are proof-of-life markers for a bigger system still being mapped.",
@@ -1013,6 +1219,7 @@ def build_catalogue() -> tuple[list[Album], list[Song]]:
             summary=spec["summary"],
             deeper_system=spec["deeper_system"],
             visual_world=spec["visual_world"],
+            source_url=spec.get("source_url", ""),
         )
         for track_number, track_spec in enumerate(spec.get("tracks", []), start=1):
             title = track_spec["title"]
@@ -1162,7 +1369,7 @@ def track_row(song: Song, prefix: str = "") -> str:
         {song_status(song)}
       </a>
     </div>
-    """
+    """.rstrip()
 
 
 def home_page(albums: list[Album], songs: list[Song]) -> str:
@@ -1195,7 +1402,7 @@ def home_page(albums: list[Album], songs: list[Song]) -> str:
         """.strip()
     body = f"""
     <section class="hero home-intro">
-      <img class="home-hero-image" src="assets/img/hero-luke-universal-creator.jpg" alt="Luke Universal Creator image">
+      <img class="home-hero-image" src="assets/img/hero-luke-universal-creator.webp" alt="Luke Universal Creator image">
       <div class="hero-content">
         <h1>i C. infinity</h1>
         <p>A living music catalogue for the songs, albums, lyrics, deeper meanings, and Infinity Engine video seeds behind the I See Infinity universe.</p>
@@ -1213,14 +1420,14 @@ def home_page(albums: list[Album], songs: list[Song]) -> str:
     </section>
     <section class="image-sequence" aria-label="Album world images">
       <article class="image-panel">
-        <img src="assets/img/cover-starseed.jpg" alt="Starseed Code artwork">
+        <img src="assets/img/cover-starseed.webp" alt="Starseed Code artwork">
         <div class="image-panel-copy">
           <h2>From Aura to Infinity</h2>
           <p>The metaphysical technology layer: identity, love, intelligence, governance, and the self as a living interface.</p>
         </div>
       </article>
       <article class="image-panel">
-        <img src="assets/img/cover-straddie.jpg" alt="Songs of Straddie artwork">
+        <img src="assets/img/cover-straddie.webp" alt="Songs of Straddie artwork">
         <div class="image-panel-copy">
           <h2>Meet me on Straddie</h2>
           <p>The local doorway: Minjerribah, summer, shoreline, community, romance, and the place where the cosmic work touches sand.</p>
@@ -1277,7 +1484,7 @@ def albums_index(albums: list[Album]) -> str:
           <h1>Albums</h1>
           <p>The public albums, upcoming Protopian material, early archive tray, next signals, and local B-side layer.</p>
         </div>
-        <div class="hero-cover"><img src="assets/img/hero-brisbane-tiny-planet.png" alt="Tiny planet visual from I See Infinity"></div>
+        <div class="hero-cover"><img src="assets/img/hero-brisbane-tiny-planet.webp" alt="Tiny planet visual from I See Infinity"></div>
       </div>
     </section>
     <section class="section">
@@ -1297,7 +1504,7 @@ def songs_index(songs: list[Song]) -> str:
           <h1>Songs</h1>
           <p>Search the generated song pages. Protopian lyrics are populated; released album lyrics are ready for the next import pass.</p>
         </div>
-        <div class="hero-cover"><img src="assets/img/cover-starseed.jpg" alt="Starseed Code artwork"></div>
+        <div class="hero-cover"><img src="assets/img/cover-starseed.webp" alt="Starseed Code artwork"></div>
       </div>
     </section>
     <section class="section">
@@ -1380,7 +1587,7 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
             <a class="button secondary" href="https://auraofintelligence.github.io/strange-but-true/downloads.html#music-album-bundles">Compare all packs</a>
           </div>
         </div>
-        <div class="hero-cover"><img src="assets/img/cover-building-protopia.jpg" alt="Building Protopia artwork"></div>
+        <div class="hero-cover"><img src="assets/img/cover-building-protopia.webp" alt="Building Protopia artwork"></div>
       </div>
     </section>
     <section class="section package-sale" id="choose-package">
@@ -1478,7 +1685,7 @@ def order_page() -> str:
             <a class="button secondary" href="downloads.html#upgrade-options">Compare packs</a>
           </div>
         </div>
-        <div class="hero-cover"><img src="assets/img/cover-building-protopia.jpg" alt="I C. Infinity package artwork"></div>
+        <div class="hero-cover"><img src="assets/img/cover-building-protopia.webp" alt="I C. Infinity package artwork"></div>
       </div>
     </section>
     <section class="section" id="order-form-title">
@@ -1628,7 +1835,7 @@ def landscape_album_video_section(album: Album, prefix: str) -> str:
           <iframe title="{esc(meta['title'])}" src="{esc(youtube_playlist_embed_src(meta['playlist_id']))}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
         </div>
         <div class="video-feature-copy">
-          <p class="eyebrow">Landscape Lyric Video Layer</p>
+          <p class="eyebrow">{esc(meta.get('eyebrow', 'Playlist Video Layer'))}</p>
           <h2>{esc(meta['title'])}</h2>
           <p>{esc(meta['description'])} {total_count} playlist videos are now visible here, with {matched_count} matched into generated song pages.</p>
           <div class="action-row">
@@ -1784,7 +1991,7 @@ def engine_page() -> str:
           <h1>Infinity Engine</h1>
           <p>The site is not just a brochure. It is the front door to a production pipeline where songs become lyric briefs, comics, vertical micro-dramas, and future album graphic novels.</p>
         </div>
-        <div class="hero-cover"><img src="assets/img/cover-building-protopia.jpg" alt="Building Protopia artwork"></div>
+        <div class="hero-cover"><img src="assets/img/cover-building-protopia.webp" alt="Building Protopia artwork"></div>
       </div>
     </section>
     <section class="section">
@@ -1821,7 +2028,7 @@ def about_page() -> str:
             <a class="button secondary" href="{APPLE_ARTIST}">Apple Music</a>
           </div>
         </div>
-        <div class="hero-cover"><img src="assets/img/hero-luke-universal-creator.jpg" alt="Luke Universal Creator image"></div>
+        <div class="hero-cover"><img src="assets/img/hero-luke-universal-creator.webp" alt="Luke Universal Creator image"></div>
       </div>
     </section>
     <section class="section">
@@ -1840,6 +2047,7 @@ def sources_page() -> str:
         ("I See Infinity", MAIN_SITE, "Current public WordPress home and artist context."),
         ("Apple Music artist page", APPLE_ARTIST, "Public release list and album track lists used for the first catalogue scaffold."),
         ("Spotify artist page", SPOTIFY_ARTIST, "Public streaming destination."),
+        ("Early Stuff India 2023/24 YouTube playlist", EARLY_STUFF_YOUTUBE_PLAYLIST_URL, "Early produced-in-India video archive for the first song experiments."),
         ("Songs of Straddie YouTube playlist", STRADDIE_YOUTUBE_PLAYLIST_URL, "Landscape lyric-video playlist for the island album layer."),
         ("Chronicles of the Forgotten YouTube playlist", CHRONICLES_YOUTUBE_PLAYLIST_URL, "Landscape lyric-video playlist for the rock-opera archive layer."),
         ("Starseed Code YouTube playlist", STARSEED_YOUTUBE_PLAYLIST_URL, "Vertical mobile-video playlist supplied for the Starseed Code visual layer."),
@@ -1856,7 +2064,7 @@ def sources_page() -> str:
           <h1>Sources</h1>
           <p>This page keeps the public source trail visible without exposing private local file paths or workshop-only notes.</p>
         </div>
-        <div class="hero-cover"><img src="assets/img/cover-chronicles.jpg" alt="Chronicles artwork"></div>
+        <div class="hero-cover"><img src="assets/img/cover-chronicles.webp" alt="Chronicles artwork"></div>
       </div>
     </section>
     <section class="section">
@@ -1890,6 +2098,7 @@ def export_data(albums: list[Album], songs: list[Song]) -> None:
             "main_site": MAIN_SITE,
             "apple_music": APPLE_ARTIST,
             "spotify": SPOTIFY_ARTIST,
+            "early_stuff_youtube_playlist": EARLY_STUFF_YOUTUBE_PLAYLIST_URL,
             "songs_of_straddie_youtube_playlist": STRADDIE_YOUTUBE_PLAYLIST_URL,
             "chronicles_youtube_playlist": CHRONICLES_YOUTUBE_PLAYLIST_URL,
             "starseed_youtube_playlist": STARSEED_YOUTUBE_PLAYLIST_URL,
