@@ -367,7 +367,7 @@ a:hover {
 
 .section-head {
   display: flex;
-  align-items: end;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 28px;
   margin-bottom: 26px;
@@ -381,14 +381,15 @@ a:hover {
 
 .section-head h2 {
   margin: 0;
-  font-size: clamp(2rem, 5vw, 4.2rem);
-  line-height: 0.95;
+  font-size: 4rem;
+  line-height: 1.04;
   letter-spacing: 0;
 }
 
 .section-head p {
   max-width: 520px;
   margin: 0;
+  padding-top: 10px;
   color: var(--muted);
 }
 
@@ -435,12 +436,13 @@ a:hover {
 .album-card a,
 .song-main-link {
   display: grid;
-  height: 100%;
   text-decoration: none;
 }
 
 .album-art {
-  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
   background: #111;
 }
 
@@ -488,6 +490,7 @@ a:hover {
 .engine-step p {
   margin: 10px 0 0;
   color: var(--muted);
+  overflow-wrap: anywhere;
 }
 
 .meta-line,
@@ -1073,6 +1076,14 @@ a:hover {
     flex-direction: column;
   }
 
+  .section-head h2 {
+    font-size: 3rem;
+  }
+
+  .section-head p {
+    padding-top: 0;
+  }
+
   .nav-toggle {
     display: inline-flex;
     box-shadow: none;
@@ -1162,6 +1173,10 @@ a:hover {
 @media (max-width: 560px) {
   .site-header {
     padding-inline: 16px;
+  }
+
+  .section-head h2 {
+    font-size: 2.35rem;
   }
 
   .track-row a {
