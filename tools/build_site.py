@@ -15,6 +15,7 @@ REPO = Path(__file__).resolve().parents[1]
 LYRIC_SOURCE = Path(r"C:\Users\lukec\Downloads\4th i C. infinity album A Protopian Gambit (lyrics).md")
 STARSEED_TEXT_LYRIC_SOURCE = Path(r"C:\Users\lukec\Downloads\3rd Album Starseed Code.txt")
 ALBUM_LYRIC_ROOT = Path(r"C:\Users\lukec\Documents\Beyond\69 i C. infinity - Music\Albums")
+SINGLES_LYRIC_ROOT = Path(r"C:\Users\lukec\Documents\Beyond\69 i C. infinity - Music\Singles")
 ALBUM_LYRIC_FOLDERS = {
     "Songs of Straddie": "songs-of-straddie",
     "Chronicles of the Forgotten": "chronicles-of-the-forgotten",
@@ -29,6 +30,22 @@ LYRIC_SLUG_ALIASES = {
     ("starseed-code-from-aura-to-infinity", "from-straddy-s-shores-to-galactic-plains"): "from-straddie-s-shores-to-galactic-plains",
     ("starseed-code-from-aura-to-infinity", "from-straddys-shores-to-galactic-plains"): "from-straddie-s-shores-to-galactic-plains",
     ("starseed-code-from-aura-to-infinity", "gajra-rising"): "g-a-j-r-a-rising",
+}
+SINGLE_LYRIC_TARGETS = {
+    "building-protopia-brick-by-brick": [
+        ("singles-and-public-markers", "building-protopia-brick-by-brick"),
+    ],
+    "chatgpt-my-view-of-our-conversation": [
+        ("singles-and-public-markers", "our-conversation-about-a-g-i"),
+        ("early-stuff", "a-song-by-chatgpt-3-my-view-of-my-conversation-with-luke-catalyst"),
+    ],
+    "futuristic-frequencies-the-gajra-earth-vibe": [
+        ("singles-and-public-markers", "futuristic-frequencies"),
+        ("early-stuff", "futuristic-frequencies-the-g-a-j-r-a-earth-vibe"),
+    ],
+    "straddie-summer-love": [
+        ("singles-and-public-markers", "straddie-summer-love-special-version-by-he"),
+    ],
 }
 
 
@@ -971,9 +988,36 @@ def parse_starseed_text_lyrics() -> dict[tuple[str, str], dict[str, str]]:
     return songs
 
 
+def parse_single_lyrics() -> dict[tuple[str, str], dict[str, str]]:
+    if not SINGLES_LYRIC_ROOT.exists():
+        return {}
+
+    songs: dict[tuple[str, str], dict[str, str]] = {}
+    for path in sorted(SINGLES_LYRIC_ROOT.glob("*.md")):
+        raw = path.read_text(encoding="utf-8-sig", errors="replace")
+        meta, body = parse_frontmatter(raw)
+        title = meta.get("track") or path.stem
+        source_slug = slugify(title)
+        targets = SINGLE_LYRIC_TARGETS.get(source_slug, [("singles-and-public-markers", source_slug)])
+        item = {
+            "title": title,
+            "lyrics": extract_master_lyrics(body),
+            "date": meta.get("creation_date", ""),
+            "spotify": meta.get("spotify_link", ""),
+            "suno": meta.get("suno_link", ""),
+            "youtube": meta.get("youtube_link", ""),
+            "file": path.name,
+        }
+        for target in targets:
+            songs[target] = item
+    return songs
+
+
 def parse_album_lyrics() -> dict[tuple[str, str], dict[str, str]]:
     if not ALBUM_LYRIC_ROOT.exists():
-        return parse_starseed_text_lyrics()
+        songs = parse_starseed_text_lyrics()
+        songs.update(parse_single_lyrics())
+        return songs
 
     songs: dict[tuple[str, str], dict[str, str]] = {}
     for folder_name, album_slug in ALBUM_LYRIC_FOLDERS.items():
@@ -995,6 +1039,7 @@ def parse_album_lyrics() -> dict[tuple[str, str], dict[str, str]]:
                 "file": path.name,
             }
     songs.update(parse_starseed_text_lyrics())
+    songs.update(parse_single_lyrics())
     return songs
 
 
@@ -1005,7 +1050,7 @@ def apply_imported_album_lyrics(track: Song, album: Album, album_lyrics: dict[tu
     track.lyrics = item["lyrics"]
     track.status = "Lyrics ready"
     date_note = f" Song date: {item['date']}." if item["date"] else ""
-    track.lyric_status = f"Imported from album lyric archive: {item['file']}.{date_note}"
+    track.lyric_status = f"Imported from lyric archive: {item['file']}.{date_note}"
     if item["spotify"].startswith("https://open.spotify.com/"):
         track.spotify_url = item["spotify"]
 
@@ -1359,6 +1404,7 @@ def build_catalogue() -> tuple[list[Album], list[Song]]:
         track.themes = special["themes"] if special else infer_themes(track.title, singles_album.slug)
         track.meaning = special["meaning"] if special else infer_meaning(track.title, singles_album)
         track.video_seeds = special["seeds"] if special else generic_seeds(track, singles_album)
+        apply_imported_album_lyrics(track, singles_album, album_lyrics)
         track.slug = f"{singles_album.slug}-{track.track_number:02d}-{slugify(track.title)}"
         singles_album.tracks.append(track)
         songs.append(track)
@@ -1396,6 +1442,7 @@ def build_catalogue() -> tuple[list[Album], list[Song]]:
             track.meaning = track_spec.get("meaning") or (special["meaning"] if special else infer_meaning(track.title, album))
             track.video_seeds = track_spec.get("seeds") or (special["seeds"] if special else generic_seeds(track, album))
             track.youtube_videos = track_spec.get("youtube_videos", [])
+            apply_imported_album_lyrics(track, album, album_lyrics)
             primary_video = primary_youtube_video(track)
             if primary_video:
                 track.youtube_video_id = primary_video["id"]
@@ -1927,7 +1974,7 @@ def starseed_video_section(album: Album, prefix: str) -> str:
         <div class="video-feature-copy">
           <p class="eyebrow">Mobile Video Layer</p>
           <h2>Starseed Code Vertical Playlist</h2>
-          <p>{len(video_tracks)} Starseed Code songs are matched to portrait-format YouTube videos. This turns the album page into a phone-first watch path, not just a static track list.</p>
+          <p>{len(video_tracks)} Starseed Code songs are matched to portrait-format YouTube videos. The numbers keep the streaming album order; gaps mean that video is not currently public on YouTube.</p>
           <div class="action-row">
             <a class="button" href="{esc(STARSEED_YOUTUBE_PLAYLIST_URL)}" target="_blank" rel="noopener">Open playlist</a>
             <a class="button secondary" href="#track-map">Use track map</a>
