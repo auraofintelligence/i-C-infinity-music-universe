@@ -61,6 +61,13 @@ def clean_text(value: str) -> str:
     return value.strip()
 
 
+def read_repo_text(relative_path: str) -> str:
+    path = REPO / relative_path
+    if not path.exists():
+        return ""
+    return clean_text(path.read_text(encoding="utf-8", errors="replace"))
+
+
 def esc(value: str) -> str:
     return html.escape(value, quote=True)
 
@@ -775,8 +782,9 @@ PLACEHOLDER_ALBUMS = [
             {
                 "title": "Shifting Sands of Timeless Redlands",
                 "year": "2026",
-                "status": "Expo song",
-                "lyric_status": "Video supplied, lyrics to import",
+                "status": "Lyrics ready",
+                "lyric_status": "Lyrics supplied directly by Luke.",
+                "lyrics_path": "data/manual-lyrics/shifting-sands-of-timeless-redlands.txt",
                 "themes": ["expo song", "redlands", "time", "landscape", "memory"],
                 "meaning": "An expo song for the wider site: Redlands imagery, shifting time, place-memory, and the choice to hold local landscape inside the larger Infinity catalogue without forcing it into a heavy album throughline.",
                 "seeds": [
@@ -1370,12 +1378,16 @@ def build_catalogue() -> tuple[list[Album], list[Song]]:
         )
         for track_number, track_spec in enumerate(spec.get("tracks", []), start=1):
             title = track_spec["title"]
+            lyrics = track_spec.get("lyrics", "")
+            if track_spec.get("lyrics_path"):
+                lyrics = lyrics or read_repo_text(track_spec["lyrics_path"])
             track = Song(
                 title=title,
                 album_slug=album.slug,
                 album_title=album.title,
                 track_number=track_number,
                 year=track_spec.get("year", album.year),
+                lyrics=lyrics,
                 lyric_status=track_spec.get("lyric_status", "Lyrics to import"),
                 status=track_spec.get("status", album.status),
             )
