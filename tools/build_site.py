@@ -1455,7 +1455,7 @@ def home_page(albums: list[Album], songs: list[Song]) -> str:
         <div class="feature-grid">
           <article class="feature-card"><h3>Package contents</h3><p>Decide which audio, videos, lyrics, covers, notes, and bonus files belong in each pack.</p></article>
           <article class="feature-card"><h3>Format choices</h3><p>Compare MP3, WAV, FLAC, MP4, lyric PDFs, and future physical or USB options.</p></article>
-          <article class="feature-card"><h3>Single order path</h3><p><a href="downloads.html">Use this catalogue's packaging lab</a> as the music package reference. Strange But True can link in, but this repo owns the album choices and order form.</p></article>
+          <article class="feature-card"><h3>Download Packaging</h3><p><a href="downloads.html">Use the packaging lab</a> to explore album bundles, file formats, lyrics, videos, and supporter options.</p></article>
         </div>
       </div>
     </section>
@@ -2006,6 +2006,7 @@ def about_page() -> str:
           <p>i C. infinity is Luke Catalyst Nathan Hayes' music artist and producer project: songs as emotional technology, local myth, AI-era philosophy, and practical world-building.</p>
           <div class="action-row">
             <a class="button" href="{MAIN_SITE}">iseeinfinity.com</a>
+            <a class="button secondary" href="https://auraofintelligence.github.io/strange-but-true/">Strange But True</a>
             <a class="button secondary" href="{SPOTIFY_ARTIST}">Spotify</a>
             <a class="button secondary" href="{APPLE_ARTIST}">Apple Music</a>
           </div>
@@ -2018,6 +2019,7 @@ def about_page() -> str:
         <article class="feature-card"><h3>Artist Layer</h3><p>Music, lyrics, releases, lyric videos, albums, and public song pages.</p></article>
         <article class="feature-card"><h3>System Layer</h3><p>Aura, G.A.J.R.A. Earth, joyful responsible abundance, cognitive architecture, and protopian design.</p></article>
         <article class="feature-card"><h3>Production Layer</h3><p>Infinity Engine seeds for comics, vertical micro-dramas, video keyframes, and future automated pipelines.</p></article>
+        <article class="feature-card"><h3>Strange But True</h3><p><a href="https://auraofintelligence.github.io/strange-but-true/">Strange But True</a> is the day-to-day practical work around local resilience, events, tools, markets, and community experiments. It helps ground the deeper philosophy of the music in tangible local action.</p></article>
       </div>
     </section>
     """
