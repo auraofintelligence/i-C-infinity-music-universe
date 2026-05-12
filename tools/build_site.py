@@ -13,6 +13,7 @@ from urllib.parse import quote
 
 REPO = Path(__file__).resolve().parents[1]
 LYRIC_SOURCE = Path(r"C:\Users\lukec\Downloads\4th i C. infinity album A Protopian Gambit (lyrics).md")
+STARSEED_TEXT_LYRIC_SOURCE = Path(r"C:\Users\lukec\Downloads\3rd Album Starseed Code.txt")
 ALBUM_LYRIC_ROOT = Path(r"C:\Users\lukec\Documents\Beyond\69 i C. infinity - Music\Albums")
 ALBUM_LYRIC_FOLDERS = {
     "Songs of Straddie": "songs-of-straddie",
@@ -23,6 +24,11 @@ LYRIC_SLUG_ALIASES = {
     ("songs-of-straddie", "straddie-summer-love"): "straddie-summer-love-by-he",
     ("chronicles-of-the-forgotten", "algorithm-of-hope"): "algorithm-hope",
     ("chronicles-of-the-forgotten", "echo-s-of-the-ancients"): "echos-of-the-ancients",
+    ("starseed-code-from-aura-to-infinity", "from-straddy-s-shores"): "from-straddie-s-shores-to-galactic-plains",
+    ("starseed-code-from-aura-to-infinity", "from-straddys-shores"): "from-straddie-s-shores-to-galactic-plains",
+    ("starseed-code-from-aura-to-infinity", "from-straddy-s-shores-to-galactic-plains"): "from-straddie-s-shores-to-galactic-plains",
+    ("starseed-code-from-aura-to-infinity", "from-straddys-shores-to-galactic-plains"): "from-straddie-s-shores-to-galactic-plains",
+    ("starseed-code-from-aura-to-infinity", "gajra-rising"): "g-a-j-r-a-rising",
 }
 
 
@@ -426,7 +432,6 @@ ALBUM_SPECS = [
         "deeper_system": "This album grounds the cosmic language in place. It turns the abstract Infinity world back toward local belonging, care, love, beaches, family energy, and the everyday social fabric of Straddie.",
         "visual_world": "Coastal light, ferry windows, campfire circles, dune paths, shoreline dances, handwritten signs, local faces, and gentle magical realism rather than heavy science fiction.",
         "tracks": [
-            "Songs of Straddie",
             "Meet Me on Straddie",
             "Our Island Home!",
             "Welcome to the Island",
@@ -501,7 +506,6 @@ ALBUM_SPECS = [
         "deeper_system": "This album moves from island and archive into cognitive architecture. It treats identity, AI, soul, governance, love, and longevity as linked design problems.",
         "visual_world": "Human figures surrounded by luminous interfaces, cosmic gardens, body-mind data doubles, ritual circles, civic halls, and warm science-fiction symbolism.",
         "tracks": [
-            "Starseed Code: From Aura to Infinity",
             "Aura",
             "Aura Ultra",
             "Beyond The Vote",
@@ -517,7 +521,7 @@ ALBUM_SPECS = [
             "Longevity Groove",
             "Mythmaker",
             "Moonlight Whispers",
-            "Poetic Thruths of Infinity",
+            "Poetic Truths of Infinity",
             "Ride The Wave",
             "Resonance",
             "Sol Code",
@@ -932,9 +936,36 @@ def lyric_slug(album_slug: str, title: str) -> str:
     return LYRIC_SLUG_ALIASES.get((album_slug, original), original)
 
 
+def parse_starseed_text_lyrics() -> dict[tuple[str, str], dict[str, str]]:
+    if not STARSEED_TEXT_LYRIC_SOURCE.exists():
+        return {}
+
+    raw = STARSEED_TEXT_LYRIC_SOURCE.read_text(encoding="utf-8", errors="replace")
+    marker = raw.find("Alphabetical song order with lyrics")
+    if marker != -1:
+        raw = raw[marker:]
+    songs: dict[tuple[str, str], dict[str, str]] = {}
+    pattern = r"^(?:Song\s+)?\d+[:.]\s+([^\n]+)\n(?:Lyrics:\s*\n)?(.*?)(?=^(?:Song\s+)?\d+[:.]\s+|\Z)"
+    for match in re.finditer(pattern, raw, flags=re.M | re.S):
+        title = clean_text(match.group(1))
+        lyrics = clean_text(match.group(2))
+        if not lyrics:
+            continue
+        songs[(STARSEED_ALBUM_SLUG, lyric_slug(STARSEED_ALBUM_SLUG, title))] = {
+            "title": title,
+            "lyrics": lyrics,
+            "date": "",
+            "spotify": "",
+            "suno": "",
+            "youtube": "",
+            "file": STARSEED_TEXT_LYRIC_SOURCE.name,
+        }
+    return songs
+
+
 def parse_album_lyrics() -> dict[tuple[str, str], dict[str, str]]:
     if not ALBUM_LYRIC_ROOT.exists():
-        return {}
+        return parse_starseed_text_lyrics()
 
     songs: dict[tuple[str, str], dict[str, str]] = {}
     for folder_name, album_slug in ALBUM_LYRIC_FOLDERS.items():
@@ -955,6 +986,7 @@ def parse_album_lyrics() -> dict[tuple[str, str], dict[str, str]]:
                 "youtube": meta.get("youtube_link", ""),
                 "file": path.name,
             }
+    songs.update(parse_starseed_text_lyrics())
     return songs
 
 
@@ -968,6 +1000,23 @@ def apply_imported_album_lyrics(track: Song, album: Album, album_lyrics: dict[tu
     track.lyric_status = f"Imported from album lyric archive: {item['file']}.{date_note}"
     if item["spotify"].startswith("https://open.spotify.com/"):
         track.spotify_url = item["spotify"]
+
+
+def apply_duplicate_lyrics(songs: list[Song]) -> None:
+    lyrics_by_title: dict[str, Song] = {}
+    for song in songs:
+        if song.ready():
+            lyrics_by_title.setdefault(slugify(song.title), song)
+
+    for song in songs:
+        if song.ready():
+            continue
+        source = lyrics_by_title.get(slugify(song.title))
+        if not source:
+            continue
+        song.lyrics = source.lyrics
+        song.status = "Lyrics ready"
+        song.lyric_status = f"Reused from the {source.album_title} song page."
 
 
 def infer_themes(title: str, album_slug: str) -> list[str]:
@@ -1344,6 +1393,7 @@ def build_catalogue() -> tuple[list[Album], list[Song]]:
             songs.append(track)
         albums.append(album)
 
+    apply_duplicate_lyrics(songs)
     apply_streaming_links(albums)
     return albums, songs
 
