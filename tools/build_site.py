@@ -13,6 +13,17 @@ from urllib.parse import quote
 
 REPO = Path(__file__).resolve().parents[1]
 LYRIC_SOURCE = Path(r"C:\Users\lukec\Downloads\4th i C. infinity album A Protopian Gambit (lyrics).md")
+ALBUM_LYRIC_ROOT = Path(r"C:\Users\lukec\Documents\Beyond\69 i C. infinity - Music\Albums")
+ALBUM_LYRIC_FOLDERS = {
+    "Songs of Straddie": "songs-of-straddie",
+    "Chronicles of the Forgotten": "chronicles-of-the-forgotten",
+    "Starseed Code - From Aura to Infinity": "starseed-code-from-aura-to-infinity",
+}
+LYRIC_SLUG_ALIASES = {
+    ("songs-of-straddie", "straddie-summer-love"): "straddie-summer-love-by-he",
+    ("chronicles-of-the-forgotten", "algorithm-of-hope"): "algorithm-hope",
+    ("chronicles-of-the-forgotten", "echo-s-of-the-ancients"): "echos-of-the-ancients",
+}
 
 
 def slugify(value: str) -> str:
@@ -437,6 +448,7 @@ ALBUM_SPECS = [
             "Tides of Time",
             "Heart of the Island",
             "Gather by the Fire",
+            "Symphony of Tomorrow",
         ],
     },
     {
@@ -475,6 +487,7 @@ ALBUM_SPECS = [
             "Pulse of the Universe",
             "Resonance",
             "Tempest of Trials",
+            "Illusions Shattered",
         ],
     },
     {
@@ -875,6 +888,88 @@ def parse_protopian_lyrics() -> dict[str, dict[str, str]]:
     return songs
 
 
+def parse_frontmatter(raw: str) -> tuple[dict[str, str], str]:
+    if not raw.startswith("---"):
+        return {}, raw
+    parts = raw.split("---", 2)
+    if len(parts) < 3:
+        return {}, raw
+    meta: dict[str, str] = {}
+    for line in parts[1].splitlines():
+        if not line or line.startswith(" ") or ":" not in line:
+            continue
+        key, value = line.split(":", 1)
+        meta[key.strip()] = clean_text(value.strip())
+    return meta, parts[2]
+
+
+def extract_master_lyrics(body: str) -> str:
+    body = re.sub(r"!\[\[.+?\]\]\s*", "", body)
+    match = re.search(r"^##\s+Lyrics\s+\(Master Version\)\s*$", body, flags=re.M)
+    if match:
+        body = body[match.end():]
+        next_section = re.search(r"^##\s+Lyrics\s+\(.+?\)\s*$", body, flags=re.M)
+        if next_section:
+            body = body[:next_section.start()]
+    lines: list[str] = []
+    for line in body.splitlines():
+        stripped = clean_text(line)
+        if not lines and (
+            not stripped
+            or stripped.startswith("*This is the full")
+            or stripped.startswith("*Lyrics")
+            or re.match(r"^#{1,6}\s+", stripped)
+        ):
+            continue
+        lines.append(stripped)
+    lyrics = "\n".join(lines)
+    lyrics = re.sub(r"\n{3,}", "\n\n", lyrics)
+    return clean_text(lyrics)
+
+
+def lyric_slug(album_slug: str, title: str) -> str:
+    original = slugify(title)
+    return LYRIC_SLUG_ALIASES.get((album_slug, original), original)
+
+
+def parse_album_lyrics() -> dict[tuple[str, str], dict[str, str]]:
+    if not ALBUM_LYRIC_ROOT.exists():
+        return {}
+
+    songs: dict[tuple[str, str], dict[str, str]] = {}
+    for folder_name, album_slug in ALBUM_LYRIC_FOLDERS.items():
+        folder = ALBUM_LYRIC_ROOT / folder_name
+        if not folder.exists():
+            continue
+        for path in sorted(folder.glob("*.md")):
+            raw = path.read_text(encoding="utf-8-sig", errors="replace")
+            meta, body = parse_frontmatter(raw)
+            title = meta.get("track") or path.stem
+            title = re.sub(r"\s*\(Final\)\s*$", "", clean_text(title), flags=re.I)
+            songs[(album_slug, lyric_slug(album_slug, title))] = {
+                "title": title,
+                "lyrics": extract_master_lyrics(body),
+                "date": meta.get("creation_date", ""),
+                "spotify": meta.get("spotify_link", ""),
+                "suno": meta.get("suno_link", ""),
+                "youtube": meta.get("youtube_link", ""),
+                "file": path.name,
+            }
+    return songs
+
+
+def apply_imported_album_lyrics(track: Song, album: Album, album_lyrics: dict[tuple[str, str], dict[str, str]]) -> None:
+    item = album_lyrics.get((album.slug, slugify(track.title)))
+    if not item or not item["lyrics"]:
+        return
+    track.lyrics = item["lyrics"]
+    track.status = "Lyrics ready"
+    date_note = f" Song date: {item['date']}." if item["date"] else ""
+    track.lyric_status = f"Imported from album lyric archive: {item['file']}.{date_note}"
+    if item["spotify"].startswith("https://open.spotify.com/"):
+        track.spotify_url = item["spotify"]
+
+
 def infer_themes(title: str, album_slug: str) -> list[str]:
     lower = title.lower()
     themes: list[str] = []
@@ -951,8 +1046,8 @@ def apply_streaming_links(albums: list[Album]) -> None:
 
         for song in album.tracks:
             links = song_links.get(song_stream_key(song), {})
-            song.apple_url = links.get("apple", "")
-            song.spotify_url = links.get("spotify", "")
+            song.apple_url = links.get("apple", song.apple_url)
+            song.spotify_url = links.get("spotify", song.spotify_url)
 
 
 def spotify_search_url(song: Song) -> str:
@@ -1111,6 +1206,7 @@ def order_href(package_id: str, absolute: bool = False) -> str:
 
 def build_catalogue() -> tuple[list[Album], list[Song]]:
     protopian = parse_protopian_lyrics()
+    album_lyrics = parse_album_lyrics()
     albums: list[Album] = []
     songs: list[Song] = []
 
@@ -1156,6 +1252,8 @@ def build_catalogue() -> tuple[list[Album], list[Song]]:
             track.themes = special["themes"] if special else infer_themes(track.title, album.slug)
             track.meaning = special["meaning"] if special else infer_meaning(track.title, album)
             track.video_seeds = special["seeds"] if special else generic_seeds(track, album)
+            if album.slug != "a-protopian-gambit":
+                apply_imported_album_lyrics(track, album, album_lyrics)
             track.slug = f"{album.slug}-{track.track_number:02d}-{slugify(track.title)}"
             if album.slug == STARSEED_ALBUM_SLUG and track.title in STARSEED_VERTICAL_VIDEOS:
                 video = STARSEED_VERTICAL_VIDEOS[track.title]
@@ -1469,7 +1567,7 @@ def home_page(albums: list[Album], songs: list[Song]) -> str:
           <p>The site is built to become an intake layer for the Infinity Engine: lyrics in, meaning maps out, comic panels first, video keyframes next.</p>
         </div>
         <div class="feature-grid">
-          <article class="feature-card"><h3>Lyrics</h3><p>Full Protopian lyrics are imported now. Other albums have clean slots ready for the next content pass.</p></article>
+          <article class="feature-card"><h3>Lyrics</h3><p>Full Protopian lyrics are imported, with new lyric archive material now flowing into Straddie, Chronicles, and selected Starseed song pages.</p></article>
           <article class="feature-card"><h3>Meaning</h3><p>Every song page starts with a plain-language meaning layer so listeners can see how the song fits the bigger system.</p></article>
           <article class="feature-card"><h3>Video Seeds</h3><p>Each song has three first-pass seed directions: lyric video, micro-drama, and comic-as-storyboard.</p></article>
         </div>
@@ -1505,7 +1603,7 @@ def songs_index(songs: list[Song]) -> str:
       <div class="wrap">
         <div>
           <h1>Songs</h1>
-          <p>Search the generated song pages. Protopian lyrics are populated; released album lyrics are ready for the next import pass.</p>
+          <p>Search the generated song pages. Lyrics are now populated across the Protopian album, the supplied Straddie and Chronicles archives, and selected Starseed songs.</p>
         </div>
         <div class="hero-cover"><img src="assets/img/cover-starseed.webp" alt="Starseed Code artwork"></div>
       </div>
@@ -2057,7 +2155,7 @@ def sources_page() -> str:
     <section class="section">
       <div class="wrap">
         <div class="source-grid">{source_cards}</div>
-        <div class="notice" style="margin-top: 24px;">Local supplied planning documents shaped the Infinity Engine summaries. They are treated as workshop source material, not published as raw documents here.</div>
+        <div class="notice" style="margin-top: 24px;">Local supplied planning documents and album lyric archives shaped the song pages and Infinity Engine summaries. They are treated as workshop source material, not published as raw documents here.</div>
       </div>
     </section>
     """
