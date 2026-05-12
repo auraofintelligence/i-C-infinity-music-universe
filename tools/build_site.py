@@ -1548,16 +1548,6 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
         """
         for album in released
     )
-    bundle_cards = [
-        ("One Album Pack", "Decision to make: final audio formats, cover art, lyrics PDF, video links, and whether each album gets a short guide to the deeper meaning."),
-        ("Two Album Pack", "Decision to make: whether this is simply a discount bundle or a curated pathway, for example Straddie plus Starseed, or Chronicles plus Protopian material."),
-        ("Three Released Albums Pack", "Decision to make: how to package Songs of Straddie, Chronicles of the Forgotten, and Starseed Code as one clean folder with track lists and context notes."),
-        ("Full Music Archive Pack", "Decision to make: where to draw the line around B-sides, fourth-album drafts, bonus videos, podcasts, working notes, and selected works in progress."),
-    ]
-    bundle_html = "".join(
-        f'<article class="feature-card"><h3>{esc(title)}</h3><p>{esc(text)}</p></article>'
-        for title, text in bundle_cards
-    )
     package_compare = [
         ("One Album Pack", "$20", "Choose only the album you most want.", order_href("one-album")),
         ("Two Album Pack", "$35", "Pick a pair of connected album worlds.", order_href("two-album")),
@@ -1610,15 +1600,6 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
             <a class="button secondary" href="{order_href("three-album")}">Three albums</a>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Bundle Questions</h2>
-          <p>These are not final buyer promises. They are the working decisions that need to be settled before the paid files are packaged.</p>
-        </div>
-        <div class="feature-grid">{bundle_html}</div>
       </div>
     </section>
     <section class="section tight" id="upgrade-options">
