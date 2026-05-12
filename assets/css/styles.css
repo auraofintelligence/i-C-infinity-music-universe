@@ -61,8 +61,22 @@ a:hover {
 
 .brand {
   display: grid;
-  gap: 0;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
   text-decoration: none;
+}
+
+.brand img {
+  width: 38px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 14px rgba(21, 21, 21, 0.16);
+}
+
+.brand-copy {
+  display: grid;
 }
 
 .brand strong {
@@ -367,7 +381,7 @@ a:hover {
 
 .section-head {
   display: flex;
-  align-items: flex-start;
+  align-items: end;
   justify-content: space-between;
   gap: 28px;
   margin-bottom: 26px;
@@ -381,15 +395,14 @@ a:hover {
 
 .section-head h2 {
   margin: 0;
-  font-size: 4rem;
-  line-height: 1.04;
+  font-size: clamp(2rem, 5vw, 4.2rem);
+  line-height: 0.95;
   letter-spacing: 0;
 }
 
 .section-head p {
   max-width: 520px;
   margin: 0;
-  padding-top: 10px;
   color: var(--muted);
 }
 
@@ -436,14 +449,29 @@ a:hover {
 .album-card a,
 .song-main-link {
   display: grid;
+  height: 100%;
   text-decoration: none;
 }
 
 .album-art {
+  position: relative;
   display: grid;
   place-items: center;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   background: #111;
+}
+
+.album-art::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  width: 52px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: url("../favicon.jpg") center / cover no-repeat;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+  pointer-events: none;
 }
 
 .album-art img {
@@ -1076,14 +1104,6 @@ a:hover {
     flex-direction: column;
   }
 
-  .section-head h2 {
-    font-size: 3rem;
-  }
-
-  .section-head p {
-    padding-top: 0;
-  }
-
   .nav-toggle {
     display: inline-flex;
     box-shadow: none;
@@ -1173,10 +1193,6 @@ a:hover {
 @media (max-width: 560px) {
   .site-header {
     padding-inline: 16px;
-  }
-
-  .section-head h2 {
-    font-size: 2.35rem;
   }
 
   .track-row a {

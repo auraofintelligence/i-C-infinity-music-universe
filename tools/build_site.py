@@ -1254,8 +1254,11 @@ def nav(prefix: str) -> str:
     return f"""
     <header class="site-header">
       <a class="brand" href="{prefix}index.html" aria-label="i C. infinity home">
-        <strong>i C. infinity</strong>
-        <span>songs as systems</span>
+        <img src="{prefix}assets/favicon.jpg" width="38" height="38" alt="" aria-hidden="true">
+        <span class="brand-copy">
+          <strong>i C. infinity</strong>
+          <span>songs as systems</span>
+        </span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
       <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
@@ -1283,7 +1286,7 @@ def layout(title: str, description: str, body: str, prefix: str = "", page_class
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/jpeg" href="{prefix}assets/favicon.jpg">
-  <link rel="stylesheet" href="{prefix}assets/css/styles.css">
+  <link rel="stylesheet" href="{prefix}assets/css/styles.css?v=ring-square-fix">
 </head>
 <body>
   {nav(prefix)}
