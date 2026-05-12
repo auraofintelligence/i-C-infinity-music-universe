@@ -1286,7 +1286,7 @@ def layout(title: str, description: str, body: str, prefix: str = "", page_class
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/jpeg" href="{prefix}assets/favicon.jpg">
-  <link rel="stylesheet" href="{prefix}assets/css/styles.css?v=ring-square-fix">
+  <link rel="stylesheet" href="{prefix}assets/css/styles.css?v=album-grid-fix">
 </head>
 <body>
   {nav(prefix)}

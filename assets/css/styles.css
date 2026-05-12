@@ -19,6 +19,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 92px;
 }
 
 body {
@@ -373,6 +374,7 @@ a:hover {
 
 .section {
   padding: clamp(56px, 8vw, 96px) 0;
+  scroll-margin-top: 92px;
 }
 
 .section.tight {
@@ -415,6 +417,10 @@ a:hover {
   gap: 18px;
 }
 
+.album-grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
 [hidden],
 .song-card[hidden],
 .song-card.is-hidden {
@@ -449,29 +455,18 @@ a:hover {
 .album-card a,
 .song-main-link {
   display: grid;
-  height: 100%;
   text-decoration: none;
 }
 
+.song-main-link {
+  height: 100%;
+}
+
 .album-art {
-  position: relative;
   display: grid;
   place-items: center;
   aspect-ratio: 1 / 1;
   background: #111;
-}
-
-.album-art::after {
-  content: "";
-  position: absolute;
-  right: 12px;
-  top: 12px;
-  width: 52px;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  background: url("../favicon.jpg") center / cover no-repeat;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
-  pointer-events: none;
 }
 
 .album-art img {
@@ -518,7 +513,7 @@ a:hover {
 .engine-step p {
   margin: 10px 0 0;
   color: var(--muted);
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 .meta-line,
