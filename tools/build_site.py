@@ -95,7 +95,7 @@ class Album:
 APPLE_ARTIST = "https://music.apple.com/us/artist/i-c-infinity/1781660070"
 SPOTIFY_ARTIST = "https://open.spotify.com/artist/3HK8H81lXFXOEJaSys7xfQ"
 MAIN_SITE = "https://iseeinfinity.com/"
-STRANGE_DOWNLOADS = "https://auraofintelligence.github.io/strange-but-true/downloads.html"
+MUSIC_DOWNLOADS_PAGE = "https://auraofintelligence.github.io/i-C-infinity-music-universe/downloads.html"
 STREAMING_LINKS = REPO / "data" / "streaming-links.json"
 ORDER_PAGE = "https://auraofintelligence.github.io/i-C-infinity-music-universe/order.html"
 STARSEED_ALBUM_SLUG = "starseed-code-from-aura-to-infinity"
@@ -1455,7 +1455,7 @@ def home_page(albums: list[Album], songs: list[Song]) -> str:
         <div class="feature-grid">
           <article class="feature-card"><h3>Package contents</h3><p>Decide which audio, videos, lyrics, covers, notes, and bonus files belong in each pack.</p></article>
           <article class="feature-card"><h3>Format choices</h3><p>Compare MP3, WAV, FLAC, MP4, lyric PDFs, and future physical or USB options.</p></article>
-          <article class="feature-card"><h3>Shop reference</h3><p><a href="{STRANGE_DOWNLOADS}">Use the current Strange But True downloads page</a> as the checkout reference, not the final product structure.</p></article>
+          <article class="feature-card"><h3>Single order path</h3><p><a href="downloads.html">Use this catalogue's packaging lab</a> as the music package reference. Strange But True can link in, but this repo owns the album choices and order form.</p></article>
         </div>
       </div>
     </section>
@@ -1584,7 +1584,7 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
           <div class="action-row">
             <a class="button" href="#choose-package">Choose full archive pack</a>
             <a class="button secondary" href="albums.html">Review album worlds</a>
-            <a class="button secondary" href="https://auraofintelligence.github.io/strange-but-true/downloads.html#music-album-bundles">Compare all packs</a>
+            <a class="button secondary" href="#upgrade-options">Compare all packs</a>
           </div>
         </div>
         <div class="hero-cover"><img src="assets/img/cover-building-protopia.webp" alt="Building Protopia artwork"></div>
@@ -1598,15 +1598,16 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
           <p>The bigger catalogue option: released albums, most of A Protopian Gambit, B-sides, drafts, selected podcasts, and works in progress.</p>
           <div class="action-row">
             <a class="button" href="{order_href("full-archive")}">Start this $50 order</a>
-            <a class="button secondary" href="https://auraofintelligence.github.io/strange-but-true/downloads.html#music-album-bundles">Compare all packs</a>
+            <a class="button secondary" href="#upgrade-options">Compare all packs</a>
           </div>
         </div>
         <div class="panel">
           <h2>Changed Your Mind?</h2>
-          <p>If the full archive feels too big, move down to a one, two, or three album pack before starting the order.</p>
+          <p>If the full archive feels too big, move down to a one, two, or three album pack before starting the order. All tiers now stay inside this single catalogue site.</p>
           <div class="action-row">
-            <a class="button secondary" href="https://auraofintelligence.github.io/i-C-infinity-one-album-pack/">One album</a>
-            <a class="button secondary" href="https://auraofintelligence.github.io/i-C-infinity-three-album-pack/">Three albums</a>
+            <a class="button secondary" href="{order_href("one-album")}">One album</a>
+            <a class="button secondary" href="{order_href("two-album")}">Two albums</a>
+            <a class="button secondary" href="{order_href("three-album")}">Three albums</a>
           </div>
         </div>
       </div>
@@ -2105,7 +2106,8 @@ def export_data(albums: list[Album], songs: list[Song]) -> None:
             "shifting_sands_widescreen": SHIFTING_SANDS_VIDEOS[0]["url"],
             "shifting_sands_portrait": SHIFTING_SANDS_VIDEOS[1]["url"],
             "fourth_album_teaser": FOURTH_ALBUM_TEASER_VIDEO["url"],
-            "paid_downloads": STRANGE_DOWNLOADS,
+            "paid_downloads": MUSIC_DOWNLOADS_PAGE,
+            "order_page": ORDER_PAGE,
         },
         "albums": [
             {
@@ -2155,7 +2157,8 @@ def export_data(albums: list[Album], songs: list[Song]) -> None:
 def export_download_packaging() -> None:
     packages = {
         "status": "draft packaging workbench",
-        "reference_checkout": STRANGE_DOWNLOADS,
+        "reference_checkout": ORDER_PAGE,
+        "catalogue_page": MUSIC_DOWNLOADS_PAGE,
         "principle": "Direct value exchange: the buyer gets organised files, Luke gets cash to keep building.",
         "open_decisions": [
             "Confirm bundle names and prices before publishing buyer-facing copy.",
