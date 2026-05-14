@@ -308,7 +308,7 @@ LANDSCAPE_ALBUM_VIDEO_MAP = {
         "playlist_url": STRADDIE_YOUTUBE_PLAYLIST_URL,
         "title": "Songs of Straddie Lyric Video Playlist",
         "eyebrow": "Landscape Lyric Video Layer",
-        "description": "Landscape lyric videos for the island layer. The playlist can be watched as one flow, while matched videos also sit on their song pages.",
+        "description": "The full Songs of Straddie release has {track_count} songs. This playlist is only the currently visible lyric-video slice, not the complete album. The videos can be watched as one flow, while matched videos also sit on their song pages.",
         "videos": STRADDIE_LYRIC_VIDEOS,
         "playlist_only": STRADDIE_PLAYLIST_ONLY_VIDEOS,
     },
@@ -2000,6 +2000,11 @@ def landscape_album_video_section(album: Album, prefix: str) -> str:
         return ""
     matched_count = sum(len(song.youtube_videos) for song in video_tracks)
     total_count = matched_count + len(playlist_only)
+    description = meta["description"].format(
+        track_count=len(album.tracks),
+        matched_count=matched_count,
+        total_count=total_count,
+    )
     video_index = "".join(
         f"""
         <a class="video-chip" href="{prefix}songs/{esc(song.slug)}/#vertical-video">
@@ -2029,7 +2034,7 @@ def landscape_album_video_section(album: Album, prefix: str) -> str:
         <div class="video-feature-copy">
           <p class="eyebrow">{esc(meta.get('eyebrow', 'Playlist Video Layer'))}</p>
           <h2>{esc(meta['title'])}</h2>
-          <p>{esc(meta['description'])} {total_count} playlist videos are now visible here, with {matched_count} matched into generated song pages.</p>
+          <p>{esc(description)} {total_count} playlist videos are now visible here, with {matched_count} matched into generated song pages.</p>
           <div class="action-row">
             <a class="button" href="{esc(meta['playlist_url'])}" target="_blank" rel="noopener">Open playlist</a>
             <a class="button secondary" href="#track-map">Use track map</a>
