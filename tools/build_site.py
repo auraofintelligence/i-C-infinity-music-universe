@@ -308,7 +308,7 @@ LANDSCAPE_ALBUM_VIDEO_MAP = {
         "playlist_url": STRADDIE_YOUTUBE_PLAYLIST_URL,
         "title": "Songs of Straddie Lyric Video Playlist",
         "eyebrow": "Landscape Lyric Video Layer",
-        "description": "The full Songs of Straddie release has {track_count} songs. This playlist is only the currently visible lyric-video slice, not the complete album. The videos can be watched as one flow, while matched videos also sit on their song pages.",
+        "description": "The full Songs of Straddie release has {track_count} songs. This playlist is only the currently visible lyric-video slice; keep scrolling below the videos for the full album track list, written lyrics, and individual song pages. The videos can also be watched as one flow.",
         "videos": STRADDIE_LYRIC_VIDEOS,
         "playlist_only": STRADDIE_PLAYLIST_ONLY_VIDEOS,
     },
