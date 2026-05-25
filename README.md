@@ -8,6 +8,7 @@ Static GitHub Pages site for the i C. infinity artist catalogue.
 - 103 generated song pages
 - 94 songs with lyrics imported in this pass
 - Infinity Engine notes for turning songs into comics, lyric videos, and vertical micro-dramas
+- Dark-mode Infinity Engine Studio builders for human listening passes, `.md` ingestion profiles, video briefs, storyboards, shots, distribution-fit plans, reviews, and handoffs
 - Draft paid-download packaging notes in `data/download-packaging.json`
 
 ## Rebuild

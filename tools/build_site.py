@@ -1474,6 +1474,7 @@ def nav(prefix: str) -> str:
         <a href="{prefix}downloads.html">Packaging Lab</a>
         <a href="{prefix}order.html">Order</a>
         <a href="{prefix}infinity-engine.html">Infinity Engine</a>
+        <a href="{prefix}builders/index.html">Studio</a>
         <a href="{prefix}about.html">About</a>
         <a href="{prefix}sources.html">Sources</a>
       </nav>
@@ -1481,7 +1482,8 @@ def nav(prefix: str) -> str:
     """
 
 
-def layout(title: str, description: str, body: str, prefix: str = "", page_class: str = "") -> str:
+def layout(title: str, description: str, body: str, prefix: str = "", page_class: str = "", extra_scripts: str = "") -> str:
+    body_class = f' class="{esc(page_class)}"' if page_class else ""
     return f"""<!doctype html>
 <html lang="en-AU">
 <head>
@@ -1493,9 +1495,9 @@ def layout(title: str, description: str, body: str, prefix: str = "", page_class
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/jpeg" href="{prefix}assets/favicon.jpg">
-  <link rel="stylesheet" href="{prefix}assets/css/styles.css?v=album-grid-fix">
+  <link rel="stylesheet" href="{prefix}assets/css/styles.css?v=engine-studio">
 </head>
-<body>
+<body{body_class}>
   {nav(prefix)}
   <main class="page {page_class}">
 {body}
@@ -1514,6 +1516,7 @@ def layout(title: str, description: str, body: str, prefix: str = "", page_class
   <script src="{prefix}assets/js/site.js"></script>
   <script src="{prefix}assets/js/order-config.js"></script>
   <script src="{prefix}assets/js/order.js"></script>
+  {extra_scripts}
 </body>
 </html>
 """
@@ -2173,43 +2176,454 @@ def song_page(song: Song, album: Album) -> str:
 
 def engine_page() -> str:
     steps = [
-        ("1. Obsidian Nexus", "Structure each song as a note with title, album, themes, mood, lyrics, links, and status. This becomes the local truth source."),
-        ("2. Lyrical Intelligence Swarm", "Extract core themes, emotional arc, symbols, narrative tension, and possible visual metaphors before generating expensive media."),
+        ("0. Ingestion Profile", "Collect the song page, lyrics, audio notes, stems, emotion, volume, tone, pitch, beats, sections, and marketing-safe metadata before making visual calls."),
+        ("1. Lyrical Intelligence Swarm", "Extract core themes, emotional arc, symbols, narrative tension, and possible visual metaphors before generating expensive media."),
+        ("2. Auditory Intelligence Pass", "Map BPM, dynamics, key or pitch centre, section markers, beat drops, hooks, stem access, and edit points for timing-led video decisions."),
         ("3. Human Direction Point", "Luke chooses the preferred narrative direction while the system handles drafts, variants, and bookkeeping."),
         ("4. Comic-as-Storyboard", "Make still panels first. They are cheaper, easier to revise, and become a visual test before full video."),
-        ("5. Keyframe-to-Video", "Use approved panels as start and end frames for short vertical video shots with controlled motion."),
-        ("6. Review and Flywheel", "Approve, revise, or export. Audience response and creative notes feed back into the catalogue."),
+        ("5. Keyframe-to-Video", "Use approved panels plus ingestion timing to choose first frames, last frames, and the in-between beats that organise motion."),
+        ("6. Distribution Fit", "Ask where a finished image or video belongs, who it is for, what screen it appears on, and what would feel welcome rather than intrusive."),
+        ("7. Review and Flywheel", "Approve, revise, or export. Audience response and creative notes feed back into the catalogue without intrusive marketing tactics."),
     ]
     step_html = "".join(f'<article class="engine-step"><h3><strong>{esc(title)}</strong></h3><p>{esc(text)}</p></article>' for title, text in steps)
+    lane_cards = "".join(
+        f"""
+        <a class="studio-lane-card" href="{href}">
+          <span>{number}</span>
+          <strong>{title}</strong>
+          <p>{copy}</p>
+        </a>
+        """
+        for number, title, copy, href in [
+            ("001", "Human listen", "Tap signals while listening, tune music-video dials, and export SRT/Markdown cues.", "builders/human-ingestion.html"),
+            ("007", "Ingestion", "Build the song intelligence profile from lyrics, audio, stems, metadata, and target-query inputs.", "builders/ingestion.html"),
+            ("01", "Visual brief", "Choose an existing song page and define the image/video direction.", "builders/music-video.html"),
+            ("02", "Comic storyboard", "Plan the low-cost panels first so the expensive video work receives approved keyframes.", "builders/storyboard.html"),
+            ("03", "Keyframe shot", "Use ingestion timing to choose first/last frames, in-between beats, motion, and generator handoff notes.", "builders/keyframe-shot.html"),
+            ("04", "Distribution fit", "Turn a placement question into platform, screen, metadata, caption, and export choices.", "builders/variants.html"),
+        ]
+    )
     body = f"""
-    <section class="page-hero">
-      <div class="wrap">
-        <div>
+    <section class="studio-hero">
+      <div class="wrap studio-hero-grid">
+        <div class="studio-hero-copy">
           <h1>Infinity Engine</h1>
-          <p>The site is not just a brochure. It is the front door to a production pipeline where songs become lyric briefs, comics, vertical micro-dramas, and future album graphic novels.</p>
+          <p>The production bench where existing i C. infinity songs become ingestion profiles, key art, comic storyboards, image sets, video clips, metadata, variants, first cuts, and feedback loops.</p>
+          <div class="action-row">
+            <a class="button" href="builders/index.html">Open Studio builders</a>
+            <a class="button secondary" href="songs.html">Choose a song</a>
+          </div>
         </div>
-        <div class="hero-cover"><img src="assets/img/cover-building-protopia.webp" alt="Building Protopia artwork"></div>
+        <div class="studio-console" aria-label="Infinity Engine studio console">
+          <div class="console-screen">
+            <img src="assets/img/cover-building-protopia.webp" alt="Building Protopia artwork">
+          </div>
+        </div>
       </div>
     </section>
     <section class="section">
       <div class="wrap">
+        <div class="section-head">
+          <h2>Pipeline Spine</h2>
+          <p>The songs are already written and mapped on the song pages. The Studio ingests lyrics and audio intelligence first, then builds images, clips, edits, metadata, and screen-specific variants.</p>
+        </div>
         <div class="engine-map">{step_html}</div>
+      </div>
+    </section>
+    <section class="section tight">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Studio Builders</h2>
+          <p>Each builder autosaves in the browser, creates a clean `.md` file, and leaves generator choices editable so you can use your favourite image or video tool.</p>
+        </div>
+        <div class="studio-lane-grid">{lane_cards}</div>
       </div>
     </section>
     <section class="section tight">
       <div class="wrap layout-two">
         <div class="panel">
           <h2>Cheapest sensible path</h2>
-          <p>Do the thinking first: lyrics, themes, story beats, panels, then short clips. Keep lip-sync avoided where possible. Use local or low-cost tools for rough passes.</p>
+          <p>Start from the existing song page, complete ingestion, choose the visual moment, make stills and storyboard panels, then create short clips. Keep lip-sync avoided where possible. Use local or low-cost tools for rough passes.</p>
         </div>
         <div class="panel">
           <h2>Best quality path</h2>
-          <p>Use higher-end video generation and smarter assembly only after the comic/storyboard layer proves the idea. The expensive stage should receive already-approved visual direction.</p>
+          <p>Use higher-end image and video generation only after the ingestion and storyboard layers prove the idea. The expensive stage should receive already-approved visual direction, audio timing, metadata, and distribution-fit targets.</p>
         </div>
       </div>
     </section>
     """
-    return layout("Infinity Engine - i C. infinity", "The production engine behind i C. infinity song videos and comics.", body)
+    return layout("Infinity Engine - i C. infinity", "The production engine behind i C. infinity song videos and comics.", body, page_class="studio-page")
+
+
+STUDIO_BUILDERS = [
+    {
+        "key": "humanIngestion",
+        "number": "001",
+        "label": "Human Listen",
+        "title": "Human guided ingestion engine",
+        "headline": "Reverse-engineer a song by listening, tapping signals, and tuning music-video dials.",
+        "note": "Live human signal pads, music-language dials, SRT cues, Markdown export, and human observation logs.",
+        "href": "human-ingestion.html",
+        "destination": "human-ingestion/",
+        "custom": True,
+    },
+    {
+        "key": "ingestion",
+        "number": "007",
+        "label": "Ingestion",
+        "title": "Song intelligence ingestion builder",
+        "headline": "Build the lyrical, auditory, stem, and metadata profile before visual production starts.",
+        "note": "Emotion, volume, tone, pitch, beats, lyrics, stems, metadata, and target-query inputs.",
+        "href": "ingestion.html",
+        "destination": "ingestion/",
+    },
+    {
+        "key": "songBrief",
+        "number": "01",
+        "label": "Visual Brief",
+        "title": "Song-to-visual brief builder",
+        "headline": "Turn the ingestion profile into an image and video production brief.",
+        "note": "Song link, ingestion profile, visual intent, generator preferences, and the next useful action.",
+        "href": "music-video.html",
+        "destination": "visual-briefs/",
+    },
+    {
+        "key": "storyboard",
+        "number": "02",
+        "label": "Storyboard",
+        "title": "Comic-as-storyboard builder",
+        "headline": "Make the cheap still panels before spending on video.",
+        "note": "Panel rhythm, visual world, character references, image prompts, and approval notes.",
+        "href": "storyboard.html",
+        "destination": "storyboards/",
+    },
+    {
+        "key": "shot",
+        "number": "03",
+        "label": "Keyframe Shot",
+        "title": "Keyframe-to-video shot builder",
+        "headline": "Use ingestion timing to organise first frames, last frames, and in-between beats.",
+        "note": "Timing profile, frame choices, beat checkpoints, camera move, generator choice, and edit notes.",
+        "href": "keyframe-shot.html",
+        "destination": "shots/",
+    },
+    {
+        "key": "variant",
+        "number": "04",
+        "label": "Distribution Fit",
+        "title": "Distribution fit planner",
+        "headline": "Turn a placement question into platform, screen, metadata, and export decisions.",
+        "note": "Placement question, best-fit outputs, respectful deployment rules, metadata, captions, and reuse plan.",
+        "href": "variants.html",
+        "destination": "variants/",
+    },
+    {
+        "key": "review",
+        "number": "05",
+        "label": "Review",
+        "title": "First cut review builder",
+        "headline": "Turn a rough cut into precise revision notes.",
+        "note": "Keep, revise, regenerate, manual edit, publish, and audience feedback signals.",
+        "href": "review.html",
+        "destination": "reviews/",
+    },
+    {
+        "key": "handoff",
+        "number": "06",
+        "label": "Handoff",
+        "title": "Agent handoff builder",
+        "headline": "Pass a small production task to a future agent.",
+        "note": "Task, source files, allowed references, generator lane, output format, and boundaries.",
+        "href": "handoff.html",
+        "destination": "handoffs/",
+    },
+]
+
+
+def builder_index_page() -> str:
+    cards = "".join(
+        f"""
+        <a class="studio-builder-card" href="{esc(item['href'])}">
+          <span>{esc(item['number'])}</span>
+          <strong>{esc(item['label'])}</strong>
+          <p>{esc(item['note'])}</p>
+          <em>Save to {esc(item['destination'])}</em>
+        </a>
+        """
+        for item in STUDIO_BUILDERS
+    )
+    quick_actions = [
+        ("Need a song", "Open song catalogue", "Choose the existing source page first.", "../songs.html", "secondary"),
+        ("Human start", "Open listening cockpit", "Tap signals while the song plays.", "human-ingestion.html", "primary"),
+        ("Clean profile", "Fill 007 ingestion", "Turn listening signals into formal song data.", "ingestion.html", "secondary"),
+        ("Have profile", "Make visual brief", "Turn ingestion into direction.", "music-video.html", "secondary"),
+        ("Need targets", "Plan distribution", "Recommend platforms, screens, metadata, and export shape.", "variants.html", "secondary"),
+    ]
+    quick_action_html = "".join(
+        f"""
+        <a class="studio-start-option {kind}" href="{href}">
+          <span>{kicker}</span>
+          <strong>{title}</strong>
+          <em>{note}</em>
+        </a>
+        """
+        for kicker, title, note, href, kind in quick_actions
+    )
+    body = f"""
+    <section class="studio-hero studio-hub-hero">
+      <div class="wrap studio-hero-grid">
+        <div class="studio-hero-copy">
+          <h1>Infinity Engine Studio</h1>
+          <p>A fast production cockpit for turning existing i C. infinity song pages into human listening signals, ingestion profiles, images, video clips, distribution-fit plans, metadata, review notes, and handoffs.</p>
+          <div class="action-row">
+            <a class="button" href="human-ingestion.html">Start here</a>
+            <a class="button secondary" href="../songs.html">Open songs</a>
+            <button class="button secondary" type="button" data-reset-all-forms>Reset all forms</button>
+          </div>
+        </div>
+        <div class="studio-start-panel" aria-label="Fast start actions">
+          <div class="studio-panel-heading">
+            <div>
+              <p class="studio-kicker">Fast start</p>
+              <h2>What do you have?</h2>
+            </div>
+            <p class="studio-destination">No searching</p>
+          </div>
+          <div class="studio-start-options">{quick_action_html}</div>
+        </div>
+      </div>
+    </section>
+    <section class="section tight">
+      <div class="wrap studio-simple-path" aria-label="Simple production path">
+        <article><span>1</span><strong>Song page</strong><em>Pick the existing song.</em></article>
+        <article><span>2</span><strong>Human listen</strong><em>Tap feelings, words, turns, and cues.</em></article>
+        <article><span>3</span><strong>007 profile</strong><em>Clean the signals into song intelligence.</em></article>
+        <article><span>4</span><strong>Distribution fit</strong><em>Choose outputs from song intelligence.</em></article>
+      </div>
+    </section>
+    <section class="section studio-directory">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>All Builders</h2>
+          <p>Use these when the fast-start choices are not specific enough. Each tool downloads or copies agent-ready files into the matching folder. Human listening and 007 ingestion are the source profile for later image, video, and distribution decisions.</p>
+        </div>
+        <div class="studio-builder-grid">{cards}</div>
+      </div>
+    </section>
+    <section class="section tight">
+      <div class="wrap studio-flow">
+        <article><strong>Start from listening.</strong><span>The catalogue is the source. The human cockpit captures timing, feeling, words, sections, stems, and metadata while the song plays.</span></article>
+        <article><strong>Start cheap.</strong><span>Still images and panels prove the idea before video credits get burned.</span></article>
+        <article><strong>Stay tool-flexible.</strong><span>The builder records your favourite image and video generators instead of locking the repo to one provider.</span></article>
+        <article><strong>Distribution fit.</strong><span>Outputs are recommended from song profile, screen context, audience posture, metadata, and respectful deployment notes.</span></article>
+      </div>
+    </section>
+    """
+    return layout("Infinity Engine Studio - i C. infinity", "Fast Markdown builders for i C. infinity image and video production.", body, prefix="../", page_class="studio-page", extra_scripts='<script src="../assets/js/infinity-builder.js"></script>')
+
+
+def human_song_payload(songs: list[Song]) -> list[dict[str, object]]:
+    payload = []
+    for song in songs:
+        youtube_video = primary_youtube_video(song)
+        youtube_url = youtube_video_link(youtube_video) if youtube_video else ""
+        youtube_embed = youtube_video_embed_src(youtube_video["id"], youtube_video.get("playlist_id", "")) if youtube_video else ""
+        spotify_embed = ""
+        spotify_uri = ""
+        spotify_match = re.search(r"open\.spotify\.com/track/([A-Za-z0-9]+)", song.spotify_url)
+        if spotify_match:
+            spotify_id = spotify_match.group(1)
+            spotify_embed = f"https://open.spotify.com/embed/track/{spotify_id}?utm_source=generator"
+            spotify_uri = f"spotify:track:{spotify_id}"
+        apple_embed = song.apple_url.replace("https://music.apple.com/", "https://embed.music.apple.com/") if song.apple_url.startswith("https://music.apple.com/") else ""
+        payload.append(
+            {
+                "title": song.title,
+                "album": song.album_title,
+                "slug": song.slug,
+                "songPage": f"../songs/{song.slug}/",
+                "themes": song.themes,
+                "meaning": song.meaning,
+                "hasLyrics": song.ready(),
+                "lyricStatus": song.lyric_status,
+                "lyrics": song.lyrics,
+                "videoSeeds": song.video_seeds,
+                "spotifyUrl": song.spotify_url,
+                "spotifyEmbed": spotify_embed,
+                "spotifyUri": spotify_uri,
+                "appleUrl": song.apple_url,
+                "appleEmbed": apple_embed,
+                "youtubeUrl": youtube_url,
+                "youtubeEmbed": youtube_embed,
+                "primarySource": youtube_embed or spotify_embed or apple_embed,
+            }
+        )
+    return payload
+
+
+def human_ingestion_page(songs: list[Song]) -> str:
+    song_data = json.dumps(human_song_payload(songs), ensure_ascii=False).replace("</", "<\\/")
+    body = f"""
+    <section class="human-cockpit" data-human-ingestion>
+      <script id="humanSongData" type="application/json">{song_data}</script>
+      <section class="human-cockpit-topbar" aria-label="Human listening session controls">
+        <div class="human-session-brand">
+          <img src="../assets/favicon.jpg" alt="">
+          <div>
+            <p>i C. infinity</p>
+            <h1>001 Human Listen</h1>
+          </div>
+        </div>
+        <div class="human-status-chip" id="humanStatus"><span></span><strong id="listenState">standby</strong></div>
+        <div class="human-mini-focus" aria-label="Current focus cue">
+          <strong>Focus cue</strong>
+          <span id="currentFocus">Hook, turn, first image.</span>
+        </div>
+        <div class="human-session-summary">
+          <strong>Source song</strong>
+          <span id="topbarSong">Load from catalogue</span>
+        </div>
+        <div class="human-topbar-actions" aria-label="Cockpit actions">
+          <button type="button" id="timerStart" data-icon=">">RUN</button>
+          <button type="button" id="timerPause" data-icon="II">PAU</button>
+          <button type="button" id="timerBack" data-icon="-">-5</button>
+          <button type="button" id="timerForward" data-icon="+">+5</button>
+          <button type="button" id="timerMark" data-icon="M">MRK</button>
+          <button type="button" id="fullscreenButton" data-icon="F" aria-label="Toggle full-screen cockpit">FUL</button>
+        </div>
+      </section>
+
+      <section class="human-mobile-tabs" aria-label="Cockpit panels">
+        <button type="button" class="active" data-human-tab="live">Live</button>
+        <button type="button" data-human-tab="source">Source</button>
+        <button type="button" data-human-tab="deck">Pads</button>
+        <button type="button" data-human-tab="output">Export</button>
+      </section>
+
+      <section class="human-cockpit-grid" aria-label="Human guided listening cockpit">
+        <aside class="human-player-panel human-panel" data-human-panel="source" aria-label="Song source and playback">
+          <div class="human-panel-head">
+            <div>
+              <span>Public Song</span>
+              <h2>Load from catalogue</h2>
+            </div>
+            <button class="human-icon-button" type="button" id="resetSession" title="Reset session">RST</button>
+          </div>
+          <label class="human-field">
+            <span>Song</span>
+            <select id="songSelect"></select>
+          </label>
+          <div class="human-link-input">
+            <input id="songLinkInput" type="url" placeholder="paste YouTube, Spotify, Apple, or song-page link">
+            <button type="button" id="embedSongLink">EMB</button>
+          </div>
+          <div class="human-source-frame" id="sourceFrame" aria-label="Selected public song player"></div>
+          <div class="human-link-row" id="sourceLinks"></div>
+        </aside>
+
+        <section class="human-game-panel human-panel" data-human-panel="live" aria-label="Live listening controls">
+          <div class="human-live-timer">
+            <strong id="listenClock">00:00.0</strong>
+            <em id="timerProgress">manual timer ready</em>
+            <div class="human-timer-bar" aria-hidden="true"><span id="timerProgressBar"></span></div>
+          </div>
+          <div class="human-note-row">
+            <label class="human-field">
+              <span>Quick note</span>
+              <input id="quickNote" type="text" placeholder="lyric, image, colour, camera move, feeling..." autocomplete="off">
+            </label>
+            <button type="button" id="addNoteCue">NOTE</button>
+          </div>
+          <div class="human-map-board" aria-label="Song mapping dials">
+            <div class="human-dial-help"><span>tap left -</span><span>tap right +</span></div>
+            <div class="human-map-buttons" id="curveSelectors"></div>
+          </div>
+        </section>
+
+        <aside class="human-output-panel human-panel" data-human-panel="output" aria-label="Infinity Engine output">
+          <div class="human-panel-head">
+            <div>
+              <span>Export</span>
+              <h2>Signals for Infinity</h2>
+            </div>
+            <p id="cueCount">0 cues</p>
+          </div>
+          <div class="human-export-tabs" aria-label="Export format">
+            <button type="button" class="active" data-export-tab="md">MD</button>
+            <button type="button" data-export-tab="srt">SRT</button>
+            <button type="button" data-export-tab="log">LOG</button>
+          </div>
+          <textarea id="humanExport" spellcheck="false" readonly></textarea>
+          <ol id="cueLog" class="human-output-log" hidden></ol>
+          <div class="human-actions">
+            <button type="button" id="copyHumanExport">CPY</button>
+            <button type="button" id="downloadHumanMd">MD</button>
+            <button type="button" id="downloadHumanSrt">SRT</button>
+            <button type="button" id="clearCues">CLR</button>
+          </div>
+        </aside>
+
+        <section class="human-deck-panel human-panel" data-human-panel="deck" aria-label="Signal pad deck">
+          <div class="human-pad-grid" id="signalPads"></div>
+        </section>
+      </section>
+    </section>
+    """
+    scripts = '<script src="../assets/js/human-ingestion.js"></script><script src="https://open.spotify.com/embed/iframe-api/v1" async></script>'
+    return layout("Human Guided Ingestion - i C. infinity", "A human listening cockpit for reverse-engineering songs into Infinity Engine signals.", body, prefix="../", page_class="studio-page human-ingestion-page", extra_scripts=scripts)
+
+
+def builder_footer(active_key: str) -> str:
+    keys = [item["key"] for item in STUDIO_BUILDERS]
+    index = keys.index(active_key)
+    previous_item = STUDIO_BUILDERS[index - 1] if index > 0 else None
+    next_item = STUDIO_BUILDERS[index + 1] if index < len(STUDIO_BUILDERS) - 1 else None
+    previous = f'<a class="studio-footer-card" href="{esc(previous_item["href"])}"><span>Previous</span><strong>{esc(previous_item["label"])}</strong></a>' if previous_item else '<a class="studio-footer-card" href="index.html"><span>Back</span><strong>Studio home</strong></a>'
+    next_link = f'<a class="studio-footer-card next" href="{esc(next_item["href"])}"><span>Next</span><strong>{esc(next_item["label"])}</strong></a>' if next_item else '<a class="studio-footer-card next" href="../infinity-engine.html"><span>Next</span><strong>Pipeline map</strong></a>'
+    return f'<nav class="studio-footer-nav" aria-label="Previous and next Studio pages">{previous}{next_link}</nav>'
+
+
+def builder_page(active_key: str, songs: list[Song]) -> str:
+    item = next(builder for builder in STUDIO_BUILDERS if builder["key"] == active_key)
+    song_data = json.dumps(human_song_payload(songs), ensure_ascii=False).replace("</", "<\\/")
+    shell = f"""
+    <section class="studio-builder-shell wrap" data-infinity-builder data-active-builder="{esc(active_key)}">
+      <script id="studioSongData" type="application/json">{song_data}</script>
+      <aside class="studio-side-nav" aria-label="Studio builder pages"></aside>
+      <section class="studio-form-panel" aria-label="Builder form">
+        <div class="studio-builder-workbar" aria-label="Current builder">
+          <span>{esc(item['number'])}</span>
+          <div>
+            <strong>{esc(item['label'])}</strong>
+            <em>{esc(item['headline'])}</em>
+            <small>Save to {esc(item['destination'])}</small>
+          </div>
+        </div>
+        <div hidden><p id="formType"></p><h2 id="formTitle"></h2><p id="destination"></p></div>
+        <div class="studio-context-strip" id="builderContext" hidden></div>
+        <form id="builderForm" class="studio-field-grid"></form>
+      </section>
+      <aside class="studio-preview-panel" aria-label="Markdown preview">
+        <div class="studio-panel-heading">
+          <div>
+            <p class="studio-kicker">Output</p>
+            <h2>Generated Markdown</h2>
+          </div>
+          <p class="studio-filename" id="filename"></p>
+        </div>
+        <textarea id="markdownPreview" class="studio-markdown-preview" readonly spellcheck="false" wrap="soft"></textarea>
+        <div class="studio-actions" aria-label="Output actions">
+          <button class="button" type="button" id="downloadButton">Download .md</button>
+          <button class="button secondary" type="button" id="copyButton">Copy</button>
+          <button class="button secondary" type="button" id="clearButton">Reset page</button>
+          <button class="button secondary danger" type="button" data-reset-all-forms>Reset all forms</button>
+        </div>
+        <p class="studio-status" id="statusLine" role="status" aria-live="polite">Autosaves in this browser.</p>
+      </aside>
+    </section>
+    <div class="wrap">{builder_footer(active_key)}</div>
+    """
+    return layout(f"{item['title']} - i C. infinity", item["note"], shell, prefix="../", page_class="studio-page studio-builder-page", extra_scripts='<script src="../assets/js/infinity-builder.js"></script>')
 
 
 def about_page() -> str:
@@ -2278,6 +2692,7 @@ def sources_page() -> str:
 
 def write(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
+    content = "\n".join(line.rstrip() for line in content.splitlines()) + "\n"
     path.write_text(content, encoding="utf-8", newline="\n")
 
 
@@ -2403,6 +2818,7 @@ Static GitHub Pages site for the i C. infinity artist catalogue.
 - {len(songs)} generated song pages
 - {ready} songs with lyrics imported in this pass
 - Infinity Engine notes for turning songs into comics, lyric videos, and vertical micro-dramas
+- Dark-mode Infinity Engine Studio builders for human listening passes, `.md` ingestion profiles, video briefs, storyboards, shots, distribution-fit plans, reviews, and handoffs
 - Draft paid-download packaging notes in `data/download-packaging.json`
 
 ## Rebuild
@@ -2437,6 +2853,12 @@ def main() -> None:
     write(REPO / "infinity-engine.html", engine_page())
     write(REPO / "about.html", about_page())
     write(REPO / "sources.html", sources_page())
+    write(REPO / "builders" / "index.html", builder_index_page())
+    for builder in STUDIO_BUILDERS:
+        if builder.get("key") == "humanIngestion":
+            write(REPO / "builders" / builder["href"], human_ingestion_page(songs))
+        else:
+            write(REPO / "builders" / builder["href"], builder_page(builder["key"], songs))
     write(REPO / "robots.txt", "User-agent: *\nAllow: /\n")
 
     for album in albums:

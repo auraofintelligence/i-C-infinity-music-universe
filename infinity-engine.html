@@ -9,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/jpeg" href="assets/favicon.jpg">
-  <link rel="stylesheet" href="assets/css/styles.css?v=album-grid-fix">
+  <link rel="stylesheet" href="assets/css/styles.css?v=engine-studio">
 </head>
-<body>
-  
+<body class="studio-page">
+
     <header class="site-header">
       <a class="brand" href="index.html" aria-label="i C. infinity home">
         <img src="assets/favicon.jpg" width="38" height="38" alt="" aria-hidden="true">
@@ -28,40 +28,98 @@
         <a href="downloads.html">Packaging Lab</a>
         <a href="order.html">Order</a>
         <a href="infinity-engine.html">Infinity Engine</a>
+        <a href="builders/index.html">Studio</a>
         <a href="about.html">About</a>
         <a href="sources.html">Sources</a>
       </nav>
     </header>
-    
-  <main class="page ">
 
-    <section class="page-hero">
-      <div class="wrap">
-        <div>
+  <main class="page studio-page">
+
+    <section class="studio-hero">
+      <div class="wrap studio-hero-grid">
+        <div class="studio-hero-copy">
           <h1>Infinity Engine</h1>
-          <p>The site is not just a brochure. It is the front door to a production pipeline where songs become lyric briefs, comics, vertical micro-dramas, and future album graphic novels.</p>
+          <p>The production bench where existing i C. infinity songs become ingestion profiles, key art, comic storyboards, image sets, video clips, metadata, variants, first cuts, and feedback loops.</p>
+          <div class="action-row">
+            <a class="button" href="builders/index.html">Open Studio builders</a>
+            <a class="button secondary" href="songs.html">Choose a song</a>
+          </div>
         </div>
-        <div class="hero-cover"><img src="assets/img/cover-building-protopia.webp" alt="Building Protopia artwork"></div>
+        <div class="studio-console" aria-label="Infinity Engine studio console">
+          <div class="console-screen">
+            <img src="assets/img/cover-building-protopia.webp" alt="Building Protopia artwork">
+          </div>
+        </div>
       </div>
     </section>
     <section class="section">
       <div class="wrap">
-        <div class="engine-map"><article class="engine-step"><h3><strong>1. Obsidian Nexus</strong></h3><p>Structure each song as a note with title, album, themes, mood, lyrics, links, and status. This becomes the local truth source.</p></article><article class="engine-step"><h3><strong>2. Lyrical Intelligence Swarm</strong></h3><p>Extract core themes, emotional arc, symbols, narrative tension, and possible visual metaphors before generating expensive media.</p></article><article class="engine-step"><h3><strong>3. Human Direction Point</strong></h3><p>Luke chooses the preferred narrative direction while the system handles drafts, variants, and bookkeeping.</p></article><article class="engine-step"><h3><strong>4. Comic-as-Storyboard</strong></h3><p>Make still panels first. They are cheaper, easier to revise, and become a visual test before full video.</p></article><article class="engine-step"><h3><strong>5. Keyframe-to-Video</strong></h3><p>Use approved panels as start and end frames for short vertical video shots with controlled motion.</p></article><article class="engine-step"><h3><strong>6. Review and Flywheel</strong></h3><p>Approve, revise, or export. Audience response and creative notes feed back into the catalogue.</p></article></div>
+        <div class="section-head">
+          <h2>Pipeline Spine</h2>
+          <p>The songs are already written and mapped on the song pages. The Studio ingests lyrics and audio intelligence first, then builds images, clips, edits, metadata, and screen-specific variants.</p>
+        </div>
+        <div class="engine-map"><article class="engine-step"><h3><strong>0. Ingestion Profile</strong></h3><p>Collect the song page, lyrics, audio notes, stems, emotion, volume, tone, pitch, beats, sections, and marketing-safe metadata before making visual calls.</p></article><article class="engine-step"><h3><strong>1. Lyrical Intelligence Swarm</strong></h3><p>Extract core themes, emotional arc, symbols, narrative tension, and possible visual metaphors before generating expensive media.</p></article><article class="engine-step"><h3><strong>2. Auditory Intelligence Pass</strong></h3><p>Map BPM, dynamics, key or pitch centre, section markers, beat drops, hooks, stem access, and edit points for timing-led video decisions.</p></article><article class="engine-step"><h3><strong>3. Human Direction Point</strong></h3><p>Luke chooses the preferred narrative direction while the system handles drafts, variants, and bookkeeping.</p></article><article class="engine-step"><h3><strong>4. Comic-as-Storyboard</strong></h3><p>Make still panels first. They are cheaper, easier to revise, and become a visual test before full video.</p></article><article class="engine-step"><h3><strong>5. Keyframe-to-Video</strong></h3><p>Use approved panels plus ingestion timing to choose first frames, last frames, and the in-between beats that organise motion.</p></article><article class="engine-step"><h3><strong>6. Distribution Fit</strong></h3><p>Ask where a finished image or video belongs, who it is for, what screen it appears on, and what would feel welcome rather than intrusive.</p></article><article class="engine-step"><h3><strong>7. Review and Flywheel</strong></h3><p>Approve, revise, or export. Audience response and creative notes feed back into the catalogue without intrusive marketing tactics.</p></article></div>
+      </div>
+    </section>
+    <section class="section tight">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Studio Builders</h2>
+          <p>Each builder autosaves in the browser, creates a clean `.md` file, and leaves generator choices editable so you can use your favourite image or video tool.</p>
+        </div>
+        <div class="studio-lane-grid">
+        <a class="studio-lane-card" href="builders/human-ingestion.html">
+          <span>001</span>
+          <strong>Human listen</strong>
+          <p>Tap signals while listening, tune music-video dials, and export SRT/Markdown cues.</p>
+        </a>
+
+        <a class="studio-lane-card" href="builders/ingestion.html">
+          <span>007</span>
+          <strong>Ingestion</strong>
+          <p>Build the song intelligence profile from lyrics, audio, stems, metadata, and target-query inputs.</p>
+        </a>
+
+        <a class="studio-lane-card" href="builders/music-video.html">
+          <span>01</span>
+          <strong>Visual brief</strong>
+          <p>Choose an existing song page and define the image/video direction.</p>
+        </a>
+
+        <a class="studio-lane-card" href="builders/storyboard.html">
+          <span>02</span>
+          <strong>Comic storyboard</strong>
+          <p>Plan the low-cost panels first so the expensive video work receives approved keyframes.</p>
+        </a>
+
+        <a class="studio-lane-card" href="builders/keyframe-shot.html">
+          <span>03</span>
+          <strong>Keyframe shot</strong>
+          <p>Use ingestion timing to choose first/last frames, in-between beats, motion, and generator handoff notes.</p>
+        </a>
+
+        <a class="studio-lane-card" href="builders/variants.html">
+          <span>04</span>
+          <strong>Distribution fit</strong>
+          <p>Turn a placement question into platform, screen, metadata, caption, and export choices.</p>
+        </a>
+        </div>
       </div>
     </section>
     <section class="section tight">
       <div class="wrap layout-two">
         <div class="panel">
           <h2>Cheapest sensible path</h2>
-          <p>Do the thinking first: lyrics, themes, story beats, panels, then short clips. Keep lip-sync avoided where possible. Use local or low-cost tools for rough passes.</p>
+          <p>Start from the existing song page, complete ingestion, choose the visual moment, make stills and storyboard panels, then create short clips. Keep lip-sync avoided where possible. Use local or low-cost tools for rough passes.</p>
         </div>
         <div class="panel">
           <h2>Best quality path</h2>
-          <p>Use higher-end video generation and smarter assembly only after the comic/storyboard layer proves the idea. The expensive stage should receive already-approved visual direction.</p>
+          <p>Use higher-end image and video generation only after the ingestion and storyboard layers prove the idea. The expensive stage should receive already-approved visual direction, audio timing, metadata, and distribution-fit targets.</p>
         </div>
       </div>
     </section>
-    
+
   </main>
   <footer class="footer">
     <div class="footer-inner">
@@ -77,5 +135,6 @@
   <script src="assets/js/site.js"></script>
   <script src="assets/js/order-config.js"></script>
   <script src="assets/js/order.js"></script>
+
 </body>
 </html>
