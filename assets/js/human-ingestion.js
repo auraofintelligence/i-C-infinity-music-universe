@@ -33,6 +33,19 @@ const metricDefinitions = [
   { key: "scale", label: "Scale", low: "close", high: "epic", fallback: ["scale", "shareFit"], value: 50 },
   { key: "finish", label: "Finish", low: "raw", high: "glossy", fallback: ["finish", "dynamics", "sonicPressure"], value: 48 }
 ];
+
+const challengePrompts = [
+  { cue: "HOOK", colour: "gold", title: "Find the hook", question: "When does the song make its promise?", note: "Hook promise: " },
+  { cue: "IMAGE", colour: "teal", title: "Catch the first image", question: "What do you see before you explain it?", note: "First image: " },
+  { cue: "TURN", colour: "coral", title: "Mark the turn", question: "Where does the meaning, section, or feeling change?", note: "Turn point: " },
+  { cue: "LIFT", colour: "green", title: "Feel the lift", question: "Where does the song rise, brighten, widen, or invite motion?", note: "Lift: " },
+  { cue: "DROP", colour: "coral", title: "Catch the drop", question: "Where does energy fall, thin out, hit harder, or reset?", note: "Drop/reset: " },
+  { cue: "CAM", colour: "teal", title: "Choose the camera instinct", question: "Should the shot hold, push in, drift, cut, or reveal?", note: "Camera instinct: " },
+  { cue: "LIGHT", colour: "gold", title: "Choose the light", question: "Does the moment feel dawn, glare, glow, shadow, neon, or natural?", note: "Light: " },
+  { cue: "CHORUS", colour: "gold", title: "Name the section", question: "Is this intro, verse, chorus, bridge, solo, or outro?", note: "Section: " },
+  { cue: "HOLD", colour: "green", title: "Protect a stillness", question: "Where should the video stop performing and let the song breathe?", note: "Hold: " },
+  { cue: "BREAK", colour: "ink", title: "Protect the song", question: "What should AI avoid, soften, or respect here?", note: "Guardrail: " }
+];
 let spotifyIframeApi = null;
 const spotifyApiCallbacks = [];
 
@@ -85,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const exportBox = document.getElementById("humanExport");
   const curveSelectors = document.getElementById("curveSelectors");
   const currentFocus = document.getElementById("currentFocus");
+  const listenChallenge = document.getElementById("listenChallenge");
   let fallbackFullscreen = false;
 
   state.selectedSlug ||= songs[0]?.slug || "";
@@ -93,6 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
   state.customSource ||= null;
   state.elapsed ||= 0;
   state.sourceDuration ||= 0;
+  state.challengeIndex ||= 0;
   state.cues ||= [];
   state.curves ||= [];
   state.currentValues = normaliseMetricValues(state.currentValues);
@@ -138,6 +153,13 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
       addCue("NOTE", "human note", "gold");
     }
+  });
+  listenChallenge?.addEventListener("click", (event) => {
+    const action = event.target.closest("[data-challenge-action]")?.dataset.challengeAction;
+    if (!action) return;
+    if (action === "previous") moveChallenge(-1);
+    if (action === "next") moveChallenge(1);
+    if (action === "cue") useChallengeCue();
   });
   fullscreenButton.addEventListener("click", toggleFullscreen);
   document.addEventListener("fullscreenchange", updateFullscreenState);
@@ -219,10 +241,51 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderAll(options = {}) {
     if (options.source !== false) renderSource();
     renderClock();
+    renderChallenge();
     renderCurveMap();
     renderLog();
     updateExport();
     syncStudioContext();
+  }
+
+  function renderChallenge() {
+    if (!listenChallenge) return;
+    const prompt = activeChallenge();
+    const round = Number(state.challengeIndex || 0) + 1;
+    listenChallenge.innerHTML = `
+      <div class="human-challenge-head">
+        <div>
+          <span>Round ${round} of ${challengePrompts.length}</span>
+          <strong>${escapeHtml(prompt.title)}</strong>
+        </div>
+        <em>${escapeHtml(prompt.cue)}</em>
+      </div>
+      <p>${escapeHtml(prompt.question)}</p>
+      <div class="human-challenge-actions">
+        <button type="button" data-challenge-action="previous">Prev</button>
+        <button type="button" data-challenge-action="cue">Cue ${escapeHtml(prompt.cue)}</button>
+        <button type="button" data-challenge-action="next">Next</button>
+      </div>
+    `;
+    if (currentFocus) currentFocus.textContent = `${prompt.title}: ${prompt.question}`;
+  }
+
+  function activeChallenge() {
+    return challengePrompts[state.challengeIndex % challengePrompts.length] || challengePrompts[0];
+  }
+
+  function moveChallenge(delta) {
+    const total = challengePrompts.length;
+    state.challengeIndex = (Number(state.challengeIndex || 0) + delta + total) % total;
+    persist();
+    renderChallenge();
+  }
+
+  function useChallengeCue() {
+    const prompt = activeChallenge();
+    if (!clean(quickNote.value)) quickNote.value = prompt.note;
+    addCue(prompt.cue, prompt.title, prompt.colour);
+    moveChallenge(1);
   }
 
   function renderSource() {

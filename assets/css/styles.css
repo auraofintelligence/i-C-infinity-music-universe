@@ -1834,6 +1834,106 @@ body.studio-page .panel p {
   margin-top: 12px;
 }
 
+.studio-question-deck {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid rgba(46, 208, 189, 0.26);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 0 0, rgba(46, 208, 189, 0.16), transparent 42%),
+    rgba(5, 7, 10, 0.54);
+}
+
+.studio-question-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: end;
+}
+
+.studio-question-head div {
+  display: grid;
+  gap: 3px;
+}
+
+.studio-question-head span,
+.studio-question-head em,
+.studio-question-card span,
+.studio-question-card em {
+  font-family: "Fira Code", Consolas, monospace;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.studio-question-head span,
+.studio-question-card em {
+  color: var(--studio-muted);
+}
+
+.studio-question-head strong {
+  color: var(--studio-ink);
+  font-size: 1rem;
+}
+
+.studio-question-head em,
+.studio-question-card span {
+  color: var(--studio-gold);
+  font-style: normal;
+}
+
+.studio-question-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.studio-question-card {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 4px 8px;
+  align-items: start;
+  min-height: 74px;
+  padding: 10px;
+  border: 1px solid rgba(224, 238, 231, 0.14);
+  border-radius: 7px;
+  background:
+    linear-gradient(135deg, rgba(46, 208, 189, 0.08), rgba(255, 122, 82, 0.03)),
+    #0b1219;
+  color: var(--studio-ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.studio-question-card:hover,
+.studio-question-card:focus-visible {
+  border-color: rgba(46, 208, 189, 0.54);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.studio-question-card.answered {
+  border-color: rgba(117, 214, 137, 0.42);
+  background:
+    linear-gradient(135deg, rgba(117, 214, 137, 0.12), rgba(46, 208, 189, 0.05)),
+    #0b1219;
+}
+
+.studio-question-card strong {
+  min-width: 0;
+  color: var(--studio-ink);
+  font-size: 0.86rem;
+  line-height: 1.24;
+  overflow-wrap: anywhere;
+}
+
+.studio-question-card em {
+  grid-column: 2;
+  font-style: normal;
+}
+
 .studio-field {
   display: grid;
   gap: 7px;
@@ -2603,6 +2703,10 @@ body.studio-page .back-to-top {
   .studio-simple-path {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .studio-question-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 560px) {
@@ -2638,6 +2742,7 @@ body.studio-page .back-to-top {
   .studio-start-option,
   .studio-simple-path,
   .studio-simple-path article,
+  .studio-question-card,
   .human-note-row,
   .human-log li {
     grid-template-columns: 1fr;
@@ -2649,8 +2754,10 @@ body.studio-page .back-to-top {
   }
 
   .studio-start-option span,
-  .studio-simple-path span {
+  .studio-simple-path span,
+  .studio-question-card em {
     grid-row: auto;
+    grid-column: auto;
   }
 }
 
@@ -3045,6 +3152,89 @@ body.studio-page .back-to-top {
   transition: width 0.12s linear;
 }
 
+.human-challenge {
+  display: grid;
+  gap: 7px;
+  margin-top: 6px;
+  padding: 10px;
+  border: 1px solid rgba(240, 197, 91, 0.28);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(240, 197, 91, 0.1), rgba(46, 208, 189, 0.06)),
+    rgba(5, 7, 10, 0.62);
+}
+
+.human-challenge-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.human-challenge-head div {
+  display: grid;
+  gap: 2px;
+}
+
+.human-challenge-head span,
+.human-challenge-head em {
+  color: var(--studio-gold);
+  font-family: "Fira Code", Consolas, monospace;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.human-challenge-head strong {
+  color: var(--studio-ink);
+  font-size: 1rem;
+  line-height: 1.15;
+}
+
+.human-challenge-head em {
+  min-width: 44px;
+  padding: 4px 7px;
+  border: 1px solid rgba(46, 208, 189, 0.26);
+  border-radius: 999px;
+  color: var(--studio-teal);
+  font-style: normal;
+  text-align: center;
+}
+
+.human-challenge p {
+  margin: 0;
+  color: var(--studio-muted);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.human-challenge-actions {
+  display: grid;
+  grid-template-columns: 0.72fr 1fr 0.72fr;
+  gap: 7px;
+}
+
+.human-challenge-actions button {
+  min-height: 34px;
+  border: 1px solid rgba(224, 238, 231, 0.15);
+  border-radius: 7px;
+  background: rgba(8, 13, 18, 0.82);
+  color: var(--studio-ink);
+  font-family: "Fira Code", Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.human-challenge-actions button:hover,
+.human-challenge-actions button:focus-visible {
+  border-color: rgba(46, 208, 189, 0.56);
+  outline: none;
+  background: rgba(46, 208, 189, 0.12);
+}
+
 .human-note-row {
   margin-top: 4px;
 }
@@ -3362,6 +3552,7 @@ body.human-fullscreen .human-cockpit {
   }
 
   .human-note-row,
+  .human-challenge-actions,
   .human-log li,
   .human-output-log li {
     grid-template-columns: 1fr;

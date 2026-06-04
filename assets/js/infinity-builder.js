@@ -417,6 +417,79 @@ const forms = {
   }
 };
 
+const questionDecks = {
+  ingestion: [
+    question("lyricalSummary", "What is the song saying in plain human language?", "message"),
+    question("emotionArc", "Where does the feeling open, lift, turn, peak, and land?", "arc"),
+    question("keywordsAndSymbols", "Which lyric, place, object, or symbol must not be missed?", "motifs"),
+    question("instrumentation", "What sounds carry the song: voice, rhythm, texture, or stem?", "sound"),
+    question("beatMap", "What are the first useful timecodes: intro, hook, turn, chorus, ending?", "timing"),
+    question("videoTimingNotes", "Where should the video breathe, cut, hold, or move?", "edit"),
+    question("metadataTags", "What tags would help a respectful librarian find this later?", "metadata"),
+    question("targetQuery", "Where could this finished image or video appear without annoying people?", "placement"),
+    question("risksOrAvoid", "What could AI overdo, flatten, misunderstand, or make cheesy?", "guardrail"),
+    question("nextAction", "What is the next small action before visual generation?", "next")
+  ],
+  songBrief: [
+    question("visualMoment", "What image appears first before style, prompts, or platforms?", "first image"),
+    question("visualIntent", "What should the viewer feel or understand after three seconds?", "intent"),
+    question("assetTypes", "Which image and video outputs are actually needed now?", "output"),
+    question("visualWorld", "What visual world fits the song without fighting it?", "world"),
+    question("audioTimingNotes", "Which 007 timing cues should shape the visual cut?", "timing"),
+    question("targetQuery", "Who is this for, where might it appear, and what screen matters?", "audience"),
+    question("metadataSeeds", "Which tags, captions, colours, and symbols should travel forward?", "metadata"),
+    question("mustKeep", "What must stay true to the song, place, and feeling?", "protect"),
+    question("avoid", "What should the generator avoid?", "avoid")
+  ],
+  storyboard: [
+    question("panelBeats", "What are the opening, turning, peak, and ending panels?", "sequence"),
+    question("characterRefs", "Who or what carries the viewer through the panels?", "subject"),
+    question("settingRefs", "Where does the sequence live?", "place"),
+    question("artStyle", "What style and palette can repeat across every panel?", "look"),
+    question("imagePromptFormula", "What should every image prompt include?", "prompt stack"),
+    question("approvalNotes", "What would make this storyboard approved enough for video?", "approval"),
+    question("nextAction", "What is the next panel or image job?", "next")
+  ],
+  shot: [
+    question("shotOrganisation", "What single visible change happens in this shot?", "change"),
+    question("firstKeyframeMoment", "What is true in the first keyframe before movement starts?", "first"),
+    question("inbetweenBeats", "What two to five beats happen between first and last frame?", "middle"),
+    question("lastKeyframeMoment", "What is true in the final keyframe?", "last"),
+    question("cameraMotion", "What camera move supports the music without showing off?", "camera"),
+    question("audioCue", "What lyric, beat, or stem should the edit obey?", "cue"),
+    question("videoPrompt", "What should the video generator see and do?", "generate"),
+    question("nextAction", "What would make this safe to generate now?", "next")
+  ],
+  variant: [
+    question("sourceAsset", "What finished image, video, edit, or still are we placing?", "asset"),
+    question("targetQuery", "Who sees it, where are they, and what screen are they on?", "query"),
+    question("audienceMoment", "Why would the viewer welcome this instead of feeling interrupted?", "respect"),
+    question("recommendedPlacements", "Which platform or screen versions are actually worth making?", "outputs"),
+    question("safeArea", "What must change for aspect ratio, duration, captions, and safe areas?", "format"),
+    question("captionCopy", "What caption, title, and alt text helps without hype?", "copy"),
+    question("metadataPackage", "What metadata proves this placement fits the song?", "metadata"),
+    question("reusePlan", "How can this become the next useful version with less effort?", "reuse"),
+    question("nonIntrusiveRules", "What are the respect rules for deployment?", "guardrail")
+  ],
+  review: [
+    question("clipList", "What is actually in the cut, in order?", "timeline"),
+    question("keepMoments", "Which moment definitely works and should survive edits?", "keep"),
+    question("reviseClips", "Where does the cut confuse, drag, or overstate?", "revise"),
+    question("manualEditNotes", "What should be manually edited instead of regenerated?", "edit"),
+    question("publishFormat", "Which platform version is this cut trying to become?", "format"),
+    question("feedbackSignals", "What signal would prove it landed respectfully?", "signal"),
+    question("nextAction", "What is the next specific edit task?", "next")
+  ],
+  handoff: [
+    question("task", "What exact small job should the next agent do?", "task"),
+    question("workFrom", "What files, pages, cues, or exports should they start from?", "inputs"),
+    question("allowedSources", "What sources are allowed for this task?", "sources"),
+    question("doNotTouch", "What must they not touch, invent, or overwrite?", "guardrail"),
+    question("expectedOutput", "What should come back when the job is done?", "output"),
+    question("nextAction", "What is the next checkpoint for Luke?", "checkpoint")
+  ]
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("[data-reset-all-forms]").forEach((button) => {
     button.addEventListener("click", resetAllBuilderForms);
@@ -473,6 +546,7 @@ document.addEventListener("DOMContentLoaded", () => {
     destination.textContent = config.destination;
     renderContextStrip(data);
     formElement.innerHTML = "";
+    renderQuestionDeck(config, data);
 
     config.fields.filter((item) => !item.hidden).forEach((item) => {
       const wrapper = document.createElement("div");
@@ -499,6 +573,75 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     updatePreview();
+  }
+
+  function renderQuestionDeck(config, data) {
+    const deck = questionDecks[activeForm] || [];
+    if (!deck.length) return;
+
+    const visibleFieldIds = new Set(config.fields.filter((item) => !item.hidden).map((item) => item.id));
+    const usableDeck = deck.filter((item) => visibleFieldIds.has(item.target));
+    if (!usableDeck.length) return;
+
+    const answered = usableDeck.filter((item) => clean(data[item.target])).length;
+    const section = document.createElement("section");
+    section.className = "studio-question-deck";
+    section.setAttribute("aria-label", "Guided question path");
+
+    const header = document.createElement("div");
+    header.className = "studio-question-head";
+    const headerCopy = document.createElement("div");
+    const kicker = document.createElement("span");
+    kicker.textContent = "Question path";
+    const title = document.createElement("strong");
+    title.textContent = "Pick the next useful question";
+    headerCopy.append(kicker, title);
+    const count = document.createElement("em");
+    count.textContent = `${answered}/${usableDeck.length} answered`;
+    header.append(headerCopy, count);
+    section.appendChild(header);
+
+    const grid = document.createElement("div");
+    grid.className = "studio-question-grid";
+    usableDeck.forEach((item, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = clean(data[item.target]) ? "studio-question-card answered" : "studio-question-card";
+      button.dataset.questionTarget = item.target;
+      button.addEventListener("click", () => applyQuestionPrompt(item, button));
+
+      const number = document.createElement("span");
+      number.textContent = String(index + 1).padStart(2, "0");
+      const text = document.createElement("strong");
+      text.textContent = item.text;
+      const note = document.createElement("em");
+      note.textContent = item.note;
+      button.append(number, text, note);
+      grid.appendChild(button);
+    });
+    section.appendChild(grid);
+    formElement.appendChild(section);
+  }
+
+  function applyQuestionPrompt(item, button) {
+    const target = document.getElementById(item.target);
+    if (!target) return;
+    const data = getFormState(activeForm);
+    const existing = clean(data[item.target] || target.value);
+    const starter = `Question: ${item.text}\nAnswer: `;
+    const nextValue = existing ? `${existing}\n\n${starter}` : starter;
+
+    updateField(item.target, nextValue, false);
+    target.value = nextValue;
+    target.focus();
+    if (typeof target.setSelectionRange === "function") {
+      const end = target.value.length;
+      target.setSelectionRange(end, end);
+    }
+    target.scrollIntoView({ block: "center", behavior: "smooth" });
+    button.classList.add("answered");
+    updatePreview();
+    statusLine.textContent = "Question added to the matching field.";
   }
 
   function renderContextStrip(data) {
@@ -898,6 +1041,10 @@ function field(id, label, type = "text", options = null, hint = "", flags = {}) 
 
 function hiddenField(id, label, type = "text", options = null, hint = "") {
   return field(id, label, type, options, hint, { hidden: true });
+}
+
+function question(target, text, note) {
+  return { target, text, note };
 }
 
 function readStudioSongData() {
