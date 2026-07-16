@@ -12,7 +12,7 @@ from urllib.parse import quote
 
 
 REPO = Path(__file__).resolve().parents[1]
-LYRIC_SOURCE = Path(r"C:\Users\lukec\Downloads\4th i C. infinity album A Protopian Gambit (lyrics).md")
+LYRIC_SOURCE = Path(r"C:\Users\lukec\Downloads\4th i C. infinity album (24) A Protopian Gambit (24 lyrics).md")
 STARSEED_TEXT_LYRIC_SOURCE = Path(r"C:\Users\lukec\Downloads\3rd Album Starseed Code.txt")
 ALBUM_LYRIC_ROOT = Path(r"C:\Users\lukec\Documents\Beyond\69 i C. infinity - Music\Albums")
 SINGLES_LYRIC_ROOT = Path(r"C:\Users\lukec\Documents\Beyond\69 i C. infinity - Music\Singles")
@@ -898,7 +898,7 @@ def parse_protopian_lyrics() -> dict[str, dict[str, str]]:
         return {}
 
     raw = LYRIC_SOURCE.read_text(encoding="utf-8", errors="replace")
-    matches = list(re.finditer(r"^###\s+(.+?)\s+\{#.+?\}\s*$", raw, flags=re.M))
+    matches = list(re.finditer(r"^###[ \t]+(.+?)[ \t]+\{#.+?\}[ \t]*$", raw, flags=re.M))
     songs: dict[str, dict[str, str]] = {}
     for index, match in enumerate(matches):
         title = clean_text(match.group(1))
@@ -913,7 +913,14 @@ def parse_protopian_lyrics() -> dict[str, dict[str, str]]:
             lyrics = block.split("Song Lyrics:", 1)[1].strip()
         else:
             lyrics = block.strip()
-        songs[slugify(title)] = {"title": title, "date": date, "lyrics": clean_text(lyrics)}
+        # Alternative versions can share a title while Luke decides which recording
+        # belongs on the final album. Keep every supplied version in source order.
+        key = slugify(title)
+        version = 2
+        while key in songs:
+            key = f"{slugify(title)}-version-{version}"
+            version += 1
+        songs[key] = {"title": title, "date": date, "lyrics": clean_text(lyrics)}
     return songs
 
 
@@ -1509,7 +1516,8 @@ def layout(title: str, description: str, body: str, prefix: str = "", page_class
         <span>Music, lyrics, systems, and video seeds.</span>
       </div>
       <div>
-        <a href="{prefix}sources.html">Sources and notes</a>
+        <a href="{prefix}sources.html">Sources and notes</a> &middot;
+        <a href="{prefix}site-map.html">Site map</a>
       </div>
     </div>
   </footer>
@@ -1587,7 +1595,15 @@ def track_row(song: Song, prefix: str = "") -> str:
 
 def home_page(albums: list[Album], songs: list[Song]) -> str:
     ready_count = sum(1 for song in songs if song.ready())
-    shifting_song = next((song for song in songs if slugify(song.title) == "shifting-sands-of-timeless-redlands"), None)
+    shifting_song = next(
+        (
+            song
+            for song in songs
+            if slugify(song.title) == "shifting-sands-of-timeless-redlands"
+            and primary_youtube_video(song)
+        ),
+        None,
+    )
     expo_section = ""
     if shifting_song:
         portrait_video = next((video for video in shifting_song.youtube_videos if video.get("orientation") == "vertical"), primary_youtube_video(shifting_song))
@@ -2139,6 +2155,13 @@ def song_page(song: Song, album: Album) -> str:
     spotify_embed = spotify_embed_html(song)
     youtube_embed = youtube_song_embed_html(song)
     media_embeds = spotify_embed + youtube_embed
+    content_warning = ""
+    if slugify(song.title) in {"don-t-try-to-fix-me", "dont-try-to-fix-me"}:
+        content_warning = """
+          <div class="notice content-warning">
+            <strong>Language warning:</strong> This song contains 53 F-bombs. The language is deliberate: it carries the urgency, frustration, and seriousness of the times rather than softening them for comfort.
+          </div>
+        """
     body = f"""
     <section class="song-title">
       <div class="wrap">
@@ -2155,6 +2178,7 @@ def song_page(song: Song, album: Album) -> str:
             <p>{esc(song.meaning)}</p>
           </div>
           {media_embeds}
+          {content_warning}
           <h2>Lyrics</h2>
           <pre class="lyrics">{lyrics}</pre>
           <h2>Video Seed Ideas</h2>
@@ -2691,6 +2715,44 @@ def sources_page() -> str:
     return layout("Sources - i C. infinity", "Sources and notes for the i C. infinity music universe site.", body)
 
 
+def site_map_page(albums: list[Album], songs: list[Song]) -> str:
+    main_links = [
+        ("Home", "index.html"),
+        ("Albums", "albums.html"),
+        ("Songs", "songs.html"),
+        ("Packaging Lab", "downloads.html"),
+        ("Order", "order.html"),
+        ("Infinity Engine", "infinity-engine.html"),
+        ("Studio", "builders/index.html"),
+        ("About", "about.html"),
+        ("Sources", "sources.html"),
+    ]
+    main_items = "".join(f'<li><a href="{href}">{esc(label)}</a></li>' for label, href in main_links)
+    album_items = "".join(
+        f'<li><a href="albums/{esc(album.slug)}/">{esc(album.title)}</a> <span>{len(album.tracks)} tracks</span></li>'
+        for album in albums
+    )
+    song_items = "".join(
+        f'<li><a href="songs/{esc(song.slug)}/">{esc(song.title)}</a> <span>{esc(song.album_title)} - Track {song.track_number}</span></li>'
+        for song in songs
+    )
+    body = f"""
+    <section class="page-hero">
+      <div class="wrap">
+        <div><h1>Site Map</h1><p>Every public path through the i C. infinity music universe.</p></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap feature-grid">
+        <article class="panel"><h2>Main Pages</h2><ul>{main_items}</ul></article>
+        <article class="panel"><h2>Albums</h2><ul>{album_items}</ul></article>
+      </div>
+      <div class="wrap"><article class="panel"><h2>All Songs</h2><ul>{song_items}</ul></article></div>
+    </section>
+    """
+    return layout("Site Map - i C. infinity", "Every public page in the i C. infinity music universe.", body)
+
+
 def write(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     content = "\n".join(line.rstrip() for line in content.splitlines()) + "\n"
@@ -2854,6 +2916,7 @@ def main() -> None:
     write(REPO / "infinity-engine.html", engine_page())
     write(REPO / "about.html", about_page())
     write(REPO / "sources.html", sources_page())
+    write(REPO / "site-map.html", site_map_page(albums, songs))
     write(REPO / "builders" / "index.html", builder_index_page())
     for builder in STUDIO_BUILDERS:
         if builder.get("key") == "humanIngestion":
