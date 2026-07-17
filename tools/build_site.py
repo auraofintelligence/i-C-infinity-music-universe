@@ -948,7 +948,13 @@ def parse_straddie_fun_lyrics() -> dict[str, dict[str, str]]:
         return {}
 
     raw = STRADDIE_FUN_LYRIC_SOURCE.read_text(encoding="utf-8", errors="replace")
-    matches = list(re.finditer(r"^##[ \t]+(.+?)[ \t]*$", raw, flags=re.M))
+    matches = list(
+        re.finditer(
+            r"^##[ \t]+(.+?)(?:[ \t]+\{#.+?\})?[ \t]*$",
+            raw,
+            flags=re.M,
+        )
+    )
     songs: dict[str, dict[str, str]] = {}
     for index, match in enumerate(matches):
         title = clean_text(match.group(1))
