@@ -13,6 +13,7 @@ from urllib.parse import quote
 
 REPO = Path(__file__).resolve().parents[1]
 LYRIC_SOURCE = Path(r"C:\Users\lukec\Downloads\4th i C. infinity album (24) A Protopian Gambit (24 lyrics).md")
+STRADDIE_FUN_LYRIC_SOURCE = Path(r"C:\Users\lukec\Downloads\Straddie Fun 5th Album.md")
 STARSEED_TEXT_LYRIC_SOURCE = Path(r"C:\Users\lukec\Downloads\3rd Album Starseed Code.txt")
 ALBUM_LYRIC_ROOT = Path(r"C:\Users\lukec\Documents\Beyond\69 i C. infinity - Music\Albums")
 SINGLES_LYRIC_ROOT = Path(r"C:\Users\lukec\Documents\Beyond\69 i C. infinity - Music\Singles")
@@ -568,6 +569,34 @@ ALBUM_SPECS = [
         "visual_world": "Solar storms, public ledgers, repair gold, civic counters, purple mats, community halls, builders at dawn, and comic panels that become video keyframes.",
         "tracks": [],
     },
+    {
+        "title": "Straddie Fun",
+        "slug": "straddie-fun",
+        "year": "Upcoming",
+        "status": "Working album - more songs and lyrics coming",
+        "artwork": "assets/img/cover-straddie.webp",
+        "source_url": "",
+        "summary": "Fun songs about daily life on North Stradbroke Island - Straddie, Minjerribah - from fishing, ferries and local clubs to wildlife, festivals, mateship and island yarns.",
+        "deeper_system": "This fifth album keeps its feet in everyday island life. It makes room for humour, community characters, local places, small adventures and the ordinary moments that make Minjerribah feel alive.",
+        "visual_world": "Ferry decks, fishing lines, dogs in utes, beach clubs, rescue stories, mullet bait, squash jokes, pub-rock energy, campfires and bright local poster art.",
+        "tracks": [
+            "Two Dogs on Island Country",
+            "Straddie Fishing",
+            "Be The Legend: Wildlife Rescue Minjerribah",
+            "Shifting Sands of Timeless Redlands",
+            "Gumpi Ferry Terminal Groove",
+            "The Squash Club That Doesn’t Exist",
+            "Gumpi Ferry Terminal Trip",
+            "Sand Between Our Toes: Minjerribah Beach Sports Club",
+            "Lights, Camera, Action: Quandamooka Film Festival",
+            "Cactus Blitz",
+            "There’s a Couple",
+            "No Smokes or Booze, Mate",
+            "The Mullet Boys’ Gift of Bait",
+            "Strange But True: Tech, Art & Ideas That’ll Actually Help",
+            "Gather by the Fire",
+        ],
+    },
 ]
 
 
@@ -792,8 +821,8 @@ PLACEHOLDER_ALBUMS = [
         "year": "In progress",
         "status": "New songs to add",
         "artwork": "assets/img/hero-brisbane-tiny-planet.webp",
-        "summary": "A holding page for the next cycle of songs after A Protopian Gambit.",
-        "deeper_system": "This is the forward-looking lab. It can capture new songs as soon as they appear, before the album title or narrative order is locked.",
+        "summary": "A holding page for songs that have not found their album yet.",
+        "deeper_system": "This is the forward-looking lab beyond the current working albums. It can capture new songs as soon as they appear, before an album title or narrative order is locked.",
         "visual_world": "Sketches, test renders, field recordings, lyric fragments, seed prompts, and prototype clips.",
         "tracks": [
             {
@@ -821,16 +850,6 @@ PLACEHOLDER_ALBUMS = [
                 "youtube_videos": SHIFTING_SANDS_VIDEOS,
             }
         ],
-    },
-    {
-        "title": "Local B-Sides and Fun Songs",
-        "slug": "local-b-sides-and-fun-songs",
-        "year": "Ongoing",
-        "status": "Loose song tray",
-        "artwork": "assets/img/hero-brisbane-tiny-planet.webp",
-        "summary": "The joyful local songs that do not need a heavy throughline to be worth keeping.",
-        "deeper_system": "This page protects the fun layer. Not every song has to carry the whole cosmology. Some songs simply keep the world human, local, and alive.",
-        "visual_world": "Community noticeboards, road-trip clips, kitchen-table jokes, beaches, local characters, and lightweight lyric videos.",
     },
 ]
 
@@ -921,6 +940,35 @@ def parse_protopian_lyrics() -> dict[str, dict[str, str]]:
             key = f"{slugify(title)}-version-{version}"
             version += 1
         songs[key] = {"title": title, "date": date, "lyrics": clean_text(lyrics)}
+    return songs
+
+
+def parse_straddie_fun_lyrics() -> dict[str, dict[str, str]]:
+    if not STRADDIE_FUN_LYRIC_SOURCE.exists():
+        return {}
+
+    raw = STRADDIE_FUN_LYRIC_SOURCE.read_text(encoding="utf-8", errors="replace")
+    matches = list(re.finditer(r"^##[ \t]+(.+?)[ \t]*$", raw, flags=re.M))
+    songs: dict[str, dict[str, str]] = {}
+    for index, match in enumerate(matches):
+        title = clean_text(match.group(1))
+        if title.startswith("By Luke Catalyst"):
+            continue
+        start = match.end()
+        end = matches[index + 1].start() if index + 1 < len(matches) else len(raw)
+        block = clean_text(raw[start:end])
+        date_match = re.search(r"Song Date:\s*(.+)", block)
+        date = clean_text(date_match.group(1)) if date_match else ""
+        if "Song Lyrics:" not in block:
+            continue
+        lyrics = block.split("Song Lyrics:", 1)[1].strip()
+        lyrics = re.sub(r"\n+Song Date:.*?\nSong Lyrics\s*$", "", lyrics, flags=re.S).strip()
+        if lyrics:
+            songs[slugify(title)] = {
+                "title": title,
+                "date": date,
+                "lyrics": clean_text(lyrics),
+            }
     return songs
 
 
@@ -1315,6 +1363,7 @@ def order_href(package_id: str, absolute: bool = False) -> str:
 
 def build_catalogue() -> tuple[list[Album], list[Song]]:
     protopian = parse_protopian_lyrics()
+    straddie_fun_lyrics = parse_straddie_fun_lyrics()
     album_lyrics = parse_album_lyrics()
     albums: list[Album] = []
     songs: list[Song] = []
@@ -1354,6 +1403,18 @@ def build_catalogue() -> tuple[list[Album], list[Song]]:
                     year=album.year,
                     release_url=f"{album.source_url}#track-{track_number}",
                 )
+                if album.slug == "straddie-fun":
+                    supplied = straddie_fun_lyrics.get(slugify(title))
+                    if supplied:
+                        track.lyrics = supplied["lyrics"]
+                        track.lyric_status = (
+                            f"Imported from supplied fifth-album file. Song date: {supplied['date']}"
+                            if supplied["date"]
+                            else "Imported from supplied fifth-album file"
+                        )
+                        track.status = "Lyrics ready"
+                    else:
+                        track.lyric_status = "Working track list - lyrics coming"
                 album.tracks.append(track)
 
         for track in album.tracks:
@@ -1711,7 +1772,7 @@ def albums_index(albums: list[Album]) -> str:
       <div class="wrap">
         <div>
           <h1>Albums</h1>
-          <p>The public albums, upcoming Protopian material, early archive tray, next signals, and local B-side layer.</p>
+          <p>The released albums, the working Protopian and Straddie Fun records, public singles, early archive material, and next signals.</p>
         </div>
         <div class="hero-cover"><img src="assets/img/hero-brisbane-tiny-planet.webp" alt="Tiny planet visual from I See Infinity"></div>
       </div>
@@ -1814,7 +1875,7 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
         <div class="panel">
           <h2>Choose The Full Archive Pack</h2>
           <p><strong>Full Music Archive Pack $50</strong></p>
-          <p>The bigger catalogue option: released albums, most of A Protopian Gambit, B-sides, drafts, selected podcasts, and works in progress.</p>
+          <p>The bigger catalogue option: released albums, the working A Protopian Gambit and Straddie Fun records, B-sides, drafts, selected podcasts, and works in progress.</p>
           <div class="action-row">
             <a class="button" href="{order_href("full-archive")}">Start this $50 order</a>
             <a class="button secondary" href="#upgrade-options">Compare all packs</a>
@@ -2862,7 +2923,7 @@ def export_download_packaging() -> None:
             {
                 "name": "Full Music Archive Pack",
                 "working_price": "$50",
-                "candidate_contents": ["three released albums", "most of A Protopian Gambit", "B-sides", "bonus videos", "drafts", "AI podcast selections", "selected works in progress"],
+                "candidate_contents": ["three released albums", "the working A Protopian Gambit and Straddie Fun records", "B-sides", "bonus videos", "drafts", "AI podcast selections", "selected works in progress"],
             },
         ],
     }
