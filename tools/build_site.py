@@ -562,7 +562,7 @@ ALBUM_SPECS = [
         "slug": "a-protopian-gambit",
         "year": "Upcoming",
         "status": "Lyrics imported",
-        "artwork": "assets/img/cover-building-protopia.webp",
+        "artwork": "assets/img/cover-a-protopian-gambit.png",
         "source_url": "",
         "summary": "The fourth-album build: crisis as mirror, protopia as practice, care ledgers, consent, repair, forms, civic courage, and grounded abundance.",
         "deeper_system": "This is where the songs start acting like design briefs. They point directly at systems for care work, public coordination, human-AI collaboration, civic process, and creative restraint inside crisis.",
