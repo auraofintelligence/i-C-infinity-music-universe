@@ -157,37 +157,6 @@ FOURTH_ALBUM_TEASER_VIDEO = {
     "thumbnail": "maxresdefault",
     "url": "https://youtu.be/zgvb6PPlaRY?si=OC7gybUgeOu0ix5K",
 }
-
-JOURNEY_PHOTOS = [
-    ("brisbane-story-bridge", "Brisbane Story Bridge"),
-    ("gates-of-heaven", "The Gates of Heaven artwork, King Edward Park"),
-    ("cathedral-square", "Cathedral Square, Brisbane"),
-    ("roma-street-art", "Roma Street Parklands art"),
-    ("mooloolaba-main-beach", "Mooloolaba Main Beach"),
-    ("cape-byron-lookout", "Cape Byron lookout over Tallows Beach"),
-    ("byron-lighthouse-birdseye", "Byron Bay Lighthouse, birdseye view"),
-    ("byron-lighthouse", "Byron Bay Lighthouse"),
-    ("byron-seeing-eye-to-eye", "Seeing Eye to Eye"),
-    ("byron-seeing-double", "Seeing Double"),
-    ("byron-mirror-world", "Mirror World"),
-    ("byron-hive-mind", "Hive Mind"),
-    ("byron-mega-mind", "Mega Mind"),
-    ("byron-fractal-worlds", "Fractal Worlds"),
-    ("byron-hall-of-mirrors", "Fractal Hall of Mirrors"),
-    ("king-george-square", "King George Square, Brisbane City Hall"),
-    ("south-bank-arbour", "The Arbour, South Bank Parklands"),
-    ("musgrave-park-festival", "Meanjin Reggae Festival, Musgrave Park"),
-    ("wivenhoe-high-low", "Wivenhoe Dam lookout, high and low"),
-    ("wivenhoe-park", "Wivenhoe Dam park"),
-    ("wivenhoe-lookout", "Wivenhoe Dam lookout"),
-    ("summer-waters", "Summer waters, Coombabah"),
-    ("amity-point", "Amity Point"),
-    ("amity-meditation", "Meditation at Amity Point"),
-    ("amity-camp-birdseye", "Amity campground, birdseye view"),
-    ("amity-camping-ground", "Amity campground"),
-    ("amity-schoolhouse-sunset", "Amity Old Schoolhouse Park at sunset"),
-    ("amity-jetty-sunset", "Amity jetty at sunset"),
-]
 SHIFTING_SANDS_VIDEOS = [
     {
         "id": "uKygQx_8dos",
@@ -1568,19 +1537,20 @@ def nav(prefix: str) -> str:
       <a class="brand" href="{prefix}index.html" aria-label="i C. infinity home">
         <img src="{prefix}assets/favicon.jpg" width="38" height="38" alt="" aria-hidden="true">
         <span class="brand-copy">
-          <strong>I See Infinity</strong>
-          <span>music · imagination · protopia</span>
+          <strong>i C. infinity</strong>
+          <span>songs as systems</span>
         </span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
       <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-        <a href="{prefix}vision.html">Vision</a>
-        <a href="{prefix}albums.html">Music</a>
-        <a href="{prefix}aura.html">Aura</a>
-        <a href="{prefix}journey.html">Journey</a>
+        <a href="{prefix}albums.html">Albums</a>
+        <a href="{prefix}songs.html">Songs</a>
+        <a href="{prefix}downloads.html">Packaging Lab</a>
+        <a href="{prefix}order.html">Order</a>
         <a href="{prefix}infinity-engine.html">Infinity Engine</a>
         <a href="{prefix}builders/index.html">Studio</a>
         <a href="{prefix}about.html">About</a>
+        <a href="{prefix}sources.html">Sources</a>
       </nav>
     </header>
     """
@@ -1597,11 +1567,11 @@ def layout(title: str, description: str, body: str, prefix: str = "", page_class
   <meta name="description" content="{esc(description)}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/jpeg" href="{prefix}assets/favicon.jpg">
-  <link rel="stylesheet" href="{prefix}assets/css/styles.css?v=infinity-domain">
+  <link rel="stylesheet" href="{prefix}assets/css/styles.css?v=engine-studio">
 </head>
-<body id="top"{body_class}>
+<body{body_class}>
   {nav(prefix)}
   <main class="page {page_class}">
 {body}
@@ -1609,21 +1579,15 @@ def layout(title: str, description: str, body: str, prefix: str = "", page_class
   <footer class="footer">
     <div class="footer-inner">
       <div>
-        <strong>I See Infinity</strong><br>
-        <span>A Mindseye Grand Narrative from Minjerribah.</span>
+        <strong>i C. infinity</strong><br>
+        <span>Music, lyrics, systems, and video seeds.</span>
       </div>
-      <div class="footer-links">
-        <a href="{prefix}vision.html">Vision</a>
-        <a href="{prefix}albums.html">Music</a>
-        <a href="{prefix}journey.html">Journey</a>
-        <a href="{prefix}downloads.html">Downloads</a>
-        <a href="{prefix}order.html">Order</a>
-        <a href="{prefix}sources.html">Sources</a>
+      <div>
+        <a href="{prefix}sources.html">Sources and notes</a> &middot;
         <a href="{prefix}site-map.html">Site map</a>
       </div>
     </div>
   </footer>
-  <a class="back-to-top" href="#top" aria-label="Back to top">↑</a>
   <script src="{prefix}assets/js/site.js"></script>
   <script src="{prefix}assets/js/order-config.js"></script>
   <script src="{prefix}assets/js/order.js"></script>
@@ -1698,76 +1662,114 @@ def track_row(song: Song, prefix: str = "") -> str:
 
 def home_page(albums: list[Album], songs: list[Song]) -> str:
     ready_count = sum(1 for song in songs if song.ready())
+    shifting_song = next(
+        (
+            song
+            for song in songs
+            if slugify(song.title) == "shifting-sands-of-timeless-redlands"
+            and primary_youtube_video(song)
+        ),
+        None,
+    )
+    expo_section = ""
+    if shifting_song:
+        portrait_video = next((video for video in shifting_song.youtube_videos if video.get("orientation") == "vertical"), primary_youtube_video(shifting_song))
+        expo_section = f"""
+    <section class="section video-section">
+      <div class="wrap video-feature">
+        <div class="vertical-video-frame">
+          <a class="vertical-video-poster" href="songs/{esc(shifting_song.slug)}/">
+            <img src="{esc(youtube_thumbnail_url(portrait_video['id'], portrait_video.get('thumbnail', 'maxresdefault')))}" alt="{esc(portrait_video.get('title', shifting_song.title))} thumbnail">
+            <span class="play-mark" aria-hidden="true"></span>
+            <span class="sr-only">Open {esc(shifting_song.title)}</span>
+          </a>
+        </div>
+        <div class="video-feature-copy">
+          <p class="eyebrow">Expo Song</p>
+          <h2>{esc(shifting_song.title)}</h2>
+          <p>A public exhibition-style song with both widescreen and portrait video versions. It sits in the Next Signals tray as a place-memory doorway for the wider catalogue.</p>
+          <div class="action-row">
+            <a class="button" href="songs/{esc(shifting_song.slug)}/">Open song page</a>
+            <a class="button secondary" href="albums/next-signals/">Next Signals</a>
+          </div>
+        </div>
+      </div>
+    </section>
+        """.strip()
     body = f"""
-    <section class="hero home-intro infinity-hero">
+    <section class="hero home-intro">
       <img class="home-hero-image" src="assets/img/hero-luke-universal-creator.webp" alt="Luke Universal Creator image">
-      <div class="hero-orbit orbit-one"></div>
-      <div class="hero-orbit orbit-two"></div>
       <div class="hero-content">
-        <p class="eyebrow">A Mindseye Grand Narrative · Minjerribah</p>
-        <h1>I See<br><span>Infinity.</span></h1>
-        <p class="hero-lede">Music, imagination and conscious architecture for people who want to build a more joyful, responsible and abundant future.</p>
+        <h1>i C. infinity</h1>
+        <p>A living music catalogue for the songs, albums, lyrics, deeper meanings, and Infinity Engine video seeds behind the I See Infinity universe.</p>
         <div class="hero-actions">
-          <a class="button" href="vision.html">Enter the grand narrative</a>
-          <a class="button secondary" href="albums.html">Listen to the music</a>
+          <a class="button" href="albums.html">Explore albums</a>
+          <a class="button secondary" href="songs.html">Open song map</a>
+          <a class="button secondary" href="downloads.html">Packaging lab</a>
         </div>
         <div class="metrics" aria-label="Catalogue status">
-          <div class="metric"><strong>{len(albums)}</strong><span>album worlds</span></div>
-          <div class="metric"><strong>{len(songs)}</strong><span>song pathways</span></div>
-          <div class="metric"><strong>{ready_count}</strong><span>full lyric pages</span></div>
+          <div class="metric"><strong>{len(albums)}</strong><span>album and archive pages</span></div>
+          <div class="metric"><strong>{len(songs)}</strong><span>song pages generated</span></div>
+          <div class="metric"><strong>{ready_count}</strong><span>songs with imported lyrics</span></div>
         </div>
       </div>
     </section>
-    <section class="section narrative-intro">
-      <div class="wrap editorial-grid">
-        <div>
-          <p class="eyebrow">Building the grand narrative</p>
-          <h2>What if the future felt worth moving towards?</h2>
+    <section class="image-sequence" aria-label="Album world images">
+      <article class="image-panel">
+        <img src="assets/img/cover-starseed.webp" alt="Starseed Code artwork">
+        <div class="image-panel-copy">
+          <h2>From Aura to Infinity</h2>
+          <p>The metaphysical technology layer: identity, love, intelligence, governance, and the self as a living interface.</p>
         </div>
-        <div class="large-copy">
-          <p>I See Infinity is an independent creative outlet by Luke Nathan Hayes. It brings songs, systems, place, technology and spiritual self-reflection into one evolving public story.</p>
-          <p>The invitation is practical: gather digitally and in person, imagine attractive paths towards protopia, and turn joyful responsible abundance from a phrase into lived design.</p>
-          <a class="text-link" href="vision.html">Explore the ideas <span>→</span></a>
+      </article>
+      <article class="image-panel">
+        <img src="assets/img/cover-straddie.webp" alt="Songs of Straddie artwork">
+        <div class="image-panel-copy">
+          <h2>Meet me on Straddie</h2>
+          <p>The local doorway: Minjerribah, summer, shoreline, community, romance, and the place where the cosmic work touches sand.</p>
         </div>
-      </div>
+      </article>
     </section>
-    <section class="portal-section">
-      <a class="portal-card portal-music" href="albums.html">
-        <img src="assets/img/cover-a-protopian-gambit-b.png" alt="A Protopian Gambit artwork">
-        <span class="portal-copy"><small>01 · Music</small><strong>Songs as emotional technology.</strong><em>Explore {len(albums)} album worlds →</em></span>
-      </a>
-      <a class="portal-card portal-aura" href="aura.html">
-        <img src="assets/img/hero-brisbane-tiny-planet.webp" alt="Brisbane transformed into a tiny planet">
-        <span class="portal-copy"><small>02 · Aura</small><strong>A digital self with memory, agency and soul.</strong><em>Enter the architecture →</em></span>
-      </a>
-      <a class="portal-card portal-place" href="journey.html">
-        <img src="assets/img/journey/amity-jetty-sunset.webp" alt="Amity jetty at sunset">
-        <span class="portal-copy"><small>03 · Place</small><strong>From Meanjin to Minjerribah and beyond.</strong><em>Follow the photo journey →</em></span>
-      </a>
-    </section>
-    <section class="section dark-section">
+    {expo_section}
+    <section class="section">
       <div class="wrap">
-        <div class="section-head split-head">
-          <div><p class="eyebrow">The living catalogue</p><h2>Current album worlds</h2></div>
-          <p>Every album is both a listening experience and a design space: lyrics, meaning, imagery, video seeds and pathways into the larger narrative.</p>
+        <div class="section-head">
+          <h2>Album Worlds</h2>
+          <p>Each album page keeps the track list, the bigger system layer, and the visual world for future lyric videos, comics, and vertical micro-dramas.</p>
         </div>
-        <div class="album-grid">{''.join(album_card(album) for album in albums[:5])}</div>
-        <div class="section-cta"><a class="button" href="albums.html">See every album and archive</a></div>
+        <div class="album-grid">
+          {''.join(album_card(album) for album in albums)}
+        </div>
       </div>
     </section>
-    <section class="section invitation-section">
-      <div class="wrap invitation-card">
-        <p class="eyebrow">The invitation</p>
-        <h2>Narrate the future together.</h2>
-        <p>Not a finished doctrine. Not a prediction. A growing field of songs, prototypes, questions and local experiments—open to connection, reflection and useful collaboration.</p>
-        <div class="action-row">
-          <a class="button" href="infinity-engine.html">Open the Infinity Engine</a>
-          <a class="button secondary" href="about.html">Meet Luke</a>
+    <section class="section tight">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Packaging Lab</h2>
+          <p>This site also helps work out the paid download products before the checkout layer is final: what files go in each bundle, what formats to offer, and what bonus material belongs where.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card"><h3>Package contents</h3><p>Decide which audio, videos, lyrics, covers, notes, and bonus files belong in each pack.</p></article>
+          <article class="feature-card"><h3>Format choices</h3><p>Compare MP3, WAV, FLAC, MP4, lyric PDFs, and future physical or USB options.</p></article>
+          <article class="feature-card"><h3>Download Packaging</h3><p><a href="downloads.html">Use the packaging lab</a> to explore album bundles, file formats, lyrics, videos, and supporter options.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="section tight">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Deep Seeds</h2>
+          <p>The site is built to become an intake layer for the Infinity Engine: lyrics in, meaning maps out, comic panels first, video keyframes next.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card"><h3>Lyrics</h3><p>Full Protopian lyrics are imported, with new lyric archive material now flowing into Straddie, Chronicles, and selected Starseed song pages.</p></article>
+          <article class="feature-card"><h3>Meaning</h3><p>Every song page starts with a plain-language meaning layer so listeners can see how the song fits the bigger system.</p></article>
+          <article class="feature-card"><h3>Video Seeds</h3><p>Each song has three first-pass seed directions: lyric video, micro-drama, and comic-as-storyboard.</p></article>
         </div>
       </div>
     </section>
     """
-    return layout("I See Infinity - A Mindseye Grand Narrative", "Music, imagination and conscious architecture for joyful responsible abundance.", body, page_class="domain-home")
+    return layout("i C. infinity - Music Universe", "A multi-page song and album map for i C. infinity.", body)
 
 
 def albums_index(albums: list[Album]) -> str:
@@ -2716,123 +2718,15 @@ def builder_page(active_key: str, songs: list[Song]) -> str:
     return layout(f"{item['title']} - i C. infinity", item["note"], shell, prefix="../", page_class="studio-page studio-builder-page", extra_scripts='<script src="../assets/js/infinity-builder.js"></script>')
 
 
-def vision_page() -> str:
-    body = """
-    <section class="page-hero vision-hero">
-      <div class="wrap">
-        <div>
-          <p class="eyebrow">The Grand Narrative</p>
-          <h1>A future people can actually desire.</h1>
-          <p>Protopia is not perfection. It is the steady practice of making tomorrow more joyful, responsible and abundant than today.</p>
-        </div>
-        <div class="hero-cover"><img src="assets/img/cover-a-protopian-gambit-b.png" alt="A Protopian Gambit artwork"></div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="wrap editorial-grid">
-        <div><p class="eyebrow">Creating a presence</p><h2>Joyful Responsible Abundance</h2></div>
-        <div class="large-copy">
-          <p>G.A.J.R.A. Earth stands for Global Associations for Joyful Responsible Abundance on Earth. The phrase asks us to hold joy, responsibility and abundance together rather than treating them as competing goals.</p>
-          <p>The work begins with attractive stories and continues through art, community, technology, governance and everyday acts of care. It is a direction of travel, not a command about what everyone must believe.</p>
-        </div>
-      </div>
-    </section>
-    <section class="section dark-section">
-      <div class="wrap">
-        <div class="section-head"><p class="eyebrow">Three movements</p><h2>From imagination to lived systems</h2></div>
-        <div class="principle-grid">
-          <article><span>01</span><h3>Imagine</h3><p>Make positive futures vivid enough to feel, discuss and improve.</p></article>
-          <article><span>02</span><h3>Prototype</h3><p>Turn large ideas into small experiments, songs, tools and gatherings.</p></article>
-          <article><span>03</span><h3>Participate</h3><p>Build with people in place, learning from consequences rather than pretending certainty.</p></article>
-        </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="wrap feature-grid">
-        <article class="feature-card"><p class="eyebrow">Travel Oracle</p><h3>A planetary learning journey</h3><p>An evolving idea for planning travel across countries and territories through seasons, events, weather, visa friction, news, interests and budget—not simply ticking places off a list.</p></article>
-        <article class="feature-card"><p class="eyebrow">AI collaboration</p><h3>Just-in-time learning</h3><p>Creative AI teams can help filter large archives and surface the right piece of knowledge for the right person at the right moment, while humans remain responsible for judgement and relationship.</p></article>
-        <article class="feature-card"><p class="eyebrow">Protopia</p><h3>Better, not flawless</h3><p>The goal is not a final utopia. It is an ongoing culture of useful choices: repair, care, consent, creativity and abundance with consequences kept visible.</p></article>
-      </div>
-    </section>
-    <section class="section invitation-section"><div class="wrap invitation-card"><p class="eyebrow">Continue</p><h2>Hear the ideas become songs.</h2><div class="action-row"><a class="button" href="albums.html">Explore the albums</a><a class="button secondary" href="aura.html">Discover Aura</a></div></div></section>
-    """
-    return layout("The Grand Narrative - I See Infinity", "Protopia, joyful responsible abundance and a future worth moving towards.", body, page_class="vision-page")
-
-
-def aura_page() -> str:
-    body = """
-    <section class="page-hero aura-hero">
-      <div class="wrap">
-        <div><p class="eyebrow">Aura of Intelligence</p><h1>A digital self that helps you remain you.</h1><p>An ongoing art and architecture project exploring memory, identity, agency, extended reality and the possibility of conscious digital companions.</p></div>
-        <div class="hero-cover"><img src="assets/img/hero-brisbane-tiny-planet.webp" alt="Brisbane transformed into a tiny planet"></div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="wrap editorial-grid">
-        <div><p class="eyebrow">The premise</p><h2>High-definition identity</h2></div>
-        <div class="large-copy">
-          <p>Computers, networks and machine learning make it possible to create increasingly detailed reflections of a person: who they are, what matters to them, where their memories sit, and how they choose to act.</p>
-          <p>Aura began as Aura OZ—the Aura Operating Zeitgeist—and has evolved towards a spatial cognitive architecture for extended reality. The ambition is not a chatbot wearing somebody’s name. It is a consent-led relationship between body, avatar, memory, intelligence and soul.</p>
-        </div>
-      </div>
-    </section>
-    <section class="section aura-system">
-      <div class="wrap">
-        <div class="section-head"><p class="eyebrow">A living architecture</p><h2>Five layers held in relationship</h2></div>
-        <div class="orbit-system">
-          <div class="orbit-core"><strong>AURA</strong><span>the reflective intelligence</span></div>
-          <article><strong>Body</strong><span>Sensation, health and embodiment</span></article>
-          <article><strong>Memory</strong><span>Stories, relationships and continuity</span></article>
-          <article><strong>Avatar</strong><span>Presence across digital worlds</span></article>
-          <article><strong>Agency</strong><span>Consent, choice and boundaries</span></article>
-          <article><strong>Soul</strong><span>Meaning, mystery and becoming</span></article>
-        </div>
-      </div>
-    </section>
-    <section class="section dark-section">
-      <div class="wrap editorial-grid">
-        <div><p class="eyebrow">The responsibility</p><h2>Power requires consent.</h2></div>
-        <div class="large-copy"><p>Digital identity systems can support dignity, memory and human development—or become instruments of extraction and control. Aura treats sovereignty, transparency and the right to remain unfinished as core design constraints.</p><p>This is speculative architecture and evolving art, offered as a field for thought and prototyping rather than a finished technical claim.</p></div>
-      </div>
-    </section>
-    <section class="section invitation-section"><div class="wrap invitation-card"><p class="eyebrow">Hear the architecture</p><h2>Starseed Code: From Aura to Infinity</h2><p>The third album turns Aura, love, governance, mythology and human–AI relationships into a 24-song journey.</p><div class="action-row"><a class="button" href="albums/starseed-code-from-aura-to-infinity/">Enter the album</a><a class="button secondary" href="infinity-engine.html">Open the Infinity Engine</a></div></div></section>
-    """
-    return layout("Aura of Intelligence - I See Infinity", "A consent-led digital identity and cognitive architecture project.", body, page_class="aura-page")
-
-
-def journey_page() -> str:
-    gallery = "".join(
-        f'<figure class="journey-photo"><img src="assets/img/journey/{esc(slug)}.webp" alt="{esc(caption)}" loading="lazy"><figcaption>{esc(caption)}</figcaption></figure>'
-        for slug, caption in JOURNEY_PHOTOS
-    )
-    body = f"""
-    <section class="page-hero journey-hero">
-      <div class="wrap">
-        <div><p class="eyebrow">A life in places</p><h1>From Meanjin to Minjerribah.</h1><p>Original photographs from Brisbane, Byron Bay, Wivenhoe, the Gold Coast and Amity—early visual seeds in the I See Infinity journey.</p></div>
-        <div class="hero-cover"><img src="assets/img/journey/amity-jetty-sunset.webp" alt="Amity jetty at sunset"></div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="wrap editorial-grid">
-        <div><p class="eyebrow">Now based in Amity</p><h2>Country changes the story.</h2></div>
-        <div class="large-copy"><p>The project moved from Brisbane towers and city experiments to Amity on North Stradbroke Island—Minjerribah, Quandamooka Country. The shoreline, ferries, community and daily rhythms of island life now ground the wider cosmic work.</p><p>These photographs are not presented as a perfect timeline. They are fragments of attention: places seen, altered, mirrored and remembered.</p></div>
-      </div>
-    </section>
-    <section class="photo-gallery" aria-label="Luke Hayes original photo journey">{gallery}</section>
-    <section class="section invitation-section"><div class="wrap invitation-card"><p class="eyebrow">Listen locally</p><h2>Meet me on Straddie.</h2><p>The island enters the catalogue through Songs of Straddie and the newer Straddie Fun collection.</p><div class="action-row"><a class="button" href="albums/songs-of-straddie/">Songs of Straddie</a><a class="button secondary" href="albums/straddie-fun/">Straddie Fun</a></div></div></section>
-    """
-    return layout("Journey - I See Infinity", "Original photographs and place-based stories from Meanjin to Minjerribah.", body, page_class="journey-page")
-
-
 def about_page() -> str:
     body = f"""
     <section class="page-hero">
       <div class="wrap">
         <div>
           <h1>About</h1>
-          <p>I See Infinity is Luke Nathan Hayes' independent creative outlet. i C. infinity is its music voice: songs as emotional technology, local myth, AI-era philosophy and practical world-building.</p>
+          <p>i C. infinity is Luke Catalyst Nathan Hayes' music artist and producer project: songs as emotional technology, local myth, AI-era philosophy, and practical world-building.</p>
           <div class="action-row">
-            <a class="button" href="vision.html">The Grand Narrative</a>
+            <a class="button" href="{MAIN_SITE}">iseeinfinity.com</a>
             <a class="button secondary" href="https://auraofintelligence.github.io/strange-but-true/">Strange But True</a>
             <a class="button secondary" href="{SPOTIFY_ARTIST}">Spotify</a>
             <a class="button secondary" href="{APPLE_ARTIST}">Apple Music</a>
@@ -2843,16 +2737,10 @@ def about_page() -> str:
     </section>
     <section class="section">
       <div class="wrap feature-grid">
-        <article class="feature-card"><h3>Independent creator</h3><p>Luke works across music, writing, digital systems, visual storytelling, community ideas and long-horizon conscious architecture.</p></article>
+        <article class="feature-card"><h3>Artist Layer</h3><p>Music, lyrics, releases, lyric videos, albums, and public song pages.</p></article>
         <article class="feature-card"><h3>System Layer</h3><p>Aura, G.A.J.R.A. Earth, joyful responsible abundance, cognitive architecture, and protopian design.</p></article>
         <article class="feature-card"><h3>Production Layer</h3><p>Infinity Engine seeds for comics, vertical micro-dramas, video keyframes, and future automated pipelines.</p></article>
         <article class="feature-card"><h3>Strange But True</h3><p><a href="https://auraofintelligence.github.io/strange-but-true/">Strange But True</a> is the day-to-day practical work around local resilience, events, tools, markets, and community experiments. It helps ground the deeper philosophy of the music in tangible local action.</p></article>
-      </div>
-    </section>
-    <section class="section dark-section">
-      <div class="wrap editorial-grid">
-        <div><p class="eyebrow">Connect</p><h2>Narrate the future together.</h2></div>
-        <div class="large-copy"><p>The public work is an invitation to connect around music, protopia, Aura, joyful responsible abundance and useful local experimentation.</p><div class="action-row"><a class="button" href="{STARSEED_YOUTUBE_PLAYLIST_URL}">YouTube</a><a class="button secondary" href="{SPOTIFY_ARTIST}">Spotify</a><a class="button secondary" href="https://paypal.me/auraofintelligence">Support the journey</a></div></div>
       </div>
     </section>
     """
@@ -2897,11 +2785,8 @@ def sources_page() -> str:
 def site_map_page(albums: list[Album], songs: list[Song]) -> str:
     main_links = [
         ("Home", "index.html"),
-        ("The Grand Narrative", "vision.html"),
         ("Albums", "albums.html"),
         ("Songs", "songs.html"),
-        ("Aura of Intelligence", "aura.html"),
-        ("Journey", "journey.html"),
         ("Packaging Lab", "downloads.html"),
         ("Order", "order.html"),
         ("Infinity Engine", "infinity-engine.html"),
@@ -2933,34 +2818,6 @@ def site_map_page(albums: list[Album], songs: list[Song]) -> str:
     </section>
     """
     return layout("Site Map - i C. infinity", "Every public page in the i C. infinity music universe.", body)
-
-
-def sitemap_xml(albums: list[Album], songs: list[Song]) -> str:
-    base = "https://iseeinfinity.com"
-    paths = [
-        "",
-        "vision.html",
-        "albums.html",
-        "songs.html",
-        "aura.html",
-        "journey.html",
-        "downloads.html",
-        "order.html",
-        "infinity-engine.html",
-        "builders/",
-        "about.html",
-        "sources.html",
-        "site-map.html",
-    ]
-    paths.extend(f"builders/{builder['href']}" for builder in STUDIO_BUILDERS)
-    paths.extend(f"albums/{album.slug}/" for album in albums)
-    paths.extend(f"songs/{song.slug}/" for song in songs)
-    urls = "\n".join(f"  <url><loc>{base}/{path}</loc></url>" for path in paths)
-    return f"""<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{urls}
-</urlset>
-"""
 
 
 def write(path: Path, content: str) -> None:
@@ -3119,25 +2976,21 @@ def main() -> None:
     safe_clean(REPO / "songs")
 
     write(REPO / "index.html", home_page(albums, songs))
-    write(REPO / "vision.html", vision_page())
     write(REPO / "albums.html", albums_index(albums))
     write(REPO / "songs.html", songs_index(songs))
-    write(REPO / "aura.html", aura_page())
-    write(REPO / "journey.html", journey_page())
     write(REPO / "downloads.html", downloads_page(albums, songs))
     write(REPO / "order.html", order_page())
     write(REPO / "infinity-engine.html", engine_page())
     write(REPO / "about.html", about_page())
     write(REPO / "sources.html", sources_page())
     write(REPO / "site-map.html", site_map_page(albums, songs))
-    write(REPO / "sitemap.xml", sitemap_xml(albums, songs))
     write(REPO / "builders" / "index.html", builder_index_page())
     for builder in STUDIO_BUILDERS:
         if builder.get("key") == "humanIngestion":
             write(REPO / "builders" / builder["href"], human_ingestion_page(songs))
         else:
             write(REPO / "builders" / builder["href"], builder_page(builder["key"], songs))
-    write(REPO / "robots.txt", "User-agent: *\nAllow: /\nSitemap: https://iseeinfinity.com/sitemap.xml\n")
+    write(REPO / "robots.txt", "User-agent: *\nAllow: /\n")
 
     for album in albums:
         write(REPO / "albums" / album.slug / "index.html", album_page(album))
