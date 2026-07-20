@@ -17,6 +17,84 @@ STRADDIE_FUN_LYRIC_SOURCE = Path(r"C:\Users\lukec\Downloads\Straddie Fun 5th Alb
 STARSEED_TEXT_LYRIC_SOURCE = Path(r"C:\Users\lukec\Downloads\3rd Album Starseed Code.txt")
 ALBUM_LYRIC_ROOT = Path(r"C:\Users\lukec\Documents\Beyond\69 i C. infinity - Music\Albums")
 SINGLES_LYRIC_ROOT = Path(r"C:\Users\lukec\Documents\Beyond\69 i C. infinity - Music\Singles")
+STRADDIE_FUN_LYRIC_OVERRIDES = [
+    {
+        "title": "Be The Legend: Wildlife Rescue Minjerribah",
+        "date": "20 July 2026 at 14:31 v5.5",
+        "lyrics": """Yura, yura! Welcome, friend
+To where the white sands never end
+Where dolphins glide through Goompi tide
+And curlews cry with ancient pride
+
+From Bummiera out to Mooloomba way
+The light breeze blows while old trees sway
+Snakes moving soft beneath the bark
+in Pulan, tiny gliders leap after dark
+
+But if you find one not quite right
+Still as stone in any light
+Be the one who makes the call
+We’ll answer fast, we’ll catch their fall
+
+Be the legend, lend a hand
+Respect the life upon this land
+If you see them hurt or lost or low
+One ring, we’re ready, let us know
+Zero double four eight, Four-six-six, five-five-six
+Save it in your phone, That’s the lifeline love
+On Minjerribah, you're never alone
+Wildlife's everywhere. You're never alone
+
+A joey tossed where dogs chased for fun
+Too small to hop, too young to run
+An echidna hit, its spikes all curled
+Still breathing slow in a rushing world
+
+That sea eagle’s wing, it couldn’t soar
+But your call opened up the door
+Now it heals beneath well trained eyes
+Thanks to those who called our hotline
+
+It’s not your job to mend or save
+But your call can light the way
+Day or night, we’ll take the drive
+To give them hope, to keep them alive
+
+Be the legend, lend a hand
+Respect the life upon this land
+If you see them hurt or lost or low
+One ring, we’re ready, let us know
+Zero double four eight, four double six, double five six
+Save it in your phone
+On Minjerribah, you’re never alone
+Wildlife's everywhere.  You’re never alone
+
+Hold the wheel, slow down at night
+Give bandicoots and wallabies a chance to hide
+Dog on leash, held tight in hand
+Be the legend for this land
+
+Be the legend, lend a hand
+Respect the life upon this land
+If you see them hurt or lost or low
+Just one call, and let it flow
+Zero-four-four-eight, Four-six-six, five-five-six
+Save it in your phone
+On Minjerribah, no one’s alone
+On Minjerribah, you’re never alone
+Wildlife's everywhere.  Never alone
+
+Wildlife Rescue Minjerribah is a volunteer-run organisation.
+Every call, every rescue, every donation, every hand helps.
+Be the legend.
+
+Call Zero double four eight, four double six, double five six.
+That's Zero double four eight, four double six, double five six.
+Save it in your phone.
+Every rescue counts.
+Be a legend for this land""",
+    }
+]
 ALBUM_LYRIC_FOLDERS = {
     "Songs of Straddie": "songs-of-straddie",
     "Chronicles of the Forgotten": "chronicles-of-the-forgotten",
@@ -990,7 +1068,14 @@ def parse_protopian_lyrics() -> dict[str, dict[str, str]]:
 
 def parse_straddie_fun_lyrics() -> dict[str, dict[str, str]]:
     if not STRADDIE_FUN_LYRIC_SOURCE.exists():
-        return {}
+        return {
+            slugify(song["title"]): {
+                "title": song["title"],
+                "date": song["date"],
+                "lyrics": clean_text(song["lyrics"]),
+            }
+            for song in STRADDIE_FUN_LYRIC_OVERRIDES
+        }
 
     raw = STRADDIE_FUN_LYRIC_SOURCE.read_text(encoding="utf-8", errors="replace")
     matches = list(
@@ -1020,6 +1105,12 @@ def parse_straddie_fun_lyrics() -> dict[str, dict[str, str]]:
                 "date": date,
                 "lyrics": clean_text(lyrics),
             }
+    for song in STRADDIE_FUN_LYRIC_OVERRIDES:
+        songs[slugify(song["title"])] = {
+            "title": song["title"],
+            "date": song["date"],
+            "lyrics": clean_text(song["lyrics"]),
+        }
     return songs
 
 
