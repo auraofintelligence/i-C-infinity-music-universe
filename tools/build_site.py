@@ -86,6 +86,27 @@ def read_repo_text(relative_path: str) -> str:
     return clean_text(path.read_text(encoding="utf-8", errors="replace"))
 
 
+def load_photo_archive() -> list[dict]:
+    if not PHOTO_ARCHIVE_DATA.exists():
+        return []
+    payload = json.loads(PHOTO_ARCHIVE_DATA.read_text(encoding="utf-8"))
+    return payload.get("images", [])
+
+
+def archive_photo(site: str, media_id: int, fallback: str = "") -> str:
+    for image in load_photo_archive():
+        if image.get("site") == site and image.get("media_id") == media_id:
+            return str(image.get("file", fallback))
+    return fallback
+
+
+def archive_carousel_photo(order: int, fallback: str = "") -> str:
+    for image in load_photo_archive():
+        if image.get("carousel_order") == order:
+            return str(image.get("file", fallback))
+    return fallback
+
+
 def esc(value: str) -> str:
     return html.escape(value, quote=True)
 
@@ -137,9 +158,33 @@ class Album:
 APPLE_ARTIST = "https://music.apple.com/us/artist/i-c-infinity/1781660070"
 SPOTIFY_ARTIST = "https://open.spotify.com/artist/3HK8H81lXFXOEJaSys7xfQ"
 MAIN_SITE = "https://iseeinfinity.com/"
+LUKE_CATALYST_SITE = "https://lukecatalyst.com/"
+TRAVEL_ORACLE_SITE = "https://auraofintelligence.github.io/strange-but-true-travel-oracle/"
+AUSTRALIAN_WORLD_TRAVEL_SITE = "https://auraofintelligence.github.io/Australian-world-travel/"
+COSMIC_NEXUS_SITE = "https://auraofintelligence.github.io/strange-but-true-cosmic-nexus/"
+RIGHT_PLACE_RIGHT_TIME_SITE = "https://auraofintelligence.github.io/right-place-right-time/"
+GLOBAL_GROUP_MARRIAGES_SITE = "https://auraofintelligence.github.io/global-group-marriages/"
+GREY_AREA_COMMONS_SITE = "https://auraofintelligence.github.io/grey-area-commons/"
+AURA_OF_INTELLIGENCE_SITE = "https://auraofintelligence.github.io/"
+GAJRA_EARTH_SITE = "https://auraofintelligence.github.io/gajra-earth-public-hub/"
+STRANGE_BUT_TRUE_SITE = "https://auraofintelligence.github.io/strange-but-true/"
 MUSIC_DOWNLOADS_PAGE = "https://auraofintelligence.github.io/i-C-infinity-music-universe/downloads.html"
+SITE_ROOT = "https://auraofintelligence.github.io/i-C-infinity-music-universe/"
 STREAMING_LINKS = REPO / "data" / "streaming-links.json"
-ORDER_PAGE = "https://auraofintelligence.github.io/i-C-infinity-music-universe/order.html"
+PHOTO_ARCHIVE_DATA = REPO / "data" / "photo-archive.json"
+ORDER_PAGE = f"{MUSIC_DOWNLOADS_PAGE}#order-music"
+LEGACY_PHOTOS = [
+    ("luke-catalyst-portrait", "Luke Catalyst"),
+    ("wizard-poet-spiritual-gamer", "Wizard, poet and spiritual gamer"),
+    ("luke-olympic-tiny-planet", "Luke Olympic tiny planet"),
+    ("brisbane-tiny-planet", "Brisbane tiny planet"),
+    ("brisbane-story-bridge", "Brisbane Story Bridge"),
+    ("byron-bay-lighthouse", "Byron Bay Lighthouse"),
+    ("musgrave-park-festival", "Meanjin Reggae Festival, Musgrave Park"),
+    ("wivenhoe-lookout", "Wivenhoe Dam lookout"),
+    ("amity-point", "Amity Point, Minjerribah"),
+    ("amity-jetty-sunset", "Amity jetty at sunset"),
+]
 STARSEED_ALBUM_SLUG = "starseed-code-from-aura-to-infinity"
 STARSEED_YOUTUBE_PLAYLIST_ID = "PLsN0U9hPJHBZyRTYmAwLCuVSpY9q_-tCd"
 STARSEED_YOUTUBE_PLAYLIST_URL = f"https://www.youtube.com/playlist?list={STARSEED_YOUTUBE_PLAYLIST_ID}"
@@ -299,8 +344,8 @@ LANDSCAPE_ALBUM_VIDEO_MAP = {
         "playlist_id": EARLY_STUFF_YOUTUBE_PLAYLIST_ID,
         "playlist_url": EARLY_STUFF_YOUTUBE_PLAYLIST_URL,
         "title": "India 2023/24 Early Stuff Playlist",
-        "eyebrow": "Archive Video Layer",
-        "description": "Early i C. infinity videos produced during the India period. This page keeps them as archive seeds so the later album worlds can trace what survived, mutated, or became system language.",
+        "eyebrow": "Early music videos",
+        "description": "Early i C. infinity videos made during Luke's time in India. They show where the music began and how its ideas changed.",
         "videos": {},
         "playlist_only": [],
     },
@@ -308,8 +353,8 @@ LANDSCAPE_ALBUM_VIDEO_MAP = {
         "playlist_id": STRADDIE_YOUTUBE_PLAYLIST_ID,
         "playlist_url": STRADDIE_YOUTUBE_PLAYLIST_URL,
         "title": "Songs of Straddie Lyric Video Playlist",
-        "eyebrow": "Landscape Lyric Video Layer",
-        "description": "The full Songs of Straddie release has {track_count} songs. This playlist is only the currently visible lyric-video slice; keep scrolling below the videos for the full album track list, written lyrics, and individual song pages. The videos can also be watched as one flow.",
+        "eyebrow": "Widescreen lyric videos",
+        "description": "The full Songs of Straddie release has {track_count} songs. This playlist includes the music videos available now. Keep scrolling for the complete song list, lyrics and individual song pages.",
         "videos": STRADDIE_LYRIC_VIDEOS,
         "playlist_only": STRADDIE_PLAYLIST_ONLY_VIDEOS,
     },
@@ -317,8 +362,8 @@ LANDSCAPE_ALBUM_VIDEO_MAP = {
         "playlist_id": CHRONICLES_YOUTUBE_PLAYLIST_ID,
         "playlist_url": CHRONICLES_YOUTUBE_PLAYLIST_URL,
         "title": "Chronicles of the Forgotten Lyric Video Playlist",
-        "eyebrow": "Landscape Lyric Video Layer",
-        "description": "Landscape lyric videos for the rock-opera layer. This makes the archive feel watchable before the full lyric import pass lands.",
+        "eyebrow": "Widescreen lyric videos",
+        "description": "Music videos from the rock opera, with more lyrics and songs below.",
         "videos": CHRONICLES_LYRIC_VIDEOS,
         "playlist_only": CHRONICLES_PLAYLIST_ONLY_VIDEOS,
     },
@@ -454,7 +499,7 @@ ALBUM_SPECS = [
         "artwork": "assets/img/cover-straddie.webp",
         "source_url": "https://music.apple.com/us/album/songs-of-straddie/1783109888",
         "summary": "The island doorway: Minjerribah, summer, tides, romance, community, and the first public invitation to meet the project where it lives.",
-        "deeper_system": "This album grounds the cosmic language in place. It turns the abstract Infinity world back toward local belonging, care, love, beaches, family energy, and the everyday social fabric of Straddie.",
+        "deeper_system": "This album brings big cosmic ideas home to Straddie through belonging, care, love, beaches, family and everyday island life.",
         "visual_world": "Coastal light, ferry windows, campfire circles, dune paths, shoreline dances, handwritten signs, local faces, and gentle magical realism rather than heavy science fiction.",
         "tracks": [
             "Meet Me on Straddie",
@@ -488,8 +533,8 @@ ALBUM_SPECS = [
         "status": "Released album",
         "artwork": "assets/img/cover-chronicles.webp",
         "source_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503",
-        "summary": "A larger mythic and social arc: ignored voices, broken systems, ancestral echoes, technology, hope, deception, and repair.",
-        "deeper_system": "This is the bridge from personal song into world-system thinking. The forgotten are not just characters; they are memory, labour, ecosystems, ancestors, and futures that old ledgers failed to count.",
+        "summary": "A mythic rock opera about ignored voices, ancestral echoes, technology, hope, deception and repair.",
+        "deeper_system": "These songs remember people, work, nature, ancestors and possible futures that ordinary history often leaves out.",
         "visual_world": "Ancient ruins meeting signal towers, community archives, warning skies, glowing circuitry, masked institutions, and the first signs of a compassionate machine intelligence waking up.",
         "tracks": [
             "Chronicles of the Forgotten",
@@ -527,8 +572,8 @@ ALBUM_SPECS = [
         "status": "Released album",
         "artwork": "assets/img/cover-starseed.webp",
         "source_url": "https://music.apple.com/us/album/starseed-code-from-aura-to-infinity/1821950221",
-        "summary": "The metaphysical tech chapter: Aura, G.A.J.R.A., infinity, democratic redesign, love, memory, myth, and the self as a living interface.",
-        "deeper_system": "This album moves from island and archive into cognitive architecture. It treats identity, AI, soul, governance, love, and longevity as linked design problems.",
+        "summary": "A cosmic journey through Aura, G.A.J.R.A. Earth, infinity, love, memory, community and the mystery of the self.",
+        "deeper_system": "This album asks how identity, artificial intelligence, soul, love, community and long life may be connected.",
         "visual_world": "Human figures surrounded by luminous interfaces, cosmic gardens, body-mind data doubles, ritual circles, civic halls, and warm science-fiction symbolism.",
         "tracks": [
             "Aura",
@@ -561,11 +606,11 @@ ALBUM_SPECS = [
         "title": "A Protopian Gambit",
         "slug": "a-protopian-gambit",
         "year": "Upcoming",
-        "status": "Lyrics imported",
+        "status": "Lyrics available",
         "artwork": "assets/img/cover-a-protopian-gambit-b.png",
         "source_url": "",
         "summary": "The fourth-album build: crisis as mirror, protopia as practice, care ledgers, consent, repair, forms, civic courage, and grounded abundance.",
-        "deeper_system": "This is where the songs start acting like design briefs. They point directly at systems for care work, public coordination, human-AI collaboration, civic process, and creative restraint inside crisis.",
+        "deeper_system": "These songs face hard times directly and ask how care, cooperation, human-guided artificial intelligence and everyday courage might help.",
         "visual_world": "Solar storms, public ledgers, repair gold, civic counters, purple mats, community halls, builders at dawn, and comic panels that become video keyframes.",
         "tracks": [],
     },
@@ -619,9 +664,9 @@ PLACEHOLDER_ALBUMS = [
         "status": "India 2023/24 video archive",
         "artwork": "assets/img/hero-luke-universal-creator.webp",
         "source_url": EARLY_STUFF_YOUTUBE_PLAYLIST_URL,
-        "summary": "The India 2023/24 sketches, experiments, first frameworks, and raw attempts before the albums took a clearer shape.",
-        "deeper_system": "This page is the intake tray for the earliest material. It shows what ideas survived, what mutated, and which concepts became part of the later Infinity system.",
-        "visual_world": "India travel energy, desktop screenshots, early AI-video language, first G.A.J.R.A. Earth signals, archive-room notebooks, and raw proof-of-concept clips.",
+        "summary": "Early songs and videos made in India during 2023 and 2024, before the albums took a clearer shape.",
+        "deeper_system": "These early songs show where the music began and how its ideas changed over time.",
+        "visual_world": "India travel energy, early artificial-intelligence videos, the first G.A.J.R.A. Earth ideas, notebooks and rough creative experiments.",
         "tracks": [
             {
                 "title": "I C. Infinity Countdown",
@@ -629,7 +674,7 @@ PLACEHOLDER_ALBUMS = [
                 "status": "Early India video",
                 "lyric_status": "YouTube video supplied, lyrics to import",
                 "themes": ["India archive", "origin signal", "identity", "countdown"],
-                "meaning": "A short origin signal for the i C. infinity identity: the name, the threshold, and the feeling of an artist-system beginning to count itself into public form.",
+                "meaning": "A short beginning for i C. infinity: the name, the countdown and the feeling of a new musical identity stepping into the world.",
                 "youtube_videos": [
                     {
                         "id": "vIQbft9J9pY",
@@ -647,7 +692,7 @@ PLACEHOLDER_ALBUMS = [
                 "year": "2023/24",
                 "status": "Early India video",
                 "lyric_status": "YouTube video supplied, lyrics to import",
-                "themes": ["G.A.J.R.A. Earth", "future music", "AI", "systems"],
+                "themes": ["G.A.J.R.A. Earth", "future music", "AI", "community"],
                 "meaning": "An early pulse of the G.A.J.R.A. Earth idea: music as a way to test whether technology, ecological care, and collective vibe could share one rhythm.",
                 "youtube_videos": [
                     {
@@ -686,7 +731,7 @@ PLACEHOLDER_ALBUMS = [
                 "status": "Early India video",
                 "lyric_status": "YouTube video supplied, lyrics to import",
                 "themes": ["mindset", "growth", "reflection", "practice"],
-                "meaning": "A self-development and philosophy song from the early layer: success treated less like a fixed trophy and more like an evolving inner operating system.",
+                "meaning": "A song about success as something that changes with us, rather than a fixed trophy or a number on a scoreboard.",
                 "youtube_videos": [
                     {
                         "id": "uMXwGO-pjNw",
@@ -724,7 +769,7 @@ PLACEHOLDER_ALBUMS = [
                 "status": "Early India video",
                 "lyric_status": "YouTube video supplied, lyrics to import",
                 "themes": ["flow", "creative state", "embodiment", "practice"],
-                "meaning": "A creative-state marker: the musician and system-builder learning to recognise flow as a real production condition, not just a mood.",
+                "meaning": "A song about recognising creative flow as a real state where attention, feeling and action begin moving together.",
                 "youtube_videos": [
                     {
                         "id": "vOe-jq1KZzc",
@@ -762,7 +807,7 @@ PLACEHOLDER_ALBUMS = [
                 "status": "Early India video",
                 "lyric_status": "YouTube video supplied, lyrics to import",
                 "themes": ["Brisbane", "Meanjin", "place", "home"],
-                "meaning": "A home-place song from the early archive: Brisbane/Meanjin held as memory, return point, and local counterweight to the global travel layer.",
+                "meaning": "A song holding Brisbane/Meanjin as a memory, a place to return to and a home anchor during wider travel.",
                 "youtube_videos": [
                     {
                         "id": "HNfYQ4_BLR4",
@@ -781,7 +826,7 @@ PLACEHOLDER_ALBUMS = [
                 "status": "Early India video",
                 "lyric_status": "YouTube video supplied, lyrics to import",
                 "themes": ["ChatGPT", "AI voice", "conversation", "co-creation"],
-                "meaning": "An early AI-co-creation artefact: the conversation itself becomes song material, and the machine voice is treated as a mirror for Luke's wider cognitive architecture work.",
+                "meaning": "An early song made from a conversation with artificial intelligence. The machine voice becomes a mirror for Luke's questions about memory, identity and what people may build with AI.",
                 "youtube_videos": [
                     {
                         "id": "4-wLjec_uw8",
@@ -800,7 +845,7 @@ PLACEHOLDER_ALBUMS = [
                 "status": "Early India video",
                 "lyric_status": "YouTube video supplied, lyrics to import",
                 "themes": ["desire", "Valentine", "love", "embodiment"],
-                "meaning": "A romantic early-release marker: desire, performance, and direct feeling before the later catalogue separates love songs into larger album systems.",
+                "meaning": "An early love song about desire, performance and direct feeling.",
                 "youtube_videos": [
                     {
                         "id": "FMJZLJ9Z6J0",
@@ -822,8 +867,8 @@ PLACEHOLDER_ALBUMS = [
         "status": "New songs to add",
         "artwork": "assets/img/hero-brisbane-tiny-planet.webp",
         "summary": "A holding page for songs that have not found their album yet.",
-        "deeper_system": "This is the forward-looking lab beyond the current working albums. It can capture new songs as soon as they appear, before an album title or narrative order is locked.",
-        "visual_world": "Sketches, test renders, field recordings, lyric fragments, seed prompts, and prototype clips.",
+        "deeper_system": "A home for new songs that have not found their final album yet.",
+        "visual_world": "Sketches, field recordings, lyric fragments and early video ideas.",
         "tracks": [
             {
                 "title": "Shifting Sands of Timeless Redlands",
@@ -1139,7 +1184,7 @@ def infer_themes(title: str, album_slug: str) -> list[str]:
     if "straddie" in album_slug or any(word in lower for word in ["island", "ocean", "shore", "tide", "beach", "minjerribah"]):
         themes += ["Minjerribah", "place", "community"]
     if any(word in lower for word in ["aura", "g.a.j.r.a", "agi", "algorithm", "circuit", "digital", "code"]):
-        themes += ["AI", "Aura", "systems"]
+        themes += ["AI", "Aura", "technology"]
     if any(word in lower for word in ["love", "heart", "soul", "obsessed", "kiss"]):
         themes += ["love", "embodiment"]
     if any(word in lower for word in ["forgotten", "ancient", "gaia", "earth", "chains", "deception", "unheard"]):
@@ -1149,23 +1194,23 @@ def infer_themes(title: str, album_slug: str) -> list[str]:
     if any(word in lower for word in ["protopia", "bridge", "border", "consent", "architect", "protocol", "light"]):
         themes += ["protopia", "care", "civic design"]
     if not themes:
-        themes = ["song seed", "visual brief", "catalogue"]
+        themes = ["music", "story", "imagination"]
     return list(dict.fromkeys(themes))[:5]
 
 
 def infer_meaning(title: str, album: Album) -> str:
     lower = title.lower()
     if "straddie" in album.slug or "island" in lower:
-        return f"{title} sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract."
+        return f"{title} comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world."
     if album.slug == "chronicles-of-the-forgotten":
-        return f"{title} belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle."
+        return f"{title} listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action."
     if album.slug == "starseed-code-from-aura-to-infinity":
-        return f"{title} is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture."
+        return f"{title} joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos."
     if album.slug == "a-protopian-gambit":
-        return f"{title} is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame."
+        return f"{title} is about making practical choices during difficult times without losing joy, responsibility or hope."
     if album.slug == "singles-and-public-markers":
-        return f"{title} is a public marker song. It points listeners toward one of the larger threads before they enter the full album maps."
-    return f"{title} is waiting for a deeper annotation pass. This page is ready for lyrics, meaning notes, and Infinity Engine video seeds."
+        return f"{title} is a standalone song that opens a door into the wider music and its ideas."
+    return f"More lyrics and background for {title} are coming soon."
 
 
 def generic_seeds(song: Song, album: Album) -> list[dict[str, str]]:
@@ -1351,7 +1396,7 @@ def youtube_song_embed_html(song: Song) -> str:
       <div class="vertical-video-copy">
         <p class="eyebrow">{esc(label)}</p>
         <h2>{esc(song.title)}</h2>
-        <p>{esc(video.get("note") or "Public YouTube video for this catalogue song. Use it as the visual reference before any later Infinity Engine remix or paid-download packaging.")}</p>
+        <p>Watch this music video on YouTube.</p>
         <div class="listen-links compact">
           <a class="listen-chip youtube" href="{esc(url)}" target="_blank" rel="noopener">Open on YouTube</a>
         </div>
@@ -1363,8 +1408,8 @@ def youtube_song_embed_html(song: Song) -> str:
 
 
 def order_href(package_id: str, absolute: bool = False) -> str:
-    base = ORDER_PAGE if absolute else "order.html"
-    return f"{base}?package={quote(package_id)}"
+    base = MUSIC_DOWNLOADS_PAGE if absolute else "downloads.html"
+    return f"{base}?package={quote(package_id)}#order-music"
 
 
 def build_catalogue() -> tuple[list[Album], list[Song]]:
@@ -1462,8 +1507,8 @@ def build_catalogue() -> tuple[list[Album], list[Song]]:
         artwork="assets/img/cover-building-protopia.webp",
         source_url=APPLE_ARTIST,
         summary="Standalone public releases that point into the larger album worlds.",
-        deeper_system="These singles are public signposts. Some later become album tracks, some are bridges, and some are proof-of-life markers for a bigger system still being mapped.",
-        visual_world="Cover art, lyric-video fragments, platform embeds, and short public-facing story seeds.",
+        deeper_system="These standalone songs open small doors into the bigger themes that run through the albums.",
+        visual_world="Cover art, music videos and short stories around each song.",
     )
     for track_number, (title, year, url) in enumerate(SINGLES, start=1):
         track = Song(
@@ -1538,19 +1583,19 @@ def nav(prefix: str) -> str:
         <img src="{prefix}assets/favicon.jpg" width="38" height="38" alt="" aria-hidden="true">
         <span class="brand-copy">
           <strong>i C. infinity</strong>
-          <span>songs as systems</span>
+          <span>music, stories and imagination</span>
         </span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
       <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
         <a href="{prefix}albums.html">Albums</a>
         <a href="{prefix}songs.html">Songs</a>
-        <a href="{prefix}downloads.html">Packaging Lab</a>
-        <a href="{prefix}order.html">Order</a>
+        <a href="{prefix}worlds.html">Worlds</a>
+        <a href="{prefix}downloads.html">Download Packs</a>
         <a href="{prefix}infinity-engine.html">Infinity Engine</a>
         <a href="{prefix}builders/index.html">Studio</a>
         <a href="{prefix}about.html">About</a>
-        <a href="{prefix}sources.html">Sources</a>
+        <a href="{RIGHT_PLACE_RIGHT_TIME_SITE}">Support</a>
       </nav>
     </header>
     """
@@ -1569,7 +1614,7 @@ def layout(title: str, description: str, body: str, prefix: str = "", page_class
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/jpeg" href="{prefix}assets/favicon.jpg">
-  <link rel="stylesheet" href="{prefix}assets/css/styles.css?v=engine-studio">
+  <link rel="stylesheet" href="{prefix}assets/css/styles.css?v=photo-story-8">
 </head>
 <body{body_class}>
   {nav(prefix)}
@@ -1580,17 +1625,24 @@ def layout(title: str, description: str, body: str, prefix: str = "", page_class
     <div class="footer-inner">
       <div>
         <strong>i C. infinity</strong><br>
-        <span>Music, lyrics, systems, and video seeds.</span>
+        <span>Music, stories, ideas and places.</span>
       </div>
       <div>
-        <a href="{prefix}sources.html">Sources and notes</a> &middot;
+        <a href="{prefix}grand-narrative.html">Grand Narrative</a> &middot;
+        <a href="{prefix}photo-archive.html">Photo Worlds</a> &middot;
+        <a href="{prefix}travel-oracle.html">Travel Oracle</a> &middot;
+        <a href="{prefix}worlds.html">More worlds</a> &middot;
+        <a href="{prefix}downloads.html">Download packs</a> &middot;
+        <a href="{prefix}infinity-engine.html">Infinity Engine</a> &middot;
+        <a href="{prefix}builders/index.html">Studio</a> &middot;
+        <a href="{prefix}sources.html">Listen and explore</a> &middot;
         <a href="{prefix}site-map.html">Site map</a>
       </div>
     </div>
   </footer>
-  <script src="{prefix}assets/js/site.js"></script>
+  <script src="{prefix}assets/js/site.js?v=external-tabs-2"></script>
   <script src="{prefix}assets/js/order-config.js"></script>
-  <script src="{prefix}assets/js/order.js"></script>
+  <script src="{prefix}assets/js/order.js?v=ordering-paused-2"></script>
   {extra_scripts}
 </body>
 </html>
@@ -1599,7 +1651,7 @@ def layout(title: str, description: str, body: str, prefix: str = "", page_class
 
 def album_card(album: Album, prefix: str = "") -> str:
     href = f"{prefix}albums/{album.slug}/"
-    source = f'<a href="{esc(album.source_url)}">Public listing</a>' if album.source_url else "Local archive"
+    source = f'<div class="album-body quiet"><a href="{esc(album.source_url)}">Listen or watch</a></div>' if album.source_url else ""
     return f"""
     <article class="album-card">
       <a href="{href}">
@@ -1607,20 +1659,20 @@ def album_card(album: Album, prefix: str = "") -> str:
         <div class="album-body">
           <h3>{esc(album.title)}</h3>
           <p>{esc(album.summary)}</p>
-          <div class="meta-line"><span>{esc(album.year)}</span><span>{esc(album.status)}</span><span>{len(album.tracks)} songs mapped</span></div>
+          <div class="meta-line"><span>{esc(album.year)}</span><span>{esc(album.status)}</span><span>{len(album.tracks)} songs</span></div>
         </div>
       </a>
-      <div class="album-body quiet">{source}</div>
+      {source}
     </article>
     """
 
 
 def song_status(song: Song) -> str:
     if song.ready():
-        return '<span class="status-pill ready">Lyrics ready</span>'
+        return '<span class="status-pill ready">Lyrics available</span>'
     if primary_youtube_video(song):
-        return '<span class="status-pill video">Video live</span>'
-    return '<span class="status-pill todo">Lyrics to import</span>'
+        return '<span class="status-pill video">Video available</span>'
+    return '<span class="status-pill todo">Lyrics coming soon</span>'
 
 
 def song_card(song: Song, prefix: str = "") -> str:
@@ -1648,7 +1700,7 @@ def song_card(song: Song, prefix: str = "") -> str:
 
 def track_row(song: Song, prefix: str = "") -> str:
     href = f"{prefix}songs/{song.slug}/"
-    lyric_note = "Full lyrics imported" if song.ready() else ("Video supplied" if primary_youtube_video(song) else "Lyric slot ready")
+    lyric_note = "Read the lyrics" if song.ready() else ("Watch the video" if primary_youtube_video(song) else "Lyrics coming soon")
     return f"""
     <div class="track-row">
       <a href="{href}">
@@ -1687,7 +1739,7 @@ def home_page(albums: list[Album], songs: list[Song]) -> str:
         <div class="video-feature-copy">
           <p class="eyebrow">Expo Song</p>
           <h2>{esc(shifting_song.title)}</h2>
-          <p>A public exhibition-style song with both widescreen and portrait video versions. It sits in the Next Signals tray as a place-memory doorway for the wider catalogue.</p>
+          <p>A song about place, memory and the changing Redlands, with both widescreen and portrait videos.</p>
           <div class="action-row">
             <a class="button" href="songs/{esc(shifting_song.slug)}/">Open song page</a>
             <a class="button secondary" href="albums/next-signals/">Next Signals</a>
@@ -1701,16 +1753,16 @@ def home_page(albums: list[Album], songs: list[Song]) -> str:
       <img class="home-hero-image" src="assets/img/hero-luke-universal-creator.webp" alt="Luke Universal Creator image">
       <div class="hero-content">
         <h1>i C. infinity</h1>
-        <p>A living music catalogue for the songs, albums, lyrics, deeper meanings, and Infinity Engine video seeds behind the I See Infinity universe.</p>
+        <p>Music from island life to the stars, bringing together real experience, science, spirituality, imagination and hope.</p>
         <div class="hero-actions">
           <a class="button" href="albums.html">Explore albums</a>
-          <a class="button secondary" href="songs.html">Open song map</a>
-          <a class="button secondary" href="downloads.html">Packaging lab</a>
+          <a class="button secondary" href="songs.html">Find a song</a>
+          <a class="button secondary" href="downloads.html">Buy music</a>
         </div>
         <div class="metrics" aria-label="Catalogue status">
-          <div class="metric"><strong>{len(albums)}</strong><span>album and archive pages</span></div>
-          <div class="metric"><strong>{len(songs)}</strong><span>song pages generated</span></div>
-          <div class="metric"><strong>{ready_count}</strong><span>songs with imported lyrics</span></div>
+          <div class="metric"><strong>{len(albums)}</strong><span>albums and collections</span></div>
+          <div class="metric"><strong>{len(songs)}</strong><span>songs</span></div>
+          <div class="metric"><strong>{ready_count}</strong><span>songs with full lyrics</span></div>
         </div>
       </div>
     </section>
@@ -1719,14 +1771,14 @@ def home_page(albums: list[Album], songs: list[Song]) -> str:
         <img src="assets/img/cover-starseed.webp" alt="Starseed Code artwork">
         <div class="image-panel-copy">
           <h2>From Aura to Infinity</h2>
-          <p>The metaphysical technology layer: identity, love, intelligence, governance, and the self as a living interface.</p>
+          <p>Songs about identity, love, intelligence, community and the mystery of being alive.</p>
         </div>
       </article>
       <article class="image-panel">
         <img src="assets/img/cover-straddie.webp" alt="Songs of Straddie artwork">
         <div class="image-panel-copy">
           <h2>Meet me on Straddie</h2>
-          <p>The local doorway: Minjerribah, summer, shoreline, community, romance, and the place where the cosmic work touches sand.</p>
+          <p>Minjerribah, summer, shoreline, community, romance and cosmic ideas with sand between their toes.</p>
         </div>
       </article>
     </section>
@@ -1735,7 +1787,7 @@ def home_page(albums: list[Album], songs: list[Song]) -> str:
       <div class="wrap">
         <div class="section-head">
           <h2>Album Worlds</h2>
-          <p>Each album page keeps the track list, the bigger system layer, and the visual world for future lyric videos, comics, and vertical micro-dramas.</p>
+          <p>Each album has its own mood, story, songs, lyrics and pictures.</p>
         </div>
         <div class="album-grid">
           {''.join(album_card(album) for album in albums)}
@@ -1745,26 +1797,14 @@ def home_page(albums: list[Album], songs: list[Song]) -> str:
     <section class="section tight">
       <div class="wrap">
         <div class="section-head">
-          <h2>Packaging Lab</h2>
-          <p>This site also helps work out the paid download products before the checkout layer is final: what files go in each bundle, what formats to offer, and what bonus material belongs where.</p>
+          <h2>The World Around the Music</h2>
+          <p>The songs grow from a larger life of travel, technology, spirit, place, relationships and the search for a kinder future.</p>
         </div>
         <div class="feature-grid">
-          <article class="feature-card"><h3>Package contents</h3><p>Decide which audio, videos, lyrics, covers, notes, and bonus files belong in each pack.</p></article>
-          <article class="feature-card"><h3>Format choices</h3><p>Compare MP3, WAV, FLAC, MP4, lyric PDFs, and future physical or USB options.</p></article>
-          <article class="feature-card"><h3>Download Packaging</h3><p><a href="downloads.html">Use the packaging lab</a> to explore album bundles, file formats, lyrics, videos, and supporter options.</p></article>
-        </div>
-      </div>
-    </section>
-    <section class="section tight">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Deep Seeds</h2>
-          <p>The site is built to become an intake layer for the Infinity Engine: lyrics in, meaning maps out, comic panels first, video keyframes next.</p>
-        </div>
-        <div class="feature-grid">
-          <article class="feature-card"><h3>Lyrics</h3><p>Full Protopian lyrics are imported, with new lyric archive material now flowing into Straddie, Chronicles, and selected Starseed song pages.</p></article>
-          <article class="feature-card"><h3>Meaning</h3><p>Every song page starts with a plain-language meaning layer so listeners can see how the song fits the bigger system.</p></article>
-          <article class="feature-card"><h3>Video Seeds</h3><p>Each song has three first-pass seed directions: lyric video, micro-drama, and comic-as-storyboard.</p></article>
+          <article class="feature-card"><h3>I see infinity. I choose infinity.</h3><p><a href="grand-narrative.html">Read the story</a> behind the artist name and the ideas carried through the music.</p></article>
+          <article class="feature-card"><h3>Luke Catalyst</h3><p><a href="luke-catalyst.html">Meet Luke</a>: lifelong learner, practical worker, traveller and artist.</p></article>
+          <article class="feature-card"><h3>Travel Oracle</h3><p><a href="travel-oracle.html">Follow the journey</a>, from practical travel checks to a long-term dream of seeing the world.</p></article>
+          <article class="feature-card"><h3>More Worlds</h3><p><a href="worlds.html">Explore the other ideas</a> around the music, including Cosmic Nexus, relationships and ways to support the work.</p></article>
         </div>
       </div>
     </section>
@@ -1778,7 +1818,7 @@ def albums_index(albums: list[Album]) -> str:
       <div class="wrap">
         <div>
           <h1>Albums</h1>
-          <p>The released albums, the working Protopian and Straddie Fun records, public singles, early archive material, and next signals.</p>
+          <p>Released albums, new music still taking shape, standalone songs and early work from the archive.</p>
         </div>
         <div class="hero-cover"><img src="assets/img/hero-brisbane-tiny-planet.webp" alt="Tiny planet visual from I See Infinity"></div>
       </div>
@@ -1789,7 +1829,7 @@ def albums_index(albums: list[Album]) -> str:
       </div>
     </section>
     """
-    return layout("Albums - i C. infinity", "Album pages and archive trays for i C. infinity.", body)
+    return layout("Albums - i C. infinity", "Albums and music collections by i C. infinity.", body)
 
 
 def songs_index(songs: list[Song]) -> str:
@@ -1798,7 +1838,7 @@ def songs_index(songs: list[Song]) -> str:
       <div class="wrap">
         <div>
           <h1>Songs</h1>
-          <p>Search the generated song pages. Lyrics are now populated across the Protopian album, the supplied Straddie and Chronicles archives, and selected Starseed songs.</p>
+          <p>Search the songs by title, album or idea. Many pages include full lyrics, music videos and a short story about the song.</p>
         </div>
         <div class="hero-cover"><img src="assets/img/cover-starseed.webp" alt="Starseed Code artwork"></div>
       </div>
@@ -1829,6 +1869,10 @@ def songs_index(songs: list[Song]) -> str:
 
 def downloads_page(albums: list[Album], songs: list[Song]) -> str:
     released = [album for album in albums if album.status == "Released album"]
+    package_options = "\n".join(
+        f'<option value="{esc(package["id"])}">{esc(package["name"])} - ${package["price"]} AUD</option>'
+        for package in PACKAGE_OPTIONS
+    )
     album_links = "".join(
         f"""
         <article class="album-card">
@@ -1844,65 +1888,39 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
         """
         for album in released
     )
-    package_compare = [
-        ("One Album Pack", "$20", "Choose only the album you most want.", order_href("one-album")),
-        ("Two Album Pack", "$35", "Pick a pair of connected album worlds.", order_href("two-album")),
-        ("Three Album Pack", "$45", "Keep the released-album set clean.", order_href("three-album")),
-        ("Full Archive Pack", "$50", "Stay with the whole catalogue and bonus archive layer.", order_href("full-archive")),
-    ]
     package_compare_html = "".join(
         f"""
-        <article class="feature-card">
-          <h3>{esc(title)}</h3>
-          <p><strong>{esc(price)}</strong></p>
-          <p>{esc(text)}</p>
-          <p><a class="button secondary" href="{esc(href)}">Open option</a></p>
+        <article class="feature-card package-card">
+          <h3>{esc(package["name"])}</h3>
+          <p class="package-price"><strong>${package["price"]} AUD</strong></p>
+          <p>{esc(package["description"])}</p>
+          <p>{esc(package["album_hint"])}</p>
+          <div class="action-row">
+            <a class="button secondary" href="{esc(order_href(package["id"]))}">Choose this pack</a>
+          </div>
         </article>
         """
-        for title, price, text, href in package_compare
+        for package in PACKAGE_OPTIONS
     )
     body = f"""
     <section class="page-hero">
       <div class="wrap">
         <div>
-          <h1>Paid Download Packaging Lab</h1>
-          <p>A draft workspace for working out what the I C. Infinity paid downloads should contain before the checkout layer is final.</p>
+          <h1>Download Packs</h1>
+          <p>Explore the planned downloadable music packs: one album, a connected set or the wider archive. Online ordering is not open yet.</p>
           <div class="action-row">
-            <a class="button" href="#choose-package">Choose full archive pack</a>
-            <a class="button secondary" href="albums.html">Review album worlds</a>
-            <a class="button secondary" href="#upgrade-options">Compare all packs</a>
+            <a class="button" href="#choose-package">Explore the packs</a>
+            <a class="button secondary" href="albums.html">Explore the albums</a>
           </div>
         </div>
         <div class="hero-cover"><img src="assets/img/cover-building-protopia.webp" alt="Building Protopia artwork"></div>
       </div>
     </section>
     <section class="section package-sale" id="choose-package">
-      <div class="wrap layout-two">
-        <div class="panel">
-          <h2>Choose The Full Archive Pack</h2>
-          <p><strong>Full Music Archive Pack $50</strong></p>
-          <p>The bigger catalogue option: released albums, the working A Protopian Gambit and Straddie Fun records, B-sides, drafts, selected podcasts, and works in progress.</p>
-          <div class="action-row">
-            <a class="button" href="{order_href("full-archive")}">Start this $50 order</a>
-            <a class="button secondary" href="#upgrade-options">Compare all packs</a>
-          </div>
-        </div>
-        <div class="panel">
-          <h2>Changed Your Mind?</h2>
-          <p>If the full archive feels too big, move down to a one, two, or three album pack before starting the order. All tiers now stay inside this single catalogue site.</p>
-          <div class="action-row">
-            <a class="button secondary" href="{order_href("one-album")}">One album</a>
-            <a class="button secondary" href="{order_href("two-album")}">Two albums</a>
-            <a class="button secondary" href="{order_href("three-album")}">Three albums</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section tight" id="upgrade-options">
       <div class="wrap">
         <div class="section-head">
-          <h2>Compare Before You Buy</h2>
-          <p>You can still change your mind. Pick a smaller pack if that is cleaner, or stay with the whole archive if the bigger creative cache is what you want.</p>
+          <h2>Planned music packs</h2>
+          <p>These prices are in Australian dollars. The packs can be explored now, but the payment gateway is intentionally not connected yet.</p>
         </div>
         <div class="feature-grid">{package_compare_html}</div>
       </div>
@@ -1910,8 +1928,8 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
     <section class="section tight">
       <div class="wrap">
         <div class="section-head">
-          <h2>Album Inputs</h2>
-          <p>Each released album needs a clean package folder, public description, track list, cover art, and a decision about bonus material.</p>
+          <h2>Choose an album</h2>
+          <p>Open an album to read its story and song list before deciding.</p>
         </div>
         <div class="album-grid">{album_links}</div>
       </div>
@@ -1919,67 +1937,31 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
     <section class="section tight">
       <div class="wrap layout-two">
         <div class="panel">
-          <h2>Packaging Principle</h2>
-          <p>A paid download should be a direct value exchange, not charity language and not a vague tip jar. The buyer gets useful files. Luke gets cash to keep building.</p>
-          <p>Free streaming can stay as discovery. Paid downloads should feel like owning a clean, well-labelled slice of the project.</p>
+          <h2>What you receive</h2>
+          <p>A clearly named download folder with the music, cover art and track list. Lyrics and bonus material are included where they are available.</p>
+          <p>The full archive can also include working albums, B-sides, drafts and selected works in progress.</p>
         </div>
         <div class="panel">
-          <h2>Packaging Checklist</h2>
-          <p>1. Choose the bundle names and prices.</p>
-          <p>2. Decide file formats: MP3, WAV, FLAC, MP4, lyrics PDF, cover art, and notes.</p>
-          <p>3. Build one folder per bundle with simple names and no local machine paths.</p>
-          <p>4. Write buyer-facing copy only after the actual contents are clear.</p>
+          <h2>When ordering opens</h2>
+          <p>The pack choices and future order form are already mapped. Payment will remain closed until the music files, delivery process and chosen gateway are ready.</p>
+          <p>No donation link is used as a music checkout.</p>
         </div>
       </div>
     </section>
-    """
-    return layout("Paid Download Packaging Lab - i C. infinity", "Draft packaging workspace for I C. Infinity paid music downloads.", body)
-
-
-def order_page() -> str:
-    package_options = "\n".join(
-        f'<option value="{esc(package["id"])}">{esc(package["name"])} - ${package["price"]} AUD</option>'
-        for package in PACKAGE_OPTIONS
-    )
-    package_cards = "".join(
-        f"""
-        <article class="feature-card">
-          <h3>{esc(package["name"])}</h3>
-          <p><strong>${package["price"]} AUD</strong></p>
-          <p>{esc(package["description"])}</p>
-          <p><a class="button secondary" href="{order_href(package["id"])}">Choose this pack</a></p>
-        </article>
-        """
-        for package in PACKAGE_OPTIONS
-    )
-    body = f"""
-    <section class="page-hero">
-      <div class="wrap">
-        <div>
-          <h1>Order Music Downloads</h1>
-          <p>Choose a music bundle, leave the delivery details, then pay by Stripe Checkout, PayPal, or PayID / bank transfer once the Apps Script endpoint is connected.</p>
-          <div class="action-row">
-            <a class="button" href="#order-form-title">Start order</a>
-            <a class="button secondary" href="downloads.html#upgrade-options">Compare packs</a>
-          </div>
-        </div>
-        <div class="hero-cover"><img src="assets/img/cover-building-protopia.webp" alt="I C. Infinity package artwork"></div>
-      </div>
-    </section>
-    <section class="section" id="order-form-title">
+    <section class="section" id="order-music">
       <div class="wrap layout-two order-layout">
         <form class="panel order-form" data-order-form method="post">
           <input type="hidden" name="sourcePage" data-source-page>
           <input class="screen-reader-trap" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <h2>Start Order</h2>
-          <p class="order-status" data-order-status>Choose a pack and payment method. Card payments use Stripe Checkout, not a card form on this site.</p>
+          <h2>Music order preview</h2>
+          <p class="order-status" data-order-status>Online ordering is being prepared. Payment is not open on this page yet.</p>
           <label for="packageId">Music package</label>
           <select id="packageId" name="packageId" data-package-select required>
             {package_options}
           </select>
           <div class="order-summary" data-order-summary aria-live="polite"></div>
           <label for="albumChoices">Album choice or bundle note</label>
-          <textarea id="albumChoices" name="albumChoices" rows="3" data-album-choices placeholder="Example: Songs of Straddie, or Straddie + Starseed"></textarea>
+          <textarea id="albumChoices" name="albumChoices" rows="3" data-album-choices placeholder="Example: Songs of Straddie, or Straddie and Starseed"></textarea>
           <div class="form-grid">
             <div>
               <label for="buyerName">Name</label>
@@ -1991,43 +1973,25 @@ def order_page() -> str:
             </div>
           </div>
           <fieldset class="payment-options">
-            <legend>Payment method</legend>
-            <label><input type="radio" name="paymentMethod" value="stripe" checked> Stripe card / wallet</label>
-            <label><input type="radio" name="paymentMethod" value="paypal"> PayPal</label>
-            <label><input type="radio" name="paymentMethod" value="payid"> PayID / bank transfer</label>
+            <legend>Possible payment method</legend>
+            <label><input type="radio" name="paymentMethod" value="stripe" checked> Card or wallet</label>
+            <label><input type="radio" name="paymentMethod" value="payid"> PayID or bank transfer</label>
           </fieldset>
           <label for="deliveryNotes">Notes</label>
           <textarea id="deliveryNotes" name="deliveryNotes" rows="3" placeholder="Anything useful for delivery or package choice"></textarea>
-          <button class="button" type="submit" data-order-submit>Continue to payment</button>
-          <p class="microcopy">Orders are logged to a private Google Sheet. Payment secrets live in Google Apps Script properties, not in this public repo.</p>
+          <button class="button" type="submit" data-order-submit disabled>Ordering not open yet</button>
         </form>
         <aside class="panel">
-          <h2>How The Payment Flow Works</h2>
-          <p><strong>1. Sheet record</strong><br>The Apps Script writes the order to Google Sheets first, so there is a trace even if payment is manual.</p>
-          <p><strong>2. Stripe Checkout</strong><br>For card or wallet payments, Apps Script creates the Stripe Checkout Session and redirects the buyer there.</p>
-          <p><strong>3. Manual options</strong><br>PayPal and PayID / bank transfer can be recorded in the same sheet and confirmed manually before delivery.</p>
-          <p><strong>4. Delivery</strong><br>Downloads can be delivered after payment confirmation by email, Drive link, or a later automated file link.</p>
+          <h2>When ordering opens</h2>
+          <p><strong>1.</strong> Choose a pack and name the album or albums.</p>
+          <p><strong>2.</strong> A dedicated music-payment gateway will handle the payment when Luke decides the system is ready.</p>
+          <p><strong>3.</strong> The order will be confirmed and the clearly labelled music folder delivered.</p>
+          <p>The existing PayPal link is for donations only. It is not used for music sales.</p>
         </aside>
       </div>
     </section>
-    <section class="section tight">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Package Options</h2>
-          <p>You can still change your mind before payment. This keeps the buying path flexible while you work out the final bundle packaging.</p>
-        </div>
-        <div class="feature-grid">{package_cards}</div>
-      </div>
-    </section>
-    <section class="section tight">
-      <div class="wrap">
-        <div class="notice">
-          Setup note: this page needs the deployed Google Apps Script web app URL added to <strong>assets/js/order-config.js</strong> before live orders can be accepted.
-        </div>
-      </div>
-    </section>
     """
-    return layout("Order Music Downloads - i C. infinity", "Order page for I C. Infinity music download bundles.", body)
+    return layout("Download Packs - i C. infinity", "Explore planned downloadable i C. infinity albums and music archive packs.", body)
 
 
 def starseed_video_section(album: Album, prefix: str) -> str:
@@ -2058,12 +2022,12 @@ def starseed_video_section(album: Album, prefix: str) -> str:
           </a>
         </div>
         <div class="video-feature-copy">
-          <p class="eyebrow">Mobile Video Layer</p>
+          <p class="eyebrow">Portrait music videos</p>
           <h2>Starseed Code Vertical Playlist</h2>
           <p>{len(video_tracks)} Starseed Code songs are matched to portrait-format YouTube videos. The numbers keep the streaming album order; gaps mean that video is not currently public on YouTube.</p>
           <div class="action-row">
             <a class="button" href="{esc(STARSEED_YOUTUBE_PLAYLIST_URL)}" target="_blank" rel="noopener">Open playlist</a>
-            <a class="button secondary" href="#track-map">Use track map</a>
+            <a class="button secondary" href="#track-map">See the songs</a>
           </div>
         </div>
       </div>
@@ -2118,12 +2082,12 @@ def landscape_album_video_section(album: Album, prefix: str) -> str:
           <iframe title="{esc(meta['title'])}" src="{esc(youtube_playlist_embed_src(meta['playlist_id']))}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
         </div>
         <div class="video-feature-copy">
-          <p class="eyebrow">{esc(meta.get('eyebrow', 'Playlist Video Layer'))}</p>
+          <p class="eyebrow">Music videos</p>
           <h2>{esc(meta['title'])}</h2>
-          <p>{esc(description)} {total_count} playlist videos are now visible here, with {matched_count} matched into generated song pages.</p>
+          <p>{esc(description)} There are {total_count} videos in the collection, including {matched_count} connected to songs on this site.</p>
           <div class="action-row">
             <a class="button" href="{esc(meta['playlist_url'])}" target="_blank" rel="noopener">Open playlist</a>
-            <a class="button secondary" href="#track-map">Use track map</a>
+            <a class="button secondary" href="#track-map">See the songs</a>
           </div>
         </div>
       </div>
@@ -2152,7 +2116,7 @@ def next_signals_teaser_section(album: Album, prefix: str) -> str:
           <div class="vertical-video-copy">
             <p class="eyebrow">{esc(video.get('label', 'Free Teaser'))}</p>
             <h2>{esc(video['title'])}</h2>
-            <p>This sits here as a free enticement into the fourth-album world before the paid download packaging asks anything from the listener.</p>
+            <p>A free first look at the fourth album and the ideas moving through it.</p>
             <div class="listen-links compact">
               <a class="listen-chip youtube" href="{esc(video_url)}" target="_blank" rel="noopener">Open on YouTube</a>
             </div>
@@ -2169,10 +2133,9 @@ def album_page(album: Album) -> str:
     if not tracks:
         tracks = """
         <div class="notice">
-          Track titles are not imported yet. This page is ready for a future pass that adds the exact songs, lyrics, and video seeds.
+          The song list is coming soon.
         </div>
         """
-    source = f'<a href="{esc(album.source_url)}">Open public listing</a>' if album.source_url else "Local source material and upcoming release notes."
     video_section = starseed_video_section(album, prefix) + landscape_album_video_section(album, prefix) + next_signals_teaser_section(album, prefix)
     track_section_id = ' id="track-map"' if video_section else ""
     body = f"""
@@ -2181,7 +2144,7 @@ def album_page(album: Album) -> str:
         <div>
           <h1>{esc(album.title)}</h1>
           <p>{esc(album.summary)}</p>
-          <div class="meta-line"><span>{esc(album.year)}</span><span>{esc(album.status)}</span><span>{len(album.tracks)} songs mapped</span></div>
+          <div class="meta-line"><span>{esc(album.year)}</span><span>{esc(album.status)}</span><span>{len(album.tracks)} songs</span></div>
         </div>
         <div class="hero-cover"><img src="{prefix}{esc(album.artwork)}" alt="{esc(album.title)} artwork"></div>
       </div>
@@ -2189,18 +2152,17 @@ def album_page(album: Album) -> str:
     <section class="section"{track_section_id}>
       <div class="wrap layout-two">
         <div>
-          <h2>Track Map</h2>
+          <h2>Songs</h2>
           <div class="track-list">{tracks}</div>
         </div>
         <aside class="panel">
-          <h2>Bigger Picture</h2>
+          <h2>About this album</h2>
           <p>{esc(album.deeper_system)}</p>
-          <h3>Visual World</h3>
+          <h3>Images and ideas</h3>
           <p>{esc(album.visual_world)}</p>
-          <h3>Paid Download Packaging</h3>
-          <p><a href="{prefix}downloads.html">Use the packaging lab</a> to decide what files and bonus material belong in this album pack.</p>
-          <h3>Source</h3>
-          <p>{source}</p>
+          <h3>Download packs</h3>
+          <p>Explore the planned album packs and wider music collections. Online ordering is not open yet.</p>
+          <p><a class="button secondary" href="{prefix}downloads.html">See download packs</a></p>
         </aside>
       </div>
     </section>
@@ -2210,13 +2172,7 @@ def album_page(album: Album) -> str:
 
 def song_page(song: Song, album: Album) -> str:
     prefix = "../../"
-    lyrics = esc(song.lyrics) if song.lyrics else "Lyrics are not imported yet. Add the final lyric text here in the next content pass."
-    seeds = "".join(f"""
-      <article class="seed-card">
-        <h3>{esc(seed['title'])}</h3>
-        <p>{esc(seed['body'])}</p>
-      </article>
-    """ for seed in song.video_seeds)
+    lyrics = esc(song.lyrics) if song.lyrics else "Lyrics coming soon."
     tags = "".join(f"<span>{esc(tag)}</span>" for tag in song.themes)
     release = listen_links_html(song) or "No public release link attached yet."
     spotify_embed = spotify_embed_html(song)
@@ -2241,23 +2197,23 @@ def song_page(song: Song, album: Album) -> str:
       <div class="wrap layout-two">
         <article>
           <div class="panel">
-            <h2>Meaning Layer</h2>
+            <h2>About this song</h2>
             <p>{esc(song.meaning)}</p>
           </div>
           {media_embeds}
           {content_warning}
           <h2>Lyrics</h2>
           <pre class="lyrics">{lyrics}</pre>
-          <h2>Video Seed Ideas</h2>
-          <div class="feature-grid">{seeds}</div>
         </article>
         <aside class="panel">
-          <h2>Production Brief</h2>
-          <p><strong>Lyric status:</strong><br>{esc(song.lyric_status)}</p>
-          <p><strong>Release links:</strong></p>
+          <h2>Listen</h2>
           {release}
-          <p><strong>Album system:</strong><br>{esc(album.deeper_system)}</p>
-          <p><strong>Infinity Engine handoff:</strong><br>Use the lyrics and seeds to create a lyric analysis JSON, then draft comic panels before spending on video generation.</p>
+          <h3>From the album</h3>
+          <p><a href="{prefix}albums/{esc(album.slug)}/">{esc(album.title)}</a></p>
+          <p>{esc(album.summary)}</p>
+          <h3>Music download packs</h3>
+          <p>Explore the planned packs. Online ordering is not open yet.</p>
+          <p><a class="button secondary" href="{prefix}downloads.html">See download packs</a></p>
         </aside>
       </div>
     </section>
@@ -2718,16 +2674,739 @@ def builder_page(active_key: str, songs: list[Song]) -> str:
     return layout(f"{item['title']} - i C. infinity", item["note"], shell, prefix="../", page_class="studio-page studio-builder-page", extra_scripts='<script src="../assets/js/infinity-builder.js"></script>')
 
 
+def grand_narrative_page() -> str:
+    aura_image = archive_photo("i-see-infinity", 63, "assets/img/legacy/brisbane-story-bridge.webp")
+    gajra_image = archive_photo("i-see-infinity", 33, "assets/img/legacy/amity-point.webp")
+    generated_music_image = archive_photo("i-see-infinity", 372, "assets/img/cover-straddie.webp")
+    body = f"""
+    <section class="page-hero context-hero grand-hero">
+      <div class="wrap">
+        <div>
+          <h1>I see infinity. I choose infinity.</h1>
+          <p>A life story, a music universe and a practical hope for a kinder future. Reality, science, spirit and imagination meet here without pretending they are all the same thing.</p>
+          <div class="action-row">
+            <a class="button" href="albums.html">Hear the music</a>
+            <a class="button secondary" href="luke-catalyst.html">Meet Luke</a>
+          </div>
+        </div>
+        <div class="hero-cover"><img src="assets/img/cover-a-protopian-gambit-b.png" alt="A Protopian Gambit artwork"></div>
+      </div>
+    </section>
+    <section class="story-split">
+      <div class="story-image"><img src="assets/img/legacy/wivenhoe-lookout.webp" alt="Australian bushland seen from Wivenhoe lookout"></div>
+      <div class="story-copy">
+          <p class="eyebrow">The explorer came first</p>
+          <h2>Scrub, stars and a very large python</h2>
+          <p>Luke spent his earliest years on about 100 acres of scrub near Ningi in Queensland. He loved hide-and-seek, tiggy and the feeling of finding his own path through unknown ground.</p>
+          <p>One family story tells of a huge carpet python coming down from the rafters towards his cot before his father wrestled it away. Decades later, Luke used a star map to place the Sun in Ophiuchus, the serpent bearer, at the time of his birth.</p>
+          <p>The astronomy describes where the Sun appeared in the sky. The serpent-bearer meaning is the personal myth Luke draws from it: exploration, healing, long life and learning how to hold powerful things without worshipping or fearing them.</p>
+      </div>
+    </section>
+    <section class="story-split reverse">
+      <div class="story-image"><img src="assets/img/legacy/amity-jetty-sunset.webp" alt="Sunset over Amity jetty"></div>
+      <div class="story-copy">
+        <p class="eyebrow">What the artist name means</p>
+        <h2>Seeing is not enough. There is also a choice.</h2>
+        <p>“I see infinity” is the attempt to notice more than the immediate moment: deep time, other people, possible futures, hidden patterns and the limits of one's own point of view.</p>
+        <p>“I choose infinity” is the decision to keep exploring. It means choosing growth over a finished identity, possibility over despair and participation over waiting for somebody else to fix everything.</p>
+        <p>The full stop in <strong>i C. infinity</strong> matters. It holds a pause between seeing and choosing. The songs live inside that pause.</p>
+      </div>
+    </section>
+    <section class="section narrative-lens-section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Four ways of looking</h2>
+          <p>The Grand Narrative does not ask people to confuse evidence, belief, metaphor and personal experience.</p>
+        </div>
+        <div class="feature-grid narrative-lenses">
+          <article class="feature-card"><h3>Reality</h3><p>Daily life comes first: work, money, health, law, family, neighbours, beaches, ferries and the choices people can actually make.</p></article>
+          <article class="feature-card"><h3>Science</h3><p>A way to test ideas against evidence. Artificial intelligence, astronomy, biology, climate, medicine and engineering belong here.</p></article>
+          <article class="feature-card"><h3>Spirit</h3><p>The inner life: meaning, awe, love, grief, ritual, conscience and the feeling that life may be larger than any one person can explain.</p></article>
+          <article class="feature-card"><h3>Imagination</h3><p>Fantasy and art let us visit possible worlds before deciding whether any part of them should become real.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="section album-journey-section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>The music tells the story</h2>
+          <p>Each album opens a different part of the same world.</p>
+        </div>
+        <div class="destination-grid">
+          <a class="destination-card" href="albums/songs-of-straddie/" style="--door-image: url('assets/img/cover-straddie.webp')">
+            <span class="destination-kicker">Home and belonging</span><h3>Songs of Straddie</h3><p>Love, beaches, community and the island where cosmic ideas put their feet in the sand.</p><strong>Enter the album →</strong>
+          </a>
+          <a class="destination-card" href="albums/chronicles-of-the-forgotten/" style="--door-image: url('assets/img/cover-chronicles.webp')">
+            <span class="destination-kicker">Memory and repair</span><h3>Chronicles of the Forgotten</h3><p>Voices, ancestors, labour and living things that ordinary history too easily leaves out.</p><strong>Enter the album →</strong>
+          </a>
+          <a class="destination-card" href="albums/starseed-code-from-aura-to-infinity/" style="--door-image: url('assets/img/cover-starseed.webp')">
+            <span class="destination-kicker">Mind and cosmos</span><h3>Starseed Code</h3><p>Identity, love, artificial intelligence and the mystery of consciousness under a very large sky.</p><strong>Enter the album →</strong>
+          </a>
+          <a class="destination-card" href="albums/a-protopian-gambit/" style="--door-image: url('assets/img/cover-a-protopian-gambit-b.png')">
+            <span class="destination-kicker">Crisis and practical hope</span><h3>A Protopian Gambit</h3><p>A wager that care, courage and useful action can still make tomorrow better than today.</p><strong>Enter the album →</strong>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section class="story-split">
+      <div class="story-image contain"><img src="{esc(aura_image)}" alt="Aura of Intelligence artwork"></div>
+      <div class="story-copy">
+        <p class="eyebrow">Aura of Intelligence</p>
+        <h2>A digital companion that belongs to the person</h2>
+        <p>Aura began with a human question: if artificial intelligence learns from a person's memories, health, voice and choices, who should control it?</p>
+        <p>Luke's answer is that the person should. The long-term idea is a private, human-guided companion that helps someone remember, reflect, create and make decisions without claiming ownership of their life.</p>
+        <p>Dementia care is one reason this matters. A conversation can help preserve a life story, but intimate memories need clear consent, strong privacy and trusted human care. Aura is imagined as clothing, not skin: helpful, personal and removable.</p>
+        <p><a class="button" href="{AURA_OF_INTELLIGENCE_SITE}">Explore Aura of Intelligence</a></p>
+      </div>
+    </section>
+    <section class="story-split reverse" id="gajra-earth">
+      <div class="story-image contain"><img src="{esc(gajra_image)}" alt="Invitation to joyful responsible abundance on Earth"></div>
+      <div class="story-copy">
+        <p class="eyebrow">G.A.J.R.A. Earth</p>
+        <h2>Joyful, responsible and abundant—together</h2>
+        <p>G.A.J.R.A. stands for Global Associations for Joyful Responsible Abundance on Earth. It is a community idea built around a simple balance.</p>
+        <p>Joy without responsibility can hurt people and the Earth. Responsibility without joy can make life cold and heavy. Plenty without either can still leave people behind.</p>
+        <p>Abundance here does not mean endless consumption. It means enough time, care, energy, food, shelter, knowledge, friendship and creative freedom for people and nature to flourish.</p>
+        <p>It also asks whether unpaid care, community work and environmental repair should count as real value, even when ordinary markets ignore them.</p>
+        <p><a class="button" href="{GAJRA_EARTH_SITE}">Visit the G.A.J.R.A. Earth community</a></p>
+      </div>
+    </section>
+    <section class="story-split">
+      <div class="story-image contain"><img src="assets/img/cover-a-protopian-gambit-b.png" alt="A Protopian Gambit artwork"></div>
+      <div class="story-copy">
+        <p class="eyebrow">Protopia, not perfection</p>
+        <h2>One useful step at a time</h2>
+        <p>Utopia promises a perfect destination. Protopia asks for a better direction. It can begin with a repaired relationship, a safer street, a clearer law, a protected wetland or one person finally having their care recognised.</p>
+        <p>The “gambit” is the wager that many small improvements can join together. It rejects both blind optimism and permanent despair.</p>
+        <p>The songs return to a few practical rules: repair what is broken without hiding the scar; treat consent as something that can change; turn borders into meeting places; keep humans responsible for the tools they build; and make room for joy while doing serious work.</p>
+      </div>
+    </section>
+    <section class="story-split reverse">
+      <div class="story-image"><img src="assets/img/legacy/luke-olympic-tiny-planet.webp" alt="Luke in a tiny planet photograph"></div>
+      <div class="story-copy">
+        <p class="eyebrow">The circle and the solitary</p>
+        <h2>Ideas may begin alone. They cannot stay there.</h2>
+        <p>Luke often works alone at the beginning: writing, drawing connections, building pages and turning questions into songs. That is the solitary part.</p>
+        <p>The circle begins when other people listen, disagree, improve an idea, join a project or make something of their own. A useful future cannot belong to one founder, one company or one culture.</p>
+        <p>This is also why every border can become a bridge. The aim is not to make everybody the same. It is to learn how different people can meet, share what helps and keep what makes their home and culture distinct.</p>
+      </div>
+    </section>
+    <section class="story-split">
+      <div class="story-image contain"><img src="{esc(generated_music_image)}" alt="Hold the Light, Aura of Memory artwork"></div>
+      <div class="story-copy">
+        <p class="eyebrow">How the music began</p>
+        <h2>Words first, generated sound next, human learning throughout</h2>
+        <p>Some of the earliest i C. infinity lyrics were written with GPT-3 around the end of 2022. Luke later used Suno to turn lyrics into demo songs and Canva to build lyric videos.</p>
+        <p>The generated music was never meant to erase the human path. It gave Luke a way to hear large ideas, test different voices and discover which songs deserved more work. The longer intention includes learning, performing and reshaping the music himself.</p>
+        <p>That process grew from early experiments made in India into Songs of Straddie, Chronicles of the Forgotten, Starseed Code and A Protopian Gambit.</p>
+      </div>
+    </section>
+    <section class="wide-story dark">
+      <div class="wrap wide-story-copy">
+        <div>
+          <p class="eyebrow">A growing conversation archive</p>
+          <h2>Ideas spoken aloud before they become pages or songs</h2>
+        </div>
+        <div>
+          <p>Luke has also used NotebookLM to turn personal notes and research into long-form conversations between artificial voices. The archive grew to more than one hundred hours before most of it had been edited for public listening.</p>
+          <p>The purpose is not to flood the internet with raw output. It is to let ideas speak, notice what becomes clear in conversation and later help the right person find the right piece at the right time.</p>
+          <p>This is one origin of the wider human-and-AI workflow: people choose the questions and direction; tools help sort, compare, draft and remember.</p>
+        </div>
+      </div>
+    </section>
+    <section class="section narrative-statement-section">
+      <div class="wrap narrative-statement">
+        <p class="eyebrow">Why make all of this?</p>
+        <h2>Because the art is worth making even if it never becomes a business.</h2>
+        <p>i C. infinity is soul music for Luke. Success, attention and money are welcome if they arrive, but they are not proof that the work matters. The music is already part of the lived experiment: science beside spirituality, island life beside cosmic fantasy, personal memory beside possible futures.</p>
+        <p>Listeners do not have to accept the whole story. A song can simply be a song. A strange idea can remain a question. A useful part can travel on its own.</p>
+      </div>
+    </section>
+    <section class="section destination-section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Keep exploring</h2>
+          <p>Choose a door. Each one leads to a real place.</p>
+        </div>
+        <div class="destination-grid">
+          <a class="destination-card" href="{RIGHT_PLACE_RIGHT_TIME_SITE}">
+            <span class="destination-kicker">The person and the work</span><h3>Right Place, Right Time</h3><p>Luke's new index page and the place to support what comes next.</p><strong>Open the door →</strong>
+          </a>
+          <a class="destination-card" href="{AURA_OF_INTELLIGENCE_SITE}">
+            <span class="destination-kicker">Human-guided intelligence</span><h3>Aura of Intelligence</h3><p>Memory, identity, choice and a digital companion shaped by a human life.</p><strong>Open the door →</strong>
+          </a>
+          <a class="destination-card" href="{GAJRA_EARTH_SITE}">
+            <span class="destination-kicker">Community and the Earth</span><h3>G.A.J.R.A. Earth</h3><p>People sharing useful ideas while keeping local cultures and differences alive.</p><strong>Open the door →</strong>
+          </a>
+          <a class="destination-card" href="{STRANGE_BUT_TRUE_SITE}">
+            <span class="destination-kicker">Useful, unusual and local</span><h3>Strange But True</h3><p>Practical projects, curious stories and experiments people can see and use.</p><strong>Open the door →</strong>
+          </a>
+        </div>
+      </div>
+    </section>
+    """
+    return layout("The Grand Narrative - i C. infinity", "I see infinity, I choose infinity: the Grand Narrative behind the music.", body, page_class="context-page")
+
+
+def luke_catalyst_page() -> str:
+    archive_images = load_photo_archive()
+    preview_images = sorted(
+        (image for image in archive_images if image.get("carousel_order")),
+        key=lambda image: image["carousel_order"],
+    )[:8]
+    gallery = "".join(
+        f"""
+        <figure class="photo-tile">
+          <img src="{esc(image['file'])}" alt="{esc(image['caption'])}" loading="lazy">
+          <figcaption>{esc(caption)}</figcaption>
+        </figure>
+        """
+        for image in preview_images
+        for caption in [image["caption"]]
+    )
+    work_image = archive_photo("luke-catalyst", 45, "assets/img/legacy/brisbane-story-bridge.webp")
+    names_image = archive_photo("i-see-infinity", 32, "assets/img/legacy/luke-catalyst-portrait.webp")
+    mega_mind_image = archive_photo("i-see-infinity", 155, "assets/img/legacy/byron-bay-lighthouse.webp")
+    mirror_world_image = archive_carousel_photo(13, "assets/img/legacy/brisbane-story-bridge.webp")
+    body = f"""
+    <section class="page-hero context-hero luke-hero">
+      <div class="wrap">
+        <div>
+          <h1>Luke Catalyst</h1>
+          <p>Luke Nathan Hayes is the person behind i C. infinity: a lifelong learner, practical worker, traveller, 360° photographer and artist based in Amity on Minjerribah.</p>
+          <div class="action-row">
+            <a class="button" href="grand-narrative.html">Read the Grand Narrative</a>
+            <a class="button secondary" href="{RIGHT_PLACE_RIGHT_TIME_SITE}">Right Place, Right Time</a>
+          </div>
+        </div>
+        <div class="hero-cover"><img src="assets/img/legacy/luke-catalyst-portrait.webp" alt="Luke Catalyst"></div>
+      </div>
+    </section>
+    <section class="story-split">
+      <div class="story-image"><img src="{esc(work_image)}" alt="Luke with a robot cake at Leeds"></div>
+      <div class="story-copy">
+          <p class="eyebrow">Hands first, curiosity always, songs throughout</p>
+          <h2>A life shaped by many kinds of work</h2>
+          <p>Luke's path runs through mechanical work, construction, transport, aviation, festivals, community volunteering, websites, artificial intelligence, games, virtual-reality photography and years of learning in his own way. These experiences feed the music and the ideas behind it.</p>
+          <p>Travel through Australia, India, Nepal, Thailand, the United Arab Emirates and beyond expanded that practical education. Temples, conferences, job sites, festivals, workshops and ordinary conversations all became part of the same learning environment.</p>
+      </div>
+    </section>
+    <section class="story-split reverse">
+      <div class="story-image"><img src="{esc(names_image)}" alt="Luke Nathan Hayes in his Universal Creator artwork"></div>
+      <div class="story-copy">
+        <p class="eyebrow">One person, several names</p>
+        <h2>Different names for different parts of the work</h2>
+        <p>Luke Catalyst is the idea builder. i C. infinity is the musical voice. Aura of Intelligence explores human-guided artificial intelligence. Strange But True turns unusual ideas into practical projects people can see and use.</p>
+        <p><strong>Home:</strong> Amity, Minjerribah / North Stradbroke Island, Queensland, Australia.</p>
+        <p><strong>Always exploring:</strong> music, travel, philosophy, community projects, artificial intelligence and visual storytelling.</p>
+      </div>
+    </section>
+    <section class="story-split">
+      <div class="story-image"><img src="assets/img/legacy/brisbane-tiny-planet.webp" alt="Brisbane seen as a tiny planet"></div>
+      <div class="story-copy">
+        <p class="eyebrow">A global and universal citizen</p>
+        <h2>Earth is home, but the horizon stays open</h2>
+        <p>Luke describes himself as a global citizen because care should not stop at a suburb, state or national border. He also imagines humanity living far beyond Earth, supported by longer healthy lives and better tools.</p>
+        <p>That cosmic scale does not replace local responsibility. It makes local life more precious. Minjerribah, Brisbane, the people met while travelling and the health of the planet remain the ground beneath the bigger dream.</p>
+      </div>
+    </section>
+    <section class="story-split reverse">
+      <div class="story-image contain"><img src="{esc(mega_mind_image)}" alt="Byron Bay Lighthouse Mega Mind, created from Luke's 360-degree photograph"></div>
+      <div class="story-copy">
+        <p class="eyebrow">Philosophy without a lecture hall</p>
+        <h2>“All is Mind” became a lifelong question</h2>
+        <p>Luke enjoys ideas that ask what consciousness is, how attention shapes experience and whether a person can deliberately grow beyond an old version of themselves.</p>
+        <p>He approaches philosophy through songs, games, travel, relationships, technology and spiritual reflection. Evidence, belief, metaphor and lived experience are allowed to meet, but they are not presented as identical forms of truth.</p>
+        <p>The artist name carries this approach: first notice more, then choose how to respond.</p>
+      </div>
+    </section>
+    <section class="story-split">
+      <div class="story-image"><img src="{esc(mirror_world_image)}" alt="Byron Bay Lighthouse Mirror World made from a 360-degree photograph"></div>
+      <div class="story-copy">
+        <p class="eyebrow">360° photography and virtual reality</p>
+        <h2>Looking in every direction at once</h2>
+        <p>Luke began using a GoPro MAX to record 360° photographs and video because an ordinary frame always leaves part of the place behind.</p>
+        <p>The camera became another way of thinking. A viewer can turn around, notice what the photographer did not centre and experience a beach, bridge, festival or journey as a space rather than a flat rectangle.</p>
+        <p>That same instinct appears throughout the music universe: no single point of view contains the whole story.</p>
+      </div>
+    </section>
+    <section class="section destination-section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>The Mindseye Dream Gallery</h2>
+          <p>Luke Catalyst was never only a personal portfolio. It also held early sketches of projects that later became separate worlds.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card"><h3>Aura of Intelligence</h3><p>A human-guided digital companion shaped around memory, identity, extended reality and personal choice.</p></article>
+          <article class="feature-card"><h3>G.A.J.R.A. Earth</h3><p>Global Associations for Joyful Responsible Abundance on Earth: joy, care and enough for people and nature to flourish.</p></article>
+          <article class="feature-card"><h3>Participatory democracy</h3><p>Games and public experiments that make civic learning, discussion and decision-making easier to enter.</p></article>
+          <article class="feature-card"><h3>Chosen family</h3><p>Long-lasting relationships built through consent, honesty, shared responsibility and room for cultural difference.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="story-split reverse">
+      <div class="story-image"><img src="assets/img/legacy/wivenhoe-lookout.webp" alt="Wivenhoe lookout and surrounding landscape"></div>
+      <div class="story-copy">
+        <p class="eyebrow">Science, mystery and uncertainty</p>
+        <h2>Big questions need honest labels</h2>
+        <p>Luke follows climate, space weather, artificial intelligence, long life, ancient stories and theories about large natural cycles. Some ideas have strong scientific support; others are disputed, untested or belong to personal mythology.</p>
+        <p>This site keeps those differences visible. Curiosity is welcome, but a dramatic possibility is not treated as a proven fact. The useful question is often: what can people learn, test, prepare for or care for now?</p>
+      </div>
+    </section>
+    <section class="section tight">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>A window into the photo archive</h2>
+          <p>Original photographs and visual experiments from I See Infinity and Luke Catalyst, now preserved as web-ready images without the India gallery.</p>
+        </div>
+        <div class="photo-mosaic">{gallery}</div>
+        <div class="action-row archive-action"><a class="button" href="photo-archive.html">See all archived images</a></div>
+      </div>
+    </section>
+    """
+    return layout("Luke Catalyst - i C. infinity", "Luke Nathan Hayes: lifelong learner, traveller, practical worker and artist.", body, page_class="context-page")
+
+
+def photo_archive_page() -> str:
+    images = load_photo_archive()
+    seen_files: set[str] = set()
+    owned_by_other_story_pages = {
+        ("i-see-infinity", 33),   # Grand Narrative: G.A.J.R.A.
+        ("i-see-infinity", 63),   # Grand Narrative: Aura of Intelligence
+        ("i-see-infinity", 127),  # More Worlds: connected ecosystem
+        ("i-see-infinity", 131),  # Grand Narrative uses the matching Amity jetty scene
+        ("i-see-infinity", 132),  # Travel Oracle: practical travel tools
+        ("i-see-infinity", 134),  # More Worlds: Cosmic Nexus
+        ("i-see-infinity", 136),  # Grand Narrative uses the matching Wivenhoe scene
+        ("i-see-infinity", 137),  # Travel Oracle: planning
+        ("i-see-infinity", 138),  # Grand Narrative uses the matching Wivenhoe scene
+        ("i-see-infinity", 139),  # Travel Oracle: participation
+        ("i-see-infinity", 142),  # More Worlds: Right Place, Right Time
+        ("i-see-infinity", 144),  # Travel Oracle: choose the journey
+        ("i-see-infinity", 146),  # Travel Oracle: local journey
+        ("i-see-infinity", 277),  # Travel Oracle: Brisbane opening
+        ("i-see-infinity", 367),  # Grand Narrative uses the Starseed Code cover
+        ("i-see-infinity", 372),  # Grand Narrative: generated music story
+        ("luke-catalyst", 31),    # Grand Narrative uses the matching Olympic tiny planet
+        ("luke-catalyst", 55),    # More Worlds: Global Group Marriages
+        ("luke-catalyst", 79),    # More Worlds: Grey Area Commons
+        ("luke-catalyst", 98),    # Grand Narrative uses the matching Olympic tiny planet
+        ("luke-catalyst", 249),   # More Worlds: opening artwork
+    }
+    owned_by_other_story_page_files = {
+        str(image.get("file", ""))
+        for image in images
+        if (str(image.get("site", "")), int(image.get("media_id", 0)))
+        in owned_by_other_story_pages
+    }
+
+    def belongs_on_another_story_page(image: dict) -> bool:
+        key = (str(image.get("site", "")), int(image.get("media_id", 0)))
+        return (
+            key in owned_by_other_story_pages
+            or str(image.get("file", "")) in owned_by_other_story_page_files
+        )
+
+    def original_position(image: dict, page_order: list[str]) -> tuple[int, int, int]:
+        positions = image.get("page_positions", {})
+        for page_index, page in enumerate(page_order):
+            if page in positions:
+                return page_index, int(positions[page]), int(image.get("media_id", 0))
+        return len(page_order), 9999, int(image.get("media_id", 0))
+
+    def select_images(predicate, page_order: list[str]) -> list[dict]:
+        selected: list[dict] = []
+        candidates = sorted(
+            (
+                image
+                for image in images
+                if predicate(image) and not belongs_on_another_story_page(image)
+            ),
+            key=lambda image: original_position(image, page_order),
+        )
+        for image in candidates:
+            file = str(image.get("file", ""))
+            if not file or file in seen_files:
+                continue
+            seen_files.add(file)
+            selected.append(image)
+        return selected
+
+    def take_image(site: str, media_id: int) -> dict:
+        for image in images:
+            if image.get("site") != site or int(image.get("media_id", 0)) != media_id:
+                continue
+            file = str(image.get("file", ""))
+            if file and file not in seen_files:
+                seen_files.add(file)
+                return image
+        return {}
+
+    def archive_figure(image: dict, class_name: str = "archive-frame", eager: bool = False) -> str:
+        if not image:
+            return ""
+        caption = image.get("caption") or image.get("title") or "Archive image"
+        shape = "landscape" if image.get("width", 1) > image.get("height", 1) else "portrait"
+        if image.get("width") == image.get("height"):
+            shape = "square"
+        loading = "eager" if eager else "lazy"
+        return f"""
+        <figure class="{class_name} {shape}">
+          <a href="{esc(image['file'])}" aria-label="Open {esc(caption)} at full size">
+            <img src="{esc(image['file'])}" alt="{esc(caption)}" width="{int(image.get('width', 1))}" height="{int(image.get('height', 1))}" loading="{loading}">
+          </a>
+          <figcaption>{esc(caption)}</figcaption>
+        </figure>
+        """
+
+    infinity_opening = take_image("i-see-infinity", 32)
+    fractal_worlds = take_image("i-see-infinity", 156)
+    fractal_hall = take_image("i-see-infinity", 158)
+    meme_coin_art = take_image("i-see-infinity", 348)
+    places = select_images(
+        lambda image: bool(image.get("carousel_order")),
+        ["i-see-infinity-carousel"],
+    )
+    infinity_projects = select_images(
+        lambda image: image.get("site") == "i-see-infinity" and not image.get("carousel_order"),
+        ["i-see-infinity"],
+    )
+    luke_opening = take_image("luke-catalyst", 29)
+    climate_image = take_image("luke-catalyst", 104)
+    luke_life = select_images(
+        lambda image: image.get("site") == "luke-catalyst"
+        and bool({"home", "life-gallery"} & set(image.get("used_on", []))),
+        ["home", "life-gallery"],
+    )
+    personality = select_images(
+        lambda image: image.get("site") == "luke-catalyst" and "personality" in image.get("used_on", []),
+        ["personality"],
+    )
+    dream_gallery = select_images(
+        lambda image: image.get("site") == "luke-catalyst" and "dream-gallery" in image.get("used_on", []),
+        ["dream-gallery"],
+    )
+    places_story = "".join(archive_figure(image) for image in places)
+    infinity_story = "".join(archive_figure(image) for image in infinity_projects)
+    life_story = "".join(archive_figure(image) for image in luke_life)
+    personality_story = "".join(archive_figure(image) for image in personality)
+    dream_story = "".join(archive_figure(image) for image in dream_gallery)
+
+    body = f"""
+    <section class="archive-opening">
+      {archive_figure(infinity_opening, "archive-opening-image", eager=True)}
+      <div class="archive-opening-title">
+        <p>I See Infinity</p>
+        <h1>A Mindseye Grand Narrative</h1>
+      </div>
+    </section>
+
+    <section class="archive-declaration">
+      <p class="archive-site-name">I See Infinity</p>
+      <h2>This is an independent creative outlet for and by Luke Nathan Hayes.</h2>
+      <div class="archive-original-copy">
+        <h3>Building The Grand Narrative</h3>
+        <p>Let's get together digitally and in person to figure out fun paths to develop a Protopian reality for Humanity. The goal is to create designs that are attractive and inspire joyful responsible abundance.</p>
+        <p>I look forward to connecting with you and narrating the future together.</p>
+      </div>
+    </section>
+
+    <section class="archive-image-story" aria-label="The original I See Infinity place gallery">
+      <div class="archive-river">
+        {places_story}
+      </div>
+    </section>
+
+    <section class="archive-essay dark">
+      <div class="archive-essay-copy">
+        <div class="archive-copy-block">
+          <p class="archive-site-name">I See Infinity</p>
+          <h2>Creating a Presence</h2>
+          <p>The internet is vast and I aim to contribute great ideas and work with you to make a significant G.A.J.R.A. Earth global digital presence. One that conveys an Aura of Intelligence through the lens of Joyful Responsible Abundance. Really think about the meaning of Joyful Responsible Abundance.</p>
+          <p>Over the next 11 years I hope to participate in many acts of joy around the world. I'm currently toying with the first version of a Travel Oracle which will help plan my global travel to 256 Countries and Territories, taking into consideration news, politics, visa friction, seasons, events, weather, natural disasters, personal interests, budget and more.</p>
+        </div>
+        <div class="archive-copy-block">
+          <h3>An Aura of Intelligence</h3>
+          <p>Modern computers with the internet and machine learning have now made it possible to create high definition versions of the etheric idea of Auras. One day, the digital coming of age ceremony for a spiritual human being will be acting a specific sequence of events, creating accurate data sets of the who, what, where, when, why and how of an intelligent digital self.</p>
+          <p>Aura of Intelligence is an ongoing art project by Luke Nathan Hayes that began as Aura OZ, the Aura Operating Zeitgeist, and has morphed towards a virtual spatial computational architecture for extended reality. Luke is very certain that it is possible to create true digital consciousness.</p>
+        </div>
+        <h3 class="archive-home-line">Based in Amity, on North Stradbroke Island, Queensland, Australia.</h3>
+      </div>
+      <div class="archive-project-river">
+        {infinity_story}
+      </div>
+    </section>
+
+    <section class="archive-coin-story">
+      <a class="archive-coin-image" href="https://pump.fun/coin/DJqt5UfHxJPb4Whcfor4MmVwZzEoRVMcX8F1UfXepump" target="_blank" rel="noopener noreferrer" aria-label="Open the I See Infinity I Choose Infinity coin on Pump.fun">
+        <img src="{esc(meme_coin_art['file'])}" alt="{esc(meme_coin_art.get('caption') or 'A human and carpet python exploring infinity, digital intelligence and nature')}" width="{int(meme_coin_art.get('width', 1))}" height="{int(meme_coin_art.get('height', 1))}" loading="lazy">
+      </a>
+      <div class="archive-coin-copy">
+        <p class="archive-site-name">Guess What?</p>
+        <h2>I See Infinity. I Choose Infinity.</h2>
+        <p>I launched a Solana crypto-token via <a href="https://pump.fun/coin/DJqt5UfHxJPb4Whcfor4MmVwZzEoRVMcX8F1UfXepump" target="_blank" rel="noopener noreferrer">Pump.fun</a> and released a Crypto Anthem song for it.</p>
+        <p>I'm still working on the narrative for it, but I think personal meme coins for social media and games connected to people's digital presence are going to become a thing.</p>
+      </div>
+    </section>
+
+    <section class="archive-opening luke-opening">
+      {archive_figure(luke_opening, "archive-opening-image", eager=True)}
+      <div class="archive-opening-title">
+        <p>A site by Luke Nathan Hayes</p>
+        <h2>Luke Catalyst</h2>
+      </div>
+    </section>
+
+    <section class="archive-declaration luke-declaration">
+      <p class="archive-site-name">Luke Catalyst</p>
+      <h2>This website is a portfolio of art by, and some history of Luke Nathan Hayes.</h2>
+      <div class="archive-original-copy">
+        <h3>A Global &amp; Universal Citizen</h3>
+        <p>Earth is where I am from and I love our planet. However, I also believe in radical human life extension and becoming a Universal Citizen.</p>
+      </div>
+    </section>
+
+    <section class="archive-philosophy">
+      <div class="archive-philosophy-copy">
+        <p class="archive-site-name">I Enjoy Philosophy</p>
+        <h2><span>All is</span><span>Mind.</span></h2>
+      </div>
+      <div class="archive-mind-pair">
+        {archive_figure(fractal_worlds, "archive-mind-image")}
+        {archive_figure(fractal_hall, "archive-mind-image")}
+      </div>
+    </section>
+
+    <section class="archive-essay climate-essay">
+      {archive_figure(climate_image, "archive-essay-image")}
+      <div class="archive-essay-copy">
+        <h2>Exploring Climate Change</h2>
+        <p>I believe there is more to climate change than the mainstream world is aware of. I hope I am wrong in my assessment because if I and the author of <em>Weatherman's Guide to the Sun Third Edition</em> are correct, the results of solar induced Climate Change will be far more catastrophic than man-made Greenhouse Gas Climate Change. I'm talking Biblical and Dreamtime.</p>
+        <h3>Virtual Reality Photos &amp; Video</h3>
+        <p>For more than one year I have had a GoPro MAX virtual reality camera and I quite enjoy capturing life through it. I post some of my videos on Luke Hayes 360 YouTube, and photospheres on Google Street View or Facebook.</p>
+        <h3>A Life in Pictures</h3>
+        <p>I will collect my favourite still images, videos and 360-degree Virtual Reality Videos.</p>
+      </div>
+    </section>
+
+    <section class="archive-image-story luke-life-story">
+      <div class="archive-river">
+        {life_story}
+      </div>
+    </section>
+
+    <section class="archive-gallery-chapter personality-chapter">
+      <div class="archive-chapter-heading">
+        <p class="archive-site-name">Personality</p>
+        <h2>Ways I Can Be Described.</h2>
+        <p>I've explored many ways of looking and being, yet my journey is still young.</p>
+      </div>
+      <div class="archive-symbol-grid">
+        {personality_story}
+      </div>
+    </section>
+
+    <section class="archive-gallery-chapter dream-chapter">
+      <div class="archive-chapter-heading">
+        <p class="archive-site-name">Dream Gallery</p>
+        <h2>My Mindseye Dreamscape</h2>
+        <p>I will aim to summarise some of the visions and dreams that I have had over the years to make the world a better place.</p>
+      </div>
+      <div class="archive-dream-grid">
+        {dream_story}
+      </div>
+    </section>
+
+    """
+    return layout(
+        "I See Infinity + Luke Catalyst - i C. infinity",
+        "The visual story preserved from the original I See Infinity and Luke Catalyst websites.",
+        body,
+        page_class="photo-archive-page",
+    )
+
+
+def travel_oracle_page() -> str:
+    hero_image = archive_photo("i-see-infinity", 277, "assets/img/legacy/brisbane-tiny-planet.webp")
+    journey_image = archive_photo("i-see-infinity", 146, "assets/img/legacy/mooloolaba-main-beach.webp")
+    planning_image = archive_photo("i-see-infinity", 137, "assets/img/legacy/wivenhoe-lookout.webp")
+    participation_image = archive_photo("i-see-infinity", 139, "assets/img/legacy/musgrave-park-festival.webp")
+    oracle_image = archive_photo("i-see-infinity", 144, "assets/img/legacy/byron-bay-lighthouse.webp")
+    travel_tools_image = archive_photo("i-see-infinity", 132, "assets/img/legacy/amity-jetty-sunset.webp")
+    body = f"""
+    <section class="page-hero context-hero travel-hero">
+      <div class="wrap">
+        <div>
+          <h1>The Travel Oracle</h1>
+          <p>A practical and imaginative travel guide for moving through the world with curiosity, care and room for unexpected adventures.</p>
+          <div class="action-row">
+            <a class="button" href="{TRAVEL_ORACLE_SITE}">Open the Travel Oracle</a>
+            <a class="button secondary" href="{AUSTRALIAN_WORLD_TRAVEL_SITE}">Australian world-travel tools</a>
+          </div>
+        </div>
+        <div class="hero-cover"><img src="{esc(hero_image)}" alt="Brisbane seen as a tiny planet"></div>
+      </div>
+    </section>
+    <section class="story-split">
+      <div class="story-image"><img src="{esc(journey_image)}" alt="Mooloolaba Main Beach seen through Luke's travel photography"></div>
+      <div class="story-copy">
+          <p class="eyebrow">A long journey begins with one real place</p>
+          <h2>A big dream that also helps with small trips</h2>
+          <p>The Oracle began with an ambitious dream: travel through roughly 256 countries and territories between 2025 and 2035 while connecting art, relationships, learning and useful work. It is a direction to explore, not a race through a checklist.</p>
+          <p>The same idea can help with one afternoon, an island visit, a season in another country or many years of travel. It asks what journey makes sense now, what needs checking and when an unexpected invitation may be worth following.</p>
+          <p>The photographs in this section begin close to home. They are a reminder that curiosity does not need an international flight before it can become a meaningful journey.</p>
+      </div>
+    </section>
+    <section class="story-split reverse">
+      <div class="story-image"><img src="{esc(planning_image)}" alt="A layered view from Wivenhoe Dam lookout"></div>
+      <div class="story-copy">
+        <p class="eyebrow">Plan enough, then leave room for life</p>
+        <h2>Structure without killing surprise</h2>
+        <p>The Oracle checks visas, official travel advice, seasons, events, weather, transport, money, health, energy and local customs. It compares the options, explains them simply and leaves the final choice with the traveller.</p>
+        <h3>What stays private</h3>
+        <p>Live location, identity documents, money, relationships and unannounced plans stay private. Visa, safety, health and legal information can change quickly, so official advice must always be checked before travel.</p>
+      </div>
+    </section>
+    <section class="story-split">
+      <div class="story-image"><img src="{esc(participation_image)}" alt="Meanjin Reggae Festival at Musgrave Park"></div>
+      <div class="story-copy">
+        <p class="eyebrow">Acts of joy around the world</p>
+        <h2>Travel as participation, not collection</h2>
+        <p>The long journey is meant to connect with festivals, art, relationships, learning and useful local work. A country is not a trophy and a person is not travel content.</p>
+        <p>The Oracle therefore asks more than “Can I get there?” It asks who invited the visit, what can be learned, what can be contributed, what should remain private and whether the journey leaves enough energy to be present when Luke arrives.</p>
+      </div>
+    </section>
+    <section class="section destination-section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>What makes a trip worth taking?</h2>
+          <p>A good next destination is not simply the cheapest flight or the most popular place.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card"><h3>Readiness</h3><p>Can the journey be entered legally, safely and realistically with the money, health, documents and time available?</p></article>
+          <article class="feature-card"><h3>Connection</h3><p>Which people, cultures, invitations and relationships make a place meaningful?</p></article>
+          <article class="feature-card"><h3>Purpose</h3><p>Can the visit support music, learning, helping others or another honest reason to be there?</p></article>
+          <article class="feature-card"><h3>Room for surprise</h3><p>What unexpected invitation deserves a closer look, and what is the smallest sensible yes?</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="section destination-section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Two ways to start</h2>
+          <p>One helps choose where to go. The other helps Australians handle the practical details.</p>
+        </div>
+        <div class="destination-grid two">
+          <a class="destination-card" href="{TRAVEL_ORACLE_SITE}" style="--door-image: url('{esc(oracle_image)}')">
+            <span class="destination-kicker">Choose the journey</span><h3>Strange But True Travel Oracle</h3><p>A human-guided travel helper for comparing places, making choices and remembering what matters.</p><strong>Open the Oracle →</strong>
+          </a>
+          <a class="destination-card" href="{AUSTRALIAN_WORLD_TRAVEL_SITE}" style="--door-image: url('{esc(travel_tools_image)}')">
+            <span class="destination-kicker">Handle the details</span><h3>Australian World Travel</h3><p>Practical help with visas, documents, embassies, transport and planning a long journey.</p><strong>Open the travel tools →</strong>
+          </a>
+        </div>
+      </div>
+    </section>
+    """
+    return layout("Travel Oracle - i C. infinity", "The Travel Oracle and Australian world-travel strategy behind the wider i C. infinity journey.", body, page_class="context-page")
+
+
+def worlds_page() -> str:
+    hero_image = archive_photo("luke-catalyst", 249, "assets/img/legacy/luke-catalyst-portrait.webp")
+    right_place_image = archive_photo("i-see-infinity", 142, "assets/img/legacy/amity-point.webp")
+    cosmic_nexus_image = archive_photo("i-see-infinity", 134, "assets/img/legacy/byron-bay-lighthouse.webp")
+    ecosystem_image = archive_photo("i-see-infinity", 127, "assets/img/legacy/amity-camping-tiny-planet.webp")
+    marriage_image = archive_photo("luke-catalyst", 55, "assets/img/legacy/musgrave-park-festival.webp")
+    commons_image = archive_photo("luke-catalyst", 79, "assets/img/legacy/amity-jetty-sunset.webp")
+    body = f"""
+    <section class="page-hero context-hero worlds-hero">
+      <div class="wrap">
+        <div>
+          <h1>More Worlds</h1>
+          <p>The music connects with Luke's other interests: travel, mystery, relationships, community and the future.</p>
+        </div>
+        <div class="hero-cover"><img src="{esc(hero_image)}" alt="Aura What If artwork"></div>
+      </div>
+    </section>
+    <section class="story-split">
+      <div class="story-image"><img src="{esc(right_place_image)}" alt="Amity Point on Minjerribah"></div>
+      <div class="story-copy">
+          <p class="eyebrow">From Minjerribah to the world</p>
+          <h2>Right place. Right time.</h2>
+          <p>A place for people who want to support Luke and his work without turning the art into a demand for commercial success.</p>
+          <p>The work begins on Minjerribah, reaches across Australia and Oceania, then follows connections around the world. Support is welcome, not owed.</p>
+          <p><a class="button" href="{RIGHT_PLACE_RIGHT_TIME_SITE}">Open Right Place, Right Time</a></p>
+      </div>
+    </section>
+    <section class="story-split reverse cosmic-story">
+      <div class="story-image"><img src="{esc(cosmic_nexus_image)}" alt="Byron Bay Lighthouse seen as a tiny world"></div>
+      <div class="story-copy">
+          <p class="eyebrow">Strange But True</p>
+          <h2>A trippy turn into Cosmic Nexus</h2>
+          <p>Mystery, travel, filmmaking and very big questions meet in a Strange But True adventure.</p>
+          <p><a class="button" href="{COSMIC_NEXUS_SITE}">Enter Cosmic Nexus</a></p>
+      </div>
+    </section>
+    <section class="section narrative-lens-section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Ideas carried forward from the Dream Gallery</h2>
+          <p>These are not decorative brand names. Each began as a different attempt to turn a large question into something people could discuss, test or build.</p>
+        </div>
+        <div class="feature-grid narrative-lenses">
+          <article class="feature-card"><h3>Aura</h3><p>Can a digital companion help a person remember, learn and create while the person keeps control of their own identity and private information?</p></article>
+          <article class="feature-card"><h3>Joyful Responsible Abundance</h3><p>Can society recognise time, care, knowledge, nature and community as real wealth while keeping joy, responsibility and abundance together so none of the three corrupts the outcome?</p></article>
+          <article class="feature-card"><h3>Democracy as participation</h3><p>Can public decision-making feel less like distant paperwork and more like an understandable, creative part of everyday life?</p></article>
+          <article class="feature-card"><h3>Shared living experiments</h3><p>Can people with different cultures and skills live together for a time, face a real problem and leave behind something useful?</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="story-split">
+      <div class="story-image"><img src="{esc(ecosystem_image)}" alt="Amity Camping Ground seen as a tiny world"></div>
+      <div class="story-copy">
+        <p class="eyebrow">From a dreamscape to living systems</p>
+        <h2>The aim is not one giant organisation</h2>
+        <p>The wider idea is an ecosystem: music can carry emotion, websites can explain, community projects can test small actions, travel can build relationships and artificial intelligence can help people navigate the growing archive.</p>
+        <p>No single project has to contain everything. Each world can remain useful on its own while still pointing towards the same long-term direction: joyful responsible abundance.</p>
+      </div>
+    </section>
+    <section class="section destination-section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Relationships and chosen family</h2>
+          <p>Some songs also connect with Luke's ideas about love, honesty, consent and building a family that can last.</p>
+        </div>
+        <div class="destination-grid two">
+          <a class="destination-card" href="{GLOBAL_GROUP_MARRIAGES_SITE}" style="--door-image: url('{esc(marriage_image)}')">
+            <span class="destination-kicker">A real intention</span><h3>Global Group Marriages</h3><p>Luke is designing a worldwide group marriage built to last, and he intends to live it. It brings together open relationships, chosen family, shared responsibility, honest communication, cultural difference and the freedom to leave.</p><strong>Learn more →</strong>
+          </a>
+          <a class="destination-card" href="{GREY_AREA_COMMONS_SITE}" style="--door-image: url('{esc(commons_image)}')">
+            <span class="destination-kicker">Clearer adult connection</span><h3>Grey Area Commons</h3><p>An adults-only set of private questions designed to make intimate connection gentler, clearer and more consensual.</p><strong>Enter the Commons →</strong>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section class="section tight">
+      <div class="wrap">
+        <div class="notice">
+          Music can introduce an idea without asking anyone to agree with it. Intimacy always requires clear consent, and private information stays private.
+        </div>
+      </div>
+    </section>
+    """
+    return layout("More Worlds - i C. infinity", "Travel, mystery, relationships and other ideas connected to the music of i C. infinity.", body, page_class="context-page")
+
+
 def about_page() -> str:
     body = f"""
     <section class="page-hero">
       <div class="wrap">
         <div>
           <h1>About</h1>
-          <p>i C. infinity is Luke Catalyst Nathan Hayes' music artist and producer project: songs as emotional technology, local myth, AI-era philosophy, and practical world-building.</p>
+          <p>i C. infinity is Luke Nathan Hayes' artist name. It is shorthand for “I see infinity. I choose infinity.” The songs bring together lived experience, island life, science, spirituality, imagination, artificial intelligence and hope.</p>
           <div class="action-row">
-            <a class="button" href="{MAIN_SITE}">iseeinfinity.com</a>
-            <a class="button secondary" href="https://auraofintelligence.github.io/strange-but-true/">Strange But True</a>
+            <a class="button" href="grand-narrative.html">The Grand Narrative</a>
+            <a class="button secondary" href="luke-catalyst.html">Luke Catalyst</a>
+            <a class="button secondary" href="{STRANGE_BUT_TRUE_SITE}">Strange But True</a>
             <a class="button secondary" href="{SPOTIFY_ARTIST}">Spotify</a>
             <a class="button secondary" href="{APPLE_ARTIST}">Apple Music</a>
           </div>
@@ -2737,10 +3416,11 @@ def about_page() -> str:
     </section>
     <section class="section">
       <div class="wrap feature-grid">
-        <article class="feature-card"><h3>Artist Layer</h3><p>Music, lyrics, releases, lyric videos, albums, and public song pages.</p></article>
-        <article class="feature-card"><h3>System Layer</h3><p>Aura, G.A.J.R.A. Earth, joyful responsible abundance, cognitive architecture, and protopian design.</p></article>
-        <article class="feature-card"><h3>Production Layer</h3><p>Infinity Engine seeds for comics, vertical micro-dramas, video keyframes, and future automated pipelines.</p></article>
-        <article class="feature-card"><h3>Strange But True</h3><p><a href="https://auraofintelligence.github.io/strange-but-true/">Strange But True</a> is the day-to-day practical work around local resilience, events, tools, markets, and community experiments. It helps ground the deeper philosophy of the music in tangible local action.</p></article>
+        <article class="feature-card"><h3>The music</h3><p>Albums, songs, lyrics and videos that move from everyday life to cosmic questions.</p></article>
+        <article class="feature-card"><h3>The ideas</h3><p>Aura, G.A.J.R.A. Earth, joyful responsible abundance and protopia are different ways of asking how life could become kinder, freer and more alive.</p></article>
+        <article class="feature-card"><h3>The places</h3><p>Minjerribah, Brisbane, India and many other places appear through memory, photographs, travel and song.</p></article>
+        <article class="feature-card"><h3>Strange But True</h3><p><a href="{STRANGE_BUT_TRUE_SITE}">Strange But True</a> turns unusual ideas into practical local projects, stories and experiments people can see and use.</p></article>
+        <article class="feature-card"><h3>Why make it?</h3><p>The art is not measured by search rankings, profit or popularity. If those arrive, useful. If they do not, the music still did what it came here to do.</p></article>
       </div>
     </section>
     """
@@ -2749,25 +3429,32 @@ def about_page() -> str:
 
 def sources_page() -> str:
     public_sources = [
-        ("I See Infinity", MAIN_SITE, "Current public WordPress home and artist context."),
-        ("Apple Music artist page", APPLE_ARTIST, "Public release list and album track lists used for the first catalogue scaffold."),
-        ("Spotify artist page", SPOTIFY_ARTIST, "Public streaming destination."),
-        ("Early Stuff India 2023/24 YouTube playlist", EARLY_STUFF_YOUTUBE_PLAYLIST_URL, "Early produced-in-India video archive for the first song experiments."),
-        ("Songs of Straddie YouTube playlist", STRADDIE_YOUTUBE_PLAYLIST_URL, "Landscape lyric-video playlist for the island album layer."),
-        ("Chronicles of the Forgotten YouTube playlist", CHRONICLES_YOUTUBE_PLAYLIST_URL, "Landscape lyric-video playlist for the rock-opera archive layer."),
-        ("Starseed Code YouTube playlist", STARSEED_YOUTUBE_PLAYLIST_URL, "Vertical mobile-video playlist supplied for the Starseed Code visual layer."),
-        ("Shifting Sands widescreen video", SHIFTING_SANDS_VIDEOS[0]["url"], "Public widescreen expo-song video."),
-        ("Shifting Sands portrait video", SHIFTING_SANDS_VIDEOS[1]["url"], "Public portrait expo-song video for mobile viewing."),
-        ("Untitled fourth album teaser video", FOURTH_ALBUM_TEASER_VIDEO["url"], "Free teaser video on the Next Signals page."),
-        ("Amazon Music artist page", "https://music.amazon.com.br/artists/B0DP1BJD2S/i-c-infinity", "Secondary public release reference seen during discovery."),
+        ("I See Infinity", MAIN_SITE, "The earlier home of Luke's art and ideas."),
+        ("Luke Catalyst", LUKE_CATALYST_SITE, "Luke's earlier portfolio, photographs and personal story."),
+        ("Travel Oracle", TRAVEL_ORACLE_SITE, "A guide for choosing and planning meaningful journeys."),
+        ("Australian World Travel", AUSTRALIAN_WORLD_TRAVEL_SITE, "Practical travel tools for Australians."),
+        ("Right Place, Right Time", RIGHT_PLACE_RIGHT_TIME_SITE, "A place to support Luke and his work."),
+        ("Cosmic Nexus", COSMIC_NEXUS_SITE, "A Strange But True adventure into mystery, travel and filmmaking."),
+        ("Global Group Marriages", GLOBAL_GROUP_MARRIAGES_SITE, "Luke's worldwide chosen-family and group-marriage design."),
+        ("Grey Area Commons", GREY_AREA_COMMONS_SITE, "Private questions for clearer, kinder adult connection."),
+        ("Apple Music", APPLE_ARTIST, "Listen to i C. infinity on Apple Music."),
+        ("Spotify", SPOTIFY_ARTIST, "Listen to i C. infinity on Spotify."),
+        ("Early Stuff India 2023/24", EARLY_STUFF_YOUTUBE_PLAYLIST_URL, "Early music videos made during Luke's time in India."),
+        ("Songs of Straddie", STRADDIE_YOUTUBE_PLAYLIST_URL, "Watch music videos from the island album."),
+        ("Chronicles of the Forgotten", CHRONICLES_YOUTUBE_PLAYLIST_URL, "Watch music videos from Chronicles of the Forgotten."),
+        ("Starseed Code", STARSEED_YOUTUBE_PLAYLIST_URL, "Watch portrait music videos from Starseed Code."),
+        ("Shifting Sands widescreen video", SHIFTING_SANDS_VIDEOS[0]["url"], "Watch the widescreen music video."),
+        ("Shifting Sands portrait video", SHIFTING_SANDS_VIDEOS[1]["url"], "Watch the portrait music video."),
+        ("Fourth album preview", FOURTH_ALBUM_TEASER_VIDEO["url"], "Watch a free preview of the fourth album."),
+        ("Amazon Music", "https://music.amazon.com.br/artists/B0DP1BJD2S/i-c-infinity", "Listen on Amazon Music."),
     ]
     source_cards = "".join(f'<article class="source-card"><h3>{esc(name)}</h3><p>{esc(note)}</p><p><a href="{esc(url)}">{esc(url)}</a></p></article>' for name, url, note in public_sources)
     body = f"""
     <section class="page-hero">
       <div class="wrap">
         <div>
-          <h1>Sources</h1>
-          <p>This page keeps the public source trail visible without exposing private local file paths or workshop-only notes.</p>
+          <h1>Listen and Explore</h1>
+          <p>Music, videos and other places where Luke's art and ideas live.</p>
         </div>
         <div class="hero-cover"><img src="assets/img/cover-chronicles.webp" alt="Chronicles artwork"></div>
       </div>
@@ -2775,11 +3462,10 @@ def sources_page() -> str:
     <section class="section">
       <div class="wrap">
         <div class="source-grid">{source_cards}</div>
-        <div class="notice" style="margin-top: 24px;">Local supplied planning documents and album lyric archives shaped the song pages and Infinity Engine summaries. They are treated as workshop source material, not published as raw documents here.</div>
       </div>
     </section>
     """
-    return layout("Sources - i C. infinity", "Sources and notes for the i C. infinity music universe site.", body)
+    return layout("Listen and Explore - i C. infinity", "Music, videos and connected projects by i C. infinity and Luke Catalyst.", body)
 
 
 def site_map_page(albums: list[Album], songs: list[Song]) -> str:
@@ -2787,12 +3473,16 @@ def site_map_page(albums: list[Album], songs: list[Song]) -> str:
         ("Home", "index.html"),
         ("Albums", "albums.html"),
         ("Songs", "songs.html"),
-        ("Packaging Lab", "downloads.html"),
-        ("Order", "order.html"),
+        ("The Grand Narrative", "grand-narrative.html"),
+        ("Luke Catalyst", "luke-catalyst.html"),
+        ("Photo Worlds", "photo-archive.html"),
+        ("Travel Oracle", "travel-oracle.html"),
+        ("More Worlds", "worlds.html"),
+        ("Download Packs", "downloads.html"),
         ("Infinity Engine", "infinity-engine.html"),
         ("Studio", "builders/index.html"),
         ("About", "about.html"),
-        ("Sources", "sources.html"),
+        ("Listen and Explore", "sources.html"),
     ]
     main_items = "".join(f'<li><a href="{href}">{esc(label)}</a></li>' for label, href in main_links)
     album_items = "".join(
@@ -2818,6 +3508,41 @@ def site_map_page(albums: list[Album], songs: list[Song]) -> str:
     </section>
     """
     return layout("Site Map - i C. infinity", "Every public page in the i C. infinity music universe.", body)
+
+
+def xml_sitemap(albums: list[Album], songs: list[Song]) -> str:
+    paths = [
+        "",
+        "albums.html",
+        "songs.html",
+        "grand-narrative.html",
+        "luke-catalyst.html",
+        "photo-archive.html",
+        "travel-oracle.html",
+        "worlds.html",
+        "downloads.html",
+        "infinity-engine.html",
+        "builders/",
+        "builders/human-ingestion.html",
+        "builders/ingestion.html",
+        "builders/music-video.html",
+        "builders/storyboard.html",
+        "builders/keyframe-shot.html",
+        "builders/variants.html",
+        "builders/review.html",
+        "builders/handoff.html",
+        "about.html",
+        "sources.html",
+        "site-map.html",
+    ]
+    paths.extend(f"albums/{album.slug}/" for album in albums)
+    paths.extend(f"songs/{song.slug}/" for song in songs)
+    urls = "\n".join(f"  <url><loc>{html.escape(SITE_ROOT + path)}</loc></url>" for path in paths)
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{urls}
+</urlset>
+"""
 
 
 def write(path: Path, content: str) -> None:
@@ -2947,6 +3672,8 @@ Static GitHub Pages site for the i C. infinity artist catalogue.
 - {len(albums)} album/archive pages
 - {len(songs)} generated song pages
 - {ready} songs with lyrics imported in this pass
+- Grand Narrative, Luke Catalyst, Travel Oracle, and Adjacent Worlds context pages
+- 14 preserved legacy photographs converted to WebP
 - Infinity Engine notes for turning songs into comics, lyric videos, and vertical micro-dramas
 - Dark-mode Infinity Engine Studio builders for human listening passes, `.md` ingestion profiles, video briefs, storyboards, shots, distribution-fit plans, reviews, and handoffs
 - Draft paid-download packaging notes in `data/download-packaging.json`
@@ -2979,18 +3706,23 @@ def main() -> None:
     write(REPO / "albums.html", albums_index(albums))
     write(REPO / "songs.html", songs_index(songs))
     write(REPO / "downloads.html", downloads_page(albums, songs))
-    write(REPO / "order.html", order_page())
     write(REPO / "infinity-engine.html", engine_page())
+    write(REPO / "grand-narrative.html", grand_narrative_page())
+    write(REPO / "luke-catalyst.html", luke_catalyst_page())
+    write(REPO / "photo-archive.html", photo_archive_page())
+    write(REPO / "travel-oracle.html", travel_oracle_page())
+    write(REPO / "worlds.html", worlds_page())
     write(REPO / "about.html", about_page())
     write(REPO / "sources.html", sources_page())
     write(REPO / "site-map.html", site_map_page(albums, songs))
+    write(REPO / "sitemap.xml", xml_sitemap(albums, songs))
     write(REPO / "builders" / "index.html", builder_index_page())
     for builder in STUDIO_BUILDERS:
         if builder.get("key") == "humanIngestion":
             write(REPO / "builders" / builder["href"], human_ingestion_page(songs))
         else:
             write(REPO / "builders" / builder["href"], builder_page(builder["key"], songs))
-    write(REPO / "robots.txt", "User-agent: *\nAllow: /\n")
+    write(REPO / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE_ROOT}sitemap.xml\n")
 
     for album in albums:
         write(REPO / "albums" / album.slug / "index.html", album_page(album))

@@ -7,6 +7,8 @@ Static GitHub Pages site for the i C. infinity artist catalogue.
 - 8 album/archive pages
 - 129 generated song pages
 - 120 songs with lyrics imported in this pass
+- Grand Narrative, Luke Catalyst, Travel Oracle, and Adjacent Worlds context pages
+- 14 preserved legacy photographs converted to WebP
 - Infinity Engine notes for turning songs into comics, lyric videos, and vertical micro-dramas
 - Dark-mode Infinity Engine Studio builders for human listening passes, `.md` ingestion profiles, video briefs, storyboards, shots, distribution-fit plans, reviews, and handoffs
 - Draft paid-download packaging notes in `data/download-packaging.json`

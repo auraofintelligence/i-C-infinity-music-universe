@@ -7,6 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const filterCount = document.querySelector("[data-filter-count]");
   const cards = Array.from(document.querySelectorAll("[data-song-card]"));
 
+  document.querySelectorAll('a[href^="https://"], a[href^="http://"]').forEach((link) => {
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noopener noreferrer");
+  });
+
   if (header && navToggle && nav) {
     const closeNav = () => {
       header.classList.remove("nav-open");

@@ -4,7 +4,7 @@ This is the private money-path scaffold for the public download pages.
 
 ## Shape
 
-1. `order.html` collects package, buyer, album choice, and payment method.
+1. The order section on `downloads.html` collects package, buyer, album choice, and payment method.
 2. Google Apps Script receives the form post.
 3. Apps Script writes a row to the private Google Sheet.
 4. If the buyer chooses Stripe, Apps Script creates a Stripe Checkout Session and redirects them to Stripe.
@@ -23,7 +23,7 @@ No card details are collected on GitHub Pages or stored in Google Sheets.
 | `SPREADSHEET_ID` | yes | The private Google Sheet ID. |
 | `SHEET_NAME` | no | Defaults to `Orders`. |
 | `STRIPE_SECRET_KEY` | yes for Stripe | Use the Stripe secret key. Do not put it in the public repo. |
-| `ORDER_PAGE_URL` | no | Defaults to the public `order.html`. |
+| `ORDER_PAGE_URL` | no | Defaults to the order section on the public `downloads.html`. |
 | `PAYPAL_URL` | no | PayPal payment link or profile URL. |
 | `PAYID_LABEL` | no | Public-facing PayID label or email/phone once final. |
 | `BANK_TRANSFER_NOTE` | no | Bank-transfer instructions. |

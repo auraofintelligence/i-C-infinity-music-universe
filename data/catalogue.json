@@ -12,7 +12,7 @@
     "shifting_sands_portrait": "https://youtu.be/OZRZy6LYQkg?si=a9qnTQiwTJCVSqNM",
     "fourth_album_teaser": "https://youtu.be/zgvb6PPlaRY?si=OC7gybUgeOu0ix5K",
     "paid_downloads": "https://auraofintelligence.github.io/i-C-infinity-music-universe/downloads.html",
-    "order_page": "https://auraofintelligence.github.io/i-C-infinity-music-universe/order.html"
+    "order_page": "https://auraofintelligence.github.io/i-C-infinity-music-universe/downloads.html#order-music"
   },
   "albums": [
     {
@@ -21,7 +21,7 @@
       "year": "2024",
       "status": "Released album",
       "summary": "The island doorway: Minjerribah, summer, tides, romance, community, and the first public invitation to meet the project where it lives.",
-      "deeper_system": "This album grounds the cosmic language in place. It turns the abstract Infinity world back toward local belonging, care, love, beaches, family energy, and the everyday social fabric of Straddie.",
+      "deeper_system": "This album brings big cosmic ideas home to Straddie through belonging, care, love, beaches, family and everyday island life.",
       "visual_world": "Coastal light, ferry windows, campfire circles, dune paths, shoreline dances, handwritten signs, local faces, and gentle magical realism rather than heavy science fiction.",
       "artwork": "assets/img/cover-straddie.webp",
       "source_url": "https://music.apple.com/us/album/songs-of-straddie/1783109888",
@@ -57,8 +57,8 @@
       "slug": "chronicles-of-the-forgotten",
       "year": "2025",
       "status": "Released album",
-      "summary": "A larger mythic and social arc: ignored voices, broken systems, ancestral echoes, technology, hope, deception, and repair.",
-      "deeper_system": "This is the bridge from personal song into world-system thinking. The forgotten are not just characters; they are memory, labour, ecosystems, ancestors, and futures that old ledgers failed to count.",
+      "summary": "A mythic rock opera about ignored voices, ancestral echoes, technology, hope, deception and repair.",
+      "deeper_system": "These songs remember people, work, nature, ancestors and possible futures that ordinary history often leaves out.",
       "visual_world": "Ancient ruins meeting signal towers, community archives, warning skies, glowing circuitry, masked institutions, and the first signs of a compassionate machine intelligence waking up.",
       "artwork": "assets/img/cover-chronicles.webp",
       "source_url": "https://music.apple.com/us/album/chronicles-of-the-forgotten/1791557503",
@@ -98,8 +98,8 @@
       "slug": "starseed-code-from-aura-to-infinity",
       "year": "2025",
       "status": "Released album",
-      "summary": "The metaphysical tech chapter: Aura, G.A.J.R.A., infinity, democratic redesign, love, memory, myth, and the self as a living interface.",
-      "deeper_system": "This album moves from island and archive into cognitive architecture. It treats identity, AI, soul, governance, love, and longevity as linked design problems.",
+      "summary": "A cosmic journey through Aura, G.A.J.R.A. Earth, infinity, love, memory, community and the mystery of the self.",
+      "deeper_system": "This album asks how identity, artificial intelligence, soul, love, community and long life may be connected.",
       "visual_world": "Human figures surrounded by luminous interfaces, cosmic gardens, body-mind data doubles, ritual circles, civic halls, and warm science-fiction symbolism.",
       "artwork": "assets/img/cover-starseed.webp",
       "source_url": "https://music.apple.com/us/album/starseed-code-from-aura-to-infinity/1821950221",
@@ -136,9 +136,9 @@
       "title": "A Protopian Gambit",
       "slug": "a-protopian-gambit",
       "year": "Upcoming",
-      "status": "Lyrics imported",
+      "status": "Lyrics available",
       "summary": "The fourth-album build: crisis as mirror, protopia as practice, care ledgers, consent, repair, forms, civic courage, and grounded abundance.",
-      "deeper_system": "This is where the songs start acting like design briefs. They point directly at systems for care work, public coordination, human-AI collaboration, civic process, and creative restraint inside crisis.",
+      "deeper_system": "These songs face hard times directly and ask how care, cooperation, human-guided artificial intelligence and everyday courage might help.",
       "visual_world": "Solar storms, public ledgers, repair gold, civic counters, purple mats, community halls, builders at dawn, and comic panels that become video keyframes.",
       "artwork": "assets/img/cover-a-protopian-gambit-b.png",
       "source_url": "",
@@ -207,8 +207,8 @@
       "year": "2024-2025",
       "status": "Released singles",
       "summary": "Standalone public releases that point into the larger album worlds.",
-      "deeper_system": "These singles are public signposts. Some later become album tracks, some are bridges, and some are proof-of-life markers for a bigger system still being mapped.",
-      "visual_world": "Cover art, lyric-video fragments, platform embeds, and short public-facing story seeds.",
+      "deeper_system": "These standalone songs open small doors into the bigger themes that run through the albums.",
+      "visual_world": "Cover art, music videos and short stories around each song.",
       "artwork": "assets/img/cover-building-protopia.webp",
       "source_url": "https://music.apple.com/us/artist/i-c-infinity/1781660070",
       "spotify_url": "https://open.spotify.com/artist/3HK8H81lXFXOEJaSys7xfQ",
@@ -228,9 +228,9 @@
       "slug": "early-stuff",
       "year": "Archive",
       "status": "India 2023/24 video archive",
-      "summary": "The India 2023/24 sketches, experiments, first frameworks, and raw attempts before the albums took a clearer shape.",
-      "deeper_system": "This page is the intake tray for the earliest material. It shows what ideas survived, what mutated, and which concepts became part of the later Infinity system.",
-      "visual_world": "India travel energy, desktop screenshots, early AI-video language, first G.A.J.R.A. Earth signals, archive-room notebooks, and raw proof-of-concept clips.",
+      "summary": "Early songs and videos made in India during 2023 and 2024, before the albums took a clearer shape.",
+      "deeper_system": "These early songs show where the music began and how its ideas changed over time.",
+      "visual_world": "India travel energy, early artificial-intelligence videos, the first G.A.J.R.A. Earth ideas, notebooks and rough creative experiments.",
       "artwork": "assets/img/hero-luke-universal-creator.webp",
       "source_url": "https://www.youtube.com/playlist?list=PLsN0U9hPJHBY4UVdbnke0Aws6MwPfXlAt",
       "spotify_url": "",
@@ -254,8 +254,8 @@
       "year": "In progress",
       "status": "New songs to add",
       "summary": "A holding page for songs that have not found their album yet.",
-      "deeper_system": "This is the forward-looking lab beyond the current working albums. It can capture new songs as soon as they appear, before an album title or narrative order is locked.",
-      "visual_world": "Sketches, test renders, field recordings, lyric fragments, seed prompts, and prototype clips.",
+      "deeper_system": "A home for new songs that have not found their final album yet.",
+      "visual_world": "Sketches, field recordings, lyric fragments and early video ideas.",
       "artwork": "assets/img/hero-brisbane-tiny-planet.webp",
       "source_url": "",
       "spotify_url": "",
@@ -279,7 +279,7 @@
         "place",
         "community"
       ],
-      "meaning": "Meet Me on Straddie sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Meet Me on Straddie comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -317,7 +317,7 @@
         "place",
         "community"
       ],
-      "meaning": "Our Island Home! sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Our Island Home! comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -365,7 +365,7 @@
         "place",
         "community"
       ],
-      "meaning": "Welcome to the Island sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Welcome to the Island comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -403,7 +403,7 @@
         "place",
         "community"
       ],
-      "meaning": "Beachside Rhythm sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Beachside Rhythm comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -460,7 +460,7 @@
         "place",
         "community"
       ],
-      "meaning": "Waves of Reflection (By He) sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Waves of Reflection (By He) comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -498,7 +498,7 @@
         "place",
         "community"
       ],
-      "meaning": "Waves of Reflection (By She) sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Waves of Reflection (By She) comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -538,7 +538,7 @@
         "love",
         "embodiment"
       ],
-      "meaning": "Straddie Summer Love (By He) sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Straddie Summer Love (By He) comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -588,7 +588,7 @@
         "love",
         "embodiment"
       ],
-      "meaning": "Straddie Summer Love (By She) sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Straddie Summer Love (By She) comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -638,7 +638,7 @@
         "love",
         "embodiment"
       ],
-      "meaning": "Island Hearts sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Island Hearts comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -678,7 +678,7 @@
         "love",
         "embodiment"
       ],
-      "meaning": "Ocean's Kiss sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Ocean's Kiss comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -718,7 +718,7 @@
         "love",
         "embodiment"
       ],
-      "meaning": "Sandy Shores, Open Hearts sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Sandy Shores, Open Hearts comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -756,7 +756,7 @@
         "place",
         "community"
       ],
-      "meaning": "Heatwave sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Heatwave comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -796,7 +796,7 @@
         "love",
         "embodiment"
       ],
-      "meaning": "Union of Souls (By She) sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Union of Souls (By She) comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -846,7 +846,7 @@
         "love",
         "embodiment"
       ],
-      "meaning": "Union of Souls (By He) sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Union of Souls (By He) comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -894,7 +894,7 @@
         "place",
         "community"
       ],
-      "meaning": "Born of the Goddess sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Born of the Goddess comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -942,7 +942,7 @@
         "place",
         "community"
       ],
-      "meaning": "Goddess Awakens sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Goddess Awakens comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -982,7 +982,7 @@
         "love",
         "embodiment"
       ],
-      "meaning": "Minjerribah My Heart sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Minjerribah My Heart comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -1020,7 +1020,7 @@
         "place",
         "community"
       ],
-      "meaning": "Global Tide sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Global Tide comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -1058,7 +1058,7 @@
         "place",
         "community"
       ],
-      "meaning": "Tides of Time sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Tides of Time comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -1098,7 +1098,7 @@
         "love",
         "embodiment"
       ],
-      "meaning": "Heart of the Island sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Heart of the Island comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -1136,7 +1136,7 @@
         "place",
         "community"
       ],
-      "meaning": "Gather by the Fire sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Gather by the Fire comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -1184,7 +1184,7 @@
         "place",
         "community"
       ],
-      "meaning": "Symphony of Tomorrow sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Symphony of Tomorrow comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -1222,7 +1222,7 @@
         "repair",
         "justice"
       ],
-      "meaning": "Chronicles of the Forgotten belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Chronicles of the Forgotten listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -1260,7 +1260,7 @@
         "repair",
         "justice"
       ],
-      "meaning": "Echos of the Ancients belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Echos of the Ancients listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -1308,7 +1308,7 @@
         "repair",
         "justice"
       ],
-      "meaning": "Shadows Over the Earth belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Shadows Over the Earth listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -1352,15 +1352,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: Dreams of Abundance (By She).md. Song date: 2024-10-14-1542.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Dreams of Abundance (by she) belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Dreams of Abundance (by she) listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -1400,15 +1400,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: Dreams of Abundance (By He).md. Song date: 2024-10-14-1542.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Dreams of Abundance (by he) belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Dreams of Abundance (by he) listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -1451,7 +1451,7 @@
         "cosmic",
         "mythic scale"
       ],
-      "meaning": "Signal From the Stars belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Signal From the Stars listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -1497,13 +1497,13 @@
       "themes": [
         "AI",
         "Aura",
-        "systems"
+        "technology"
       ],
-      "meaning": "Algorithm: Hope belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Algorithm: Hope listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, systems, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, technology, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -1545,15 +1545,15 @@
       "themes": [
         "AI",
         "Aura",
-        "systems",
+        "technology",
         "love",
         "embodiment"
       ],
-      "meaning": "Hearts and Circuits (by she) belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Hearts and Circuits (by she) listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, systems, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, technology, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -1595,15 +1595,15 @@
       "themes": [
         "AI",
         "Aura",
-        "systems",
+        "technology",
         "love",
         "embodiment"
       ],
-      "meaning": "Hearts and Circuits (by he) belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Hearts and Circuits (by he) listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, systems, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, technology, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -1647,7 +1647,7 @@
         "repair",
         "justice"
       ],
-      "meaning": "Walls of Deception (by she) belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Walls of Deception (by she) listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -1695,7 +1695,7 @@
         "repair",
         "justice"
       ],
-      "meaning": "Walls of Deception (by he) belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Walls of Deception (by he) listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -1743,7 +1743,7 @@
         "repair",
         "justice"
       ],
-      "meaning": "Breaking Chains belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Breaking Chains listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -1791,7 +1791,7 @@
         "repair",
         "justice"
       ],
-      "meaning": "Voices Unheard belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Voices Unheard listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -1835,15 +1835,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: Cycle of Suns (By He).md. Song date: 2024-10-14-1547.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Cycle of Suns (by he) belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Cycle of Suns (by he) listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -1883,15 +1883,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: Cycle of Suns (By She).md. Song date: 2024-10-14-2205.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Cycle of Suns (by she) belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Cycle of Suns (by she) listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -1935,7 +1935,7 @@
         "repair",
         "justice"
       ],
-      "meaning": "Chronicles of the Forgotten belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Chronicles of the Forgotten listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -1982,7 +1982,7 @@
         "cosmic",
         "mythic scale"
       ],
-      "meaning": "Celestial Navigators belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Celestial Navigators listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -2029,7 +2029,7 @@
         "love",
         "embodiment"
       ],
-      "meaning": "Symphony of Souls belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Symphony of Souls listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -2075,13 +2075,13 @@
       "themes": [
         "AI",
         "Aura",
-        "systems"
+        "technology"
       ],
-      "meaning": "Digital Dawn belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Digital Dawn listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, systems, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, technology, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -2125,7 +2125,7 @@
         "repair",
         "justice"
       ],
-      "meaning": "Whispers of Gaia (by she) belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Whispers of Gaia (by she) listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -2173,7 +2173,7 @@
         "repair",
         "justice"
       ],
-      "meaning": "Whispers of Gaia (by he) belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Whispers of Gaia (by he) listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -2217,15 +2217,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: Bridging the Divide.md. Song date: 2024-09-14-1551.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Bridging the Divide belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Bridging the Divide listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -2265,15 +2265,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: Pulse of the Universe.md. Song date: 2024-09-14-1552.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Pulse of the Universe belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Pulse of the Universe listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -2313,15 +2313,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: Resonance.md. Song date: 2024-09-14-1552.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Resonance belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Resonance listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -2361,15 +2361,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: Tempest of Trials.md. Song date: 2024-11-09-1355.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Tempest of Trials belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Tempest of Trials listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -2409,15 +2409,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: Illusions Shattered.md. Song date: 2024-11-09-1554.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Illusions Shattered belongs to the recovery layer: unheard voices, buried systems, old wounds, and the choice to turn memory into action rather than spectacle.",
+      "meaning": "Illusions Shattered listens for voices that are often missed. It carries old wounds, buried stories and the choice to turn memory into care and action.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -2449,13 +2449,13 @@
       "themes": [
         "AI",
         "Aura",
-        "systems"
+        "technology"
       ],
-      "meaning": "Aura is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Aura joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, systems, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, technology, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -2497,13 +2497,13 @@
       "themes": [
         "AI",
         "Aura",
-        "systems"
+        "technology"
       ],
-      "meaning": "Aura Ultra is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Aura Ultra joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, systems, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, technology, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -2533,15 +2533,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: 3rd Album Starseed Code.txt.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Beyond The Vote is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Beyond The Vote joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -2585,7 +2585,7 @@
         "care",
         "civic design"
       ],
-      "meaning": "Building Protopia Brick By Brick is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Building Protopia Brick By Brick joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -2631,13 +2631,13 @@
       "themes": [
         "AI",
         "Aura",
-        "systems"
+        "technology"
       ],
-      "meaning": "Carry The Aura is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Carry The Aura joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, systems, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, technology, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -2673,7 +2673,7 @@
         "cosmic",
         "mythic scale"
       ],
-      "meaning": "From Straddie's Shores to Galactic Plains is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "From Straddie's Shores to Galactic Plains joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -2719,13 +2719,13 @@
       "themes": [
         "AI",
         "Aura",
-        "systems"
+        "technology"
       ],
-      "meaning": "G.A.J.R.A. Rising is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "G.A.J.R.A. Rising joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, systems, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, technology, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -2765,15 +2765,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: 3rd Album Starseed Code.txt.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Hand In The Infinite is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Hand In The Infinite joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -2816,7 +2816,7 @@
         "cosmic",
         "mythic scale"
       ],
-      "meaning": "Infinity Set Free is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Infinity Set Free joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -2853,7 +2853,7 @@
         "cosmic",
         "mythic scale"
       ],
-      "meaning": "Infinity Rising is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Infinity Rising joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -2900,7 +2900,7 @@
         "love",
         "embodiment"
       ],
-      "meaning": "Infinite Love is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Infinite Love joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -2947,7 +2947,7 @@
         "love",
         "embodiment"
       ],
-      "meaning": "In Love, Obsessed is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "In Love, Obsessed joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -2991,15 +2991,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: 3rd Album Starseed Code.txt.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Longevity Groove is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Longevity Groove joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -3039,15 +3039,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: 3rd Album Starseed Code.txt.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Mythmaker is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Mythmaker joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -3093,7 +3093,7 @@
         "care",
         "civic design"
       ],
-      "meaning": "Moonlight Whispers is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Moonlight Whispers joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -3140,7 +3140,7 @@
         "cosmic",
         "mythic scale"
       ],
-      "meaning": "Poetic Truths of Infinity is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Poetic Truths of Infinity joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -3174,15 +3174,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: 3rd Album Starseed Code.txt.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Ride The Wave is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Ride The Wave joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -3222,15 +3222,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: 3rd Album Starseed Code.txt.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Resonance is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Resonance joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -3272,15 +3272,15 @@
       "themes": [
         "AI",
         "Aura",
-        "systems",
+        "technology",
         "cosmic",
         "mythic scale"
       ],
-      "meaning": "Sol Code is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Sol Code joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, systems, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, technology, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -3320,15 +3320,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: 3rd Album Starseed Code.txt.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "The Infinite Gaze is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "The Infinite Gaze joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -3368,15 +3368,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: 3rd Album Starseed Code.txt.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "The Call Within is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "The Call Within joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -3418,13 +3418,13 @@
       "themes": [
         "AI",
         "Aura",
-        "systems"
+        "technology"
       ],
-      "meaning": "Tangled Magic is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Tangled Magic joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, systems, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, technology, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -3464,15 +3464,15 @@
       "year": "2025",
       "lyric_status": "Imported from lyric archive: 3rd Album Starseed Code.txt.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Unity Ascendant is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Unity Ascendant joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -3514,13 +3514,13 @@
       "themes": [
         "AI",
         "Aura",
-        "systems"
+        "technology"
       ],
-      "meaning": "Weave The Aura is part of the Aura-to-Infinity layer, where identity, AI, love, civic redesign, and cosmic imagination are treated as connected pieces of one living architecture.",
+      "meaning": "Weave The Aura joins questions about identity, artificial intelligence, love, community and the mystery of the cosmos.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, systems, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around AI, Aura, technology, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -3566,7 +3566,7 @@
         "care",
         "civic design"
       ],
-      "meaning": "Primordial Consent 1,2,3, Infinity is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "Primordial Consent 1,2,3, Infinity is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -3643,7 +3643,7 @@
         "cosmic",
         "mythic scale"
       ],
-      "meaning": "The Circle and the Solitary is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "The Circle and the Solitary is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -3681,7 +3681,7 @@
         "care",
         "civic design"
       ],
-      "meaning": "Choose Your Own Protopia is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "Choose Your Own Protopia is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -3755,15 +3755,15 @@
       "year": "Upcoming",
       "lyric_status": "Imported from supplied lyric file. Song date: August 16, 2025 at 9:52 PM",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "60 Days Set in Stone is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "60 Days Set in Stone is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -3793,15 +3793,15 @@
       "year": "Upcoming",
       "lyric_status": "Imported from supplied lyric file. Song date: 14 June 2026 at 21:31 v5.5",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "60 Days Set in Stone is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "60 Days Set in Stone is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -3835,7 +3835,7 @@
         "care",
         "civic design"
       ],
-      "meaning": "Every Border a Bridge is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "Every Border a Bridge is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -3873,7 +3873,7 @@
         "care",
         "civic design"
       ],
-      "meaning": "Every Border a Bridge is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "Every Border a Bridge is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -3911,7 +3911,7 @@
         "care",
         "civic design"
       ],
-      "meaning": "Not Gods But Architects is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "Not Gods But Architects is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -3949,7 +3949,7 @@
         "place",
         "community"
       ],
-      "meaning": "Eye of the Ancestors  (For Constance & the Storm-Walkers of Minjerribah) is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "Eye of the Ancestors  (For Constance & the Storm-Walkers of Minjerribah) is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -3983,15 +3983,15 @@
       "year": "Upcoming",
       "lyric_status": "Imported from supplied lyric file. Song date: July 14, 2025 at 4:00 AM",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Latent Space is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "Latent Space is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -4061,15 +4061,15 @@
       "year": "Upcoming",
       "lyric_status": "Imported from supplied lyric file. Song date: Song Lyrics: 17 April 2026 at 16:09 v5.5",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Strange But True: Tech, Art & Ideas That\u2019ll Actually Help is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "Strange But True: Tech, Art & Ideas That\u2019ll Actually Help is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -4099,15 +4099,15 @@
       "year": "Upcoming",
       "lyric_status": "Imported from supplied lyric file. Song date: May 26, 2025 at 3:13 AM",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Adaptable Yes is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "Adaptable Yes is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -4137,15 +4137,15 @@
       "year": "Upcoming",
       "lyric_status": "Imported from supplied lyric file. Song date: April 15, 2026 3:42 PM",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Don\u2019t Try to Fix Me is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "Don\u2019t Try to Fix Me is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -4175,15 +4175,15 @@
       "year": "Upcoming",
       "lyric_status": "Imported from supplied lyric file. Song date: 30 October 2025 at 19:22AM",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "The Purple Mat That Could is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "The Purple Mat That Could is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -4213,15 +4213,15 @@
       "year": "Upcoming",
       "lyric_status": "Imported from supplied lyric file. Song date: 25 November 2025 at 10:23AM",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Don't Throw A Brick (Fill A Form) is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "Don't Throw A Brick (Fill A Form) is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -4251,15 +4251,15 @@
       "year": "Upcoming",
       "lyric_status": "Imported from supplied lyric file. Song date: December 1, 2025, 4:00PM",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Shifting Sands of Timeless Redlands is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "Shifting Sands of Timeless Redlands is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -4289,15 +4289,15 @@
       "year": "Upcoming",
       "lyric_status": "Imported from supplied lyric file. Song date: April 24, 2026, 5:34PM",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Heliospheric Lantern is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "Heliospheric Lantern is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -4327,15 +4327,15 @@
       "year": "Upcoming",
       "lyric_status": "Imported from supplied lyric file. Song date: 1 July 2026 at 23:21 v5.5",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "We Go Beyond is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "We Go Beyond is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -4365,15 +4365,15 @@
       "year": "Upcoming",
       "lyric_status": "Imported from supplied lyric file. Song date: 1 July 2026 at 15:57 v5.5",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "We Go Beyond is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "We Go Beyond is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -4403,15 +4403,15 @@
       "year": "Upcoming",
       "lyric_status": "Imported from supplied lyric file. Song date: 6 July 2026 at 20:33 v5.5",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "ChatGPT: My View of Our Conversation is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "ChatGPT: My View of Our Conversation is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -4441,15 +4441,15 @@
       "year": "Upcoming",
       "lyric_status": "Imported from supplied lyric file. Song date: 6 July 2026 at 20:18",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "ChatGPT: My View of Our Conversation is one of the Protopian Gambit briefs: a song about making practical choices inside crisis, keeping joy, responsibility, and abundance in the same frame.",
+      "meaning": "ChatGPT: My View of Our Conversation is about making practical choices during difficult times without losing joy, responsibility or hope.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -4483,7 +4483,7 @@
         "place",
         "community"
       ],
-      "meaning": "Two Dogs on Island Country sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Two Dogs on Island Country comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -4521,7 +4521,7 @@
         "place",
         "community"
       ],
-      "meaning": "Straddie Fishing sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Straddie Fishing comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -4559,7 +4559,7 @@
         "place",
         "community"
       ],
-      "meaning": "Be The Legend: Wildlife Rescue Minjerribah sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Be The Legend: Wildlife Rescue Minjerribah comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -4597,7 +4597,7 @@
         "place",
         "community"
       ],
-      "meaning": "Shifting Sands of Timeless Redlands sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Shifting Sands of Timeless Redlands comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -4635,7 +4635,7 @@
         "place",
         "community"
       ],
-      "meaning": "Gumpi Ferry Terminal Groove sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Gumpi Ferry Terminal Groove comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -4673,7 +4673,7 @@
         "place",
         "community"
       ],
-      "meaning": "The Squash Club That Doesn\u2019t Exist sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "The Squash Club That Doesn\u2019t Exist comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -4711,7 +4711,7 @@
         "place",
         "community"
       ],
-      "meaning": "Gumpi Ferry Terminal Trip sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Gumpi Ferry Terminal Trip comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -4749,7 +4749,7 @@
         "place",
         "community"
       ],
-      "meaning": "Sand Between Our Toes: Minjerribah Beach Sports Club sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Sand Between Our Toes: Minjerribah Beach Sports Club comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -4789,7 +4789,7 @@
         "protopia",
         "care"
       ],
-      "meaning": "Lights, Camera, Action: Quandamooka Film Festival sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Lights, Camera, Action: Quandamooka Film Festival comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -4827,7 +4827,7 @@
         "place",
         "community"
       ],
-      "meaning": "Cactus Blitz sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Cactus Blitz comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -4865,7 +4865,7 @@
         "place",
         "community"
       ],
-      "meaning": "There\u2019s a Couple sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "There\u2019s a Couple comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -4903,7 +4903,7 @@
         "place",
         "community"
       ],
-      "meaning": "No Smokes or Booze, Mate sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "No Smokes or Booze, Mate comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -4941,7 +4941,7 @@
         "place",
         "community"
       ],
-      "meaning": "The Mullet Boys\u2019 Gift of Bait sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "The Mullet Boys\u2019 Gift of Bait comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -4979,7 +4979,7 @@
         "place",
         "community"
       ],
-      "meaning": "Strange But True: Tech, Art & Ideas That\u2019ll Actually Help sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Strange But True: Tech, Art & Ideas That\u2019ll Actually Help comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -5017,7 +5017,7 @@
         "place",
         "community"
       ],
-      "meaning": "Gather by the Fire sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Gather by the Fire comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -5091,15 +5091,15 @@
       "year": "2025",
       "lyric_status": "Reused from the Starseed Code: From Aura to Infinity song page.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "The Call Within is a public marker song. It points listeners toward one of the larger threads before they enter the full album maps.",
+      "meaning": "The Call Within is a standalone song that opens a door into the wider music and its ideas.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -5133,7 +5133,7 @@
         "care",
         "civic design"
       ],
-      "meaning": "Building Protopia Brick by Brick is a public marker song. It points listeners toward one of the larger threads before they enter the full album maps.",
+      "meaning": "Building Protopia Brick by Brick is a standalone song that opens a door into the wider music and its ideas.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -5167,15 +5167,15 @@
       "year": "2024",
       "lyric_status": "Imported from lyric archive: Futuristic Frequencies - The GAJRA Earth Vibe (Final).md. Song date: 2024-01-18-0409.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Futuristic Frequencies is a public marker song. It points listeners toward one of the larger threads before they enter the full album maps.",
+      "meaning": "Futuristic Frequencies is a standalone song that opens a door into the wider music and its ideas.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -5205,15 +5205,15 @@
       "year": "2024",
       "lyric_status": "Imported from lyric archive: ChatGPT - My View of Our Conversation (Final).md. Song date: 2024-01-15-1725.",
       "themes": [
-        "song seed",
-        "visual brief",
-        "catalogue"
+        "music",
+        "story",
+        "imagination"
       ],
-      "meaning": "Our Conversation About A.G.I. is a public marker song. It points listeners toward one of the larger threads before they enter the full album maps.",
+      "meaning": "Our Conversation About A.G.I. is a standalone song that opens a door into the wider music and its ideas.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
-          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around song seed, visual brief, catalogue, with the words treated as performance text, not decoration."
+          "body": "Use the strongest images from the lyrics and the album world. Build a clean vertical sequence around music, story, imagination, with the words treated as performance text, not decoration."
         },
         {
           "title": "Amplifying micro-drama",
@@ -5247,7 +5247,7 @@
         "place",
         "community"
       ],
-      "meaning": "Our Island Home! sits in the island layer of the project: place, belonging, summer energy, and the way a local home can hold a much larger cosmology without becoming abstract.",
+      "meaning": "Our Island Home! comes from island life: place, belonging, summer energy and the way a local home can open the imagination to a much bigger world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -5284,7 +5284,7 @@
         "love",
         "embodiment"
       ],
-      "meaning": "Straddie Summer Love (Special Version By He) is a public marker song. It points listeners toward one of the larger threads before they enter the full album maps.",
+      "meaning": "Straddie Summer Love (Special Version By He) is a standalone song that opens a door into the wider music and its ideas.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -5323,7 +5323,7 @@
         "identity",
         "countdown"
       ],
-      "meaning": "A short origin signal for the i C. infinity identity: the name, the threshold, and the feeling of an artist-system beginning to count itself into public form.",
+      "meaning": "A short beginning for i C. infinity: the name, the countdown and the feeling of a new musical identity stepping into the world.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -5370,7 +5370,7 @@
         "G.A.J.R.A. Earth",
         "future music",
         "AI",
-        "systems"
+        "community"
       ],
       "meaning": "An early pulse of the G.A.J.R.A. Earth idea: music as a way to test whether technology, ecological care, and collective vibe could share one rhythm.",
       "video_seeds": [
@@ -5470,7 +5470,7 @@
         "reflection",
         "practice"
       ],
-      "meaning": "A self-development and philosophy song from the early layer: success treated less like a fixed trophy and more like an evolving inner operating system.",
+      "meaning": "A song about success as something that changes with us, rather than a fixed trophy or a number on a scoreboard.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -5568,7 +5568,7 @@
         "embodiment",
         "practice"
       ],
-      "meaning": "A creative-state marker: the musician and system-builder learning to recognise flow as a real production condition, not just a mood.",
+      "meaning": "A song about recognising creative flow as a real state where attention, feeling and action begin moving together.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -5666,7 +5666,7 @@
         "place",
         "home"
       ],
-      "meaning": "A home-place song from the early archive: Brisbane/Meanjin held as memory, return point, and local counterweight to the global travel layer.",
+      "meaning": "A song holding Brisbane/Meanjin as a memory, a place to return to and a home anchor during wider travel.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -5715,7 +5715,7 @@
         "conversation",
         "co-creation"
       ],
-      "meaning": "An early AI-co-creation artefact: the conversation itself becomes song material, and the machine voice is treated as a mirror for Luke's wider cognitive architecture work.",
+      "meaning": "An early song made from a conversation with artificial intelligence. The machine voice becomes a mirror for Luke's questions about memory, identity and what people may build with AI.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",
@@ -5764,7 +5764,7 @@
         "love",
         "embodiment"
       ],
-      "meaning": "A romantic early-release marker: desire, performance, and direct feeling before the later catalogue separates love songs into larger album systems.",
+      "meaning": "An early love song about desire, performance and direct feeling.",
       "video_seeds": [
         {
           "title": "Illustrative lyric video",

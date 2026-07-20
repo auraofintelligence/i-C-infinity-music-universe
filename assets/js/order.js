@@ -80,14 +80,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!status) return;
 
     if (!endpoint) {
-      status.textContent = "Order backend not connected yet. Deploy the Google Apps Script web app, then paste its URL into assets/js/order-config.js.";
+      status.textContent = "Online ordering is being prepared. You can explore the packs now, but payment is not open on this page yet.";
       return;
     }
 
     if (method === "stripe") {
       status.textContent = "Stripe will open a hosted checkout page after the order is logged.";
-    } else if (method === "paypal") {
-      status.textContent = "PayPal will open after the order is logged.";
     } else {
       status.textContent = "PayID / bank transfer instructions will show after the order is logged.";
     }

@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://auraofintelligence.github.io/i-C-infinity-music-universe/sitemap.xml

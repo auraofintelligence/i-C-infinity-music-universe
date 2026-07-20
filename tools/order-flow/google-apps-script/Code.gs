@@ -1,5 +1,5 @@
 const STRIPE_API_VERSION = "2026-02-25.clover";
-const DEFAULT_ORDER_PAGE_URL = "https://auraofintelligence.github.io/i-C-infinity-music-universe/order.html";
+const DEFAULT_ORDER_PAGE_URL = "https://auraofintelligence.github.io/i-C-infinity-music-universe/downloads.html#order-music";
 
 const PACKAGE_MAP = {
   "one-album": {
