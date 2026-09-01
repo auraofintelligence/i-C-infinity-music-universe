@@ -10,7 +10,7 @@
 
 ## Related public projects
 
-Each link below reflects an evidenced family, lineage or direct connection. This project has 9 relevant public connections.
+Each link below reflects an evidenced family, lineage or direct connection. This project has 6 relevant public connections.
 
 ### Aura Systems Image Atlas source projects
 
@@ -24,9 +24,6 @@ Each link below reflects an evidenced family, lineage or direct connection. This
 ### i C. infinity music and content system
 
 - [i-C-infinity](https://github.com/auraofintelligence/i-C-infinity) - later build; i-C-infinity is earlier, explicit cross-reference, ordered build lineage, shared named build family.
-- [i-C-infinity-one-album-pack](https://github.com/auraofintelligence/i-C-infinity-one-album-pack) - [public page](https://auraofintelligence.github.io/i-C-infinity-one-album-pack/) - earlier build; i-C-infinity-one-album-pack is later, explicit cross-reference, ordered build lineage, shared named build family.
-- [i-C-infinity-three-album-pack](https://github.com/auraofintelligence/i-C-infinity-three-album-pack) - [public page](https://auraofintelligence.github.io/i-C-infinity-three-album-pack/) - earlier build; i-C-infinity-three-album-pack is later, explicit cross-reference, ordered build lineage, shared named build family.
-- [i-C-infinity-two-album-pack](https://github.com/auraofintelligence/i-C-infinity-two-album-pack) - [public page](https://auraofintelligence.github.io/i-C-infinity-two-album-pack/) - earlier build; i-C-infinity-two-album-pack is later, explicit cross-reference, ordered build lineage, shared named build family.
 - [infinity-content-engine](https://github.com/auraofintelligence/infinity-content-engine) - [public page](https://auraofintelligence.github.io/infinity-content-engine/) - earlier build; infinity-content-engine is later, explicit cross-reference, ordered build lineage, shared named build family.
 - [infinity-engine](https://github.com/auraofintelligence/infinity-engine) - [public page](https://auraofintelligence.github.io/infinity-engine/) - earlier build; infinity-engine is later, explicit cross-reference, ordered build lineage, shared named build family.
 
@@ -66,7 +63,6 @@ The generated public data does not include Luke's local workshop paths. Rebuildi
 ## Related public pages
 
 - [i C. infinity](https://iseeinfinity.com/) - the official artist home.
-- [One Album Pack](https://auraofintelligence.github.io/i-C-infinity-one-album-pack/), [Two Album Pack](https://auraofintelligence.github.io/i-C-infinity-two-album-pack/) and [Three Album Pack](https://auraofintelligence.github.io/i-C-infinity-three-album-pack/) - separate package-planning doorways.
 - [Explorers Music Video Lab](https://auraofintelligence.github.io/explorer-music-video-lab/) - a generalised creator-controlled clip workflow.
 - [Infinity Content Engine](https://auraofintelligence.github.io/infinity-content-engine/) - the earlier interactive pipeline concept.
 
