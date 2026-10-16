@@ -1,0 +1,64 @@
+{
+  "source": "https://www.youtube.com/@lukehayes360VR",
+  "checked": "2026-10-17",
+  "track_versions": {
+    "21": {"video_id": "Vrgpv78qXxc", "label": "Female singer — f1"},
+    "22": {"video_id": "5DHccBOHeqc", "label": "Male singer — m1"}
+  },
+  "version_note": "These recordings share this song title. Lyrics and musical styles can differ between versions; a recording has not been assigned to a particular lyric version.",
+  "songs": {
+    "Primordial Consent 1,2,3, Infinity": [
+      {"id": "fEkTOSx7QoY", "title": "Primordial Consent 1,2,3, Infinity", "label": "Music video"}
+    ],
+    "The Protopian Gambit": [
+      {"id": "SAZ81EzrKoY", "title": "The Protopian Gambit", "label": "Music video"}
+    ],
+    "Choose Your Own Protopia": [
+      {"id": "HAoAIwsbm5o", "title": "Choose Your Own Protopia", "label": "Music video"}
+    ],
+    "Kintsugi Protocol": [
+      {"id": "dzMSM20H4W4", "title": "Kintsugi Protocol", "label": "Music video"}
+    ],
+    "60 Days Set in Stone": [
+      {"id": "CiH-81qm3W4", "title": "60 Days Set in Stone", "label": "Music video"}
+    ],
+    "Every Border a Bridge": [
+      {"id": "HLpIHF8MZYs", "title": "Every Border a Bridge", "label": "Every Border a Bridge — 7:40 recording"},
+      {"id": "2nVnaKbl8jI", "title": "Every Border a Bridge (modernised kraut rock)", "label": "Modernised kraut rock"},
+      {"id": "gIDG3RgjOTM", "title": "Every Border a Bridge (acclaim meme)", "label": "Acclaim meme"}
+    ],
+    "Eye of the Ancestors  (For Constance & the Storm-Walkers of Minjerribah)": [
+      {"id": "y_fn2_nfNto", "title": "Eye of the Ancestors For Constance & the Storm Walkers of Minjerribah", "label": "Music video"}
+    ],
+    "Adaptable Yes": [
+      {"id": "Wcp_IzD1gkc", "title": "Adaptable Yes", "label": "Music video"}
+    ],
+    "Don’t Try to Fix Me": [
+      {"id": "Fm3Dt_Vrm-E", "title": "Don't Try To Fix Me (Language Warning)", "label": "Language Warning — 4:34 recording"},
+      {"id": "KAhk7yh_6TU", "title": "Dont Try to Fix Me (Vertical Music Video)", "label": "Vertical music video — 5:29 recording", "orientation": "vertical"}
+    ],
+    "The Purple Mat That Could": [
+      {"id": "Oh7mPhtykJI", "title": "The Purple Mat That Could by iCinfinity about A Purple Party for Australia", "label": "Music video"}
+    ],
+    "Don't Throw A Brick (Fill A Form)": [
+      {"id": "CbP-k-rp2OM", "title": "Dont Throw a Brick! (Pee for Australia, a Comedy Song by i C. Infinity)", "label": "YouTube Short", "orientation": "vertical", "url": "https://www.youtube.com/shorts/CbP-k-rp2OM"}
+    ],
+    "Shifting Sands of Timeless Redlands": [
+      {"id": "uKygQx_8dos", "title": "Shifting Sands of Timeless Redlands (Music Vid) Redlands Quandamooka Yoolooburrabee Coast Straddie", "label": "Widescreen music video", "thumbnail": "sddefault"},
+      {"id": "OZRZy6LYQkg", "title": "Shifting Sands of Timeless Redlands (Music Video) Redlands Quandamooka Yoolooburrabee Coast Straddie", "label": "Portrait music video", "orientation": "vertical", "thumbnail": "sddefault"},
+      {"id": "4pZvcXcSqJw", "title": "Shifting Sands of Timeless Redlands (i C. infinity)", "label": "Earlier recording — 7:48"}
+    ],
+    "Heliospheric Lantern": [
+      {"id": "jkwkZdIZepw", "title": "Heliospheric Lantern", "label": "Music video"}
+    ],
+    "We Go Beyond": [
+      {"id": "Vrgpv78qXxc", "title": "We Go Beyond f1", "label": "Female singer — f1"},
+      {"id": "5DHccBOHeqc", "title": "We Go Beyond (m1)", "label": "Male singer — m1"},
+      {"id": "ssXb1Go3NuU", "title": "We Go Beyond f2", "label": "Additional recording — female singer, f2"},
+      {"id": "Pg4_9H8Kr4U", "title": "We Go Beyond m2", "label": "Additional recording — male singer, m2"}
+    ],
+    "ChatGPT: My View of Our Conversation": [
+      {"id": "O5yDvropJRM", "title": "ChatGPT: My View of Our Conversation", "label": "Music video — 6:39 recording"}
+    ]
+  }
+}

@@ -1418,6 +1418,30 @@ def primary_youtube_video(song: Song) -> dict[str, str] | None:
     return None
 
 
+def protopian_video_data() -> dict:
+    return json.loads((REPO / "data" / "protopian-videos.json").read_text(encoding="utf-8"))
+
+
+def apply_protopian_videos(songs: list[Song]) -> None:
+    data = protopian_video_data()
+    for song in songs:
+        if song.album_slug != "a-protopian-gambit":
+            continue
+        # Shared titles intentionally keep all recordings together. The lyric
+        # entries remain separate until their exact recording matches are known.
+        song.youtube_videos = [
+            {"orientation": "landscape", "thumbnail": "hqdefault",
+             "note": data["version_note"], **video}
+            for video in data["songs"].get(song.title, [])
+        ]
+        version = data.get("track_versions", {}).get(str(song.track_number))
+        if version:
+            song.youtube_videos = [video for video in song.youtube_videos if video["id"] == version["video_id"]]
+        if song.youtube_videos:
+            song.youtube_video_id = song.youtube_videos[0]["id"]
+            song.youtube_title = song.youtube_videos[0]["title"]
+
+
 def youtube_video_link(video: dict[str, str]) -> str:
     return video.get("url") or youtube_video_url(video["id"], video.get("playlist_id", ""))
 
@@ -1470,6 +1494,8 @@ def youtube_song_embed_html(song: Song) -> str:
     if not videos:
         return ""
     cards = []
+    if song.album_slug == "a-protopian-gambit" and str(song.track_number) not in protopian_video_data().get("track_versions", {}):
+        cards.append(f'<p class="notice">{esc(protopian_video_data()["version_note"])}</p>')
     for index, video in enumerate(videos):
         video_id = video["id"]
         src = youtube_video_embed_src(video_id, video.get("playlist_id", ""))
@@ -1486,7 +1512,7 @@ def youtube_song_embed_html(song: Song) -> str:
       </div>
       <div class="vertical-video-copy">
         <p class="eyebrow">{esc(label)}</p>
-        <h2>{esc(song.title)}</h2>
+        <h2>{esc(title) if song.album_slug == "a-protopian-gambit" else esc(song.title)}</h2>
         <p>Watch this music video on YouTube.</p>
         <div class="listen-links compact">
           <a class="listen-chip youtube" href="{esc(url)}" target="_blank" rel="noopener">Open on YouTube</a>
@@ -1664,6 +1690,7 @@ def build_catalogue() -> tuple[list[Album], list[Song]]:
 
     apply_duplicate_lyrics(songs)
     apply_streaming_links(albums)
+    apply_protopian_videos(songs)
     return albums, songs
 
 
@@ -1792,6 +1819,11 @@ def song_card(song: Song, prefix: str = "") -> str:
 def track_row(song: Song, prefix: str = "") -> str:
     href = f"{prefix}songs/{song.slug}/"
     lyric_note = "Read the lyrics" if song.ready() else ("Watch the video" if primary_youtube_video(song) else "Lyrics coming soon")
+    if song.album_slug == "a-protopian-gambit" and song.youtube_videos:
+        lyric_note = f"Lyrics and {len(song.youtube_videos)} video version{'s' if len(song.youtube_videos) != 1 else ''}"
+        version = protopian_video_data().get("track_versions", {}).get(str(song.track_number))
+        if version:
+            lyric_note = version["label"] + " · Lyrics and video"
     return f"""
     <div class="track-row">
       <a href="{href}">
@@ -2218,6 +2250,43 @@ def next_signals_teaser_section(album: Album, prefix: str) -> str:
     """.rstrip()
 
 
+def protopian_video_section(album: Album) -> str:
+    if album.slug != "a-protopian-gambit":
+        return ""
+    data = protopian_video_data()
+    videos = {video["id"]: video for recordings in data["songs"].values() for video in recordings}
+    if not videos:
+        return ""
+    cards = "".join(
+        f'''<a class="video-chip" href="{esc(youtube_video_link(video))}" target="_blank" rel="noopener">
+          <img src="{esc(youtube_thumbnail_url(video['id'], video.get('thumbnail', 'hqdefault')))}" alt="" loading="lazy">
+          <strong>{esc(video['title'])}<br><small>{esc(video['label'])}</small></strong>
+        </a>'''
+        for video in videos.values()
+    )
+    draft = FOURTH_ALBUM_TEASER_VIDEO
+    return f'''
+    <section class="section video-section" id="music-videos">
+      <div class="wrap video-feature landscape-feature">
+        <div class="vertical-video-frame wide-video-frame playlist-frame">
+          <iframe title="Fourth album draft — untitled, in progress" src="{esc(youtube_video_embed_src(draft['id']))}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <div class="video-feature-copy">
+          <p class="eyebrow">Music videos and alternate versions</p>
+          <h2>Watch A Protopian Gambit</h2>
+          <p>{len(videos)} individual videos from Luke Hayes 360 VR, including alternate recordings and styles. The hour-long video is an earlier album draft, published while the fourth album was still untitled.</p>
+          <p>Some songs have more than one lyric entry or recording. These versions remain separate, and recordings sharing a title appear together on the song pages.</p>
+          <div class="action-row">
+            <a class="button" href="#track-map">See songs and lyrics</a>
+            <a class="button secondary" href="{esc(data['source'])}" target="_blank" rel="noopener">Luke’s YouTube channel</a>
+          </div>
+        </div>
+      </div>
+      <div class="wrap"><div class="video-index" aria-label="A Protopian Gambit video versions">{cards}</div></div>
+    </section>
+    '''.rstrip()
+
+
 def album_page(album: Album) -> str:
     prefix = "../../"
     tracks = "".join(track_row(song, prefix) for song in album.tracks)
@@ -2227,7 +2296,7 @@ def album_page(album: Album) -> str:
           The song list is coming soon.
         </div>
         """
-    video_section = starseed_video_section(album, prefix) + landscape_album_video_section(album, prefix) + next_signals_teaser_section(album, prefix)
+    video_section = starseed_video_section(album, prefix) + landscape_album_video_section(album, prefix) + next_signals_teaser_section(album, prefix) + protopian_video_section(album)
     track_section_id = ' id="track-map"' if video_section else ""
     body = f"""
     <section class="page-hero">

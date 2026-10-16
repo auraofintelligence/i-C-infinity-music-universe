@@ -54,6 +54,11 @@ python tools/build_site.py
 
 The generator reads the Protopian Gambit lyric source from Luke's local source folder and keeps local workshop file paths out of the public site data.
 
+To update Protopian Gambit videos without the private lyric files, edit
+`data/protopian-videos.json` and run `python tools/update_protopian_videos.py`
+with Python 3.10 or later. This preserves the committed lyrics and separate
+lyric versions while refreshing the album, song pages and listening cockpit.
+
 ## Notes
 
 The old one-page prototype is preserved as `legacy-content-engine.html`.
