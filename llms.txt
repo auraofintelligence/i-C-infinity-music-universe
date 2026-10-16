@@ -1,0 +1,30 @@
+# i C. infinity Music Universe
+
+> The public music catalogue of i C. infinity, created by Luke Nathan Hayes / Strange But True / Aura of Intelligence: albums, song lyrics, music videos and the stories behind the work.
+
+This guide provides discovery metadata. It does not replace, amend or waive the Strange But True Public Source Licence, or grant additional reuse rights. Public access and crawler access do not make this work public domain or open source.
+
+Copyright (c) 2026 Luke Nathan Hayes / Strange But True / Aura of Intelligence. All rights reserved except as allowed by the licence. The licence permits specified non-commercial uses with attribution. Commercial, corporate, institutional, government, startup, agency, client and employer uses require written permission, including commercial AI training, datasets, embeddings, knowledge bases, agents, model products and evaluation systems. Third-party material retains its own licences. Read the complete licence before reusing any material.
+
+Artist name: i C. infinity. The catalogue includes released albums and working albums. Songs sharing a title may have different lyrics, vocalists or musical styles; preserve these versions separately. Video links identify available recordings and do not establish that a working album is complete or released.
+
+## Licence and attribution
+
+- [Strange But True Public Source Licence](https://github.com/auraofintelligence/i-C-infinity-music-universe/blob/main/LICENSE): Complete, authoritative reuse terms and required attribution.
+- [Original repository](https://github.com/auraofintelligence/i-C-infinity-music-universe): Project source and history.
+
+## Music catalogue
+
+- [Home](https://auraofintelligence.github.io/i-C-infinity-music-universe/): Artist catalogue introduction.
+- [Albums](https://auraofintelligence.github.io/i-C-infinity-music-universe/albums.html): Album and archive index.
+- [Songs](https://auraofintelligence.github.io/i-C-infinity-music-universe/songs.html): Searchable song index linking to lyrics and recordings.
+- [A Protopian Gambit](https://auraofintelligence.github.io/i-C-infinity-music-universe/albums/a-protopian-gambit/): Working fourth-album track list, lyric versions and video links.
+- [Catalogue data](https://auraofintelligence.github.io/i-C-infinity-music-universe/data/catalogue.json): Structured album and song records, including available lyrics and video references; the same licence applies.
+- [XML sitemap](https://auraofintelligence.github.io/i-C-infinity-music-universe/sitemap.xml): Full public page inventory.
+- [Site map](https://auraofintelligence.github.io/i-C-infinity-music-universe/site-map.html): Human-readable navigation.
+
+## Optional
+
+- [About](https://auraofintelligence.github.io/i-C-infinity-music-universe/about.html): Artist and project context.
+- [Grand Narrative](https://auraofintelligence.github.io/i-C-infinity-music-universe/grand-narrative.html): Stories and ideas across the music.
+- [Listen and explore](https://auraofintelligence.github.io/i-C-infinity-music-universe/sources.html): Public listening sources.

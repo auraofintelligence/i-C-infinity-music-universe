@@ -1728,6 +1728,8 @@ def layout(title: str, description: str, body: str, prefix: str = "", page_class
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{esc(title)}</title>
   <meta name="description" content="{esc(description)}">
+  <link rel="describedby" type="text/plain" href="{prefix}llms.txt">
+  <link rel="license" href="https://github.com/auraofintelligence/i-C-infinity-music-universe/blob/main/LICENSE">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -3882,7 +3884,8 @@ def main() -> None:
             write(REPO / "builders" / builder["href"], human_ingestion_page(songs))
         else:
             write(REPO / "builders" / builder["href"], builder_page(builder["key"], songs))
-    write(REPO / "robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE_ROOT}sitemap.xml\n")
+    # Keep the reviewed search-discovery and training opt-out rules intact.
+    # robots.txt and llms.txt are maintained directly alongside LICENSE.
 
     for album in albums:
         write(REPO / "albums" / album.slug / "index.html", album_page(album))

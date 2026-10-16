@@ -1,3 +1,20 @@
+# Search discovery only; reuse remains subject to the existing licence:
+# https://github.com/auraofintelligence/i-C-infinity-music-universe/blob/main/LICENSE
+# No additional commercial, AI-training or other reuse rights are granted here.
+# Bot-readable site guide: https://auraofintelligence.github.io/i-C-infinity-music-universe/llms.txt
+# On GitHub Pages the authoritative crawler rules are at the host root:
+# https://auraofintelligence.github.io/robots.txt
+
 User-agent: *
 Allow: /
+
+User-agent: GPTBot
+Disallow: /i-C-infinity-music-universe/
+
+User-agent: ClaudeBot
+Disallow: /i-C-infinity-music-universe/
+
+User-agent: Google-Extended
+Disallow: /i-C-infinity-music-universe/
+
 Sitemap: https://auraofintelligence.github.io/i-C-infinity-music-universe/sitemap.xml
