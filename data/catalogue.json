@@ -4542,15 +4542,16 @@
       "apple_url": "",
       "spotify_url": "",
       "youtube_video_id": "Vrgpv78qXxc",
-      "youtube_title": "We Go Beyond f1",
+      "youtube_title": "We Go Beyond \u2014 Female vocals",
       "youtube_videos": [
         {
           "orientation": "landscape",
           "thumbnail": "hqdefault",
           "note": "These recordings share this song title. Lyrics and musical styles can differ between versions; a recording has not been assigned to a particular lyric version.",
           "id": "Vrgpv78qXxc",
-          "title": "We Go Beyond f1",
-          "label": "Female singer \u2014 f1"
+          "title": "We Go Beyond \u2014 Female vocals",
+          "source_title": "We Go Beyond f1",
+          "label": "Female vocals"
         }
       ],
       "youtube_url": "https://www.youtube.com/watch?v=Vrgpv78qXxc",
@@ -4589,15 +4590,16 @@
       "apple_url": "",
       "spotify_url": "",
       "youtube_video_id": "5DHccBOHeqc",
-      "youtube_title": "We Go Beyond (m1)",
+      "youtube_title": "We Go Beyond \u2014 Male vocals",
       "youtube_videos": [
         {
           "orientation": "landscape",
           "thumbnail": "hqdefault",
           "note": "These recordings share this song title. Lyrics and musical styles can differ between versions; a recording has not been assigned to a particular lyric version.",
           "id": "5DHccBOHeqc",
-          "title": "We Go Beyond (m1)",
-          "label": "Male singer \u2014 m1"
+          "title": "We Go Beyond \u2014 Male vocals",
+          "source_title": "We Go Beyond (m1)",
+          "label": "Male vocals"
         }
       ],
       "youtube_url": "https://www.youtube.com/watch?v=5DHccBOHeqc",

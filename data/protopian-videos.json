@@ -2,8 +2,8 @@
   "source": "https://www.youtube.com/@lukehayes360VR",
   "checked": "2026-10-17",
   "track_versions": {
-    "21": {"video_id": "Vrgpv78qXxc", "label": "Female singer — f1"},
-    "22": {"video_id": "5DHccBOHeqc", "label": "Male singer — m1"}
+    "21": {"video_id": "Vrgpv78qXxc", "label": "Female vocals"},
+    "22": {"video_id": "5DHccBOHeqc", "label": "Male vocals"}
   },
   "version_note": "These recordings share this song title. Lyrics and musical styles can differ between versions; a recording has not been assigned to a particular lyric version.",
   "songs": {
@@ -52,10 +52,10 @@
       {"id": "jkwkZdIZepw", "title": "Heliospheric Lantern", "label": "Music video"}
     ],
     "We Go Beyond": [
-      {"id": "Vrgpv78qXxc", "title": "We Go Beyond f1", "label": "Female singer — f1"},
-      {"id": "5DHccBOHeqc", "title": "We Go Beyond (m1)", "label": "Male singer — m1"},
-      {"id": "ssXb1Go3NuU", "title": "We Go Beyond f2", "label": "Additional recording — female singer, f2"},
-      {"id": "Pg4_9H8Kr4U", "title": "We Go Beyond m2", "label": "Additional recording — male singer, m2"}
+      {"id": "Vrgpv78qXxc", "title": "We Go Beyond — Female vocals", "source_title": "We Go Beyond f1", "label": "Female vocals"},
+      {"id": "5DHccBOHeqc", "title": "We Go Beyond — Male vocals", "source_title": "We Go Beyond (m1)", "label": "Male vocals"},
+      {"id": "ssXb1Go3NuU", "title": "We Go Beyond — Alternate female vocals", "source_title": "We Go Beyond f2", "label": "Additional recording — female vocals"},
+      {"id": "Pg4_9H8Kr4U", "title": "We Go Beyond — Alternate male vocals", "source_title": "We Go Beyond m2", "label": "Additional recording — male vocals"}
     ],
     "ChatGPT: My View of Our Conversation": [
       {"id": "O5yDvropJRM", "title": "ChatGPT: My View of Our Conversation", "label": "Music video — 6:39 recording"}
