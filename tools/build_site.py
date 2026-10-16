@@ -1430,7 +1430,7 @@ def apply_protopian_videos(songs: list[Song]) -> None:
         # Shared titles intentionally keep all recordings together. The lyric
         # entries remain separate until their exact recording matches are known.
         song.youtube_videos = [
-            {"orientation": "landscape", "thumbnail": "hqdefault",
+            {"orientation": "vertical", "thumbnail": "hqdefault",
              "note": data["version_note"], **video}
             for video in data["songs"].get(song.title, [])
         ]
@@ -1502,7 +1502,7 @@ def youtube_song_embed_html(song: Song) -> str:
         url = youtube_video_link(video)
         title = video.get("title") or f"{song.title} YouTube video"
         label = video.get("label") or ("Portrait Video" if video.get("orientation") == "vertical" else "Widescreen Video")
-        orientation_class = "wide-video-frame" if video.get("orientation") == "landscape" else ""
+        orientation_class = "wide-video-frame" if video.get("orientation") == "landscape" and song.album_slug != "a-protopian-gambit" else ""
         panel_id = ' id="vertical-video"' if index == 0 else ""
         cards.append(
             f"""
@@ -1732,7 +1732,7 @@ def layout(title: str, description: str, body: str, prefix: str = "", page_class
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/jpeg" href="{prefix}assets/favicon.jpg">
-  <link rel="stylesheet" href="{prefix}assets/css/styles.css?v=photo-story-8">
+  <link rel="stylesheet" href="{prefix}assets/css/styles.css?v=protopian-phones-9">
 </head>
 <body{body_class}>
   {nav(prefix)}
@@ -1824,6 +1824,20 @@ def track_row(song: Song, prefix: str = "") -> str:
         version = protopian_video_data().get("track_versions", {}).get(str(song.track_number))
         if version:
             lyric_note = version["label"] + " · Lyrics and video"
+    if song.album_slug == "a-protopian-gambit" and primary_youtube_video(song):
+        video_url = youtube_video_link(primary_youtube_video(song))
+        return f"""
+    <div class="track-row track-with-actions">
+      <a class="track-main-link" href="{href}">
+        <span class="track-number">{song.track_number:02d}</span>
+        <span class="track-title"><strong>{esc(song.title)}</strong><span>{esc(lyric_note)}</span></span>
+      </a>
+      <div class="track-actions">
+        {song_status(song)}
+        <a class="status-pill video track-watch-link" href="{esc(video_url)}" target="_blank" rel="noopener" aria-label="Watch {esc(song.title)} on YouTube">Watch video</a>
+      </div>
+    </div>
+    """.rstrip()
     return f"""
     <div class="track-row">
       <a href="{href}">
@@ -2250,43 +2264,6 @@ def next_signals_teaser_section(album: Album, prefix: str) -> str:
     """.rstrip()
 
 
-def protopian_video_section(album: Album) -> str:
-    if album.slug != "a-protopian-gambit":
-        return ""
-    data = protopian_video_data()
-    videos = {video["id"]: video for recordings in data["songs"].values() for video in recordings}
-    if not videos:
-        return ""
-    cards = "".join(
-        f'''<a class="video-chip" href="{esc(youtube_video_link(video))}" target="_blank" rel="noopener">
-          <img src="{esc(youtube_thumbnail_url(video['id'], video.get('thumbnail', 'hqdefault')))}" alt="" loading="lazy">
-          <strong>{esc(video['title'])}<br><small>{esc(video['label'])}</small></strong>
-        </a>'''
-        for video in videos.values()
-    )
-    draft = FOURTH_ALBUM_TEASER_VIDEO
-    return f'''
-    <section class="section video-section" id="music-videos">
-      <div class="wrap video-feature landscape-feature">
-        <div class="vertical-video-frame wide-video-frame playlist-frame">
-          <iframe title="Fourth album draft — untitled, in progress" src="{esc(youtube_video_embed_src(draft['id']))}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
-        </div>
-        <div class="video-feature-copy">
-          <p class="eyebrow">Music videos and alternate versions</p>
-          <h2>Watch A Protopian Gambit</h2>
-          <p>{len(videos)} individual videos from Luke Hayes 360 VR, including alternate recordings and styles. The hour-long video is an earlier album draft, published while the fourth album was still untitled.</p>
-          <p>Some songs have more than one lyric entry or recording. These versions remain separate, and recordings sharing a title appear together on the song pages.</p>
-          <div class="action-row">
-            <a class="button" href="#track-map">See songs and lyrics</a>
-            <a class="button secondary" href="{esc(data['source'])}" target="_blank" rel="noopener">Luke’s YouTube channel</a>
-          </div>
-        </div>
-      </div>
-      <div class="wrap"><div class="video-index" aria-label="A Protopian Gambit video versions">{cards}</div></div>
-    </section>
-    '''.rstrip()
-
-
 def album_page(album: Album) -> str:
     prefix = "../../"
     tracks = "".join(track_row(song, prefix) for song in album.tracks)
@@ -2296,8 +2273,8 @@ def album_page(album: Album) -> str:
           The song list is coming soon.
         </div>
         """
-    video_section = starseed_video_section(album, prefix) + landscape_album_video_section(album, prefix) + next_signals_teaser_section(album, prefix) + protopian_video_section(album)
-    track_section_id = ' id="track-map"' if video_section else ""
+    video_section = starseed_video_section(album, prefix) + landscape_album_video_section(album, prefix) + next_signals_teaser_section(album, prefix)
+    track_section_id = ' id="track-map"' if video_section or album.slug == "a-protopian-gambit" else ""
     body = f"""
     <section class="page-hero">
       <div class="wrap">
@@ -2328,6 +2305,29 @@ def album_page(album: Album) -> str:
     </section>
     """
     return layout(f"{album.title} - i C. infinity", album.summary, body, prefix)
+
+
+def song_playlist_footer(song: Song, album: Album) -> str:
+    if album.slug != "a-protopian-gambit":
+        return ""
+    index = next(i for i, track in enumerate(album.tracks) if track.slug == song.slug)
+
+    def neighbour_link(offset: int, label: str, relation: str) -> str:
+        position = index + offset
+        if not 0 <= position < len(album.tracks):
+            return f'<span class="playlist-step unavailable" aria-disabled="true">{label}</span>'
+        track = album.tracks[position]
+        version = protopian_video_data().get("track_versions", {}).get(str(track.track_number))
+        title = track.title + (f" — {version['label']}" if version else "")
+        return f'<a class="playlist-step" href="../{esc(track.slug)}/" rel="{relation}"><span>{label}</span><strong>{track.track_number:02d} · {esc(title)}</strong></a>'
+
+    return f'''
+    <nav class="song-playlist-nav wrap" aria-label="Album playlist navigation">
+      {neighbour_link(-1, "← Previous song", "prev")}
+      <a class="playlist-album-link" href="../../albums/{esc(album.slug)}/#track-map">Back to album</a>
+      {neighbour_link(1, "Next song →", "next")}
+    </nav>
+    '''.rstrip()
 
 
 def song_page(song: Song, album: Album) -> str:
@@ -2378,7 +2378,7 @@ def song_page(song: Song, album: Album) -> str:
       </div>
     </section>
     """
-    return layout(f"{song.title} - i C. infinity", song.meaning, body, prefix)
+    return layout(f"{song.title} - i C. infinity", song.meaning, body + song_playlist_footer(song, album), prefix)
 
 
 def engine_page() -> str:
