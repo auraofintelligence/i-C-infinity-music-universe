@@ -1,11 +1,38 @@
 {
-  "source": "https://www.youtube.com/@lukehayes360VR",
-  "checked": "2026-10-17",
-  "track_versions": {
-    "21": {"video_id": "Vrgpv78qXxc", "label": "Female vocals"},
-    "22": {"video_id": "5DHccBOHeqc", "label": "Male vocals"}
+  "source": "https://www.youtube.com/playlist?list=PLf_BsHrPzaQA",
+  "playlist_id": "PLf_BsHrPzaQA",
+  "checked": "2026-10-29",
+  "tracks": [
+    {"title": "Primordial Consent", "slug": "a-protopian-gambit-01-primordial-consent-1-2-3-infinity", "lyric_key": "01", "video_id": "CakSZim_NL4"},
+    {"title": "60 Days Set in Stone", "slug": "a-protopian-gambit-06-60-days-set-in-stone", "lyric_key": "06", "video_id": "NnQn7PeAhyM"},
+    {"title": "Kintsugi Protocol", "slug": "a-protopian-gambit-05-kintsugi-protocol", "lyric_key": "05", "video_id": "P7vbqFZlaW8"},
+    {"title": "Choose Your Own Protopia", "slug": "a-protopian-gambit-04-choose-your-own-protopia", "lyric_key": "04", "video_id": "8JU_yJ_Lo7Q"},
+    {"title": "A Protopian Gambit", "slug": "a-protopian-gambit-02-the-protopian-gambit", "lyric_key": "02", "video_id": "pkX1GuY_C0s"},
+    {"title": "The Circle and the Solitary", "slug": "a-protopian-gambit-03-the-circle-and-the-solitary", "lyric_key": "03", "video_id": "zwgPG-dr2xw"},
+    {"title": "Joyful Responsible Abundance", "slug": "a-protopian-gambit-07-joyful-responsible-abundance", "lyric_key": "22", "video_id": "9EM300Y5D8A"},
+    {"title": "Shifting Sands of Timeless Redlands", "slug": "a-protopian-gambit-19-shifting-sands-of-timeless-redlands", "lyric_key": "17", "video_id": "uKygQx_8dos", "thumbnail": "sddefault"},
+    {"title": "Every Border a Bridge", "slug": "a-protopian-gambit-08-every-border-a-bridge", "lyric_key": "07", "video_id": "6On5LyhVfj0"},
+    {"title": "Eye of the Ancestors", "slug": "a-protopian-gambit-11-eye-of-the-ancestors-for-constance-and-the-storm-walkers-of-minjerribah", "lyric_key": "09", "video_id": "KlzSIMxy4GM"},
+    {"title": "Latent Space", "slug": "a-protopian-gambit-12-latent-space", "lyric_key": "10", "video_id": "ZhXa7gGlkOA"},
+    {"title": "Hold the Light", "slug": "a-protopian-gambit-13-hold-the-light", "lyric_key": "11", "video_id": "J35Kpg0uiiU"},
+    {"title": "Not Gods but Architects", "slug": "a-protopian-gambit-10-not-gods-but-architects", "lyric_key": "08", "video_id": "MXn0dEtIAjc"},
+    {"title": "Adaptable Yes", "slug": "a-protopian-gambit-15-adaptable-yes", "lyric_key": "13", "video_id": "V9Aq7kUph-o"},
+    {"title": "The Purple Mat that Could", "slug": "a-protopian-gambit-17-the-purple-mat-that-could", "lyric_key": "15", "video_id": "tn0S98GKpTw"},
+    {"title": "Don't Try to Fix Me", "slug": "a-protopian-gambit-16-dont-try-to-fix-me", "lyric_key": "14", "video_id": "ia8kqragIBs"},
+    {"title": "Don't Throw a Brick", "slug": "a-protopian-gambit-18-don-t-throw-a-brick-fill-a-form", "lyric_key": "16", "video_id": "4N_-DoKaZiE"},
+    {"title": "We Go Beyond (She Her)", "slug": "a-protopian-gambit-21-we-go-beyond", "lyric_key": "19", "video_id": "e32jXLt4uAE", "legacy_video_id": "Vrgpv78qXxc"},
+    {"title": "Heliospheric Lantern", "slug": "a-protopian-gambit-20-heliospheric-lantern", "lyric_key": "18", "video_id": "kBeUqtSfo_M"},
+    {"title": "Dance of the Dakini", "slug": "a-protopian-gambit-20-dance-of-the-dakini", "lyric_key": "23", "video_id": "GPTFD7fcA2w"},
+    {"title": "We Go Beyond (He Him)", "slug": "a-protopian-gambit-22-we-go-beyond", "lyric_key": "20", "video_id": "ZwSZxn74py0", "legacy_video_id": "5DHccBOHeqc"},
+    {"title": "A Conversations Review", "slug": "a-protopian-gambit-23-chatgpt-my-view-of-our-conversation", "lyric_key": "21", "video_id": "7CtM6OOdKsA"}
+  ],
+  "legacy_song_redirects": {
+    "a-protopian-gambit-07-60-days-set-in-stone": "a-protopian-gambit-06-60-days-set-in-stone",
+    "a-protopian-gambit-09-every-border-a-bridge": "a-protopian-gambit-08-every-border-a-bridge",
+    "a-protopian-gambit-24-chatgpt-my-view-of-our-conversation": "a-protopian-gambit-23-chatgpt-my-view-of-our-conversation",
+    "a-protopian-gambit-14-strange-but-true-tech-art-and-ideas-thatll-actually-help": "straddie-fun-14-strange-but-true-tech-art-and-ideas-thatll-actually-help"
   },
-  "version_note": "These recordings share this song title. Lyrics and musical styles can differ between versions; a recording has not been assigned to a particular lyric version.",
+  "version_note": "The landscape video follows the current album playlist. Earlier recordings below can differ from the corrected lyrics.",
   "songs": {
     "Primordial Consent 1,2,3, Infinity": [
       {"id": "fEkTOSx7QoY", "title": "Primordial Consent 1,2,3, Infinity", "label": "Music video"}

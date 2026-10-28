@@ -5,14 +5,13 @@ import json
 import re
 import shutil
 import unicodedata
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Iterable
 from urllib.parse import quote
 
 
 REPO = Path(__file__).resolve().parents[1]
-LYRIC_SOURCE = Path(r"C:\Users\lukec\Downloads\4th i C. infinity album (24) A Protopian Gambit (24 lyrics).md")
 STRADDIE_FUN_LYRIC_SOURCE = Path(r"C:\Users\lukec\Downloads\Straddie Fun 5th Album.md")
 STARSEED_TEXT_LYRIC_SOURCE = Path(r"C:\Users\lukec\Downloads\3rd Album Starseed Code.txt")
 ALBUM_LYRIC_ROOT = Path(r"C:\Users\lukec\Documents\Beyond\69 i C. infinity - Music\Albums")
@@ -1036,34 +1035,36 @@ SPECIAL_BRIEFS = {
 
 
 def parse_protopian_lyrics() -> dict[str, dict[str, str]]:
-    if not LYRIC_SOURCE.exists():
-        return {}
+    source = json.loads((REPO / "data" / "protopian-lyrics.json").read_text(encoding="utf-8"))
+    return {
+        track["slug"]: {
+            "title": track["title"],
+            "date": source["source_date"],
+            "lyrics": source["songs"][track["lyric_key"]]["lyrics"],
+        }
+        for track in protopian_video_data()["tracks"]
+    }
 
-    raw = LYRIC_SOURCE.read_text(encoding="utf-8", errors="replace")
-    matches = list(re.finditer(r"^###[ \t]+(.+?)[ \t]+\{#.+?\}[ \t]*$", raw, flags=re.M))
-    songs: dict[str, dict[str, str]] = {}
-    for index, match in enumerate(matches):
-        title = clean_text(match.group(1))
-        start = match.end()
-        end = matches[index + 1].start() if index + 1 < len(matches) else len(raw)
-        block = clean_text(raw[start:end])
-        date = ""
-        date_match = re.search(r"Song Date:\s*(.+)", block)
-        if date_match:
-            date = clean_text(date_match.group(1))
-        if "Song Lyrics:" in block:
-            lyrics = block.split("Song Lyrics:", 1)[1].strip()
-        else:
-            lyrics = block.strip()
-        # Alternative versions can share a title while Luke decides which recording
-        # belongs on the final album. Keep every supplied version in source order.
-        key = slugify(title)
-        version = 2
-        while key in songs:
-            key = f"{slugify(title)}-version-{version}"
-            version += 1
-        songs[key] = {"title": title, "date": date, "lyrics": clean_text(lyrics)}
-    return songs
+
+def protopian_tracks(album: Album, existing: dict[str, Song] | None = None) -> list[Song]:
+    """Use playlist order and corrected lyrics while keeping published song URLs."""
+    tracks = []
+    for number, (slug, item) in enumerate(parse_protopian_lyrics().items(), start=1):
+        song = replace(existing[slug]) if existing and slug in existing else Song(
+            title=item["title"], album_slug=album.slug, album_title=album.title, year=album.year,
+        )
+        song.title = item["title"]
+        song.slug = slug
+        song.track_number = number
+        song.lyrics = item["lyrics"]
+        song.lyric_status = f"Corrected lyric sheet: {item['date']}"
+        song.status = "Lyrics ready"
+        if not song.themes:
+            song.themes = infer_themes(song.title, album.slug)
+            song.meaning = infer_meaning(song.title, album)
+            song.video_seeds = generic_seeds(song, album)
+        tracks.append(song)
+    return tracks
 
 
 def parse_straddie_fun_lyrics() -> dict[str, dict[str, str]]:
@@ -1374,6 +1375,8 @@ def youtube_playlist_embed_src(playlist_id: str) -> str:
 
 
 def album_playlist_url(album_slug: str) -> str:
+    if album_slug == "a-protopian-gambit":
+        return protopian_video_data()["source"]
     if album_slug == STARSEED_ALBUM_SLUG:
         return STARSEED_YOUTUBE_PLAYLIST_URL
     meta = LANDSCAPE_ALBUM_VIDEO_MAP.get(album_slug)
@@ -1424,22 +1427,33 @@ def protopian_video_data() -> dict:
 
 def apply_protopian_videos(songs: list[Song]) -> None:
     data = protopian_video_data()
+    tracks = {track["slug"]: track for track in data["tracks"]}
+    lyrics = json.loads((REPO / "data" / "protopian-lyrics.json").read_text(encoding="utf-8"))["songs"]
+    legacy_titles = {
+        "09": "Eye of the Ancestors  (For Constance & the Storm-Walkers of Minjerribah)",
+        "21": "ChatGPT: My View of Our Conversation",
+    }
     for song in songs:
         if song.album_slug != "a-protopian-gambit":
             continue
-        # Shared titles intentionally keep all recordings together. The lyric
-        # entries remain separate until their exact recording matches are known.
-        song.youtube_videos = [
+        track = tracks[song.slug]
+        primary = {
+            "id": track["video_id"], "title": track["title"],
+            "label": "Landscape music video" if track["lyric_key"] == "17" else "Landscape karaoke video",
+            "orientation": "landscape", "thumbnail": track.get("thumbnail", "hqdefault"),
+            "playlist_id": data["playlist_id"],
+        }
+        legacy_title = legacy_titles.get(track["lyric_key"], lyrics[track["lyric_key"]]["title"])
+        older_videos = [
             {"orientation": "vertical", "thumbnail": "hqdefault",
              "note": data["version_note"], **video}
-            for video in data["songs"].get(song.title, [])
+            for video in data["songs"].get(legacy_title, [])
+            if video["id"] != primary["id"]
+            and (not track.get("legacy_video_id") or video["id"] == track["legacy_video_id"])
         ]
-        version = data.get("track_versions", {}).get(str(song.track_number))
-        if version:
-            song.youtube_videos = [video for video in song.youtube_videos if video["id"] == version["video_id"]]
-        if song.youtube_videos:
-            song.youtube_video_id = song.youtube_videos[0]["id"]
-            song.youtube_title = song.youtube_videos[0]["title"]
+        song.youtube_videos = [primary, *older_videos]
+        song.youtube_video_id = primary["id"]
+        song.youtube_title = primary["title"]
 
 
 def youtube_video_link(video: dict[str, str]) -> str:
@@ -1494,7 +1508,7 @@ def youtube_song_embed_html(song: Song) -> str:
     if not videos:
         return ""
     cards = []
-    if song.album_slug == "a-protopian-gambit" and str(song.track_number) not in protopian_video_data().get("track_versions", {}):
+    if song.album_slug == "a-protopian-gambit" and len(videos) > 1:
         cards.append(f'<p class="notice">{esc(protopian_video_data()["version_note"])}</p>')
     for index, video in enumerate(videos):
         video_id = video["id"]
@@ -1502,7 +1516,7 @@ def youtube_song_embed_html(song: Song) -> str:
         url = youtube_video_link(video)
         title = video.get("title") or f"{song.title} YouTube video"
         label = video.get("label") or ("Portrait Video" if video.get("orientation") == "vertical" else "Widescreen Video")
-        orientation_class = "wide-video-frame" if video.get("orientation") == "landscape" and song.album_slug != "a-protopian-gambit" else ""
+        orientation_class = "wide-video-frame" if video.get("orientation") == "landscape" else ""
         panel_id = ' id="vertical-video"' if index == 0 else ""
         cards.append(
             f"""
@@ -1530,7 +1544,6 @@ def order_href(package_id: str, absolute: bool = False) -> str:
 
 
 def build_catalogue() -> tuple[list[Album], list[Song]]:
-    protopian = parse_protopian_lyrics()
     straddie_fun_lyrics = parse_straddie_fun_lyrics()
     album_lyrics = parse_album_lyrics()
     albums: list[Album] = []
@@ -1549,18 +1562,9 @@ def build_catalogue() -> tuple[list[Album], list[Song]]:
             source_url=spec.get("source_url", ""),
         )
         if album.slug == "a-protopian-gambit":
-            for track_number, item in enumerate(protopian.values(), start=1):
-                track = Song(
-                    title=item["title"],
-                    album_slug=album.slug,
-                    album_title=album.title,
-                    track_number=track_number,
-                    year="Upcoming",
-                    lyrics=item["lyrics"],
-                    lyric_status=f"Imported from supplied lyric file. Song date: {item['date']}" if item["date"] else "Imported from supplied lyric file",
-                    status="Lyrics ready",
-                )
-                album.tracks.append(track)
+            album.tracks = protopian_tracks(album)
+            album.status = "22 landscape videos and corrected lyrics"
+            album.source_url = album_playlist_url(album.slug)
         else:
             for track_number, title in enumerate(spec["tracks"], start=1):
                 track = Song(
@@ -1592,7 +1596,7 @@ def build_catalogue() -> tuple[list[Album], list[Song]]:
             track.video_seeds = special["seeds"] if special else generic_seeds(track, album)
             if album.slug != "a-protopian-gambit":
                 apply_imported_album_lyrics(track, album, album_lyrics)
-            track.slug = f"{album.slug}-{track.track_number:02d}-{slugify(track.title)}"
+            track.slug = track.slug or f"{album.slug}-{track.track_number:02d}-{slugify(track.title)}"
             if album.slug == STARSEED_ALBUM_SLUG and track.title in STARSEED_VERTICAL_VIDEOS:
                 video = STARSEED_VERTICAL_VIDEOS[track.title]
                 track.youtube_video_id = video["id"]
@@ -1822,10 +1826,7 @@ def track_row(song: Song, prefix: str = "") -> str:
     href = f"{prefix}songs/{song.slug}/"
     lyric_note = "Read the lyrics" if song.ready() else ("Watch the video" if primary_youtube_video(song) else "Lyrics coming soon")
     if song.album_slug == "a-protopian-gambit" and song.youtube_videos:
-        lyric_note = f"Lyrics and {len(song.youtube_videos)} video version{'s' if len(song.youtube_videos) != 1 else ''}"
-        version = protopian_video_data().get("track_versions", {}).get(str(song.track_number))
-        if version:
-            lyric_note = version["label"] + " · Lyrics and video"
+        lyric_note = "Corrected lyrics and landscape video"
     if song.album_slug == "a-protopian-gambit" and primary_youtube_video(song):
         video_url = youtube_video_link(primary_youtube_video(song))
         return f"""
@@ -2179,7 +2180,49 @@ def starseed_video_section(album: Album, prefix: str) -> str:
     """
 
 
+def protopian_album_video_section(album: Album) -> str:
+    data = protopian_video_data()
+    cards = []
+    for song in album.tracks:
+        video = primary_youtube_video(song)
+        cards.append(f'''
+        <a class="video-chip" href="{esc(youtube_video_link(video))}" target="_blank" rel="noopener">
+          <img src="{esc(youtube_thumbnail_url(video['id'], video['thumbnail']))}" alt="{esc(song.title)} video thumbnail" loading="lazy">
+          <strong>{song.track_number:02d} · {esc(song.title)}</strong>
+          <em>Watch landscape video on YouTube</em>
+        </a>''')
+    return f'''
+    <section class="section video-section" id="lyric-video-playlist">
+      <div class="wrap video-feature landscape-feature">
+        <div class="vertical-video-frame wide-video-frame playlist-frame">
+          <iframe title="A Protopian Gambit — 22-video album playlist" src="{esc(youtube_playlist_embed_src(data['playlist_id']))}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <div class="video-feature-copy">
+          <p class="eyebrow">Landscape music videos</p>
+          <h2>Watch A Protopian Gambit</h2>
+          <p>22 videos in the album playlist order, with corrected lyrics from the 28 October 2026 lyric sheet. Choose a video below or play the album on YouTube.</p>
+          <div class="action-row">
+            <a class="button" href="{esc(data['source'])}" target="_blank" rel="noopener">Open YouTube playlist</a>
+            <a class="button secondary" href="#track-map">Read the lyrics</a>
+          </div>
+        </div>
+      </div>
+      <div class="wrap"><div class="video-index" aria-label="22 landscape videos in album order">{''.join(cards)}</div></div>
+    </section>'''
+
+
+def write_protopian_legacy_links() -> None:
+    for old_slug, new_slug in protopian_video_data()["legacy_song_redirects"].items():
+        target = f"../{new_slug}/"
+        body = f'<section class="section"><div class="wrap"><h1>This song page has moved</h1><p><a href="{esc(target)}">Continue to the current song page</a></p></div></section>'
+        page = layout("Song page moved - i C. infinity", "Continue to the current song page.", body, "../../")
+        page = page.replace("</head>", f'<link rel="canonical" href="{esc(SITE_ROOT + "songs/" + new_slug + "/")}"><meta http-equiv="refresh" content="0;url={esc(target)}"></head>')
+        write(REPO / "songs" / old_slug / "index.html", page)
+
+
 def landscape_album_video_section(album: Album, prefix: str) -> str:
+    if album.slug == "a-protopian-gambit":
+        return protopian_album_video_section(album)
     meta = LANDSCAPE_ALBUM_VIDEO_MAP.get(album.slug)
     if not meta:
         return ""
@@ -2319,8 +2362,7 @@ def song_playlist_footer(song: Song, album: Album) -> str:
         if not 0 <= position < len(album.tracks):
             return f'<span class="playlist-step unavailable" aria-disabled="true">{label}</span>'
         track = album.tracks[position]
-        version = protopian_video_data().get("track_versions", {}).get(str(track.track_number))
-        title = track.title + (f" — {version['label']}" if version else "")
+        title = track.title
         return f'<a class="playlist-step" href="../{esc(track.slug)}/" rel="{relation}"><span>{label}</span><strong>{track.track_number:02d} · {esc(title)}</strong></a>'
 
     return f'''
@@ -2340,11 +2382,12 @@ def song_page(song: Song, album: Album) -> str:
     spotify_embed = spotify_embed_html(song)
     youtube_embed = youtube_song_embed_html(song)
     media_embeds = spotify_embed + youtube_embed
+    lyric_source = '<p>Corrected lyric sheet · 28 October 2026</p>' if song.album_slug == "a-protopian-gambit" else ""
     content_warning = ""
     if slugify(song.title) in {"don-t-try-to-fix-me", "dont-try-to-fix-me"}:
         content_warning = """
           <div class="notice content-warning">
-            <strong>Language warning:</strong> This song contains 53 F-bombs. The language is deliberate: it carries the urgency, frustration, and seriousness of the times rather than softening them for comfort.
+            <strong>Language warning:</strong> This song contains strong language.
           </div>
         """
     body = f"""
@@ -2365,6 +2408,7 @@ def song_page(song: Song, album: Album) -> str:
           {media_embeds}
           {content_warning}
           <h2>Lyrics</h2>
+          {lyric_source}
           <pre class="lyrics">{lyrics}</pre>
         </article>
         <aside class="panel">
@@ -3733,6 +3777,7 @@ def export_data(albums: list[Album], songs: list[Song]) -> None:
             "songs_of_straddie_youtube_playlist": STRADDIE_YOUTUBE_PLAYLIST_URL,
             "chronicles_youtube_playlist": CHRONICLES_YOUTUBE_PLAYLIST_URL,
             "starseed_youtube_playlist": STARSEED_YOUTUBE_PLAYLIST_URL,
+            "protopian_youtube_playlist": album_playlist_url("a-protopian-gambit"),
             "shifting_sands_widescreen": SHIFTING_SANDS_VIDEOS[0]["url"],
             "shifting_sands_portrait": SHIFTING_SANDS_VIDEOS[1]["url"],
             "fourth_album_teaser": FOURTH_ALBUM_TEASER_VIDEO["url"],
@@ -3893,6 +3938,7 @@ def main() -> None:
     for song in songs:
         album = album_by_slug[song.album_slug]
         write(REPO / "songs" / song.slug / "index.html", song_page(song, album))
+    write_protopian_legacy_links()
 
     export_data(albums, songs)
     export_download_packaging()

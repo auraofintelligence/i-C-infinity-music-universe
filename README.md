@@ -36,8 +36,8 @@ Static GitHub Pages site for the i C. infinity artist catalogue.
 ## What it contains
 
 - 8 album/archive pages
-- 129 generated song pages
-- 120 songs with lyrics imported in this pass
+- 127 generated song pages
+- 118 songs with lyrics imported in this pass
 - Grand Narrative, Luke Catalyst, Travel Oracle, and Adjacent Worlds context pages
 - 14 preserved legacy photographs converted to WebP
 - Infinity Engine notes for turning songs into comics, lyric videos, and vertical micro-dramas
@@ -52,18 +52,24 @@ Run:
 python tools/build_site.py
 ```
 
-The generator reads the Protopian Gambit lyric source from Luke's local source folder and keeps local workshop file paths out of the public site data.
+The Protopian Gambit album uses the 22-video YouTube playlist order in
+`data/protopian-videos.json` and the corrected 28 October 2026 lyric sheet
+transcribed into `data/protopian-lyrics.json`. The deferred "Strange but True"
+song stays with the fifth album, Straddie Fun.
 
-To update Protopian Gambit videos without the private lyric files, edit
-`data/protopian-videos.json` and run `python tools/update_protopian_videos.py`
-with Python 3.10 or later. This preserves the committed lyrics and separate
-lyric versions while refreshing the album, song pages and listening cockpit.
+To update Protopian Gambit, edit those two data files and run
+`python tools/update_protopian_videos.py` with Python 3.10 or later. This
+refreshes the album, corrected lyrics, landscape players, navigation, catalogue
+and listening cockpit without requiring private source files. Published song
+URLs are stable; duplicate draft URLs redirect to the current song pages.
 
 ## Notes
 
 The old one-page prototype is preserved as `legacy-content-engine.html`.
 
-The generated public data does not include Luke's local workshop paths. Rebuilding requires access to the private lyric source named in `tools/build_site.py`; the committed site remains browsable without that source folder.
+The generated public data does not include Luke's local workshop paths. Other
+albums still use the private lyric sources named in `tools/build_site.py` for
+a full rebuild; the committed site remains browsable without those folders.
 
 ## Related public pages
 
