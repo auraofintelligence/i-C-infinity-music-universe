@@ -733,6 +733,23 @@ a:hover {
   background: #fceaea;
 }
 
+.track-row.is-selected {
+  border-color: var(--accent, #087f83);
+  box-shadow: 0 0 0 1px var(--accent, #087f83);
+}
+
+.track-main-link.album-extra-video {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  padding: 13px 14px;
+}
+
+#album-player {
+  scroll-margin-top: 90px;
+}
+
 .song-playlist-nav {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);

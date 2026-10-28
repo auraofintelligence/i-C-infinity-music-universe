@@ -1738,7 +1738,7 @@ def layout(title: str, description: str, body: str, prefix: str = "", page_class
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/jpeg" href="{prefix}assets/favicon.jpg">
-  <link rel="stylesheet" href="{prefix}assets/css/styles.css?v=protopian-phones-9">
+  <link rel="stylesheet" href="{prefix}assets/css/styles.css?v=album-player-10">
 </head>
 <body{body_class}>
   {nav(prefix)}
@@ -1822,13 +1822,18 @@ def song_card(song: Song, prefix: str = "") -> str:
     """.rstrip()
 
 
+def album_watch_link(video: dict[str, str], title: str) -> str:
+    return f'<a class="status-pill video track-watch-link" href="{esc(youtube_video_link(video))}" target="_blank" rel="noopener" data-album-video="{esc(video["id"])}" data-video-title="{esc(title)}" data-video-orientation="{esc(video.get("orientation", "landscape"))}" data-playlist-id="{esc(video.get("playlist_id", ""))}" aria-label="Play {esc(title)} on this page">Watch video</a>'
+
+
 def track_row(song: Song, prefix: str = "") -> str:
     href = f"{prefix}songs/{song.slug}/"
     lyric_note = "Read the lyrics" if song.ready() else ("Watch the video" if primary_youtube_video(song) else "Lyrics coming soon")
     if song.album_slug == "a-protopian-gambit" and song.youtube_videos:
         lyric_note = "Corrected lyrics and landscape video"
-    if song.album_slug == "a-protopian-gambit" and primary_youtube_video(song):
-        video_url = youtube_video_link(primary_youtube_video(song))
+    video = primary_youtube_video(song)
+    if video:
+        page_label = "Lyrics" if song.ready() else "Song details"
         return f"""
     <div class="track-row track-with-actions">
       <a class="track-main-link" href="{href}">
@@ -1836,8 +1841,8 @@ def track_row(song: Song, prefix: str = "") -> str:
         <span class="track-title"><strong>{esc(song.title)}</strong><span>{esc(lyric_note)}</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="{href}" aria-label="Read lyrics for {esc(song.title)}">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="{esc(video_url)}" target="_blank" rel="noopener" aria-label="Watch {esc(song.title)} on YouTube">Watch video</a>
+        <a class="status-pill {'ready' if song.ready() else 'video'}" href="{href}" aria-label="{page_label} for {esc(song.title)}">{page_label}</a>
+        {album_watch_link(video, song.title)}
       </div>
     </div>
     """.rstrip()
@@ -2134,52 +2139,6 @@ def downloads_page(albums: list[Album], songs: list[Song]) -> str:
     return layout("Download Packs - i C. infinity", "Explore planned downloadable i C. infinity albums and music archive packs.", body)
 
 
-def starseed_video_section(album: Album, prefix: str) -> str:
-    if album.slug != STARSEED_ALBUM_SLUG:
-        return ""
-    video_tracks = [song for song in album.tracks if primary_youtube_video(song)]
-    if not video_tracks:
-        return ""
-    featured_video = primary_youtube_video(video_tracks[0])
-    video_index = "".join(
-        f"""
-        <a class="video-chip" href="{prefix}songs/{esc(song.slug)}/#vertical-video">
-          <span>{song.track_number:02d}</span>
-          <strong>{esc(song.title)}</strong>
-          <em>Vertical video</em>
-        </a>
-        """
-        for song in video_tracks
-    )
-    return f"""
-    <section class="section video-section" id="vertical-video-playlist">
-      <div class="wrap video-feature">
-        <div class="vertical-video-frame playlist-frame">
-          <a class="vertical-video-poster" href="{esc(STARSEED_YOUTUBE_PLAYLIST_URL)}" target="_blank" rel="noopener">
-            <img src="{esc(youtube_thumbnail_url(featured_video['id'], featured_video.get('thumbnail', 'maxresdefault')))}" alt="{esc(featured_video.get('title', 'Starseed Code vertical video'))} thumbnail">
-            <span class="play-mark" aria-hidden="true"></span>
-            <span class="sr-only">Open Starseed Code YouTube playlist</span>
-          </a>
-        </div>
-        <div class="video-feature-copy">
-          <p class="eyebrow">Portrait music videos</p>
-          <h2>Starseed Code Vertical Playlist</h2>
-          <p>{len(video_tracks)} Starseed Code songs are matched to portrait-format YouTube videos. The numbers keep the streaming album order; gaps mean that video is not currently public on YouTube.</p>
-          <div class="action-row">
-            <a class="button" href="{esc(STARSEED_YOUTUBE_PLAYLIST_URL)}" target="_blank" rel="noopener">Open playlist</a>
-            <a class="button secondary" href="#track-map">See the songs</a>
-          </div>
-        </div>
-      </div>
-      <div class="wrap">
-        <div class="video-index" aria-label="Starseed Code vertical videos">
-          {video_index}
-        </div>
-      </div>
-    </section>
-    """
-
-
 def write_protopian_legacy_links() -> None:
     for old_slug, new_slug in protopian_video_data()["legacy_song_redirects"].items():
         target = f"../{new_slug}/"
@@ -2189,113 +2148,45 @@ def write_protopian_legacy_links() -> None:
         write(REPO / "songs" / old_slug / "index.html", page)
 
 
-def protopian_album_video_section() -> str:
-    data = protopian_video_data()
+def album_extra_videos(album: Album) -> list[dict[str, str]]:
+    meta = LANDSCAPE_ALBUM_VIDEO_MAP.get(album.slug, {})
+    videos = [
+        {"orientation": "landscape", "playlist_id": meta["playlist_id"], **video}
+        for video in meta.get("playlist_only", [])
+    ]
+    if album.slug == "next-signals":
+        videos.append(FOURTH_ALBUM_TEASER_VIDEO)
+    return videos
+
+
+def album_video_section(album: Album) -> str:
+    videos = [primary_youtube_video(song) for song in album.tracks if primary_youtube_video(song)]
+    videos += album_extra_videos(album)
+    if not videos:
+        return ""
+    first = videos[0]
+    playlist_id = first.get("playlist_id", "")
+    initial_src = youtube_playlist_embed_src(playlist_id) if playlist_id else youtube_video_embed_src(first["id"])
+    is_wide = first.get("orientation") != "vertical"
+    feature_class = "landscape-feature" if is_wide else ""
+    frame_class = "wide-video-frame" if is_wide else ""
     return f'''
-    <section class="section video-section" id="lyric-video-playlist">
-      <div class="wrap video-feature landscape-feature">
-        <div class="vertical-video-frame wide-video-frame playlist-frame">
-          <iframe title="A Protopian Gambit — 22-video album playlist" src="{esc(youtube_playlist_embed_src(data['playlist_id']))}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
+    <section class="section video-section" id="album-player" data-album-player aria-label="Album video player">
+      <div class="wrap video-feature {feature_class}" data-album-video-feature>
+        <div class="vertical-video-frame {frame_class} playlist-frame" data-album-video-frame>
+          <iframe title="{esc(album.title)} video player" src="{esc(initial_src)}" data-album-iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
         </div>
         <div class="video-feature-copy">
-          <p class="eyebrow">Landscape music videos</p>
-          <h2>Watch A Protopian Gambit</h2>
-          <p>Play all 22 videos in album order. Use the song list below for corrected lyrics and individual video links.</p>
+          <p class="eyebrow">Music videos</p>
+          <h2 tabindex="-1" data-album-player-heading>Watch {esc(album.title)}</h2>
+          <p>Select Watch video beside a song to play it here.</p>
+          <p data-album-current-title aria-live="polite">Choose a song below, or press play.</p>
           <div class="action-row">
-            <a class="button" href="{esc(data['source'])}" target="_blank" rel="noopener">Open YouTube playlist</a>
+            <a class="button secondary" href="{esc(youtube_video_url(first['id'], playlist_id))}" target="_blank" rel="noopener" data-album-open-youtube>Open on YouTube</a>
           </div>
         </div>
       </div>
     </section>'''
-
-
-def landscape_album_video_section(album: Album, prefix: str) -> str:
-    if album.slug == "a-protopian-gambit":
-        return protopian_album_video_section()
-    meta = LANDSCAPE_ALBUM_VIDEO_MAP.get(album.slug)
-    if not meta:
-        return ""
-    video_tracks = [song for song in album.tracks if primary_youtube_video(song)]
-    playlist_only = meta.get("playlist_only", [])
-    if not video_tracks and not playlist_only:
-        return ""
-    matched_count = sum(len(song.youtube_videos) for song in video_tracks)
-    total_count = matched_count + len(playlist_only)
-    description = meta["description"].format(
-        track_count=len(album.tracks),
-        matched_count=matched_count,
-        total_count=total_count,
-    )
-    video_index = "".join(
-        f"""
-        <a class="video-chip" href="{prefix}songs/{esc(song.slug)}/#vertical-video">
-          <img src="{esc(youtube_thumbnail_url(primary_youtube_video(song)['id'], primary_youtube_video(song).get('thumbnail', 'hqdefault')))}" alt="{esc(primary_youtube_video(song).get('title', song.title))} thumbnail">
-          <strong>{esc(song.title)}</strong>
-          <em>{len(song.youtube_videos)} video{'s' if len(song.youtube_videos) != 1 else ''}</em>
-        </a>
-        """.strip()
-        for song in video_tracks
-    )
-    playlist_only_index = "".join(
-        f"""
-        <a class="video-chip" href="{esc(youtube_video_url(video['id'], meta['playlist_id']))}" target="_blank" rel="noopener">
-          <img src="{esc(youtube_thumbnail_url(video['id'], 'hqdefault'))}" alt="{esc(video['title'])} thumbnail">
-          <strong>{esc(video['title'])}</strong>
-          <em>Playlist-only video</em>
-        </a>
-        """.strip()
-        for video in playlist_only
-    )
-    return f"""
-    <section class="section video-section" id="lyric-video-playlist">
-      <div class="wrap video-feature landscape-feature">
-        <div class="vertical-video-frame wide-video-frame playlist-frame">
-          <iframe title="{esc(meta['title'])}" src="{esc(youtube_playlist_embed_src(meta['playlist_id']))}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
-        </div>
-        <div class="video-feature-copy">
-          <p class="eyebrow">Music videos</p>
-          <h2>{esc(meta['title'])}</h2>
-          <p>{esc(description)} There are {total_count} videos in the collection, including {matched_count} connected to songs on this site.</p>
-          <div class="action-row">
-            <a class="button" href="{esc(meta['playlist_url'])}" target="_blank" rel="noopener">Open playlist</a>
-            <a class="button secondary" href="#track-map">See the songs</a>
-          </div>
-        </div>
-      </div>
-      <div class="wrap">
-        <div class="video-index" aria-label="{esc(meta['title'])}">
-          {video_index}{playlist_only_index}
-        </div>
-      </div>
-    </section>
-    """.rstrip()
-
-
-def next_signals_teaser_section(album: Album, prefix: str) -> str:
-    if album.slug != "next-signals":
-        return ""
-    video = FOURTH_ALBUM_TEASER_VIDEO
-    video_url = video.get("url") or youtube_video_url(video["id"])
-    embed_src = youtube_video_embed_src(video["id"])
-    return f"""
-    <section class="section video-section" id="fourth-album-teaser">
-      <div class="wrap">
-        <article class="song-video-panel wide-video-frame">
-          <div class="vertical-video-frame wide-video-frame">
-            <iframe title="{esc(video['title'])}" src="{esc(embed_src)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
-          </div>
-          <div class="vertical-video-copy">
-            <p class="eyebrow">{esc(video.get('label', 'Free Teaser'))}</p>
-            <h2>{esc(video['title'])}</h2>
-            <p>A free first look at the fourth album and the ideas moving through it.</p>
-            <div class="listen-links compact">
-              <a class="listen-chip youtube" href="{esc(video_url)}" target="_blank" rel="noopener">Open on YouTube</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-    """.rstrip()
 
 
 def album_page(album: Album) -> str:
@@ -2307,7 +2198,16 @@ def album_page(album: Album) -> str:
           The song list is coming soon.
         </div>
         """
-    video_section = starseed_video_section(album, prefix) + landscape_album_video_section(album, prefix) + next_signals_teaser_section(album, prefix)
+    video_section = album_video_section(album)
+    for video in album_extra_videos(album):
+        tracks += f'''
+    <div class="track-row track-with-actions">
+      <div class="track-main-link album-extra-video">
+        <span class="track-number" aria-hidden="true">▶</span>
+        <span class="track-title"><strong>{esc(video["title"])}</strong><span>Bonus video</span></span>
+      </div>
+      <div class="track-actions">{album_watch_link(video, video["title"])}</div>
+    </div>'''
     track_section_id = ' id="track-map"' if video_section or album.slug == "a-protopian-gambit" else ""
     body = f"""
     <section class="page-hero">
@@ -2338,7 +2238,8 @@ def album_page(album: Album) -> str:
       </div>
     </section>
     """
-    return layout(f"{album.title} - i C. infinity", album.summary, body, prefix)
+    scripts = '<script src="../../assets/js/album-player.js?v=album-playback-1"></script>' if video_section else ""
+    return layout(f"{album.title} - i C. infinity", album.summary, body, prefix, extra_scripts=scripts)
 
 
 def song_playlist_footer(song: Song, album: Album) -> str:

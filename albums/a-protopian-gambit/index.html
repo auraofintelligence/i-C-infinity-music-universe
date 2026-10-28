@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/jpeg" href="../../assets/favicon.jpg">
-  <link rel="stylesheet" href="../../assets/css/styles.css?v=protopian-phones-9">
+  <link rel="stylesheet" href="../../assets/css/styles.css?v=album-player-10">
 </head>
 <body>
 
@@ -48,17 +48,18 @@
         <div class="hero-cover"><img src="../../assets/img/cover-a-protopian-gambit-b.png" alt="A Protopian Gambit artwork"></div>
       </div>
     </section>
-    <section class="section video-section" id="lyric-video-playlist">
-      <div class="wrap video-feature landscape-feature">
-        <div class="vertical-video-frame wide-video-frame playlist-frame">
-          <iframe title="A Protopian Gambit — 22-video album playlist" src="https://www.youtube.com/embed/videoseries?list=PLf_BsHrPzaQA&amp;rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
+    <section class="section video-section" id="album-player" data-album-player aria-label="Album video player">
+      <div class="wrap video-feature landscape-feature" data-album-video-feature>
+        <div class="vertical-video-frame wide-video-frame playlist-frame" data-album-video-frame>
+          <iframe title="A Protopian Gambit video player" src="https://www.youtube.com/embed/videoseries?list=PLf_BsHrPzaQA&amp;rel=0" data-album-iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
         </div>
         <div class="video-feature-copy">
-          <p class="eyebrow">Landscape music videos</p>
-          <h2>Watch A Protopian Gambit</h2>
-          <p>Play all 22 videos in album order. Use the song list below for corrected lyrics and individual video links.</p>
+          <p class="eyebrow">Music videos</p>
+          <h2 tabindex="-1" data-album-player-heading>Watch A Protopian Gambit</h2>
+          <p>Select Watch video beside a song to play it here.</p>
+          <p data-album-current-title aria-live="polite">Choose a song below, or press play.</p>
           <div class="action-row">
-            <a class="button" href="https://www.youtube.com/playlist?list=PLf_BsHrPzaQA" target="_blank" rel="noopener">Open YouTube playlist</a>
+            <a class="button secondary" href="https://www.youtube.com/watch?v=CakSZim_NL4&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-open-youtube>Open on YouTube</a>
           </div>
         </div>
       </div>
@@ -74,8 +75,8 @@
         <span class="track-title"><strong>Primordial Consent</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-01-primordial-consent-1-2-3-infinity/" aria-label="Read lyrics for Primordial Consent">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=CakSZim_NL4&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch Primordial Consent on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-01-primordial-consent-1-2-3-infinity/" aria-label="Lyrics for Primordial Consent">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=CakSZim_NL4&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="CakSZim_NL4" data-video-title="Primordial Consent" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play Primordial Consent on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -84,8 +85,8 @@
         <span class="track-title"><strong>60 Days Set in Stone</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-06-60-days-set-in-stone/" aria-label="Read lyrics for 60 Days Set in Stone">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=NnQn7PeAhyM&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch 60 Days Set in Stone on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-06-60-days-set-in-stone/" aria-label="Lyrics for 60 Days Set in Stone">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=NnQn7PeAhyM&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="NnQn7PeAhyM" data-video-title="60 Days Set in Stone" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play 60 Days Set in Stone on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -94,8 +95,8 @@
         <span class="track-title"><strong>Kintsugi Protocol</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-05-kintsugi-protocol/" aria-label="Read lyrics for Kintsugi Protocol">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=P7vbqFZlaW8&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch Kintsugi Protocol on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-05-kintsugi-protocol/" aria-label="Lyrics for Kintsugi Protocol">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=P7vbqFZlaW8&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="P7vbqFZlaW8" data-video-title="Kintsugi Protocol" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play Kintsugi Protocol on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -104,8 +105,8 @@
         <span class="track-title"><strong>Choose Your Own Protopia</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-04-choose-your-own-protopia/" aria-label="Read lyrics for Choose Your Own Protopia">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=8JU_yJ_Lo7Q&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch Choose Your Own Protopia on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-04-choose-your-own-protopia/" aria-label="Lyrics for Choose Your Own Protopia">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=8JU_yJ_Lo7Q&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="8JU_yJ_Lo7Q" data-video-title="Choose Your Own Protopia" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play Choose Your Own Protopia on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -114,8 +115,8 @@
         <span class="track-title"><strong>A Protopian Gambit</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-02-the-protopian-gambit/" aria-label="Read lyrics for A Protopian Gambit">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=pkX1GuY_C0s&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch A Protopian Gambit on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-02-the-protopian-gambit/" aria-label="Lyrics for A Protopian Gambit">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=pkX1GuY_C0s&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="pkX1GuY_C0s" data-video-title="A Protopian Gambit" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play A Protopian Gambit on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -124,8 +125,8 @@
         <span class="track-title"><strong>The Circle and the Solitary</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-03-the-circle-and-the-solitary/" aria-label="Read lyrics for The Circle and the Solitary">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=zwgPG-dr2xw&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch The Circle and the Solitary on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-03-the-circle-and-the-solitary/" aria-label="Lyrics for The Circle and the Solitary">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=zwgPG-dr2xw&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="zwgPG-dr2xw" data-video-title="The Circle and the Solitary" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play The Circle and the Solitary on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -134,8 +135,8 @@
         <span class="track-title"><strong>Joyful Responsible Abundance</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-07-joyful-responsible-abundance/" aria-label="Read lyrics for Joyful Responsible Abundance">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=9EM300Y5D8A&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch Joyful Responsible Abundance on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-07-joyful-responsible-abundance/" aria-label="Lyrics for Joyful Responsible Abundance">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=9EM300Y5D8A&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="9EM300Y5D8A" data-video-title="Joyful Responsible Abundance" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play Joyful Responsible Abundance on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -144,8 +145,8 @@
         <span class="track-title"><strong>Shifting Sands of Timeless Redlands</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-19-shifting-sands-of-timeless-redlands/" aria-label="Read lyrics for Shifting Sands of Timeless Redlands">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=uKygQx_8dos&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch Shifting Sands of Timeless Redlands on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-19-shifting-sands-of-timeless-redlands/" aria-label="Lyrics for Shifting Sands of Timeless Redlands">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=uKygQx_8dos&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="uKygQx_8dos" data-video-title="Shifting Sands of Timeless Redlands" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play Shifting Sands of Timeless Redlands on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -154,8 +155,8 @@
         <span class="track-title"><strong>Every Border a Bridge</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-08-every-border-a-bridge/" aria-label="Read lyrics for Every Border a Bridge">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=6On5LyhVfj0&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch Every Border a Bridge on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-08-every-border-a-bridge/" aria-label="Lyrics for Every Border a Bridge">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=6On5LyhVfj0&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="6On5LyhVfj0" data-video-title="Every Border a Bridge" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play Every Border a Bridge on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -164,8 +165,8 @@
         <span class="track-title"><strong>Eye of the Ancestors</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-11-eye-of-the-ancestors-for-constance-and-the-storm-walkers-of-minjerribah/" aria-label="Read lyrics for Eye of the Ancestors">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=KlzSIMxy4GM&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch Eye of the Ancestors on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-11-eye-of-the-ancestors-for-constance-and-the-storm-walkers-of-minjerribah/" aria-label="Lyrics for Eye of the Ancestors">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=KlzSIMxy4GM&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="KlzSIMxy4GM" data-video-title="Eye of the Ancestors" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play Eye of the Ancestors on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -174,8 +175,8 @@
         <span class="track-title"><strong>Latent Space</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-12-latent-space/" aria-label="Read lyrics for Latent Space">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=ZhXa7gGlkOA&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch Latent Space on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-12-latent-space/" aria-label="Lyrics for Latent Space">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=ZhXa7gGlkOA&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="ZhXa7gGlkOA" data-video-title="Latent Space" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play Latent Space on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -184,8 +185,8 @@
         <span class="track-title"><strong>Hold the Light</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-13-hold-the-light/" aria-label="Read lyrics for Hold the Light">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=J35Kpg0uiiU&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch Hold the Light on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-13-hold-the-light/" aria-label="Lyrics for Hold the Light">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=J35Kpg0uiiU&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="J35Kpg0uiiU" data-video-title="Hold the Light" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play Hold the Light on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -194,8 +195,8 @@
         <span class="track-title"><strong>Not Gods but Architects</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-10-not-gods-but-architects/" aria-label="Read lyrics for Not Gods but Architects">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=MXn0dEtIAjc&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch Not Gods but Architects on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-10-not-gods-but-architects/" aria-label="Lyrics for Not Gods but Architects">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=MXn0dEtIAjc&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="MXn0dEtIAjc" data-video-title="Not Gods but Architects" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play Not Gods but Architects on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -204,8 +205,8 @@
         <span class="track-title"><strong>Adaptable Yes</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-15-adaptable-yes/" aria-label="Read lyrics for Adaptable Yes">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=V9Aq7kUph-o&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch Adaptable Yes on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-15-adaptable-yes/" aria-label="Lyrics for Adaptable Yes">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=V9Aq7kUph-o&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="V9Aq7kUph-o" data-video-title="Adaptable Yes" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play Adaptable Yes on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -214,8 +215,8 @@
         <span class="track-title"><strong>The Purple Mat that Could</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-17-the-purple-mat-that-could/" aria-label="Read lyrics for The Purple Mat that Could">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=tn0S98GKpTw&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch The Purple Mat that Could on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-17-the-purple-mat-that-could/" aria-label="Lyrics for The Purple Mat that Could">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=tn0S98GKpTw&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="tn0S98GKpTw" data-video-title="The Purple Mat that Could" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play The Purple Mat that Could on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -224,8 +225,8 @@
         <span class="track-title"><strong>Don&#x27;t Try to Fix Me</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-16-dont-try-to-fix-me/" aria-label="Read lyrics for Don&#x27;t Try to Fix Me">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=ia8kqragIBs&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch Don&#x27;t Try to Fix Me on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-16-dont-try-to-fix-me/" aria-label="Lyrics for Don&#x27;t Try to Fix Me">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=ia8kqragIBs&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="ia8kqragIBs" data-video-title="Don&#x27;t Try to Fix Me" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play Don&#x27;t Try to Fix Me on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -234,8 +235,8 @@
         <span class="track-title"><strong>Don&#x27;t Throw a Brick</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-18-don-t-throw-a-brick-fill-a-form/" aria-label="Read lyrics for Don&#x27;t Throw a Brick">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=4N_-DoKaZiE&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch Don&#x27;t Throw a Brick on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-18-don-t-throw-a-brick-fill-a-form/" aria-label="Lyrics for Don&#x27;t Throw a Brick">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=4N_-DoKaZiE&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="4N_-DoKaZiE" data-video-title="Don&#x27;t Throw a Brick" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play Don&#x27;t Throw a Brick on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -244,8 +245,8 @@
         <span class="track-title"><strong>We Go Beyond (She Her)</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-21-we-go-beyond/" aria-label="Read lyrics for We Go Beyond (She Her)">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=e32jXLt4uAE&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch We Go Beyond (She Her) on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-21-we-go-beyond/" aria-label="Lyrics for We Go Beyond (She Her)">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=e32jXLt4uAE&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="e32jXLt4uAE" data-video-title="We Go Beyond (She Her)" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play We Go Beyond (She Her) on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -254,8 +255,8 @@
         <span class="track-title"><strong>Heliospheric Lantern</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-20-heliospheric-lantern/" aria-label="Read lyrics for Heliospheric Lantern">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=kBeUqtSfo_M&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch Heliospheric Lantern on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-20-heliospheric-lantern/" aria-label="Lyrics for Heliospheric Lantern">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=kBeUqtSfo_M&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="kBeUqtSfo_M" data-video-title="Heliospheric Lantern" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play Heliospheric Lantern on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -264,8 +265,8 @@
         <span class="track-title"><strong>Dance of the Dakini</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-20-dance-of-the-dakini/" aria-label="Read lyrics for Dance of the Dakini">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=GPTFD7fcA2w&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch Dance of the Dakini on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-20-dance-of-the-dakini/" aria-label="Lyrics for Dance of the Dakini">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=GPTFD7fcA2w&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="GPTFD7fcA2w" data-video-title="Dance of the Dakini" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play Dance of the Dakini on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -274,8 +275,8 @@
         <span class="track-title"><strong>We Go Beyond (He Him)</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-22-we-go-beyond/" aria-label="Read lyrics for We Go Beyond (He Him)">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=ZwSZxn74py0&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch We Go Beyond (He Him) on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-22-we-go-beyond/" aria-label="Lyrics for We Go Beyond (He Him)">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=ZwSZxn74py0&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="ZwSZxn74py0" data-video-title="We Go Beyond (He Him)" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play We Go Beyond (He Him) on this page">Watch video</a>
       </div>
     </div>
     <div class="track-row track-with-actions">
@@ -284,8 +285,8 @@
         <span class="track-title"><strong>A Conversations Review</strong><span>Corrected lyrics and landscape video</span></span>
       </a>
       <div class="track-actions">
-        <a class="status-pill ready" href="../../songs/a-protopian-gambit-23-chatgpt-my-view-of-our-conversation/" aria-label="Read lyrics for A Conversations Review">Lyrics</a>
-        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=7CtM6OOdKsA&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" aria-label="Watch A Conversations Review on YouTube">Watch video</a>
+        <a class="status-pill ready" href="../../songs/a-protopian-gambit-23-chatgpt-my-view-of-our-conversation/" aria-label="Lyrics for A Conversations Review">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://www.youtube.com/watch?v=7CtM6OOdKsA&amp;list=PLf_BsHrPzaQA" target="_blank" rel="noopener" data-album-video="7CtM6OOdKsA" data-video-title="A Conversations Review" data-video-orientation="landscape" data-playlist-id="PLf_BsHrPzaQA" aria-label="Play A Conversations Review on this page">Watch video</a>
       </div>
     </div></div>
         </div>
@@ -324,6 +325,6 @@
   <script src="../../assets/js/site.js?v=external-tabs-2"></script>
   <script src="../../assets/js/order-config.js"></script>
   <script src="../../assets/js/order.js?v=ordering-paused-2"></script>
-
+  <script src="../../assets/js/album-player.js?v=album-playback-1"></script>
 </body>
 </html>

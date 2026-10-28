@@ -63,6 +63,12 @@ refreshes the album, corrected lyrics, landscape players, navigation, catalogue
 and listening cockpit without requiring private source files. Published song
 URLs are stable; duplicate draft URLs redirect to the current song pages.
 
+To refresh all album pages from the committed catalogue without private lyric
+files, run `python tools/update_album_pages.py`. Albums with YouTube videos
+have one player above one song list. Watch video buttons load the chosen video
+in that player; Lyrics buttons open the song pages. Existing bonus videos stay
+in the same list.
+
 ## Notes
 
 The old one-page prototype is preserved as `legacy-content-engine.html`.

@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Next Signals - i C. infinity</title>
   <meta name="description" content="A holding page for songs that have not found their album yet.">
+  <link rel="describedby" type="text/plain" href="../../llms.txt">
+  <link rel="license" href="https://github.com/auraofintelligence/i-C-infinity-music-universe/blob/main/LICENSE">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="icon" type="image/jpeg" href="../../assets/favicon.jpg">
-  <link rel="stylesheet" href="../../assets/css/styles.css?v=photo-story-8">
+  <link rel="stylesheet" href="../../assets/css/styles.css?v=album-player-10">
 </head>
 <body>
 
@@ -46,21 +48,20 @@
         <div class="hero-cover"><img src="../../assets/img/hero-brisbane-tiny-planet.webp" alt="Next Signals artwork"></div>
       </div>
     </section>
-    <section class="section video-section" id="fourth-album-teaser">
-      <div class="wrap">
-        <article class="song-video-panel wide-video-frame">
-          <div class="vertical-video-frame wide-video-frame">
-            <iframe title="Untitled fourth album teaser video" src="https://www.youtube.com/embed/zgvb6PPlaRY?rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
+    <section class="section video-section" id="album-player" data-album-player aria-label="Album video player">
+      <div class="wrap video-feature landscape-feature" data-album-video-feature>
+        <div class="vertical-video-frame wide-video-frame playlist-frame" data-album-video-frame>
+          <iframe title="Next Signals video player" src="https://www.youtube.com/embed/uKygQx_8dos?rel=0" data-album-iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <div class="video-feature-copy">
+          <p class="eyebrow">Music videos</p>
+          <h2 tabindex="-1" data-album-player-heading>Watch Next Signals</h2>
+          <p>Select Watch video beside a song to play it here.</p>
+          <p data-album-current-title aria-live="polite">Choose a song below, or press play.</p>
+          <div class="action-row">
+            <a class="button secondary" href="https://www.youtube.com/watch?v=uKygQx_8dos" target="_blank" rel="noopener" data-album-open-youtube>Open on YouTube</a>
           </div>
-          <div class="vertical-video-copy">
-            <p class="eyebrow">Free Fourth-Album Teaser</p>
-            <h2>Untitled fourth album teaser video</h2>
-            <p>A free first look at the fourth album and the ideas moving through it.</p>
-            <div class="listen-links compact">
-              <a class="listen-chip youtube" href="https://youtu.be/zgvb6PPlaRY?si=OC7gybUgeOu0ix5K" target="_blank" rel="noopener">Open on YouTube</a>
-            </div>
-          </div>
-        </article>
+        </div>
       </div>
     </section>
     <section class="section" id="track-map">
@@ -68,12 +69,22 @@
         <div>
           <h2>Songs</h2>
           <div class="track-list">
-    <div class="track-row">
-      <a href="../../songs/next-signals-01-shifting-sands-of-timeless-redlands/">
+    <div class="track-row track-with-actions">
+      <a class="track-main-link" href="../../songs/next-signals-01-shifting-sands-of-timeless-redlands/">
         <span class="track-number">01</span>
         <span class="track-title"><strong>Shifting Sands of Timeless Redlands</strong><span>Read the lyrics</span></span>
-        <span class="status-pill ready">Lyrics available</span>
       </a>
+      <div class="track-actions">
+        <a class="status-pill ready" href="../../songs/next-signals-01-shifting-sands-of-timeless-redlands/" aria-label="Lyrics for Shifting Sands of Timeless Redlands">Lyrics</a>
+        <a class="status-pill video track-watch-link" href="https://youtu.be/uKygQx_8dos?si=EJ0uT78HYJ22zy7a" target="_blank" rel="noopener" data-album-video="uKygQx_8dos" data-video-title="Shifting Sands of Timeless Redlands" data-video-orientation="landscape" data-playlist-id="" aria-label="Play Shifting Sands of Timeless Redlands on this page">Watch video</a>
+      </div>
+    </div>
+    <div class="track-row track-with-actions">
+      <div class="track-main-link album-extra-video">
+        <span class="track-number" aria-hidden="true">▶</span>
+        <span class="track-title"><strong>Untitled fourth album teaser video</strong><span>Bonus video</span></span>
+      </div>
+      <div class="track-actions"><a class="status-pill video track-watch-link" href="https://youtu.be/zgvb6PPlaRY?si=OC7gybUgeOu0ix5K" target="_blank" rel="noopener" data-album-video="zgvb6PPlaRY" data-video-title="Untitled fourth album teaser video" data-video-orientation="landscape" data-playlist-id="" aria-label="Play Untitled fourth album teaser video on this page">Watch video</a></div>
     </div></div>
         </div>
         <aside class="panel">
@@ -111,6 +122,6 @@
   <script src="../../assets/js/site.js?v=external-tabs-2"></script>
   <script src="../../assets/js/order-config.js"></script>
   <script src="../../assets/js/order.js?v=ordering-paused-2"></script>
-
+  <script src="../../assets/js/album-player.js?v=album-playback-1"></script>
 </body>
 </html>
