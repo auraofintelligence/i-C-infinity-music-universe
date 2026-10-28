@@ -2189,9 +2189,29 @@ def write_protopian_legacy_links() -> None:
         write(REPO / "songs" / old_slug / "index.html", page)
 
 
+def protopian_album_video_section() -> str:
+    data = protopian_video_data()
+    return f'''
+    <section class="section video-section" id="lyric-video-playlist">
+      <div class="wrap video-feature landscape-feature">
+        <div class="vertical-video-frame wide-video-frame playlist-frame">
+          <iframe title="A Protopian Gambit — 22-video album playlist" src="{esc(youtube_playlist_embed_src(data['playlist_id']))}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <div class="video-feature-copy">
+          <p class="eyebrow">Landscape music videos</p>
+          <h2>Watch A Protopian Gambit</h2>
+          <p>Play all 22 videos in album order. Use the song list below for corrected lyrics and individual video links.</p>
+          <div class="action-row">
+            <a class="button" href="{esc(data['source'])}" target="_blank" rel="noopener">Open YouTube playlist</a>
+          </div>
+        </div>
+      </div>
+    </section>'''
+
+
 def landscape_album_video_section(album: Album, prefix: str) -> str:
     if album.slug == "a-protopian-gambit":
-        return ""
+        return protopian_album_video_section()
     meta = LANDSCAPE_ALBUM_VIDEO_MAP.get(album.slug)
     if not meta:
         return ""
