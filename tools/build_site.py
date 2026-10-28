@@ -1836,7 +1836,7 @@ def track_row(song: Song, prefix: str = "") -> str:
         <span class="track-title"><strong>{esc(song.title)}</strong><span>{esc(lyric_note)}</span></span>
       </a>
       <div class="track-actions">
-        {song_status(song)}
+        <a class="status-pill ready" href="{href}" aria-label="Read lyrics for {esc(song.title)}">Lyrics</a>
         <a class="status-pill video track-watch-link" href="{esc(video_url)}" target="_blank" rel="noopener" aria-label="Watch {esc(song.title)} on YouTube">Watch video</a>
       </div>
     </div>
@@ -2180,37 +2180,6 @@ def starseed_video_section(album: Album, prefix: str) -> str:
     """
 
 
-def protopian_album_video_section(album: Album) -> str:
-    data = protopian_video_data()
-    cards = []
-    for song in album.tracks:
-        video = primary_youtube_video(song)
-        cards.append(f'''
-        <a class="video-chip" href="{esc(youtube_video_link(video))}" target="_blank" rel="noopener">
-          <img src="{esc(youtube_thumbnail_url(video['id'], video['thumbnail']))}" alt="{esc(song.title)} video thumbnail" loading="lazy">
-          <strong>{song.track_number:02d} · {esc(song.title)}</strong>
-          <em>Watch landscape video on YouTube</em>
-        </a>''')
-    return f'''
-    <section class="section video-section" id="lyric-video-playlist">
-      <div class="wrap video-feature landscape-feature">
-        <div class="vertical-video-frame wide-video-frame playlist-frame">
-          <iframe title="A Protopian Gambit — 22-video album playlist" src="{esc(youtube_playlist_embed_src(data['playlist_id']))}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" allowfullscreen></iframe>
-        </div>
-        <div class="video-feature-copy">
-          <p class="eyebrow">Landscape music videos</p>
-          <h2>Watch A Protopian Gambit</h2>
-          <p>22 videos in the album playlist order, with corrected lyrics from the 28 October 2026 lyric sheet. Choose a video below or play the album on YouTube.</p>
-          <div class="action-row">
-            <a class="button" href="{esc(data['source'])}" target="_blank" rel="noopener">Open YouTube playlist</a>
-            <a class="button secondary" href="#track-map">Read the lyrics</a>
-          </div>
-        </div>
-      </div>
-      <div class="wrap"><div class="video-index" aria-label="22 landscape videos in album order">{''.join(cards)}</div></div>
-    </section>'''
-
-
 def write_protopian_legacy_links() -> None:
     for old_slug, new_slug in protopian_video_data()["legacy_song_redirects"].items():
         target = f"../{new_slug}/"
@@ -2222,7 +2191,7 @@ def write_protopian_legacy_links() -> None:
 
 def landscape_album_video_section(album: Album, prefix: str) -> str:
     if album.slug == "a-protopian-gambit":
-        return protopian_album_video_section(album)
+        return ""
     meta = LANDSCAPE_ALBUM_VIDEO_MAP.get(album.slug)
     if not meta:
         return ""
