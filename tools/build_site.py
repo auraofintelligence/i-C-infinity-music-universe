@@ -5,6 +5,7 @@ import json
 import re
 import shutil
 import unicodedata
+from network_portraits import prepare_song
 from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Iterable
@@ -2265,13 +2266,14 @@ def song_playlist_footer(song: Song, album: Album) -> str:
 
 
 def song_page(song: Song, album: Album) -> str:
+    network_player = prepare_song(song)
     prefix = "../../"
     lyrics = esc(song.lyrics) if song.lyrics else "Lyrics coming soon."
     tags = "".join(f"<span>{esc(tag)}</span>" for tag in song.themes)
     release = listen_links_html(song) or "No public release link attached yet."
     spotify_embed = spotify_embed_html(song)
     youtube_embed = youtube_song_embed_html(song)
-    media_embeds = spotify_embed + youtube_embed
+    media_embeds = network_player + spotify_embed + youtube_embed
     lyric_source = '<p>Corrected lyric sheet · 28 October 2026</p>' if song.album_slug == "a-protopian-gambit" else ""
     content_warning = ""
     if slugify(song.title) in {"don-t-try-to-fix-me", "dont-try-to-fix-me"}:
